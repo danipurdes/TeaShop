@@ -1,0 +1,128 @@
+[gd_scene load_steps=17 format=3 uid="uid://bmkacr6ktnxpn"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_2amdu"]
+[ext_resource type="Script" path="res://TeaTree.gd" id="1_j6fp0"]
+[ext_resource type="Script" path="res://LeafCrusher.gd" id="3_ne25g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vq3ps"]
+font_size = 100
+
+[sub_resource type="Environment" id="Environment_ib77m"]
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yb1d2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqid7"]
+albedo_color = Color(0.54902, 0.164706, 0.176471, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_pamd4"]
+material = SubResource("StandardMaterial3D_nqid7")
+size = Vector2(5, 5)
+orientation = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fxqqb"]
+size = Vector3(1, 1.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cgxip"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4y6f"]
+albedo_color = Color(0.392157, 0.2, 0.0313726, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pmgqi"]
+material = SubResource("StandardMaterial3D_m4y6f")
+size = Vector3(0.05, 1.25, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74yxk"]
+albedo_color = Color(0.109804, 0.47451, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yawuj"]
+material = SubResource("StandardMaterial3D_74yxk")
+size = Vector3(1, 1.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y2a6e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_70xor"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_2amdu")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Label_FreshLeafCount" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "blep"
+label_settings = SubResource("LabelSettings_vq3ps")
+
+[node name="Label_CrushLeafCount" type="Label" parent="HUD"]
+offset_left = 424.0
+offset_right = 634.0
+offset_bottom = 140.0
+text = "blep"
+label_settings = SubResource("LabelSettings_vq3ps")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.742981, 0.669312, 0, -0.669312, 0.742981, 0, 5.34098, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44462, 2.76549)
+environment = SubResource("Environment_ib77m")
+
+[node name="Player" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.13918, 1, 1.38711)
+mesh = SubResource("CapsuleMesh_yb1d2")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_pamd4")
+
+[node name="TeaTree_0" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40965, 0, 0)
+script = ExtResource("1_j6fp0")
+
+[node name="TeaTreeHitbox" type="CollisionShape3D" parent="TeaTree_0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_fxqqb")
+
+[node name="TeaTreePot" type="MeshInstance3D" parent="TeaTree_0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("BoxMesh_cgxip")
+
+[node name="TeaTreeTrunk" type="MeshInstance3D" parent="TeaTree_0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 0)
+mesh = SubResource("BoxMesh_pmgqi")
+
+[node name="TeaTreeLeaves" type="MeshInstance3D" parent="TeaTree_0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("BoxMesh_yawuj")
+
+[node name="LeafRefreshTimer" type="Timer" parent="TeaTree_0"]
+wait_time = 3.0
+one_shot = true
+
+[node name="LeafCrusher_0" type="Area3D" parent="."]
+script = ExtResource("3_ne25g")
+
+[node name="LeafCrusherHitbox" type="CollisionShape3D" parent="LeafCrusher_0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_y2a6e")
+
+[node name="LeafCrusherMachine" type="MeshInstance3D" parent="LeafCrusher_0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_70xor")
+
+[node name="Label3D" type="Label3D" parent="LeafCrusher_0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24526, 0)
+billboard = 1
+text = "Tea Crusher"
+
+[node name="CrushTimer" type="Timer" parent="LeafCrusher_0"]
+one_shot = true
+
+[connection signal="input_event" from="TeaTree_0" to="TeaTree_0" method="_on_input_event"]
+[connection signal="tea_tree_trim" from="TeaTree_0" to="." method="pluckLeaves"]
+[connection signal="timeout" from="TeaTree_0/LeafRefreshTimer" to="TeaTree_0" method="_on_leaf_refresh_timer_timeout"]
+[connection signal="input_event" from="LeafCrusher_0" to="LeafCrusher_0" method="_on_input_event"]
+[connection signal="on_crush_enter" from="LeafCrusher_0" to="." method="crushLeavesEnter"]
+[connection signal="on_crush_exit" from="LeafCrusher_0" to="." method="crushLeavesExit"]
+[connection signal="timeout" from="LeafCrusher_0/CrushTimer" to="LeafCrusher_0" method="stopCrushLeaves"]
