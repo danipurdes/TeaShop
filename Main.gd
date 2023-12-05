@@ -2,6 +2,8 @@ extends Node3D
 
 @export var tea_leaf_count = 0
 @export var crush_leaf_count = 0
+@export var green_tea_count = 0
+@export var black_tea_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +20,6 @@ func crushLeavesEnter():
 	changeTeaLeafCount(-1)
 
 func crushLeavesExit():
-	print_debug("whut")
 	changeCrushLeafCount(1)
 	
 func changeTeaLeafCount(delta):
@@ -29,5 +30,14 @@ func changeCrushLeafCount(delta):
 	crush_leaf_count = crush_leaf_count + delta
 	$HUD/Label_CrushLeafCount.set_text(str(crush_leaf_count))
 
-func getTeaLeafCount():
-	return tea_leaf_count
+func _on_oxidizer_harvested_black():
+	black_tea_count = black_tea_count + 1
+	$HUD/Label_BlackTeaCount.set_text(str(black_tea_count))
+
+func _on_oxidizer_harvested_green():
+	green_tea_count = green_tea_count + 1
+	$HUD/Label_GreenTeaCount.set_text(str(green_tea_count))
+
+func _on_oxidizer_on_oxidize_enter():
+	crush_leaf_count = crush_leaf_count - 1
+	$HUD/Label_CrushLeafCount.set_text(str(crush_leaf_count))

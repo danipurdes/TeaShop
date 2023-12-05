@@ -14,8 +14,10 @@ func _on_input_event(_camera, event, _position, _normal, _shape_idx):
 
 func trimLeaves():
 	$TeaTreeLeaves.visible = false
+	$TeaTreeHitbox.set_disabled(true)
 	$LeafRefreshTimer.start()
 	tea_tree_trim.emit()
 
 func _on_leaf_refresh_timer_timeout():
 	$TeaTreeLeaves.visible = true
+	$TeaTreeHitbox.set_disabled(false)

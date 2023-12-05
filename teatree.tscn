@@ -1,11 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=26 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_2amdu"]
 [ext_resource type="Script" path="res://TeaTree.gd" id="1_j6fp0"]
 [ext_resource type="Script" path="res://LeafCrusher.gd" id="3_ne25g"]
+[ext_resource type="Script" path="res://Oxidizer.gd" id="4_xwbqi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vq3ps"]
-font_size = 100
+font_size = 50
 
 [sub_resource type="Environment" id="Environment_ib77m"]
 ambient_light_color = Color(1, 1, 1, 1)
@@ -42,7 +43,31 @@ size = Vector3(1, 1.5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y2a6e"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7q7io"]
+albedo_color = Color(0.34902, 0.619608, 0.709804, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_70xor"]
+material = SubResource("StandardMaterial3D_7q7io")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3p2s6"]
+albedo_color = Color(0.603922, 0.603922, 0.603922, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_acnst"]
+albedo_color = Color(0.364706, 0.364706, 0.364706, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_voy65"]
+albedo_color = Color(0.2, 0.529412, 0.309804, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23e5m"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfg0d"]
+albedo_color = Color(0.737255, 0.47451, 0.364706, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rqnee"]
+material = SubResource("StandardMaterial3D_pfg0d")
+
+[sub_resource type="BoxMesh" id="BoxMesh_nhapk"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_2amdu")
@@ -50,16 +75,65 @@ script = ExtResource("1_2amdu")
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="Label_FreshLeafCount" type="Label" parent="HUD"]
+offset_left = 631.0
+offset_right = 841.0
+offset_bottom = 140.0
+text = "-"
+label_settings = SubResource("LabelSettings_vq3ps")
+horizontal_alignment = 2
+
+[node name="Label_FreshLeafCount2" type="Label" parent="HUD"]
 offset_right = 40.0
 offset_bottom = 23.0
-text = "blep"
+text = "Fresh Leaf #:"
 label_settings = SubResource("LabelSettings_vq3ps")
 
 [node name="Label_CrushLeafCount" type="Label" parent="HUD"]
-offset_left = 424.0
-offset_right = 634.0
-offset_bottom = 140.0
-text = "blep"
+offset_left = 631.0
+offset_top = 140.0
+offset_right = 841.0
+offset_bottom = 280.0
+text = "-"
+label_settings = SubResource("LabelSettings_vq3ps")
+horizontal_alignment = 2
+
+[node name="Label_CrushLeafCount2" type="Label" parent="HUD"]
+offset_top = 140.0
+offset_right = 317.0
+offset_bottom = 280.0
+text = "Crush Leaf #:"
+label_settings = SubResource("LabelSettings_vq3ps")
+
+[node name="Label_GreenTeaCount" type="Label" parent="HUD"]
+offset_left = 631.0
+offset_top = 280.0
+offset_right = 841.0
+offset_bottom = 420.0
+text = "-"
+label_settings = SubResource("LabelSettings_vq3ps")
+horizontal_alignment = 2
+
+[node name="Label_GreenTeaCount2" type="Label" parent="HUD"]
+offset_top = 280.0
+offset_right = 631.0
+offset_bottom = 420.0
+text = "Green Tea #:"
+label_settings = SubResource("LabelSettings_vq3ps")
+
+[node name="Label_BlackTeaCount" type="Label" parent="HUD"]
+offset_left = 631.0
+offset_top = 420.0
+offset_right = 841.0
+offset_bottom = 560.0
+text = "-"
+label_settings = SubResource("LabelSettings_vq3ps")
+horizontal_alignment = 2
+
+[node name="Label_BlackTeaCount2" type="Label" parent="HUD"]
+offset_top = 420.0
+offset_right = 631.0
+offset_bottom = 560.0
+text = "Black Tea #:"
 label_settings = SubResource("LabelSettings_vq3ps")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
@@ -111,12 +185,43 @@ shape = SubResource("BoxShape3D_y2a6e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_70xor")
 
-[node name="Label3D" type="Label3D" parent="LeafCrusher_0"]
+[node name="LeafCrusherLabel" type="Label3D" parent="LeafCrusher_0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24526, 0)
 billboard = 1
 text = "Tea Crusher"
 
 [node name="CrushTimer" type="Timer" parent="LeafCrusher_0"]
+one_shot = true
+
+[node name="Oxidizer_0" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37145, 0, 0)
+script = ExtResource("4_xwbqi")
+idle_material = SubResource("StandardMaterial3D_3p2s6")
+started_material = SubResource("StandardMaterial3D_acnst")
+green_material = SubResource("StandardMaterial3D_voy65")
+black_material = SubResource("StandardMaterial3D_23e5m")
+
+[node name="OxidizerHitbox" type="CollisionShape3D" parent="Oxidizer_0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_y2a6e")
+
+[node name="OxidizerMachine" type="MeshInstance3D" parent="Oxidizer_0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_rqnee")
+
+[node name="OxidizerIndicator" type="MeshInstance3D" parent="Oxidizer_0"]
+transform = Transform3D(0.7, 0, 0, 0, 0.5, 0, 0, 0, 0.319855, 0, 0.5, 0.478936)
+mesh = SubResource("BoxMesh_nhapk")
+
+[node name="OxidizerLabel" type="Label3D" parent="Oxidizer_0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24526, 0)
+billboard = 1
+text = "Oxidizer"
+
+[node name="GreenTeaTimer" type="Timer" parent="Oxidizer_0"]
+one_shot = true
+
+[node name="BlackTeaTimer" type="Timer" parent="Oxidizer_0"]
 one_shot = true
 
 [connection signal="input_event" from="TeaTree_0" to="TeaTree_0" method="_on_input_event"]
@@ -126,3 +231,9 @@ one_shot = true
 [connection signal="on_crush_enter" from="LeafCrusher_0" to="." method="crushLeavesEnter"]
 [connection signal="on_crush_exit" from="LeafCrusher_0" to="." method="crushLeavesExit"]
 [connection signal="timeout" from="LeafCrusher_0/CrushTimer" to="LeafCrusher_0" method="stopCrushLeaves"]
+[connection signal="harvested_black" from="Oxidizer_0" to="." method="_on_oxidizer_harvested_black"]
+[connection signal="harvested_green" from="Oxidizer_0" to="." method="_on_oxidizer_harvested_green"]
+[connection signal="input_event" from="Oxidizer_0" to="Oxidizer_0" method="_on_input_event"]
+[connection signal="on_oxidize_enter" from="Oxidizer_0" to="." method="_on_oxidizer_on_oxidize_enter"]
+[connection signal="timeout" from="Oxidizer_0/GreenTeaTimer" to="Oxidizer_0" method="_on_green_tea_timer_timeout"]
+[connection signal="timeout" from="Oxidizer_0/BlackTeaTimer" to="Oxidizer_0" method="_on_black_tea_timer_timeout"]
