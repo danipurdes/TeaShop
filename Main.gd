@@ -7,12 +7,20 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
-	
+	if Input.is_action_just_pressed("escape"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	elif Input.is_action_just_pressed("mouse1"):
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	elif Input.is_action_just_pressed("fullscreen"):
+		if DisplayServer.window_get_mode() != 4:
+			DisplayServer.window_set_mode(4)
+		else:
+			DisplayServer.window_set_mode(2)
+
 func pluckLeaves():
 	changeTeaLeafCount(1)
 
