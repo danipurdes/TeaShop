@@ -1,10 +1,11 @@
-[gd_scene load_steps=43 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=47 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_2amdu"]
 [ext_resource type="Script" path="res://TeaTree.gd" id="1_j6fp0"]
 [ext_resource type="Script" path="res://FPSCamera.gd" id="2_0mnq6"]
 [ext_resource type="Script" path="res://Hotspot.gd" id="2_ig0pm"]
 [ext_resource type="Script" path="res://TeapotGreen.gd" id="2_leiv5"]
+[ext_resource type="Script" path="res://Sink.gd" id="3_0uyi2"]
 [ext_resource type="Script" path="res://LeafCrusher.gd" id="3_ne25g"]
 [ext_resource type="Script" path="res://Oxidizer.gd" id="4_xwbqi"]
 [ext_resource type="Script" path="res://Player.gd" id="5_vpoxk"]
@@ -37,6 +38,18 @@ size = Vector3(1, 1, 4)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_81lox"]
 height = 0.2
 radius = 0.4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yr1br"]
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qooiy"]
+albedo_color = Color(0, 0.462745, 0.494118, 1)
+metallic = 0.55
+metallic_specular = 0.87
+
+[sub_resource type="BoxMesh" id="BoxMesh_w8p5p"]
+material = SubResource("StandardMaterial3D_qooiy")
+size = Vector3(0.8, 0.2, 0.8)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_na1qy"]
 
@@ -176,7 +189,22 @@ offset_bottom = 560.0
 text = "Black Tea #:"
 label_settings = SubResource("LabelSettings_vq3ps")
 
-[node name="TextureRect" type="TextureRect" parent="HUD"]
+[node name="Label_HeldItem" type="Label" parent="HUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -105.0
+offset_top = -140.0
+offset_right = 105.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "-"
+label_settings = SubResource("LabelSettings_vq3ps")
+horizontal_alignment = 2
+
+[node name="Crosshair" type="TextureRect" parent="HUD"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -228,8 +256,22 @@ script = ExtResource("2_ig0pm")
 [node name="CounterHitbox_0" type="CollisionShape3D" parent="StaticEnvironment/Counter/CounterHotspot_0"]
 shape = SubResource("CylinderShape3D_81lox")
 
+[node name="Sink_0" type="Area3D" parent="StaticEnvironment/Counter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_0uyi2")
+
+[node name="SinkHitbox" type="CollisionShape3D" parent="StaticEnvironment/Counter/Sink_0"]
+shape = SubResource("BoxShape3D_yr1br")
+
+[node name="SinkModel" type="MeshInstance3D" parent="StaticEnvironment/Counter/Sink_0"]
+mesh = SubResource("BoxMesh_w8p5p")
+
 [node name="TeapotGreen" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.1, -1.5)
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("2_leiv5")
 
 [node name="TeapotGreenHitbox" type="CollisionShape3D" parent="TeapotGreen"]

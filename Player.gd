@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
-var doRequestRaycast = false
+var doMouse1RequestRaycast = false
+var doMouse2RequestRaycast = false
 var raycastEvent
 var RAY_LENGTH = 1000.0
 var walk_speed = 2.0
@@ -11,16 +12,20 @@ var heldHitbox = null
 
 func _physics_process(_delta):
 	# Object Picking
-	if doRequestRaycast:
-		var camera3d = $Camera
-		var from = camera3d.project_ray_origin(raycastEvent.position)
-		var to = from + camera3d.project_ray_normal(raycastEvent.position) * RAY_LENGTH
-		var query = PhysicsRayQueryParameters3D.create(from, to, collision_mask)
-		query.collide_with_areas = true
-		var result = get_world_3d().direct_space_state.intersect_ray(query)
+	if Input.is_action_just_pressed("mouse1"):
+		var result = getRaycastResult()
 		if (!result.is_empty() and result.collider.has_method("ping")):
 			result.collider.ping()
-		doRequestRaycast = false
+		doMouse1RequestRaycast = false
+	elif Input.is_action_just_pressed("mouse2"):
+		var result = getRaycastResult()
+		if (!result.is_empty() and result.collider.has_method("ping2")):
+			result.collider.ping2()
+		doMouse2RequestRaycast = false
+	
+	# Move Held Item
+	if heldItem != null:
+		heldItem.position = $Hand/HeldItem.global_position
 	
 	# Movement
 	var move_axis = Vector3()
@@ -44,21 +49,24 @@ func _input(event):
 		var new_rotation = rotation_degrees
 		new_rotation.y += rotate_invert_h * event.relative.x * rotate_sensitivity_h
 		set_rotation_degrees(new_rotation)
-	elif event is InputEventMouseButton and event.pressed and event.button_index == 1:
-		doRequestRaycast = true
-		raycastEvent = event
-		print(event)
+	#elif event is InputEventMouseButton and event.pressed and event.button_index == 1:
+	#	doMouse1RequestRaycast = true
+	#	raycastEvent = event
+	#	print(event)
+	#elif event is InputEventMouseButton and event.pressed and event.button_index == 2:
+	#	doMouse2RequestRaycast = true
+	#	raycastEvent = event
+	#	print(event)
 
 func attemptPickup(item, hitbox, mesh):
 	if heldItem == null:
 		updateHeldItem(item, hitbox, mesh)
 
 func updateHeldItem(item, hitbox, mesh):
-	item.visible = false
 	hitbox.disabled = true
 	heldItem = item
 	heldHitbox = hitbox
-	$Hand/HeldItem.mesh = mesh.mesh
+	get_node("/root/Node3D/HUD/Label_HeldItem").text = heldItem.getName()
 
 func requestDropHeldItem(dropRequestor):
 	if heldItem != null:
@@ -67,7 +75,18 @@ func requestDropHeldItem(dropRequestor):
 func dropHeldItem(dropRequestor):
 	$Hand/HeldItem.mesh = null
 	heldHitbox.disabled = false
-	heldItem.visible = true
 	heldItem.position = dropRequestor.global_position
 	heldItem = null
 	heldHitbox = null
+	get_node("/root/Node3D/HUD/Label_HeldItem").text = "no held item"
+
+func getHeldItem():
+	return heldItem
+
+func getRaycastResult():
+	var camera3d = $Camera
+	var from = camera3d.project_ray_origin(camera3d.get_viewport().size / 2)
+	var to = from + camera3d.project_ray_normal(camera3d.get_viewport().size / 2) * RAY_LENGTH
+	var query = PhysicsRayQueryParameters3D.create(from, to, collision_mask)
+	query.collide_with_areas = true
+	return get_world_3d().direct_space_state.intersect_ray(query)
