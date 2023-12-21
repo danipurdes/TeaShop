@@ -3,14 +3,16 @@ extends CharacterBody3D
 var doRequestRaycast = false
 var raycastEvent
 var RAY_LENGTH = 1000.0
-var walk_speed = 1.0
+var walk_speed = 2.0
 var rotate_sensitivity_h = 1
 var rotate_invert_h = -1
+var heldItem = null
+var heldHitbox = null
 
 func _physics_process(_delta):
 	# Object Picking
 	if doRequestRaycast:
-		var camera3d = $Camera3D
+		var camera3d = $Camera
 		var from = camera3d.project_ray_origin(raycastEvent.position)
 		var to = from + camera3d.project_ray_normal(raycastEvent.position) * RAY_LENGTH
 		var query = PhysicsRayQueryParameters3D.create(from, to, collision_mask)
@@ -46,3 +48,26 @@ func _input(event):
 		doRequestRaycast = true
 		raycastEvent = event
 		print(event)
+
+func attemptPickup(item, hitbox, mesh):
+	if heldItem == null:
+		updateHeldItem(item, hitbox, mesh)
+
+func updateHeldItem(item, hitbox, mesh):
+	item.visible = false
+	hitbox.disabled = true
+	heldItem = item
+	heldHitbox = hitbox
+	$Hand/HeldItem.mesh = mesh.mesh
+
+func requestDropHeldItem(dropRequestor):
+	if heldItem != null:
+		dropHeldItem(dropRequestor)
+	
+func dropHeldItem(dropRequestor):
+	$Hand/HeldItem.mesh = null
+	heldHitbox.disabled = false
+	heldItem.visible = true
+	heldItem.position = dropRequestor.global_position
+	heldItem = null
+	heldHitbox = null
