@@ -1,8 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=47 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_2amdu"]
 [ext_resource type="Script" path="res://TeaTree.gd" id="1_j6fp0"]
 [ext_resource type="Script" path="res://FPSCamera.gd" id="2_0mnq6"]
+[ext_resource type="Script" path="res://Hotspot.gd" id="2_ig0pm"]
+[ext_resource type="Script" path="res://TeapotGreen.gd" id="2_leiv5"]
+[ext_resource type="Script" path="res://Sink.gd" id="3_0uyi2"]
 [ext_resource type="Script" path="res://LeafCrusher.gd" id="3_ne25g"]
 [ext_resource type="Script" path="res://Oxidizer.gd" id="4_xwbqi"]
 [ext_resource type="Script" path="res://Player.gd" id="5_vpoxk"]
@@ -19,8 +22,47 @@ albedo_color = Color(0.54902, 0.164706, 0.176471, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_pamd4"]
 material = SubResource("StandardMaterial3D_nqid7")
-size = Vector2(5, 5)
+size = Vector2(10, 10)
 orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phl1b"]
+albedo_color = Color(0.631373, 0.65098, 0.505882, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_h7fqm"]
+material = SubResource("StandardMaterial3D_phl1b")
+size = Vector2(10, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ua5ob"]
+size = Vector3(1, 1, 4)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_81lox"]
+height = 0.2
+radius = 0.4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yr1br"]
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qooiy"]
+albedo_color = Color(0, 0.462745, 0.494118, 1)
+metallic = 0.55
+metallic_specular = 0.87
+
+[sub_resource type="BoxMesh" id="BoxMesh_w8p5p"]
+material = SubResource("StandardMaterial3D_qooiy")
+size = Vector3(0.8, 0.2, 0.8)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_na1qy"]
+radius = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frrqe"]
+albedo_color = Color(0, 0.352941, 0.164706, 1)
+metallic = 0.21
+metallic_specular = 0.55
+
+[sub_resource type="SphereMesh" id="SphereMesh_sd412"]
+material = SubResource("StandardMaterial3D_frrqe")
+radius = 0.25
+height = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fxqqb"]
 size = Vector3(1, 1.5, 1)
@@ -74,6 +116,10 @@ material = SubResource("StandardMaterial3D_pfg0d")
 ambient_light_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfdx5"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8knmf"]
+radius = 0.1
+height = 0.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_idfoq"]
 
@@ -146,7 +192,22 @@ offset_bottom = 560.0
 text = "Black Tea #:"
 label_settings = SubResource("LabelSettings_vq3ps")
 
-[node name="TextureRect" type="TextureRect" parent="HUD"]
+[node name="Label_HeldItem" type="Label" parent="HUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -105.0
+offset_top = -140.0
+offset_right = 105.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "-"
+label_settings = SubResource("LabelSettings_vq3ps")
+horizontal_alignment = 2
+
+[node name="Crosshair" type="TextureRect" parent="HUD"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -163,11 +224,74 @@ texture = SubResource("PlaceholderTexture2D_jtfon")
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.742981, 0.669312, 0, -0.669312, 0.742981, 0, 5.34098, 0)
 
-[node name="Floor" type="MeshInstance3D" parent="."]
+[node name="StaticEnvironment" type="Node3D" parent="."]
+
+[node name="Floor" type="MeshInstance3D" parent="StaticEnvironment"]
 mesh = SubResource("QuadMesh_pamd4")
+skeleton = NodePath("../..")
+
+[node name="Wall_0" type="MeshInstance3D" parent="StaticEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49967, -5)
+mesh = SubResource("QuadMesh_h7fqm")
+
+[node name="Wall_1" type="MeshInstance3D" parent="StaticEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.49967, 5)
+mesh = SubResource("QuadMesh_h7fqm")
+
+[node name="Wall_2" type="MeshInstance3D" parent="StaticEnvironment"]
+transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 5, 2.49967, 0)
+mesh = SubResource("QuadMesh_h7fqm")
+
+[node name="Wall_3" type="MeshInstance3D" parent="StaticEnvironment"]
+transform = Transform3D(1.31134e-07, 8.74228e-08, 1, 0, -1, 8.74228e-08, 1, -1.14641e-14, -1.31134e-07, -5, 2.49967, 0)
+mesh = SubResource("QuadMesh_h7fqm")
+
+[node name="Counter" type="MeshInstance3D" parent="StaticEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0.5, 0)
+mesh = SubResource("BoxMesh_ua5ob")
+
+[node name="CounterHotspot_0" type="Area3D" parent="StaticEnvironment/Counter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.5)
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("2_ig0pm")
+
+[node name="CounterHitbox_0" type="CollisionShape3D" parent="StaticEnvironment/Counter/CounterHotspot_0"]
+shape = SubResource("CylinderShape3D_81lox")
+
+[node name="Sink_0" type="Area3D" parent="StaticEnvironment/Counter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_0uyi2")
+
+[node name="SinkHitbox" type="CollisionShape3D" parent="StaticEnvironment/Counter/Sink_0"]
+shape = SubResource("BoxShape3D_yr1br")
+
+[node name="SinkModel" type="MeshInstance3D" parent="StaticEnvironment/Counter/Sink_0"]
+mesh = SubResource("BoxMesh_w8p5p")
+
+[node name="TeapotGreen" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.1, -1.5)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_leiv5")
+
+[node name="TeapotGreenHitbox" type="CollisionShape3D" parent="TeapotGreen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("SphereShape3D_na1qy")
+
+[node name="TeapotGreenMesh" type="MeshInstance3D" parent="TeapotGreen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("SphereMesh_sd412")
+
+[node name="TeapotGreenLabel" type="Label3D" parent="TeapotGreen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 1
+text = "-"
 
 [node name="TeaTree_0" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40965, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40965, 0, -4)
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("1_j6fp0")
@@ -193,6 +317,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="LeafCrusher_0" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("3_ne25g")
@@ -214,7 +339,7 @@ text = "Tea Crusher"
 one_shot = true
 
 [node name="Oxidizer_0" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37145, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37145, 0, -4)
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("4_xwbqi")
@@ -252,7 +377,7 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("5_vpoxk")
 
-[node name="Camera3D" type="Camera3D" parent="Player"]
+[node name="Camera" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.454487, 0)
 environment = SubResource("Environment_ib77m")
 script = ExtResource("2_0mnq6")
@@ -260,10 +385,14 @@ script = ExtResource("2_0mnq6")
 [node name="PlayerCollider" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_lfdx5")
 
-[node name="Raycaster" type="Node3D" parent="Player"]
+[node name="Hand" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.417331, 0, -0.591021)
+mesh = SubResource("SphereMesh_8knmf")
+
+[node name="HeldItem" type="MeshInstance3D" parent="Player/Hand"]
 
 [node name="Jukebox_0" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.70722, 0, 3.96591)
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("7_35prk")
@@ -278,7 +407,7 @@ mesh = SubResource("BoxMesh_dgeip")
 skeleton = NodePath("../..")
 
 [node name="ChillHopBeatsToStudyTo" type="AudioStreamPlayer3D" parent="Jukebox_0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.48643, 0.600377, 1.76549)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 stream = ExtResource("7_46lvk")
 unit_size = 5.0
 autoplay = true
