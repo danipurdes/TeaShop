@@ -3,7 +3,7 @@ extends CharacterBody3D
 var doMouse1RequestRaycast = false
 var doMouse2RequestRaycast = false
 var raycastEvent
-var RAY_LENGTH = 1000.0
+var RAY_LENGTH = 10.0
 var walk_speed = 2.0
 var rotate_sensitivity_h = 1
 var rotate_invert_h = -1
@@ -14,13 +14,17 @@ func _physics_process(_delta):
 	# Object Picking
 	if Input.is_action_just_pressed("mouse1"):
 		var result = getRaycastResult()
-		if (!result.is_empty() and result.collider.has_method("ping")):
-			result.collider.ping()
+		if !result.is_empty():
+			if "item_type" in result.collider and result.collider.item_type == "teapot":
+				attemptPickup(result.collider)
+			elif result.collider.has_method("ping"):
+				result.collider.ping()
 		doMouse1RequestRaycast = false
 	elif Input.is_action_just_pressed("mouse2"):
 		var result = getRaycastResult()
 		if (!result.is_empty() and result.collider.has_method("ping2")):
 			result.collider.ping2()
+			get_node("/root/Node3D/HUD/Label_HeldItem").text = heldItem.getName()
 		doMouse2RequestRaycast = false
 	
 	# Move Held Item
@@ -49,23 +53,15 @@ func _input(event):
 		var new_rotation = rotation_degrees
 		new_rotation.y += rotate_invert_h * event.relative.x * rotate_sensitivity_h
 		set_rotation_degrees(new_rotation)
-	#elif event is InputEventMouseButton and event.pressed and event.button_index == 1:
-	#	doMouse1RequestRaycast = true
-	#	raycastEvent = event
-	#	print(event)
-	#elif event is InputEventMouseButton and event.pressed and event.button_index == 2:
-	#	doMouse2RequestRaycast = true
-	#	raycastEvent = event
-	#	print(event)
 
-func attemptPickup(item, hitbox, mesh):
+func attemptPickup(item):
 	if heldItem == null:
-		updateHeldItem(item, hitbox, mesh)
+		updateHeldItem(item)
 
-func updateHeldItem(item, hitbox, mesh):
-	hitbox.disabled = true
+func updateHeldItem(item):
 	heldItem = item
-	heldHitbox = hitbox
+	heldItem.monitoring = false
+	heldItem.monitorable = false
 	get_node("/root/Node3D/HUD/Label_HeldItem").text = heldItem.getName()
 
 func requestDropHeldItem(dropRequestor):
@@ -73,11 +69,10 @@ func requestDropHeldItem(dropRequestor):
 		dropHeldItem(dropRequestor)
 	
 func dropHeldItem(dropRequestor):
-	$Hand/HeldItem.mesh = null
-	heldHitbox.disabled = false
+	heldItem.monitoring = true
+	heldItem.monitorable = true
 	heldItem.position = dropRequestor.global_position
 	heldItem = null
-	heldHitbox = null
 	get_node("/root/Node3D/HUD/Label_HeldItem").text = "no held item"
 
 func getHeldItem():

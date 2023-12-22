@@ -5,20 +5,21 @@ var state = "empty"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	$TeapotGreenLabel.text = getName()
 
 func ping():
-	get_node("/root/Node3D/Player").attemptPickup(self, $TeapotGreenHitbox, $TeapotGreenMesh)
+	#get_node("/root/Node3D/Player").attemptPickup(self)
+	pass
 
 func onPing2(pinger):
 	if pinger.item_type == "sink" and state == "empty":
-		state = "full of water"
+		updateState("full of water")
 	elif pinger.item_type == "sink" and state == "full of water":
-		state = "empty"
+		updateState("empty")
+
+func updateState(newState):
+	state = newState
+	$TeapotGreenLabel.text = item_type + " - " + state
 
 func getName():
 	return item_type + " - " + state
