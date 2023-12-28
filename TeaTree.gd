@@ -8,10 +8,6 @@ func _ready():
 func _process(_delta):
 	pass
 
-#func _on_input_event(_camera, event, _position, _normal, _shape_idx):
-#	if event is InputEventMouseButton and event.pressed and event.button_index == 1:
-#		trimLeaves()
-
 func ping():
 	trimLeaves()
 

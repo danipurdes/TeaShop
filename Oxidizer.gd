@@ -17,19 +17,6 @@ func _ready():
 func _process(_delta):
 	pass
 
-# func _on_input_event(_camera, event, _position, _normal, _shape_idx):
-#	if event is InputEventMouseButton and event.pressed and event.button_index == 1:
-#		if tea_type == "none":
-#			if get_node("/root/Node3D").crush_leaf_count > 0:
-#				startOxidizeLeaves()
-#		if tea_type == "green":
-#			harvested_green.emit()
-#			stopOxidizeLeaves()
-#			print_debug("green ready")
-#		if tea_type == "black":
-#			harvested_black.emit()
-#			print_debug("black ready")
-
 func ping():
 	if tea_type == "none":
 		if get_node("/root/Node3D").crush_leaf_count > 0:

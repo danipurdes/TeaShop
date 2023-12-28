@@ -1,14 +1,18 @@
 extends Area3D
 
+class_name Hotspot
+
+var machine_type = "hotspot"
+var allowlist = []
 var currentItem = null
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func ping():
-	get_node("/root/Node3D/Player").requestDropHeldItem(self)
+	print("mercury is in retrograde")
+	if currentItem == null:
+		print("spiderpunk my beloved")
+		get_node("/root/Node3D/Player").requestDropHeldItem(self)
+
+func isItemAllowed(itemType):
+	if allowlist.size() > 0:
+		return itemType in allowlist
+	return true
