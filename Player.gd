@@ -16,16 +16,14 @@ func _physics_process(_delta):
 		var result = getRaycastResult()
 		if !result.is_empty():
 			if "item_type" in result.collider:
-				if result.collider.item_type == "teapot" or result.collider.item_type == "teakettle":
-					attemptPickup(result.collider)
+				attemptPickup(result.collider)
 			elif result.collider.has_method("ping"):
-				print("hee hee whee")
 				result.collider.ping()
 		doMouse1RequestRaycast = false
 	elif Input.is_action_just_pressed("mouse2"):
 		var result = getRaycastResult()
-		if (!result.is_empty() and result.collider.has_method("ping2")):
-			result.collider.ping2(heldItem)
+		if (!result.is_empty() and result.collider.has_method("useItem")):
+			result.collider.useItem(heldItem)
 			get_node("/root/Node3D/HUD/Label_HeldItem").text = heldItem.getName()
 		doMouse2RequestRaycast = false
 	

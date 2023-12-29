@@ -7,10 +7,10 @@ var allowlist = []
 var currentItem = null
 
 func ping():
-	print("mercury is in retrograde")
 	if currentItem == null:
-		print("spiderpunk my beloved")
-		get_node("/root/Node3D/Player").requestDropHeldItem(self)
+		var heldItem = get_node("/root/Node3D/Player").getHeldItem()
+		if heldItem != null and isItemAllowed(heldItem.item_type):
+			get_node("/root/Node3D/Player").requestDropHeldItem(self)
 
 func isItemAllowed(itemType):
 	if allowlist.size() > 0:
