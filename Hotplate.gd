@@ -8,9 +8,11 @@ var currentItem = null
 
 func ping():
 	if currentItem == null:
-		var heldItem = get_node("/root/Node3D/Player").requestDropHeldItem(self)
-		if heldItem.has_method("onUseStove"):
-			heldItem.onUseStove()
+		var heldItem = get_node("/root/Node3D/Player").getHeldItem()
+		if heldItem.item_type in allowlist:
+			get_node("/root/Node3D/Player").requestDropHeldItem(self)
+			if heldItem.has_method("onUseStove"):
+				heldItem.onUseStove()
 
 func isItemAllowed(itemType):
 	print(itemType)
