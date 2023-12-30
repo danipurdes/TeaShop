@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cejwegoqekxl"]
+
+[ext_resource type="Script" path="res://TeaBrickBlack.gd" id="1_5y8bq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tl8i4"]
+size = Vector3(0.2, 0.15, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_83qeq"]
+albedo_color = Color(0.247059, 0.172549, 0.0352941, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0t3q4"]
+material = SubResource("StandardMaterial3D_83qeq")
+size = Vector3(0.2, 0.15, 0.2)
+
+[node name="TeaBrickBlack" type="Area3D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_5y8bq")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_tl8i4")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_0t3q4")
+
+[node name="Label" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 1
+text = "-"

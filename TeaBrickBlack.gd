@@ -6,13 +6,5 @@ extends Area3D
 func _ready():
 	$Label.text = getName()
 
-func onUseItem(item_type):
-	if item_type == "hot water":
-		pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func getName():
 	return item_type
