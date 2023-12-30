@@ -16,10 +16,10 @@ func _process(_delta):
 	elif Input.is_action_just_pressed("mouse1"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif Input.is_action_just_pressed("fullscreen"):
-		if DisplayServer.window_get_mode() != 4:
-			DisplayServer.window_set_mode(4)
+		if DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 		else:
-			DisplayServer.window_set_mode(2)
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 
 func pluckLeaves():
 	changeTeaLeafCount(1)
