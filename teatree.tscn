@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=66 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_2amdu"]
 [ext_resource type="Script" path="res://TeaTree.gd" id="1_j6fp0"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://TeaCup.gd" id="6_j8cdo"]
 [ext_resource type="Script" path="res://Jukebox.gd" id="7_35prk"]
 [ext_resource type="AudioStream" uid="uid://dk7p3uur283wf" path="res://audio/dreamy-jazz-slow-background-jazz-music-piano-and-seattle-strings-9998.mp3" id="7_46lvk"]
+[ext_resource type="PackedScene" uid="uid://boyd8vxijavpe" path="res://models/tea_cup.glb" id="7_m6qpt"]
 [ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://tea_brick_green.tscn" id="8_toxjs"]
 [ext_resource type="PackedScene" uid="uid://cejwegoqekxl" path="res://tea_brick_black.tscn" id="9_x5a3l"]
 
@@ -84,9 +85,17 @@ material = SubResource("StandardMaterial3D_frrqe")
 radius = 0.25
 height = 0.5
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yahd4"]
+albedo_color = Color(0.243137, 0.462745, 0.12549, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2f6p7"]
+albedo_color = Color(0.105882, 0.054902, 0.00392157, 1)
+metallic = 0.95
+metallic_specular = 0.59
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vbe5n"]
-height = 0.3
-radius = 0.2
+height = 0.2
+radius = 0.15
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxc44"]
 albedo_color = Color(0.756863, 0.380392, 0.32549, 1)
@@ -96,6 +105,14 @@ material = SubResource("StandardMaterial3D_mxc44")
 top_radius = 0.2
 bottom_radius = 0.2
 height = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_csniw"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bs7lk"]
+material = SubResource("StandardMaterial3D_csniw")
+top_radius = 0.21
+bottom_radius = 0.21
+height = 0.25
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vjw4y"]
 height = 0.5
@@ -467,23 +484,34 @@ billboard = 1
 text = "-"
 
 [node name="TeaCup" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0.977034, -3.42058)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.07656, -3.42058)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("6_j8cdo")
+green_tea = SubResource("StandardMaterial3D_yahd4")
+black_tea = SubResource("StandardMaterial3D_2f6p7")
 
 [node name="Hitbox" type="CollisionShape3D" parent="TeaCup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("CylinderShape3D_vbe5n")
 
 [node name="Mesh" type="MeshInstance3D" parent="TeaCup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+visible = false
 mesh = SubResource("CylinderMesh_3wurh")
 
 [node name="Label" type="Label3D" parent="TeaCup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 billboard = 1
 text = "-"
+
+[node name="tea_cup" parent="TeaCup" instance=ExtResource("7_m6qpt")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0, 0)
+
+[node name="tea_cup_liquid" type="MeshInstance3D" parent="TeaCup/tea_cup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.227126, 0)
+visible = false
+mesh = SubResource("CylinderMesh_bs7lk")
 
 [node name="TeaKettle" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.1, 0.4247)

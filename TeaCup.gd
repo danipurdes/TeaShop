@@ -2,6 +2,8 @@ extends Area3D
 
 @export var item_type = "teacup"
 @export var state = "empty"
+@export var green_tea:Material
+@export var black_tea:Material
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,8 +27,20 @@ func onUseItem(pinger):
 			updateState("empty")
 
 func updateState(newState):
+	updateLiquidMaterial(newState)
 	state = newState
 	$Label.text = getName()
+
+func updateLiquidMaterial(newState):
+	match newState:
+		"green tea":
+			$tea_cup/tea_cup_liquid.visible = true
+			$tea_cup/tea_cup_liquid.set_surface_override_material(0, green_tea)
+		"black tea":
+			$tea_cup/tea_cup_liquid.visible = true
+			$tea_cup/tea_cup_liquid.set_surface_override_material(0, black_tea)
+		"empty":
+			$tea_cup/tea_cup_liquid.visible = false
 
 func getName():
 	return item_type + " - " + state
