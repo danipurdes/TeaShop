@@ -8,3 +8,6 @@ func useItem(heldItem):
 		if heldItem.has_method("onUseItem"):
 			print("calling onUseItem")
 			heldItem.onUseItem(self)
+
+func getName():
+	return machine_type

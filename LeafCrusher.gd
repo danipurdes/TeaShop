@@ -3,6 +3,8 @@ extends Area3D
 signal on_crush_enter
 signal on_crush_exit
 
+@export var machine_type = "leaf_crusher"
+
 func _ready():
 	pass
 

@@ -2,6 +2,8 @@ extends Area3D
 
 signal tea_tree_trim
 
+@export var machine_type = "tea_tree"
+
 func _ready():
 	pass
 

@@ -1,4 +1,6 @@
 extends Label
 
-func onHeldItemUpdate(heldItemName):
-	text = heldItemName
+func onLabelUpdate(heldItemName):
+	#print_debug(heldItemName)
+	if heldItemName != null:
+		text = heldItemName

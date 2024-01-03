@@ -1,5 +1,6 @@
 extends Area3D
 
+var machine_type = "jukebox"
 var song_index = 0.0
 
 func ping():

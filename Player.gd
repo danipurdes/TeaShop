@@ -1,34 +1,46 @@
 extends CharacterBody3D
 
 signal changeHeldItem(itemName)
+signal changePingLabel(label)
+signal changeUseLabel(label)
 
-var doMouse1RequestRaycast = false
-var doMouse2RequestRaycast = false
 var raycastEvent
 var RAY_LENGTH = 10.0
 var walk_speed = 2.0
 var rotate_sensitivity_h = 1
 var rotate_invert_h = -1
 var heldItem = null
-var heldHitbox = null
+
+var itemUseLabelMap = {
+	"teakettle_empty|sink":"fill with cold water",
+	"teakettle_cold_water|hotplate":"heat kettle on stove",
+	"teakettle_hot_water|teapot_empty_none":"fill teapot from kettle",
+	"teapot_hot_water_green_tea|teacup_empty":"fill teacup with tea",
+	"teapot_hot_water_black_tea|teacup_empty":"fill teacup with tea",
+	"green_tea_brick|teapot_hot_water_none":"add tea to teapot",
+	"black_tea_brick|teapot_hot_water_none":"add tea to teapot",
+	"teacup_green_tea|sink": "empty cup into sink",
+	"teacup_black_tea|sink": "empty cup into sink"
+}
 
 func _physics_process(_delta):
-	# Object Picking
-	if Input.is_action_just_pressed("mouse1"):
-		var result = getRaycastResult()
-		if !result.is_empty():
-			if "item_type" in result.collider:
-				attemptPickup(result.collider)
-			elif result.collider.has_method("ping"):
-				result.collider.ping()
-		doMouse1RequestRaycast = false
-	elif Input.is_action_just_pressed("mouse2"):
-		var result = getRaycastResult()
-		if (!result.is_empty() and result.collider.has_method("useItem")):
-			result.collider.useItem(heldItem)
-			if (heldItem != null):
-				changeHeldItem.emit(heldItem.getName())
-		doMouse2RequestRaycast = false
+	var raycastResult = getRaycastResult()
+	if !raycastResult.is_empty():
+		#Object Scanning
+		setPingLabel(raycastResult)
+		setUseLabel(raycastResult)
+		
+		#Object Picking
+		if Input.is_action_just_pressed("mouse1"):
+			if "item_type" in raycastResult.collider:
+				attemptPickup(raycastResult.collider)
+			elif raycastResult.collider.has_method("ping"):
+				raycastResult.collider.ping()
+		elif Input.is_action_just_pressed("mouse2"):
+			if raycastResult.collider.has_method("useItem"):
+				raycastResult.collider.useItem(heldItem)
+				if (heldItem != null):
+					changeHeldItem.emit(heldItem.getName())
 	
 	# Move Held Item
 	if heldItem != null:
@@ -85,7 +97,6 @@ func dropHeldItem(dropRequestor):
 func destroyHeldItem():
 	heldItem.queue_free()
 	heldItem = null
-	print_debug("destroyed held item")
 	changeHeldItem.emit("-")
 
 func getHeldItem():
@@ -98,3 +109,44 @@ func getRaycastResult():
 	var query = PhysicsRayQueryParameters3D.create(from, to, collision_mask)
 	query.collide_with_areas = true
 	return get_world_3d().direct_space_state.intersect_ray(query)
+
+func setPingLabel(raycastResult):
+	var resultCollider = raycastResult.collider
+	if heldItem == null and "item_type" in resultCollider:
+		changePingLabel.emit("pick up " + resultCollider.item_type)
+		return
+	elif heldItem != null and "machine_type" in resultCollider:
+		if resultCollider.machine_type == "hotspot" or resultCollider.machine_type == "hotplate":
+			changePingLabel.emit("set down " + heldItem.item_type)
+			return
+	elif "machine_type" in resultCollider:
+		match resultCollider.machine_type:
+			"jukebox":
+				changePingLabel.emit("toggle jukebox")
+				return
+			"tea_tree":
+				changePingLabel.emit("prune tea tree")
+				return
+			"leaf_crusher":
+				changePingLabel.emit("crush tea leaves")
+				return
+			"oxidizer":
+				changePingLabel.emit("oxidize tea leaves")
+				return
+	changePingLabel.emit("-")
+	pass
+
+func setUseLabel(raycastResult):
+	var resultCollider = raycastResult.collider
+	if heldItem != null:
+		if heldItem.has_method("onUseItem") and resultCollider.has_method("useItem"):
+			var heldItemKey = ""
+			if heldItem.has_method("getName"):
+				heldItemKey = heldItem.getName()
+			var colliderKey = ""
+			if resultCollider.has_method("getName"):
+				colliderKey = resultCollider.getName()
+			var useKey = heldItemKey + "|" + colliderKey
+			changeUseLabel.emit(itemUseLabelMap.get(useKey))
+			return
+	changeUseLabel.emit("-")

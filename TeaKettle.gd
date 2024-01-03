@@ -10,19 +10,19 @@ func _ready():
 func onUseItem(pinger):
 	if "machine_type" in pinger and pinger.machine_type == "sink":
 		if state == "empty":
-			updateState("cold water")
-		elif state == "cold water":
+			updateState("cold_water")
+		elif state == "cold_water":
 			updateState("empty")
-		elif state == "hot water":
+		elif state == "hot_water":
 			updateState("empty")
 
 func onUseStove():
-	if state == "cold water":
-		updateState("hot water")
+	if state == "cold_water":
+		updateState("hot_water")
 
 func updateState(newState):
 	state = newState
 	$TeaKettleLabel.text = getName()
 
 func getName():
-	return item_type + " - " + state
+	return item_type + "_" + state

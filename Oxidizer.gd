@@ -5,6 +5,7 @@ signal on_oxidize_exit
 signal harvested_green
 signal harvested_black
 
+@export var machine_type = "oxidizer"
 @export var tea_type = "none"
 @export var idle_material: Material
 @export var started_material: Material

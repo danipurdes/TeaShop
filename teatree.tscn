@@ -19,11 +19,11 @@
 [ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://tea_brick_green.tscn" id="8_toxjs"]
 [ext_resource type="PackedScene" uid="uid://cejwegoqekxl" path="res://tea_brick_black.tscn" id="9_x5a3l"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_vq3ps"]
-font_size = 50
-
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jtfon"]
 size = Vector2(10, 10)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vq3ps"]
+font_size = 50
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqid7"]
 albedo_color = Color(0.54902, 0.164706, 0.176471, 1)
@@ -191,42 +191,6 @@ script = ExtResource("1_2amdu")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Label_GreenTeaCount" type="Label" parent="HUD"]
-visible = false
-offset_left = 631.0
-offset_top = 280.0
-offset_right = 841.0
-offset_bottom = 420.0
-text = "-"
-label_settings = SubResource("LabelSettings_vq3ps")
-horizontal_alignment = 2
-
-[node name="Label_Static_GreenTeaCount" type="Label" parent="HUD"]
-visible = false
-offset_top = 280.0
-offset_right = 631.0
-offset_bottom = 420.0
-text = "Green Tea #:"
-label_settings = SubResource("LabelSettings_vq3ps")
-
-[node name="Label_BlackTeaCount" type="Label" parent="HUD"]
-visible = false
-offset_left = 631.0
-offset_top = 420.0
-offset_right = 841.0
-offset_bottom = 560.0
-text = "-"
-label_settings = SubResource("LabelSettings_vq3ps")
-horizontal_alignment = 2
-
-[node name="Label_Static_BlackTeaCount" type="Label" parent="HUD"]
-visible = false
-offset_top = 420.0
-offset_right = 631.0
-offset_bottom = 560.0
-text = "Black Tea #:"
-label_settings = SubResource("LabelSettings_vq3ps")
-
 [node name="Control" type="AspectRatioContainer" parent="HUD"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -292,6 +256,7 @@ size_flags_vertical = 8
 text = "-"
 label_settings = SubResource("LabelSettings_vq3ps")
 horizontal_alignment = 2
+script = ExtResource("2_lgeya")
 
 [node name="UseLabel" type="Label" parent="HUD/Control/MousePeek"]
 layout_mode = 2
@@ -300,6 +265,7 @@ size_flags_vertical = 8
 text = "-"
 label_settings = SubResource("LabelSettings_vq3ps")
 horizontal_alignment = 2
+script = ExtResource("2_lgeya")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.742981, 0.669312, 0, -0.669312, 0.742981, 0, 5.34098, 0)
@@ -756,4 +722,6 @@ text = "Jukebox"
 [connection signal="on_oxidize_enter" from="Oxidizer_0" to="." method="_on_oxidizer_on_oxidize_enter"]
 [connection signal="timeout" from="Oxidizer_0/GreenTeaTimer" to="Oxidizer_0" method="_on_green_tea_timer_timeout"]
 [connection signal="timeout" from="Oxidizer_0/BlackTeaTimer" to="Oxidizer_0" method="_on_black_tea_timer_timeout"]
-[connection signal="changeHeldItem" from="Player" to="HUD/Control/Label_HeldItem" method="onHeldItemUpdate"]
+[connection signal="changeHeldItem" from="Player" to="HUD/Control/Label_HeldItem" method="onLabelUpdate"]
+[connection signal="changePingLabel" from="Player" to="HUD/Control/MousePeek/PingLabel" method="onLabelUpdate"]
+[connection signal="changeUseLabel" from="Player" to="HUD/Control/MousePeek/UseLabel" method="onLabelUpdate"]

@@ -1,6 +1,6 @@
 extends Area3D
 
-@export var item_type = "green tea brick"
+@export var item_type = "green_tea_brick"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

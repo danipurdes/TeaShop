@@ -10,18 +10,16 @@ func _ready():
 
 func useItem(heldItem):
 	if heldItem.item_type == "teakettle":
-		if heldItem.state == "hot water" and state == "empty":
-			updateState("hot water")
+		if heldItem.state == "hot_water" and state == "empty":
+			updateState("hot_water")
 			heldItem.updateState("empty")
-	if heldItem.item_type == "green tea brick":
-		if state == "hot water":
-			print_debug("made green tea")
-			updateTeaType("green tea")
+	if heldItem.item_type == "green_tea_brick":
+		if state == "hot_water":
+			updateTeaType("green_tea")
 			heldItem.onUseItem(self)
-	if heldItem.item_type == "black tea brick":
-		if state == "hot water":
-			print_debug("made black tea")
-			updateTeaType("black tea")
+	if heldItem.item_type == "black_tea_brick":
+		if state == "hot_water":
+			updateTeaType("black_tea")
 			heldItem.onUseItem(self)
 
 func onUseItem(pinger):
@@ -38,4 +36,4 @@ func updateTeaType(newType):
 	$TeapotGreenLabel.text = getName()
 
 func getName():
-	return item_type + " - " + state + " - " + tea_type
+	return item_type + "_" + state + "_" + tea_type
