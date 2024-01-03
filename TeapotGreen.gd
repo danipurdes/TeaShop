@@ -15,10 +15,14 @@ func useItem(heldItem):
 			heldItem.updateState("empty")
 	if heldItem.item_type == "green tea brick":
 		if state == "hot water":
+			print_debug("made green tea")
 			updateTeaType("green tea")
+			heldItem.onUseItem(self)
 	if heldItem.item_type == "black tea brick":
 		if state == "hot water":
+			print_debug("made black tea")
 			updateTeaType("black tea")
+			heldItem.onUseItem(self)
 
 func onUseItem(pinger):
 	if "machine_type" in pinger and pinger.machine_type == "sink":

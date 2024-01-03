@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal changeHeldItem(itemName)
+
 var doMouse1RequestRaycast = false
 var doMouse2RequestRaycast = false
 var raycastEvent
@@ -24,12 +26,14 @@ func _physics_process(_delta):
 		var result = getRaycastResult()
 		if (!result.is_empty() and result.collider.has_method("useItem")):
 			result.collider.useItem(heldItem)
-			get_node("/root/Node3D/HUD/Label_HeldItem").text = heldItem.getName()
+			if (heldItem != null):
+				changeHeldItem.emit(heldItem.getName())
 		doMouse2RequestRaycast = false
 	
 	# Move Held Item
 	if heldItem != null:
 		heldItem.position = $Hand/HeldItem.global_position
+		heldItem.rotation = $Hand/HeldItem.global_rotation
 	
 	# Movement
 	var move_axis = Vector3()
@@ -62,7 +66,7 @@ func updateHeldItem(item):
 	heldItem = item
 	heldItem.monitoring = false
 	heldItem.monitorable = false
-	get_node("/root/Node3D/HUD/Label_HeldItem").text = heldItem.getName()
+	changeHeldItem.emit(heldItem.getName())
 
 func requestDropHeldItem(dropRequestor):
 	if heldItem != null:
@@ -76,7 +80,13 @@ func dropHeldItem(dropRequestor):
 	heldItem.monitorable = true
 	heldItem.position = dropRequestor.global_position
 	heldItem = null
-	get_node("/root/Node3D/HUD/Label_HeldItem").text = "no held item"
+	changeHeldItem.emit("-")
+
+func destroyHeldItem():
+	heldItem.queue_free()
+	heldItem = null
+	print_debug("destroyed held item")
+	changeHeldItem.emit("-")
 
 func getHeldItem():
 	return heldItem

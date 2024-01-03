@@ -6,5 +6,9 @@ extends Area3D
 func _ready():
 	$Label.text = getName()
 
+func onUseItem(pinger):
+	if "item_type" in pinger and pinger.item_type == "teapot":
+		get_node("/root/Node3D/Player").destroyHeldItem()
+
 func getName():
 	return item_type
