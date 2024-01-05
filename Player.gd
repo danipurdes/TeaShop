@@ -33,14 +33,25 @@ func _physics_process(_delta):
 		#Object Picking
 		if Input.is_action_just_pressed("mouse1"):
 			if "item_type" in raycastResult.collider:
-				attemptPickup(raycastResult.collider)
+				if attemptPickup(raycastResult.collider):
+					$PingBoop.play()
+				else:
+					$BadBoop.play()
 			elif raycastResult.collider.has_method("ping"):
-				raycastResult.collider.ping()
+				if raycastResult.collider.ping():
+					$PingBoop.play()
+				else:
+					$BadBoop.play()
 		elif Input.is_action_just_pressed("mouse2"):
-			if raycastResult.collider.has_method("useItem"):
-				raycastResult.collider.useItem(heldItem)
+			if heldItem != null and raycastResult.collider.has_method("useItem"):
+				if raycastResult.collider.useItem(heldItem):
+					$UseBoop.play()
+				else:
+					$BadBoop.play()
 				if (heldItem != null):
 					changeHeldItem.emit(heldItem.getName())
+			else:
+				$BadBoop.play()
 	
 	# Move Held Item
 	if heldItem != null:
@@ -73,6 +84,8 @@ func _input(event):
 func attemptPickup(item):
 	if heldItem == null:
 		updateHeldItem(item)
+		return true
+	return false
 
 func updateHeldItem(item):
 	heldItem = item

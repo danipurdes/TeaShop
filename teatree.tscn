@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=70 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_2amdu"]
 [ext_resource type="Script" path="res://TeaTree.gd" id="1_j6fp0"]
@@ -18,6 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://boyd8vxijavpe" path="res://models/tea_cup.glb" id="7_m6qpt"]
 [ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://tea_brick_green.tscn" id="8_toxjs"]
 [ext_resource type="PackedScene" uid="uid://cejwegoqekxl" path="res://tea_brick_black.tscn" id="9_x5a3l"]
+[ext_resource type="AudioStream" uid="uid://dk1sp0y2gnma6" path="res://audio/use_boop.wav" id="17_1jiw0"]
+[ext_resource type="AudioStream" uid="uid://ckmidbwkf2ebo" path="res://audio/ping_boop.wav" id="18_np0mv"]
+[ext_resource type="AudioStream" uid="uid://blnsneoyfocv6" path="res://audio/bad_boop.wav" id="19_pulcn"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jtfon"]
 size = Vector2(10, 10)
@@ -681,6 +684,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.417331, 0, -0.591021)
 mesh = SubResource("SphereMesh_8knmf")
 
 [node name="HeldItem" type="MeshInstance3D" parent="Player/Hand"]
+
+[node name="UseBoop" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("17_1jiw0")
+
+[node name="PingBoop" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("18_np0mv")
+
+[node name="BadBoop" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("19_pulcn")
 
 [node name="Jukebox_0" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.70722, 0, 3.96591)

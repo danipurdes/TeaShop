@@ -9,12 +9,17 @@ func _ready():
 
 func onUseItem(pinger):
 	if "machine_type" in pinger and pinger.machine_type == "sink":
-		if state == "empty":
-			updateState("cold_water")
-		elif state == "cold_water":
-			updateState("empty")
-		elif state == "hot_water":
-			updateState("empty")
+		match state:
+			"empty":
+				updateState("cold_water")
+				return true
+			"cold_water":
+				updateState("empty")
+				return true
+			"hot_water":
+				updateState("empty")
+				return true
+	return false
 
 func onUseStove():
 	if state == "cold_water":

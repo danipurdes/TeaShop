@@ -4,14 +4,9 @@ signal tea_tree_trim
 
 @export var machine_type = "tea_tree"
 
-func _ready():
-	pass
-
-func _process(_delta):
-	pass
-
 func ping():
 	trimLeaves()
+	return true
 
 func trimLeaves():
 	$TeaTreeLeaves.visible = false

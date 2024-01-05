@@ -13,6 +13,8 @@ func ping():
 			get_node("/root/Node3D/Player").requestDropHeldItem(self)
 			if heldItem.has_method("onUseStove"):
 				heldItem.onUseStove()
+				return true
+	return false
 
 func isItemAllowed(itemType):
 	print(itemType)

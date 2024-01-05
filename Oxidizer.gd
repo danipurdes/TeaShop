@@ -14,23 +14,21 @@ signal harvested_black
 @export var obj_green_tea_brick: PackedScene
 @export var obj_black_tea_brick: PackedScene
 
-func _ready():
-	pass
-
-func _process(_delta):
-	pass
-
 func ping():
 	match tea_type:
 		"none":
 			if get_node("/root/Node3D").crush_leaf_count > 0:
 				startOxidizeLeaves()
+				return true
 		"green":
 			harvested_green.emit()
 			stopOxidizeLeaves()
+			return true
 		"black":
 			harvested_black.emit()
 			stopOxidizeLeaves()
+			return true
+	return false
 
 func startOxidizeLeaves():
 	$GreenTeaTimer.start()

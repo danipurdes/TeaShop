@@ -9,3 +9,4 @@ func ping():
 		$ChillHopBeatsToStudyTo.stop()
 	else:
 		$ChillHopBeatsToStudyTo.play(song_index)
+	return true

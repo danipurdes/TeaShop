@@ -14,17 +14,23 @@ func useItem(heldItem):
 		if heldItem.state == "hot_water" and state == "empty":
 			updateState("hot_water")
 			heldItem.updateState("empty")
+			return true
 	if heldItem.item_type == "teapot":
 		if state == "empty":
 			if heldItem.tea_type == "green_tea":
 				updateState("green_tea")
+				return true
 			elif heldItem.tea_type == "black_tea":
 				updateState("black_tea")
+				return true
+	return false
 
 func onUseItem(pinger):
 	if "machine_type" in pinger and pinger.machine_type == "sink":
 		if state != "empty":
 			updateState("empty")
+			return true
+	return false
 
 func updateState(newState):
 	updateLiquidMaterial(newState)
