@@ -2,7 +2,7 @@ extends Area3D
 
 @export var item_type = "teapot"
 @export var state = "empty"
-var tea_type = "none"
+var tea_type = Constants.tea_type.NONE
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,16 +14,10 @@ func useItem(heldItem):
 			updateState("hot_water")
 			heldItem.updateState("empty")
 			return true
-	if heldItem.item_type == "green_tea_brick":
-		if state == "hot_water":
-			if heldItem.onUseItem(self):
-				updateTeaType("green_tea")
-				return true
-	if heldItem.item_type == "black_tea_brick":
-		if state == "hot_water":
-			if heldItem.onUseItem(self):
-				updateTeaType("black_tea")
-				return true
+	if heldItem.item_type == "tea_brick":
+		if heldItem.onUseItem(self):
+			updateTeaType(heldItem.tea)
+			return true
 	return false
 
 func onUseItem(pinger):
@@ -31,6 +25,8 @@ func onUseItem(pinger):
 		if state != "empty":
 			updateState("empty")
 			return true
+	if item_type in pinger and pinger.item_type == "teacup":
+		updateState("empty")
 	return false
 
 func updateState(newState):
@@ -42,4 +38,4 @@ func updateTeaType(newType):
 	$TeapotGreenLabel.text = getName()
 
 func getName():
-	return item_type + "_" + state + "_" + tea_type
+	return item_type + "_" + state + "_" + str(tea_type)
