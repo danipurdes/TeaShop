@@ -1,5 +1,6 @@
 extends Area3D
 
+var machine_type = "jukebox"
 var song_index = 0.0
 
 func ping():
@@ -8,3 +9,4 @@ func ping():
 		$ChillHopBeatsToStudyTo.stop()
 	else:
 		$ChillHopBeatsToStudyTo.play(song_index)
+	return true

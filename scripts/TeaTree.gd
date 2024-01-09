@@ -2,14 +2,11 @@ extends Area3D
 
 signal tea_tree_trim
 
-func _ready():
-	pass
-
-func _process(_delta):
-	pass
+@export var machine_type = "tea_tree"
 
 func ping():
 	trimLeaves()
+	return true
 
 func trimLeaves():
 	$TeaTreeLeaves.visible = false

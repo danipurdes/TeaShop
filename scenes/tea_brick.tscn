@@ -1,23 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3o86lcksgnit"]
+[gd_scene load_steps=7 format=3 uid="uid://d3o86lcksgnit"]
 
-[ext_resource type="Script" path="res://TeaBrickGreen.gd" id="1_3meyb"]
+[ext_resource type="Script" path="res://scripts/TeaBrick.gd" id="1_5kp2m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j6lub"]
+albedo_color = Color(0.227451, 0.443137, 0.168627, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2e5ub"]
+albedo_color = Color(0.290196, 0.141176, 0.027451, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tl8i4"]
 size = Vector3(0.2, 0.15, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4fcwf"]
-albedo_color = Color(0.223529, 0.443137, 0.12549, 1)
+albedo_color = Color(0.513726, 0.27451, 0.529412, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ch5y2"]
 material = SubResource("StandardMaterial3D_4fcwf")
 size = Vector3(0.2, 0.15, 0.2)
 
-[node name="TeaBrickGreen" type="Area3D"]
+[node name="TeaBrick" type="Area3D"]
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("1_3meyb")
+script = ExtResource("1_5kp2m")
+mat_green_tea = SubResource("StandardMaterial3D_j6lub")
+mat_black_tea = SubResource("StandardMaterial3D_2e5ub")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, 0)
 shape = SubResource("BoxShape3D_tl8i4")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
