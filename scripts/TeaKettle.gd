@@ -13,11 +13,13 @@ func onUseItem(pinger):
 			"empty":
 				updateState("cold_water")
 				return true
-			"cold_water":
+			"dirty":
 				updateState("empty")
+			"cold_water":
+				updateState("dirty")
 				return true
 			"hot_water":
-				updateState("empty")
+				updateState("dirty")
 				return true
 	return false
 

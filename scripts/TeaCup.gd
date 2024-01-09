@@ -19,16 +19,21 @@ func useItem(heldItem):
 	if heldItem.item_type == "teapot":
 		if heldItem.state != "empty" and state == "empty":
 			if heldItem.tea_type != Constants.tea_type.NONE:
-				updateState("hot_water")
-				updateTeaType(heldItem.tea_type)
-				return true
+				if heldItem.onUseItem(self):
+					updateState("hot_water")
+					updateTeaType(heldItem.tea_type)
+					return true
 	return false
 
 func onUseItem(pinger):
 	if "machine_type" in pinger and pinger.machine_type == "sink":
-		if state != "empty":
-			updateState("empty")
+		if state != "empty" and state != "dirty":
+			updateState("dirty")
+			updateTeaType(Constants.tea_type.NONE)
 			return true
+		elif state == "dirty":
+			updateState("empty")
+			return false
 	return false
 
 func updateState(newState):
