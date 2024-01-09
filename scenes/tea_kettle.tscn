@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://37lf2egblnd6"]
+
+[ext_resource type="Script" path="res://scripts/TeaKettle.gd" id="1_imtm0"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vjw4y"]
+height = 0.5
+radius = 0.3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0tlfe"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.5
+
+[node name="TeaKettle" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.1, 0.4247)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_imtm0")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("CylinderShape3D_vjw4y")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("CylinderMesh_0tlfe")
+
+[node name="Label" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 1
+text = "-"

@@ -5,7 +5,7 @@ extends Area3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$TeaKettleLabel.text = getName()
+	updateLabel()
 
 func onUseItem(pinger):
 	if "machine_type" in pinger and pinger.machine_type == "sink":
@@ -15,6 +15,7 @@ func onUseItem(pinger):
 				return true
 			"dirty":
 				updateState("empty")
+				return true
 			"cold_water":
 				updateState("dirty")
 				return true
@@ -29,7 +30,10 @@ func onUseStove():
 
 func updateState(newState):
 	state = newState
-	$TeaKettleLabel.text = getName()
+	updateLabel()
+
+func updateLabel():
+	$Label.text = getName()
 
 func getName():
 	return item_type + "_" + state

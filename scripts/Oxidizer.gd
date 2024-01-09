@@ -2,8 +2,6 @@ extends Area3D
 
 signal on_oxidize_enter
 signal on_oxidize_exit
-signal harvested_green
-signal harvested_black
 
 @export var machine_type = "oxidizer"
 @export var tea = Constants.tea_type.NONE
@@ -23,11 +21,11 @@ func ping():
 		"started":
 			match tea:
 				Constants.tea_type.GREEN_TEA:
-					harvested_green.emit()
+					#harvested_green.emit()
 					stopOxidizeLeaves()
 					return true
 				Constants.tea_type.BLACK_TEA:
-					harvested_black.emit()
+					#harvested_black.emit()
 					stopOxidizeLeaves()
 					return true
 	return false
@@ -56,15 +54,15 @@ func updateTeaType(new_type):
 	tea = new_type
 	match state:
 		"idle":
-			$OxidizerIndicator.set_surface_override_material(0, idle_material)
+			$IndicatorMesh.set_surface_override_material(0, idle_material)
 		"started":
 			match tea:
 				Constants.tea_type.GREEN_TEA:
-					$OxidizerIndicator.set_surface_override_material(0, green_material)
+					$IndicatorMesh.set_surface_override_material(0, green_material)
 				Constants.tea_type.BLACK_TEA:
-					$OxidizerIndicator.set_surface_override_material(0, black_material)
+					$IndicatorMesh.set_surface_override_material(0, black_material)
 				_:
-					$OxidizerIndicator.set_surface_override_material(0, started_material)
+					$IndicatorMesh.set_surface_override_material(0, started_material)
 
 func spawnTeaBrick():
 	if tea != Constants.tea_type.NONE:

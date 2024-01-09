@@ -9,11 +9,11 @@ func ping():
 	return true
 
 func trimLeaves():
-	$TeaTreeLeaves.visible = false
-	$TeaTreeHitbox.set_disabled(true)
+	$LeavesMesh.visible = false
+	$Hitbox.set_disabled(true)
 	$LeafRefreshTimer.start()
 	tea_tree_trim.emit()
 
 func _on_leaf_refresh_timer_timeout():
-	$TeaTreeLeaves.visible = true
-	$TeaTreeHitbox.set_disabled(false)
+	$LeavesMesh.visible = true
+	$Hitbox.set_disabled(false)

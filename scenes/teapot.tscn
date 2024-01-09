@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq2jylpvjtxxd"]
+
+[ext_resource type="Script" path="res://scripts/Teapot.gd" id="1_bs1xp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_na1qy"]
+radius = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frrqe"]
+albedo_color = Color(0, 0.352941, 0.164706, 1)
+metallic = 0.21
+metallic_specular = 0.55
+
+[sub_resource type="SphereMesh" id="SphereMesh_sd412"]
+material = SubResource("StandardMaterial3D_frrqe")
+radius = 0.25
+height = 0.5
+
+[node name="Teapot" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.1, -1.5)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_bs1xp")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("SphereShape3D_na1qy")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("SphereMesh_sd412")
+
+[node name="Label" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 1
+text = "-"

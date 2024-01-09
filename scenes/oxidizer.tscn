@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://csh63b2jdudyg"]
+
+[ext_resource type="Script" path="res://scripts/Oxidizer.gd" id="1_iuc1u"]
+[ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="2_55n5q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3p2s6"]
+albedo_color = Color(0.603922, 0.603922, 0.603922, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_acnst"]
+albedo_color = Color(0.364706, 0.364706, 0.364706, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_voy65"]
+albedo_color = Color(0.2, 0.529412, 0.309804, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23e5m"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y2a6e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfg0d"]
+albedo_color = Color(0.737255, 0.47451, 0.364706, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rqnee"]
+material = SubResource("StandardMaterial3D_pfg0d")
+
+[sub_resource type="BoxMesh" id="BoxMesh_nhapk"]
+
+[node name="Oxidizer_0" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37145, 0, -4)
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("1_iuc1u")
+idle_material = SubResource("StandardMaterial3D_3p2s6")
+started_material = SubResource("StandardMaterial3D_acnst")
+green_material = SubResource("StandardMaterial3D_voy65")
+black_material = SubResource("StandardMaterial3D_23e5m")
+obj_tea_brick = ExtResource("2_55n5q")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_y2a6e")
+
+[node name="MachineMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_rqnee")
+
+[node name="IndicatorMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.5, 0, 0, 0, 0.319855, 0, 0.5, 0.478936)
+mesh = SubResource("BoxMesh_nhapk")
+
+[node name="TeaBrickSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Label" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24526, 0)
+billboard = 1
+text = "Oxidizer"
+
+[node name="GreenTeaTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BlackTeaTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="GreenTeaTimer" to="." method="_on_green_tea_timer_timeout"]
+[connection signal="timeout" from="BlackTeaTimer" to="." method="_on_black_tea_timer_timeout"]

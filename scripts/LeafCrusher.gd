@@ -12,12 +12,12 @@ func ping():
 	return false
 
 func startCrushLeaves():
-	$LeafCrusherMachine.visible = false
-	$LeafCrusherHitbox.set_disabled(true)
+	$Mesh.visible = false
+	$Hitbox.set_disabled(true)
 	$CrushTimer.start()
 	on_crush_enter.emit()
 
 func stopCrushLeaves():
-	$LeafCrusherMachine.visible = true
-	$LeafCrusherHitbox.set_disabled(false)
+	$Mesh.visible = true
+	$Hitbox.set_disabled(false)
 	on_crush_exit.emit()
