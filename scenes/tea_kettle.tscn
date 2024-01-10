@@ -12,7 +12,6 @@ bottom_radius = 0.3
 height = 0.5
 
 [node name="TeaKettle" type="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.1, 0.4247)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_imtm0")
@@ -26,6 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 mesh = SubResource("CylinderMesh_0tlfe")
 
 [node name="Label" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.732543, 0)
 billboard = 1
 text = "-"
+font_size = 18

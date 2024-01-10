@@ -5,22 +5,29 @@ signal changePingLabel(label)
 signal changeUseLabel(label)
 
 var raycastEvent
-var RAY_LENGTH = 10.0
-var walk_speed = 2.0
-var rotate_sensitivity_h = 1
-var rotate_invert_h = -1
+@export var RAY_LENGTH = 10.0
+@export var walk_speed = 2.5
+@export var rotate_sensitivity_h = 1
+@export var rotate_invert_h = -1
 var heldItem = null
 
 var itemUseLabelMap = {
 	"teakettle_empty|sink":"fill with cold water",
 	"teakettle_cold_water|hotplate":"heat kettle on stove",
-	"teakettle_hot_water|teapot_empty_none":"fill teapot from kettle",
-	"teapot_hot_water_green_tea|teacup_empty":"fill teacup with tea",
-	"teapot_hot_water_black_tea|teacup_empty":"fill teacup with tea",
-	"green_tea_brick|teapot_hot_water_none":"add tea to teapot",
-	"black_tea_brick|teapot_hot_water_none":"add tea to teapot",
-	"teacup_green_tea|sink": "empty cup into sink",
-	"teacup_black_tea|sink": "empty cup into sink"
+	"teakettle_hot_water|teapot_empty_0":"fill teapot from kettle",
+	"teapot_hot_water_1|teacup_empty":"fill teacup with tea",
+	"teapot_hot_water_2|teacup_empty":"fill teacup with tea",
+	"tea_brick_1|teapot_hot_water_0":"add tea to teapot",
+	"tea_brick_2|teapot_hot_water_0":"add tea to teapot",
+	"teacup_1|sink": "empty cup into sink",
+	"teacup_2|sink": "empty cup into sink"
+}
+
+var pingLabelMap = {
+	"jukebox": "toggle jukebox",
+	"tea_tree": "prune tea tree",
+	"leaf_crusher": "crush tea leaves",
+	"oxidizer": "oxidize tea leaves"
 }
 
 func _physics_process(_delta):
@@ -133,19 +140,8 @@ func setPingLabel(raycastResult):
 			changePingLabel.emit("set down " + heldItem.item_type)
 			return
 	elif "machine_type" in resultCollider:
-		match resultCollider.machine_type:
-			"jukebox":
-				changePingLabel.emit("toggle jukebox")
-				return
-			"tea_tree":
-				changePingLabel.emit("prune tea tree")
-				return
-			"leaf_crusher":
-				changePingLabel.emit("crush tea leaves")
-				return
-			"oxidizer":
-				changePingLabel.emit("oxidize tea leaves")
-				return
+		changePingLabel.emit(pingLabelMap.get(resultCollider.machine_type))
+		return
 	changePingLabel.emit("-")
 	pass
 

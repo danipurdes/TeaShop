@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=32 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_2amdu"]
 [ext_resource type="Script" path="res://scripts/FPSCamera.gd" id="2_0mnq6"]
@@ -24,6 +24,15 @@ size = Vector2(10, 10)
 [sub_resource type="LabelSettings" id="LabelSettings_vq3ps"]
 font_size = 50
 
+[sub_resource type="Environment" id="Environment_ib77m"]
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfdx5"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8knmf"]
+radius = 0.1
+height = 0.2
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqid7"]
 albedo_color = Color(0.54902, 0.164706, 0.176471, 1)
 
@@ -39,17 +48,22 @@ albedo_color = Color(0.631373, 0.65098, 0.505882, 1)
 material = SubResource("StandardMaterial3D_phl1b")
 size = Vector2(10, 5)
 
+[sub_resource type="QuadMesh" id="QuadMesh_1io6o"]
+size = Vector2(4, 5)
+
 [sub_resource type="BoxMesh" id="BoxMesh_ua5ob"]
 size = Vector3(1, 1, 8)
 
-[sub_resource type="Environment" id="Environment_ib77m"]
-ambient_light_color = Color(1, 1, 1, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_x78fl"]
+size = Vector3(4, 1, 1)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfdx5"]
+[sub_resource type="QuadMesh" id="QuadMesh_efst4"]
+size = Vector2(2, 1)
+orientation = 1
 
-[sub_resource type="SphereMesh" id="SphereMesh_8knmf"]
-radius = 0.1
-height = 0.2
+[sub_resource type="QuadMesh" id="QuadMesh_5ks6k"]
+size = Vector2(1, 5)
+orientation = 0
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_2amdu")
@@ -146,94 +160,6 @@ script = ExtResource("2_lgeya")
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.742981, 0.669312, 0, -0.669312, 0.742981, 0, 5.34098, 0)
 
-[node name="StaticEnvironment" type="Node3D" parent="."]
-
-[node name="Floor" type="MeshInstance3D" parent="StaticEnvironment"]
-mesh = SubResource("QuadMesh_pamd4")
-skeleton = NodePath("../..")
-
-[node name="Floor2" type="MeshInstance3D" parent="StaticEnvironment"]
-mesh = SubResource("QuadMesh_pamd4")
-skeleton = NodePath("../..")
-
-[node name="Wall_0" type="MeshInstance3D" parent="StaticEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49967, -5)
-mesh = SubResource("QuadMesh_h7fqm")
-
-[node name="Wall_1" type="MeshInstance3D" parent="StaticEnvironment"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.49967, 5)
-mesh = SubResource("QuadMesh_h7fqm")
-
-[node name="Wall_2" type="MeshInstance3D" parent="StaticEnvironment"]
-transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 5, 2.49967, 0)
-mesh = SubResource("QuadMesh_h7fqm")
-
-[node name="Wall_3" type="MeshInstance3D" parent="StaticEnvironment"]
-transform = Transform3D(1.31134e-07, 8.74228e-08, 1, 0, -1, 8.74228e-08, 1, -1.14641e-14, -1.31134e-07, -5, 2.49967, 0)
-mesh = SubResource("QuadMesh_h7fqm")
-
-[node name="Counter" type="MeshInstance3D" parent="StaticEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0.5, 0)
-mesh = SubResource("BoxMesh_ua5ob")
-
-[node name="CounterHotspot" parent="StaticEnvironment/Counter" instance=ExtResource("3_8gunk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -3.5)
-
-[node name="CounterHotspot2" parent="StaticEnvironment/Counter" instance=ExtResource("3_8gunk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -2.5)
-
-[node name="CounterHotspot3" parent="StaticEnvironment/Counter" instance=ExtResource("3_8gunk")]
-
-[node name="CounterHotspot4" parent="StaticEnvironment/Counter" instance=ExtResource("3_8gunk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.5)
-
-[node name="CounterHotspot5" parent="StaticEnvironment/Counter" instance=ExtResource("3_8gunk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 2.5)
-
-[node name="CounterHotspot6" parent="StaticEnvironment/Counter" instance=ExtResource("3_8gunk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 3.5)
-
-[node name="Hotplate" parent="StaticEnvironment/Counter" instance=ExtResource("4_wrbrn")]
-
-[node name="Sink" parent="StaticEnvironment/Counter" instance=ExtResource("5_e876j")]
-
-[node name="TeaProducingLabel" type="Label3D" parent="StaticEnvironment"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.7716, 1.58331, -1.05822)
-text = "Making a Tea Brick:
-- Pluck leaves
-- Use Tea Crusher
-- Use Tea Oxidizer to make green or black tea"
-
-[node name="TeaMakingLabel" type="Label3D" parent="StaticEnvironment"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.97836, 3.434, 0)
-text = "Making a Cup of Tea:
-- Fill Kettle with Water
-- Heat Kettle on the Stove
-- Use a Tea Brick on Teapot
-- Pour Hot Water into Teapot
-- Pour Tea into Tea Cup"
-
-[node name="ControlsLabel" type="Label3D" parent="StaticEnvironment"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.958798, 1.99661, 4.94626)
-text = "WASD - walk
-Left Click - interact/pickup item/put down item
-Right Click - use held item
-f11 - toggle fullscreen
-esc - gain control of mouse cursor
-alt+f4 - close the game"
-
-[node name="Teapot" parent="." instance=ExtResource("6_rjdbd")]
-
-[node name="TeaCup" parent="." instance=ExtResource("7_72l4u")]
-
-[node name="TeaKettle" parent="." instance=ExtResource("8_7hc52")]
-
-[node name="TeaTree" parent="." instance=ExtResource("9_5djjh")]
-
-[node name="LeafCrusher" parent="." instance=ExtResource("10_nefb5")]
-
-[node name="Oxidizer" parent="." instance=ExtResource("11_kmpjb")]
-
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
 collision_layer = 4
@@ -263,11 +189,239 @@ stream = ExtResource("18_np0mv")
 [node name="BadBoop" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("19_pulcn")
 
-[node name="Jukebox" parent="." instance=ExtResource("17_28vpb")]
+[node name="FrontOfHouse" type="Node3D" parent="."]
 
-[connection signal="tea_tree_trim" from="TeaTree" to="." method="pluckLeaves"]
-[connection signal="on_crush_enter" from="LeafCrusher" to="." method="crushLeavesEnter"]
-[connection signal="on_crush_exit" from="LeafCrusher" to="." method="crushLeavesExit"]
+[node name="Floor" type="MeshInstance3D" parent="FrontOfHouse"]
+mesh = SubResource("QuadMesh_pamd4")
+skeleton = NodePath("../..")
+
+[node name="Ceiling" type="MeshInstance3D" parent="FrontOfHouse"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 5, 0)
+mesh = SubResource("QuadMesh_pamd4")
+skeleton = NodePath("../..")
+
+[node name="Wall_1" type="MeshInstance3D" parent="FrontOfHouse"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.49967, 5)
+mesh = SubResource("QuadMesh_h7fqm")
+
+[node name="Wall_2" type="MeshInstance3D" parent="FrontOfHouse"]
+transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 5, 2.49967, 0)
+mesh = SubResource("QuadMesh_h7fqm")
+
+[node name="Wall_3" type="MeshInstance3D" parent="FrontOfHouse"]
+transform = Transform3D(1.31134e-07, 8.74228e-08, 1, 0, -1, 8.74228e-08, 1, -1.14641e-14, -1.31134e-07, -5, 2.49967, 0)
+mesh = SubResource("QuadMesh_h7fqm")
+
+[node name="Wall_4" type="MeshInstance3D" parent="FrontOfHouse"]
+transform = Transform3D(-1, 7.64273e-15, 8.74226e-08, 0, -1, 8.74228e-08, 8.74226e-08, 8.74228e-08, 1, -3, 2.49967, -5)
+mesh = SubResource("QuadMesh_1io6o")
+
+[node name="Wall_5" type="MeshInstance3D" parent="FrontOfHouse"]
+transform = Transform3D(-1, 7.64273e-15, 8.74226e-08, 0, -1, 8.74228e-08, 8.74226e-08, 8.74228e-08, 1, 3, 2.49967, -5)
+mesh = SubResource("QuadMesh_1io6o")
+
+[node name="Counter" type="MeshInstance3D" parent="FrontOfHouse"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0.5, -1)
+mesh = SubResource("BoxMesh_ua5ob")
+
+[node name="CounterHotspot" parent="FrontOfHouse/Counter" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -3.5)
+
+[node name="CounterHotspot2" parent="FrontOfHouse/Counter" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -2.5)
+
+[node name="CounterHotspot3" parent="FrontOfHouse/Counter" instance=ExtResource("3_8gunk")]
+
+[node name="CounterHotspot4" parent="FrontOfHouse/Counter" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.5)
+
+[node name="CounterHotspot8" parent="FrontOfHouse/Counter" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 0.6, -0.5)
+
+[node name="CounterHotspot7" parent="FrontOfHouse/Counter" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 0.6, 1.5)
+
+[node name="CounterHotspot5" parent="FrontOfHouse/Counter" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 2.5)
+
+[node name="CounterHotspot6" parent="FrontOfHouse/Counter" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 3.5)
+
+[node name="Counter2" type="MeshInstance3D" parent="FrontOfHouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, -4.5)
+mesh = SubResource("BoxMesh_x78fl")
+
+[node name="Sink" parent="FrontOfHouse/Counter2" instance=ExtResource("5_e876j")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 0.6, 0)
+
+[node name="Hotplate" parent="FrontOfHouse/Counter2" instance=ExtResource("4_wrbrn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.5, 0.55, 0)
+
+[node name="CounterHotspot9" parent="FrontOfHouse/Counter2" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.6, 0)
+
+[node name="CounterHotspot10" parent="FrontOfHouse/Counter2" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.6, 0)
+
+[node name="Counter3" type="MeshInstance3D" parent="FrontOfHouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -4.5)
+mesh = SubResource("BoxMesh_x78fl")
+
+[node name="CounterHotspot11" parent="FrontOfHouse/Counter3" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.6, 0)
+
+[node name="CounterHotspot12" parent="FrontOfHouse/Counter3" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.6, 0)
+
+[node name="CounterHotspot13" parent="FrontOfHouse/Counter3" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.6, 0)
+
+[node name="CounterHotspot14" parent="FrontOfHouse/Counter3" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.6, 0)
+
+[node name="TeaMakingLabel" type="Label3D" parent="FrontOfHouse"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.97836, 1.46013, -2.10144)
+text = "Making a Cup of Tea:
+- Fill Kettle with Water
+- Heat Kettle on the Stove
+- Use a Tea Brick on Teapot
+- Pour Hot Water into Teapot
+- Pour Tea into Tea Cup"
+
+[node name="ControlsLabel" type="Label3D" parent="FrontOfHouse"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.958798, 1.99661, 4.94626)
+text = "WASD - walk
+Left Click - interact/pickup item/put down item
+Right Click - use held item
+f11 - toggle fullscreen
+esc - gain control of mouse cursor
+alt+f4 - close the game"
+
+[node name="BackOfHouse" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
+
+[node name="Floor" type="MeshInstance3D" parent="BackOfHouse"]
+mesh = SubResource("QuadMesh_pamd4")
+skeleton = NodePath("../..")
+
+[node name="Ceiling" type="MeshInstance3D" parent="BackOfHouse"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 5, 0)
+mesh = SubResource("QuadMesh_pamd4")
+skeleton = NodePath("../..")
+
+[node name="Wall_0" type="MeshInstance3D" parent="BackOfHouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49967, -5)
+mesh = SubResource("QuadMesh_h7fqm")
+
+[node name="Wall_2" type="MeshInstance3D" parent="BackOfHouse"]
+transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 5, 2.49967, 0)
+mesh = SubResource("QuadMesh_h7fqm")
+
+[node name="Wall_3" type="MeshInstance3D" parent="BackOfHouse"]
+transform = Transform3D(4.37114e-08, -3.82137e-15, 1, -8.74228e-08, -1, 0, 1, -8.74228e-08, -4.37114e-08, -5, 2.49967, 0)
+mesh = SubResource("QuadMesh_h7fqm")
+
+[node name="Wall_4" type="MeshInstance3D" parent="BackOfHouse"]
+transform = Transform3D(1, -1.52855e-14, -1.74845e-07, 0, -1, 8.74228e-08, -1.74845e-07, -8.74228e-08, -1, -3, 2.49967, 5.00859)
+mesh = SubResource("QuadMesh_1io6o")
+skeleton = NodePath("../../FrontOfHouse")
+
+[node name="Wall_5" type="MeshInstance3D" parent="BackOfHouse"]
+transform = Transform3D(1, -1.52855e-14, -1.74845e-07, 0, -1, 8.74228e-08, -1.74845e-07, -8.74228e-08, -1, 3, 2.5, 5)
+mesh = SubResource("QuadMesh_1io6o")
+skeleton = NodePath("../../FrontOfHouse")
+
+[node name="Counter" type="MeshInstance3D" parent="BackOfHouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0.5, 0)
+mesh = SubResource("BoxMesh_ua5ob")
+
+[node name="CounterHotspot" parent="BackOfHouse/Counter" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -3.5)
+
+[node name="CounterHotspot2" parent="BackOfHouse/Counter" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -2.5)
+
+[node name="CounterHotspot3" parent="BackOfHouse/Counter" instance=ExtResource("3_8gunk")]
+
+[node name="CounterHotspot4" parent="BackOfHouse/Counter" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.5)
+
+[node name="CounterHotspot5" parent="BackOfHouse/Counter" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 2.5)
+
+[node name="CounterHotspot6" parent="BackOfHouse/Counter" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 3.5)
+
+[node name="TeaProducingLabel" type="Label3D" parent="BackOfHouse"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.7716, 2.18095, 0.614768)
+text = "Making a Tea Brick:
+- Pluck leaves
+- Use Tea Crusher
+- Use Tea Oxidizer to make green or black tea"
+
+[node name="Hallway" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="Floor" type="MeshInstance3D" parent="Hallway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+mesh = SubResource("QuadMesh_efst4")
+
+[node name="Ceiling" type="MeshInstance3D" parent="Hallway"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 5, -0.5)
+mesh = SubResource("QuadMesh_efst4")
+
+[node name="Wall1" type="MeshInstance3D" parent="Hallway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, -0.5)
+mesh = SubResource("QuadMesh_5ks6k")
+
+[node name="Wall2" type="MeshInstance3D" parent="Hallway"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 2.5, -0.5)
+mesh = SubResource("QuadMesh_5ks6k")
+
+[node name="Teapot" parent="." instance=ExtResource("6_rjdbd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.1, -4.5)
+
+[node name="TeaCup" parent="." instance=ExtResource("7_72l4u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1.07656, -4.42058)
+
+[node name="TeaKettle" parent="." instance=ExtResource("8_7hc52")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 1.1, -4.5753)
+
+[node name="TeaTree" parent="." instance=ExtResource("9_5djjh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.25, 0, -6.5)
+
+[node name="TeaTree2" parent="." instance=ExtResource("9_5djjh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.25, 0, -7.25)
+
+[node name="TeaTree3" parent="." instance=ExtResource("9_5djjh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.25, 0, -8)
+
+[node name="TeaTree4" parent="." instance=ExtResource("9_5djjh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.25, 0, -8.75)
+
+[node name="LeafCrusher" parent="." instance=ExtResource("10_nefb5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -12.5)
+
+[node name="LeafCrusher2" parent="." instance=ExtResource("10_nefb5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -13.5)
+
+[node name="Oxidizer" parent="." instance=ExtResource("11_kmpjb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0, -14.5)
+
+[node name="Oxidizer2" parent="." instance=ExtResource("11_kmpjb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0, -15.5)
+
+[node name="Jukebox" parent="." instance=ExtResource("17_28vpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
 [connection signal="changeHeldItem" from="Player" to="HUD/Control/Label_HeldItem" method="onLabelUpdate"]
 [connection signal="changePingLabel" from="Player" to="HUD/Control/MousePeek/PingLabel" method="onLabelUpdate"]
 [connection signal="changeUseLabel" from="Player" to="HUD/Control/MousePeek/UseLabel" method="onLabelUpdate"]
+[connection signal="tea_tree_trim" from="TeaTree" to="." method="pluckLeaves"]
+[connection signal="tea_tree_trim" from="TeaTree2" to="." method="pluckLeaves"]
+[connection signal="tea_tree_trim" from="TeaTree3" to="." method="pluckLeaves"]
+[connection signal="tea_tree_trim" from="TeaTree4" to="." method="pluckLeaves"]
+[connection signal="on_crush_enter" from="LeafCrusher" to="." method="crushLeavesEnter"]
+[connection signal="on_crush_exit" from="LeafCrusher" to="." method="crushLeavesExit"]
+[connection signal="on_crush_enter" from="LeafCrusher2" to="." method="crushLeavesEnter"]
+[connection signal="on_crush_exit" from="LeafCrusher2" to="." method="crushLeavesExit"]

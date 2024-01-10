@@ -24,7 +24,6 @@ bottom_radius = 0.21
 height = 0.25
 
 [node name="TeaCup" type="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.07656, -3.42058)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_vurb0")
@@ -36,9 +35,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("CylinderShape3D_vbe5n")
 
 [node name="Label" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501507, 0)
 billboard = 1
 text = "-"
+font_size = 18
 
 [node name="tea_cup" parent="." instance=ExtResource("2_yj16m")]
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0, 0)
