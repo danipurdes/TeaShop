@@ -14,26 +14,26 @@ signal on_oxidize_exit
 
 func ping():
 	match state:
-		"idle":
-			if get_node("/root/Node3D").crush_leaf_count > 0:
-				startOxidizeLeaves()
-				return true
 		"started":
 			match tea:
 				Constants.tea_type.GREEN_TEA:
-					#harvested_green.emit()
 					stopOxidizeLeaves()
 					return true
 				Constants.tea_type.BLACK_TEA:
-					#harvested_black.emit()
 					stopOxidizeLeaves()
 					return true
+	return false
+
+func useItem(item):
+	if item.has_method("onUseItem") and item.onUseItem(self):
+		if "item_type" in item and item.item_type == "leaf_tray":
+			startOxidizeLeaves()
+			return true
 	return false
 
 func startOxidizeLeaves():
 	$GreenTeaTimer.start()
 	state = "started"
-	on_oxidize_enter.emit()
 
 func stopOxidizeLeaves():
 	spawnTeaBrick()
@@ -41,7 +41,6 @@ func stopOxidizeLeaves():
 	updateTeaType(Constants.tea_type.NONE)
 	$GreenTeaTimer.stop()
 	$BlackTeaTimer.stop()
-	on_oxidize_exit.emit()
 
 func _on_green_tea_timer_timeout():
 	updateTeaType(Constants.tea_type.GREEN_TEA)

@@ -32,4 +32,7 @@ font_size = 18
 [node name="CrushTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="LeafTraySpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
 [connection signal="timeout" from="CrushTimer" to="." method="stopCrushLeaves"]

@@ -98,7 +98,8 @@ func updateHeldItem(item):
 	heldItem = item
 	heldItem.monitoring = false
 	heldItem.monitorable = false
-	changeHeldItem.emit(heldItem.getName())
+	if heldItem.has_method("getName"):
+		changeHeldItem.emit(heldItem.getName())
 
 func requestDropHeldItem(dropRequestor):
 	if heldItem != null:

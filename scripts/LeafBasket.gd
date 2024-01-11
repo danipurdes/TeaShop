@@ -16,7 +16,6 @@ func onUseItem(itemToUseOn):
 
 func tryUpdateLeafCount(deltaLeaf):
 	var newLeafCount = leaf_count + deltaLeaf
-	print_debug("old: " + str(leaf_count) + ", new: " + str(newLeafCount))
 	if newLeafCount <= leaf_count_max and newLeafCount >= 0:
 		leaf_count = newLeafCount
 		updateLabel()

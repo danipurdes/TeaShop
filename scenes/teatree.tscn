@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=34 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_2amdu"]
 [ext_resource type="Script" path="res://scripts/FPSCamera.gd" id="2_0mnq6"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c3gcqtsi7lxal" path="res://scenes/tea_tree.tscn" id="9_5djjh"]
 [ext_resource type="PackedScene" uid="uid://bsrcc8a30vt1p" path="res://scenes/leaf_crusher.tscn" id="10_nefb5"]
 [ext_resource type="PackedScene" uid="uid://csh63b2jdudyg" path="res://scenes/oxidizer.tscn" id="11_kmpjb"]
+[ext_resource type="PackedScene" uid="uid://dx0xtqq8edqdy" path="res://scenes/crush_leaf_tray.tscn" id="16_371e4"]
 [ext_resource type="AudioStream" uid="uid://dk1sp0y2gnma6" path="res://audio/use_boop.wav" id="17_1jiw0"]
 [ext_resource type="PackedScene" uid="uid://dwhkm61peqh3x" path="res://scenes/jukebox.tscn" id="17_28vpb"]
 [ext_resource type="PackedScene" uid="uid://bd1jkdslg77aa" path="res://scenes/leaf_basket.tscn" id="17_lh7w1"]
@@ -95,23 +96,6 @@ text = "-"
 label_settings = SubResource("LabelSettings_vq3ps")
 horizontal_alignment = 2
 script = ExtResource("2_lgeya")
-
-[node name="GridContainer" type="GridContainer" parent="HUD/Control"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-columns = 2
-
-[node name="Label_Static_CrushLeafCount" type="Label" parent="HUD/Control/GridContainer"]
-layout_mode = 2
-text = "Crush Leaf #:"
-label_settings = SubResource("LabelSettings_vq3ps")
-
-[node name="Label_CrushLeafCount" type="Label" parent="HUD/Control/GridContainer"]
-layout_mode = 2
-text = "-"
-label_settings = SubResource("LabelSettings_vq3ps")
-horizontal_alignment = 2
 
 [node name="MousePeek" type="GridContainer" parent="HUD/Control"]
 layout_mode = 2
@@ -397,9 +381,11 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.25,
 
 [node name="LeafCrusher" parent="." instance=ExtResource("10_nefb5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -12.5)
+obj_leaf_tray = ExtResource("16_371e4")
 
 [node name="LeafCrusher2" parent="." instance=ExtResource("10_nefb5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -13.5)
+obj_leaf_tray = ExtResource("16_371e4")
 
 [node name="Oxidizer" parent="." instance=ExtResource("11_kmpjb")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0, -14.5)
@@ -416,7 +402,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 [connection signal="changeHeldItem" from="Player" to="HUD/Control/Label_HeldItem" method="onLabelUpdate"]
 [connection signal="changePingLabel" from="Player" to="HUD/Control/MousePeek/PingLabel" method="onLabelUpdate"]
 [connection signal="changeUseLabel" from="Player" to="HUD/Control/MousePeek/UseLabel" method="onLabelUpdate"]
-[connection signal="tea_tree_trim" from="TeaTree" to="." method="pluckLeaves"]
-[connection signal="tea_tree_trim" from="TeaTree2" to="." method="pluckLeaves"]
-[connection signal="tea_tree_trim" from="TeaTree3" to="." method="pluckLeaves"]
-[connection signal="tea_tree_trim" from="TeaTree4" to="." method="pluckLeaves"]
