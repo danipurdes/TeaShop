@@ -8,6 +8,11 @@ func ping():
 	trimLeaves()
 	return true
 
+func useItem(heldItem):
+	if heldItem.has_method("onUseItem") and heldItem.onUseItem(self):
+		#if heldItem.item_type == "basket":
+		trimLeaves()
+
 func trimLeaves():
 	$LeavesMesh.visible = false
 	$Hitbox.set_disabled(true)

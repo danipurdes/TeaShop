@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=33 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_2amdu"]
 [ext_resource type="Script" path="res://scripts/FPSCamera.gd" id="2_0mnq6"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://csh63b2jdudyg" path="res://scenes/oxidizer.tscn" id="11_kmpjb"]
 [ext_resource type="AudioStream" uid="uid://dk1sp0y2gnma6" path="res://audio/use_boop.wav" id="17_1jiw0"]
 [ext_resource type="PackedScene" uid="uid://dwhkm61peqh3x" path="res://scenes/jukebox.tscn" id="17_28vpb"]
+[ext_resource type="PackedScene" uid="uid://bd1jkdslg77aa" path="res://scenes/leaf_basket.tscn" id="17_lh7w1"]
 [ext_resource type="AudioStream" uid="uid://ckmidbwkf2ebo" path="res://audio/ping_boop.wav" id="18_np0mv"]
 [ext_resource type="AudioStream" uid="uid://blnsneoyfocv6" path="res://audio/bad_boop.wav" id="19_pulcn"]
 
@@ -100,17 +101,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 columns = 2
-
-[node name="Label_Static_FreshLeafCount" type="Label" parent="HUD/Control/GridContainer"]
-layout_mode = 2
-text = "Fresh Leaf #:"
-label_settings = SubResource("LabelSettings_vq3ps")
-
-[node name="Label_FreshLeafCount" type="Label" parent="HUD/Control/GridContainer"]
-layout_mode = 2
-text = "-"
-label_settings = SubResource("LabelSettings_vq3ps")
-horizontal_alignment = 2
 
 [node name="Label_Static_CrushLeafCount" type="Label" parent="HUD/Control/GridContainer"]
 layout_mode = 2
@@ -346,6 +336,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -2.5)
 [node name="CounterHotspot4" parent="BackOfHouse/Counter" instance=ExtResource("3_8gunk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.5)
 
+[node name="CounterHotspot7" parent="BackOfHouse/Counter" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.5)
+
+[node name="CounterHotspot8" parent="BackOfHouse/Counter" instance=ExtResource("3_8gunk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 1.5)
+
 [node name="CounterHotspot5" parent="BackOfHouse/Counter" instance=ExtResource("3_8gunk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 2.5)
 
@@ -411,6 +407,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 
 [node name="Oxidizer2" parent="." instance=ExtResource("11_kmpjb")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0, -15.5)
 
+[node name="LeafBasket" parent="." instance=ExtResource("17_lh7w1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33135, 0, -6.49011)
+
 [node name="Jukebox" parent="." instance=ExtResource("17_28vpb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 
@@ -421,7 +420,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 [connection signal="tea_tree_trim" from="TeaTree2" to="." method="pluckLeaves"]
 [connection signal="tea_tree_trim" from="TeaTree3" to="." method="pluckLeaves"]
 [connection signal="tea_tree_trim" from="TeaTree4" to="." method="pluckLeaves"]
-[connection signal="on_crush_enter" from="LeafCrusher" to="." method="crushLeavesEnter"]
-[connection signal="on_crush_exit" from="LeafCrusher" to="." method="crushLeavesExit"]
-[connection signal="on_crush_enter" from="LeafCrusher2" to="." method="crushLeavesEnter"]
-[connection signal="on_crush_exit" from="LeafCrusher2" to="." method="crushLeavesExit"]
