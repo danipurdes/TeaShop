@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3gcqtsi7lxal"]
+
+[ext_resource type="Script" path="res://scripts/TeaTree.gd" id="1_335jg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fxqqb"]
+size = Vector3(0.796269, 0.701914, 0.832351)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cgxip"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4y6f"]
+albedo_color = Color(0.392157, 0.2, 0.0313726, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pmgqi"]
+material = SubResource("StandardMaterial3D_m4y6f")
+size = Vector3(0.05, 0.6, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74yxk"]
+albedo_color = Color(0.109804, 0.47451, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yawuj"]
+material = SubResource("StandardMaterial3D_74yxk")
+size = Vector3(0.7, 0.6, 0.7)
+
+[node name="TeaTree_0" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40965, 0, -4)
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("1_335jg")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.783373, 0)
+shape = SubResource("BoxShape3D_fxqqb")
+
+[node name="PotMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+mesh = SubResource("BoxMesh_cgxip")
+
+[node name="TrunkMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.511468, 0)
+mesh = SubResource("BoxMesh_pmgqi")
+
+[node name="LeavesMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.780725, 0)
+mesh = SubResource("BoxMesh_yawuj")
+
+[node name="LeafRefreshTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Label" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3269, 0)
+billboard = 1
+text = "Tea Tree"
+font_size = 18
+
+[connection signal="timeout" from="LeafRefreshTimer" to="." method="_on_leaf_refresh_timer_timeout"]

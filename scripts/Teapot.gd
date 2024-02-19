@@ -8,7 +8,7 @@ var tea_type = Constants.tea_type.NONE
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$TeapotGreenLabel.text = getName()
+	updateLabel()
 
 func useItem(heldItem):
 	if heldItem.item_type == "teakettle":
@@ -27,36 +27,36 @@ func useItem(heldItem):
 func onUseItem(pinger):
 	print_debug(servings)
 	if "machine_type" in pinger and pinger.machine_type == "sink":
-		if state != "empty":
+		if state == "dirty":
+			updateState("empty")
+			return true
+		elif state != "empty":
 			updateState("dirty")
 			updateTeaType(Constants.tea_type.NONE)
 			updateServings(0)
 			return true
-		elif state == "dirty":
-			updateState("empty")
-			return true
 	elif "item_type" in pinger and pinger.item_type == "teacup":
-		print_debug(servings)
 		if servings > 0:
-			print_debug(servings)
 			updateServings(servings - 1)
-			print_debug(servings)
-			if servings <= 0:
-				updateState("dirty")
 			return true
 	return false
 
 func updateState(newState):
 	state = newState
-	$TeapotGreenLabel.text = getName()
+	updateLabel()
 
 func updateTeaType(newType):
 	tea_type = newType
-	$TeapotGreenLabel.text = getName()
+	updateLabel()
 
 func updateServings(newServings):
 	servings = newServings
-	$TeapotGreenLabel.text = getName()
+	if servings <= 0:
+		updateState("dirty")
+	updateLabel()
+
+func updateLabel():
+	$Label.text = getName()
 
 func getName():
 	return item_type + "_" + state + "_" + str(tea_type) + "_" + str(servings)

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsrcc8a30vt1p"]
+
+[ext_resource type="Script" path="res://scripts/LeafCrusher.gd" id="1_y65cl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y2a6e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7q7io"]
+albedo_color = Color(0.34902, 0.619608, 0.709804, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_70xor"]
+material = SubResource("StandardMaterial3D_7q7io")
+
+[node name="LeafCrusher" type="Area3D"]
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("1_y65cl")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_y2a6e")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_70xor")
+
+[node name="Label" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24526, 0)
+billboard = 1
+text = "Tea Crusher"
+font_size = 18
+
+[node name="CrushTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="LeafTraySpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[connection signal="timeout" from="CrushTimer" to="." method="stopCrushLeaves"]

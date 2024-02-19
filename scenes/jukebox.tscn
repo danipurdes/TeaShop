@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwhkm61peqh3x"]
+
+[ext_resource type="Script" path="res://scripts/Jukebox.gd" id="1_iunwr"]
+[ext_resource type="AudioStream" uid="uid://dk7p3uur283wf" path="res://audio/dreamy-jazz-slow-background-jazz-music-piano-and-seattle-strings-9998.mp3" id="2_jqkjs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_idfoq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dgeip"]
+
+[node name="Jukebox" type="Area3D"]
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("1_iunwr")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_idfoq")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_dgeip")
+skeleton = NodePath("../..")
+
+[node name="ChillHopBeatsToStudyTo" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+stream = ExtResource("2_jqkjs")
+unit_size = 5.0
+autoplay = true
+
+[node name="Label" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24526, 0)
+billboard = 1
+text = "Jukebox"
+font_size = 18
