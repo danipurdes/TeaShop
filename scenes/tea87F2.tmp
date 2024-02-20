@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=34 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_2amdu"]
 [ext_resource type="Script" path="res://scripts/FPSCamera.gd" id="2_0mnq6"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://bd1jkdslg77aa" path="res://scenes/leaf_basket.tscn" id="17_lh7w1"]
 [ext_resource type="AudioStream" uid="uid://ckmidbwkf2ebo" path="res://audio/ping_boop.wav" id="18_np0mv"]
 [ext_resource type="AudioStream" uid="uid://blnsneoyfocv6" path="res://audio/bad_boop.wav" id="19_pulcn"]
-[ext_resource type="PackedScene" uid="uid://bhvf6gyglptto" path="res://scenes/ingredient.tscn" id="20_6w77y"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jtfon"]
 size = Vector2(10, 10)
@@ -399,18 +398,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33135, 0, -6.49011)
 
 [node name="Jukebox" parent="." instance=ExtResource("17_28vpb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
-
-[node name="Ingredient" parent="." instance=ExtResource("20_6w77y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.42597, 1.101, -14.47)
-ingredient = 3
-
-[node name="Ingredient2" parent="." instance=ExtResource("20_6w77y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.42597, 1.101, -13.47)
-ingredient = 4
-
-[node name="Ingredient3" parent="." instance=ExtResource("20_6w77y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.42597, 1.101, -12.47)
-ingredient = 5
 
 [connection signal="changeHeldItem" from="Player" to="HUD/Control/Label_HeldItem" method="onLabelUpdate"]
 [connection signal="changePingLabel" from="Player" to="HUD/Control/MousePeek/PingLabel" method="onLabelUpdate"]
