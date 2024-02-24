@@ -1,31 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://csia40gwyiojh"]
+[gd_scene load_steps=4 format=3 uid="uid://csia40gwyiojh"]
 
 [ext_resource type="Script" path="res://scripts/Sink.gd" id="1_sirqu"]
+[ext_resource type="PackedScene" uid="uid://dad18pfqrocvw" path="res://models/sink.gltf" id="2_oqorg"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yr1br"]
-size = Vector3(0.8, 0.2, 0.8)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qooiy"]
-albedo_color = Color(0, 0.462745, 0.494118, 1)
-metallic = 0.55
-metallic_specular = 0.87
-
-[sub_resource type="BoxMesh" id="BoxMesh_w8p5p"]
-material = SubResource("StandardMaterial3D_qooiy")
-size = Vector3(0.8, 0.2, 0.8)
+[sub_resource type="SphereShape3D" id="SphereShape3D_81phw"]
+radius = 0.424511
 
 [node name="Sink" type="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.52217)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_sirqu")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_yr1br")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.024929, 0.920934, 0.061634)
+shape = SubResource("SphereShape3D_81phw")
 
-[node name="Model" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_w8p5p")
-
-[node name="Label" type="Label3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.656254, -0.202562, 0)
-text = "Sink"
+[node name="Mesh" parent="." instance=ExtResource("2_oqorg")]
