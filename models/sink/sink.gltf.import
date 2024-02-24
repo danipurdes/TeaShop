@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://btvx8rj347k73"
-path="res://.godot/imported/basket.gltf-27a256cc26f465314ede55c38167225a.scn"
+uid="uid://drp2km266kky0"
+path="res://.godot/imported/sink.gltf-6af755e5d6a60cccc37d513fab85e4d8.scn"
 
 [deps]
 
-source_file="res://models/basket.gltf"
-dest_files=["res://.godot/imported/basket.gltf-27a256cc26f465314ede55c38167225a.scn"]
+source_file="res://models/sink/sink.gltf"
+dest_files=["res://.godot/imported/sink.gltf-6af755e5d6a60cccc37d513fab85e4d8.scn"]
 
 [params]
 

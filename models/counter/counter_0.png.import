@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qmf68jqbdohx"
-path.s3tc="res://.godot/imported/counter_0.png-74c75a36b4643d0290b35e0df150e6d1.s3tc.ctex"
+uid="uid://c4u0d50sb1qg5"
+path.s3tc="res://.godot/imported/counter_0.png-4851625a6f98563a36ebdca3c4b4b128.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://models/counter_0.png"
-dest_files=["res://.godot/imported/counter_0.png-74c75a36b4643d0290b35e0df150e6d1.s3tc.ctex"]
+source_file="res://models/counter/counter_0.png"
+dest_files=["res://.godot/imported/counter_0.png-4851625a6f98563a36ebdca3c4b4b128.s3tc.ctex"]
 
 [params]
 

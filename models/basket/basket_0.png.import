@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7ciug8jjhbbw"
-path.s3tc="res://.godot/imported/jar_1.png-54c430aad68b7dd414f6d76b12b81b5d.s3tc.ctex"
+uid="uid://cv7bfsmq7oitn"
+path.s3tc="res://.godot/imported/basket_0.png-497ef0064e269379947a10e417a9776a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://models/jar_1.png"
-dest_files=["res://.godot/imported/jar_1.png-54c430aad68b7dd414f6d76b12b81b5d.s3tc.ctex"]
+source_file="res://models/basket/basket_0.png"
+dest_files=["res://.godot/imported/basket_0.png-497ef0064e269379947a10e417a9776a.s3tc.ctex"]
 
 [params]
 

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c843tim5kuedb"
-path.s3tc="res://.godot/imported/sink_2.png-a01a30c73c882e488d9f7d1699a729c8.s3tc.ctex"
+uid="uid://cdvjifldph38f"
+path.s3tc="res://.godot/imported/tray_1.png-72086dd7bd3ab47d90c35c998d710a27.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://models/sink_2.png"
-dest_files=["res://.godot/imported/sink_2.png-a01a30c73c882e488d9f7d1699a729c8.s3tc.ctex"]
+source_file="res://models/tray/tray_1.png"
+dest_files=["res://.godot/imported/tray_1.png-72086dd7bd3ab47d90c35c998d710a27.s3tc.ctex"]
 
 [params]
 

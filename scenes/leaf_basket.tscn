@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bd1jkdslg77aa"]
 
 [ext_resource type="Script" path="res://scripts/LeafBasket.gd" id="1_u4j2t"]
-[ext_resource type="PackedScene" uid="uid://btvx8rj347k73" path="res://models/basket.gltf" id="2_pwxxc"]
+[ext_resource type="PackedScene" uid="uid://c4xoiunr8rssq" path="res://models/basket/basket.gltf" id="2_ewypf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_veadq"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -19,4 +19,4 @@ billboard = 1
 text = "-"
 font_size = 18
 
-[node name="Mesh" parent="." instance=ExtResource("2_pwxxc")]
+[node name="basket" parent="." instance=ExtResource("2_ewypf")]

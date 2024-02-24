@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ci3snx457sfkw"
-path.s3tc="res://.godot/imported/tea_tray_0.png-75812d1cd6bbcb564e5d044b1671fd78.s3tc.ctex"
+uid="uid://dt2jt80hg0dfq"
+path.s3tc="res://.godot/imported/jar_1.png-2d909d2ce6cca65c5f08bdd1656e203f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://models/tea_tray_0.png"
-dest_files=["res://.godot/imported/tea_tray_0.png-75812d1cd6bbcb564e5d044b1671fd78.s3tc.ctex"]
+source_file="res://models/jar/jar_1.png"
+dest_files=["res://.godot/imported/jar_1.png-2d909d2ce6cca65c5f08bdd1656e203f.s3tc.ctex"]
 
 [params]
 

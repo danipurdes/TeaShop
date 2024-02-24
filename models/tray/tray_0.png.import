@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgb87poba2llt"
-path.s3tc="res://.godot/imported/counter_1.png-13d2e918d02d2f41a5168737ffa153ae.s3tc.ctex"
+uid="uid://y3l583d7wlyq"
+path.s3tc="res://.godot/imported/tray_0.png-d10aa94824610ec999f99ed94614f3d9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://models/sink/counter_1.png"
-dest_files=["res://.godot/imported/counter_1.png-13d2e918d02d2f41a5168737ffa153ae.s3tc.ctex"]
+source_file="res://models/tray/tray_0.png"
+dest_files=["res://.godot/imported/tray_0.png-d10aa94824610ec999f99ed94614f3d9.s3tc.ctex"]
 
 [params]
 

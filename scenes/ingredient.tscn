@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bhvf6gyglptto"]
 
 [ext_resource type="Script" path="res://scripts/ingredient.gd" id="1_msqga"]
-[ext_resource type="PackedScene" uid="uid://b6c6ivj2i8e5e" path="res://models/jar.gltf" id="2_jl4ig"]
+[ext_resource type="PackedScene" uid="uid://bfv8t0cytyall" path="res://models/jar/jar.gltf" id="2_ysiou"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j6lub"]
 albedo_color = Color(0.227451, 0.443137, 0.168627, 1)
@@ -10,7 +10,7 @@ albedo_color = Color(0.227451, 0.443137, 0.168627, 1)
 albedo_color = Color(0.290196, 0.141176, 0.027451, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tl8i4"]
-size = Vector3(0.2, 0.15, 0.2)
+size = Vector3(0.28, 0.41, 0.28)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4fcwf"]
 albedo_color = Color(0.513726, 0.27451, 0.529412, 1)
@@ -27,11 +27,11 @@ mat_green_tea = SubResource("StandardMaterial3D_j6lub")
 mat_black_tea = SubResource("StandardMaterial3D_2e5ub")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.205, 0)
 shape = SubResource("BoxShape3D_tl8i4")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.075, 0)
 mesh = SubResource("BoxMesh_ch5y2")
 
 [node name="Label" type="Label3D" parent="."]
@@ -39,4 +39,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 billboard = 1
 text = "-"
 
-[node name="jar" parent="." instance=ExtResource("2_jl4ig")]
+[node name="jar" parent="." instance=ExtResource("2_ysiou")]

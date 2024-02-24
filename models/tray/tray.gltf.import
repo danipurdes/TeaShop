@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b6c6ivj2i8e5e"
-path="res://.godot/imported/jar.gltf-c62522066cb85694263f49f0b65ed637.scn"
+uid="uid://ii1jj26uarvg"
+path="res://.godot/imported/tray.gltf-ee93adb4ccad812081219526d2b4ff3b.scn"
 
 [deps]
 
-source_file="res://models/jar.gltf"
-dest_files=["res://.godot/imported/jar.gltf-c62522066cb85694263f49f0b65ed637.scn"]
+source_file="res://models/tray/tray.gltf"
+dest_files=["res://.godot/imported/tray.gltf-ee93adb4ccad812081219526d2b4ff3b.scn"]
 
 [params]
 
