@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bfv8t0cytyall"
-path="res://.godot/imported/jar.gltf-a843fd404a32d472cee440806a148fac.scn"
+uid="uid://oa8ng568v3hi"
+path="res://.godot/imported/teacup.gltf-004244b66c112cb8df7a93f8efce9dfb.scn"
 
 [deps]
 
-source_file="res://models/jar/jar.gltf"
-dest_files=["res://.godot/imported/jar.gltf-a843fd404a32d472cee440806a148fac.scn"]
+source_file="res://models/teacup/teacup.gltf"
+dest_files=["res://.godot/imported/teacup.gltf-004244b66c112cb8df7a93f8efce9dfb.scn"]
 
 [params]
 
@@ -28,16 +28,5 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={
-"materials": {
-"material_0": {
-"use_external/enabled": true,
-"use_external/path": "res://models/jar/material_0.tres"
-},
-"material_1": {
-"use_external/enabled": true,
-"use_external/path": "res://models/jar/material_1.tres"
-}
-}
-}
+_subresources={}
 gltf/embedded_image_handling=1
