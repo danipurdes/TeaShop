@@ -3,6 +3,7 @@ extends Area3D
 @export var item_type = "basket"
 @export var leaf_count = 0
 @export var leaf_count_max = 5
+var obj_attached_to = null
 
 func _ready():
 	updateLabel()

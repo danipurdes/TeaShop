@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dq2jylpvjtxxd"]
+[gd_scene load_steps=6 format=3 uid="uid://dq2jylpvjtxxd"]
 
 [ext_resource type="Script" path="res://scripts/Teapot.gd" id="1_bs1xp"]
+[ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="2_bt26d"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_na1qy"]
 radius = 0.25
@@ -28,8 +29,4 @@ shape = SubResource("SphereShape3D_na1qy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 mesh = SubResource("SphereMesh_sd412")
 
-[node name="Label" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
-billboard = 1
-text = "-"
-font_size = 18
+[node name="Label" parent="." instance=ExtResource("2_bt26d")]

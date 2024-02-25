@@ -4,9 +4,9 @@ enum ingredients {
 	NONE,
 	GREEN_TEA,
 	BLACK_TEA,
-	ORANGE,
+	ORANGE_PEEL,
 	HIBISCUS,
-	DIRT
+	PINE_NEEDLE
 }
 
 enum flavors {
@@ -21,7 +21,7 @@ enum flavors {
 static var ingredientFlavorMap = {
 	ingredients.GREEN_TEA: flavors.GRASSY,
 	ingredients.BLACK_TEA: flavors.SMOKY,
-	ingredients.ORANGE: flavors.FRUITY,
+	ingredients.ORANGE_PEEL: flavors.FRUITY,
 	ingredients.HIBISCUS: flavors.FLORAL,
-	ingredients.DIRT: flavors.EARTHY
+	ingredients.PINE_NEEDLE: flavors.EARTHY
 }

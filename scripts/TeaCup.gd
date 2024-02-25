@@ -5,6 +5,7 @@ extends Area3D
 @export var green_tea:Material
 @export var black_tea:Material
 var flavor_profile = FlavorProfile.new()
+var obj_attached_to = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

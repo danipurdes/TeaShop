@@ -6,6 +6,7 @@ extends Area3D
 var flavor_profile = FlavorProfile.new()
 var tea: Constants.ingredients
 var ingredientList = []
+var obj_attached_to = null
 
 @onready var teaMatMap = {
 	Constants.ingredients.GREEN_TEA: mat_green_tea,

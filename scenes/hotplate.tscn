@@ -1,32 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl715wjeelbk7"]
+[gd_scene load_steps=4 format=3 uid="uid://dl715wjeelbk7"]
 
 [ext_resource type="Script" path="res://scripts/Hotplate.gd" id="1_843e1"]
+[ext_resource type="PackedScene" uid="uid://cak3pmckf88l" path="res://models/hotplate/hotplate.gltf" id="2_pw7eu"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_81lox"]
 height = 0.1
 radius = 0.4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7qam"]
-albedo_color = Color(0.964706, 0, 0.0470588, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_jvqay"]
-material = SubResource("StandardMaterial3D_t7qam")
-top_radius = 0.4
-bottom_radius = 0.4
-height = 0.1
-
 [node name="Hotplate" type="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 1.394)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_843e1")
 
+[node name="hotplate" parent="." instance=ExtResource("2_pw7eu")]
+
 [node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0577236, 0)
 shape = SubResource("CylinderShape3D_81lox")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("CylinderMesh_jvqay")
-
 [node name="Label" type="Label3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.656254, -0.202562, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.111005, 0.484888)
 text = "Stove"
+
+[node name="ItemAnchor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)

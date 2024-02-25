@@ -5,6 +5,7 @@ extends Area3D
 @export var servings = 0
 @export var max_servings = 3
 var flavor_profile = FlavorProfile.new()
+var obj_attached_to = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

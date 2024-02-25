@@ -42,13 +42,14 @@ func _physics_process(_delta):
 			if "item_type" in raycastResult.collider:
 				if attemptPickup(raycastResult.collider):
 					$PingBoop.play()
-				else:
-					$BadBoop.play()
-			elif raycastResult.collider.has_method("ping"):
-				if raycastResult.collider.ping():
+				elif raycastResult.collider.has_method("ping") and raycastResult.collider.ping():
 					$PingBoop.play()
 				else:
 					$BadBoop.play()
+			elif raycastResult.collider.has_method("ping") and raycastResult.collider.ping():
+				$PingBoop.play()
+			else:
+				$BadBoop.play()
 		elif Input.is_action_just_pressed("mouse2"):
 			if heldItem != null and raycastResult.collider.has_method("useItem"):
 				if raycastResult.collider.useItem(heldItem):
@@ -90,30 +91,38 @@ func _input(event):
 
 func attemptPickup(item):
 	if heldItem == null:
-		updateHeldItem(item)
-		return true
+		if "currentItem" in item:
+			if item.currentItem == null:
+				updateHeldItem(item)
+				return true
+		else:
+			updateHeldItem(item)
+			return true
 	return false
 
 func updateHeldItem(item):
 	heldItem = item
 	heldItem.monitoring = false
 	heldItem.monitorable = false
+	if "obj_attached_to" in item:
+		if item.obj_attached_to != null and item.obj_attached_to.has_method("takeItem"):
+			item.obj_attached_to.takeItem()
 	if heldItem.has_method("getName"):
 		changeHeldItem.emit(heldItem.getName())
 
 func requestDropHeldItem(dropRequestor):
 	if heldItem != null:
-		var oldHeldItem = heldItem
-		dropHeldItem(dropRequestor)
-		return oldHeldItem
+		return dropHeldItem(dropRequestor)
 	return null
 	
 func dropHeldItem(dropRequestor):
+	var oldHeldItem = heldItem
 	heldItem.monitoring = true
 	heldItem.monitorable = true
 	heldItem.position = dropRequestor.global_position
 	heldItem = null
 	changeHeldItem.emit("-")
+	return oldHeldItem
 
 func destroyHeldItem():
 	heldItem.queue_free()
