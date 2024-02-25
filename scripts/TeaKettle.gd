@@ -2,6 +2,7 @@ extends Area3D
 
 @export var item_type = "teakettle"
 @export var state = "empty"
+var obj_attached_to = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,6 +28,8 @@ func onUseItem(pinger):
 func onUseStove():
 	if state == "cold_water":
 		updateState("hot_water")
+		return true
+	return false
 
 func updateState(newState):
 	state = newState

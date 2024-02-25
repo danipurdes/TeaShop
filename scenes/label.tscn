@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b0cj6is5wudmt"]
+
+[node name="Label" type="Label3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.758988, 0)
+billboard = 1
+text = "-"
+font_size = 12
+outline_size = 6

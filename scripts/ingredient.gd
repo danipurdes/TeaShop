@@ -5,6 +5,7 @@ extends Area3D
 @export var mat_green_tea: Material
 @export var mat_black_tea: Material
 var flavor_profile = FlavorProfile.new()
+var obj_attached_to = null
 
 func _ready():
 	flavor_profile.addIngredient(ingredient)
@@ -28,4 +29,4 @@ func updateLabel():
 	$Label.text = getName()
 
 func getName():
-	return Constants.ingredients.keys()[ingredient] + " ("+ item_type + ")\n" + flavor_profile._to_string()
+	return Constants.ingredients.keys()[ingredient] + "\n" + flavor_profile._to_string()

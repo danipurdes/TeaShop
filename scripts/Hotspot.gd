@@ -10,10 +10,15 @@ func ping():
 	if currentItem == null:
 		var heldItem = get_node("/root/Node3D/Player").getHeldItem()
 		if heldItem != null and isItemAllowed(heldItem.item_type):
-			get_node("/root/Node3D/Player").requestDropHeldItem(self)
+			currentItem = get_node("/root/Node3D/Player").requestDropHeldItem(self)
+			currentItem.obj_attached_to = self
 			return true
 	return false
 
+func takeItem():
+	currentItem.obj_attached_to = null
+	currentItem = null
+	
 func isItemAllowed(itemType):
 	if allowlist.size() > 0:
 		return itemType in allowlist

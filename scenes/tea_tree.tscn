@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3gcqtsi7lxal"]
+[gd_scene load_steps=9 format=3 uid="uid://c3gcqtsi7lxal"]
 
 [ext_resource type="Script" path="res://scripts/TeaTree.gd" id="1_335jg"]
+[ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="2_d57vr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fxqqb"]
 size = Vector3(0.796269, 0.701914, 0.832351)
@@ -48,10 +49,6 @@ mesh = SubResource("BoxMesh_yawuj")
 wait_time = 3.0
 one_shot = true
 
-[node name="Label" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3269, 0)
-billboard = 1
-text = "Tea Tree"
-font_size = 18
+[node name="Label" parent="." instance=ExtResource("2_d57vr")]
 
 [connection signal="timeout" from="LeafRefreshTimer" to="." method="_on_leaf_refresh_timer_timeout"]

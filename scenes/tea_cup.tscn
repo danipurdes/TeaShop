@@ -1,7 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://byix6wkws661r"]
 
 [ext_resource type="Script" path="res://scripts/TeaCup.gd" id="1_vurb0"]
-[ext_resource type="PackedScene" uid="uid://boyd8vxijavpe" path="res://models/tea_cup.glb" id="2_yj16m"]
+[ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="2_p7y53"]
+[ext_resource type="PackedScene" uid="uid://oa8ng568v3hi" path="res://models/teacup/teacup.gltf" id="2_yj16m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yahd4"]
 albedo_color = Color(0.243137, 0.462745, 0.12549, 1)
@@ -15,13 +16,8 @@ metallic_specular = 0.59
 height = 0.2
 radius = 0.15
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_csniw"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_bs7lk"]
-material = SubResource("StandardMaterial3D_csniw")
-top_radius = 0.21
-bottom_radius = 0.21
-height = 0.25
+[sub_resource type="BoxMesh" id="BoxMesh_cxpk8"]
+size = Vector3(0.25, 0.125, 0.25)
 
 [node name="TeaCup" type="Area3D"]
 collision_layer = 2
@@ -34,16 +30,11 @@ black_tea = SubResource("StandardMaterial3D_2f6p7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("CylinderShape3D_vbe5n")
 
-[node name="Label" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501507, 0)
-billboard = 1
-text = "-"
-font_size = 18
+[node name="Label" parent="." instance=ExtResource("2_p7y53")]
 
 [node name="tea_cup" parent="." instance=ExtResource("2_yj16m")]
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0, 0)
 
 [node name="tea_cup_liquid" type="MeshInstance3D" parent="tea_cup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.227126, 0)
-visible = false
-mesh = SubResource("CylinderMesh_bs7lk")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21955, 0)
+mesh = SubResource("BoxMesh_cxpk8")
