@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b7yipytqrjq8r"]
+
+[ext_resource type="Texture2D" uid="uid://kv0fnpqj37el" path="res://textures/Icons/rock_icon.png" id="1_qgx3u"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_qgx3u")

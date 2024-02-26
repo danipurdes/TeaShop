@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://t6xmx62hcs13"]
+
+[ext_resource type="Texture2D" uid="uid://dmxuhr11uyn3q" path="res://textures/Icons/strawberry_icon.png" id="1_j1teh"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_j1teh")

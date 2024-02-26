@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=3 uid="uid://drw752s764j10"]
+
+[ext_resource type="Material" uid="uid://brgypg5wao8ew" path="res://materials/grassy.tres" id="1_8d3vk"]
+[ext_resource type="Material" uid="uid://t6xmx62hcs13" path="res://materials/fruity.tres" id="1_wbobn"]
+[ext_resource type="Material" uid="uid://ciouhykih2ts0" path="res://materials/floral.tres" id="2_3rmpr"]
+[ext_resource type="Material" uid="uid://b7yipytqrjq8r" path="res://materials/earthy.tres" id="4_mcjun"]
+[ext_resource type="Material" uid="uid://cgv2btdiggrb0" path="res://materials/smoky.tres" id="5_thic6"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_rd21g"]
+material = ExtResource("1_8d3vk")
+
+[sub_resource type="QuadMesh" id="QuadMesh_63wsb"]
+material = ExtResource("2_3rmpr")
+
+[sub_resource type="QuadMesh" id="QuadMesh_jxuje"]
+material = ExtResource("1_wbobn")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ndpdl"]
+material = ExtResource("4_mcjun")
+
+[sub_resource type="QuadMesh" id="QuadMesh_w0rih"]
+material = ExtResource("5_thic6")
+
+[node name="ui_flavor_profile" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
+
+[node name="Grassy_Icon" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_rd21g")
+
+[node name="Floral_Icon" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+mesh = SubResource("QuadMesh_63wsb")
+
+[node name="Fruity_Icon" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+mesh = SubResource("QuadMesh_jxuje")
+
+[node name="Earthy_Icon" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+mesh = SubResource("QuadMesh_ndpdl")
+
+[node name="Smoky_Icon" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+mesh = SubResource("QuadMesh_w0rih")
+
+[node name="Grassy_Amount" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+text = "0"
+
+[node name="Floral_Amount" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, 0)
+text = "0"
+
+[node name="Fruity_Amount" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, 0)
+text = "0"
+
+[node name="Earthy_Amount" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -1, 0)
+text = "0"
+
+[node name="Smoky_Amount" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1, 0)
+text = "0"
