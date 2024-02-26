@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dq2jylpvjtxxd" path="res://scenes/teapot.tscn" id="6_rjdbd"]
 [ext_resource type="PackedScene" uid="uid://byix6wkws661r" path="res://scenes/tea_cup.tscn" id="7_72l4u"]
 [ext_resource type="PackedScene" uid="uid://37lf2egblnd6" path="res://scenes/tea_kettle.tscn" id="8_7hc52"]
+[ext_resource type="Material" uid="uid://dkupiqwv6rf2g" path="res://materials/floor.tres" id="8_g5q31"]
 [ext_resource type="PackedScene" uid="uid://coekka8bmqu1g" path="res://scenes/counter.tscn" id="8_y4nji"]
+[ext_resource type="Material" uid="uid://6k0tm3s1rqfg" path="res://materials/wall.tres" id="9_3ljx8"]
 [ext_resource type="PackedScene" uid="uid://c3gcqtsi7lxal" path="res://scenes/tea_tree.tscn" id="9_5djjh"]
 [ext_resource type="PackedScene" uid="uid://bsrcc8a30vt1p" path="res://scenes/leaf_crusher.tscn" id="10_nefb5"]
 [ext_resource type="PackedScene" uid="uid://csh63b2jdudyg" path="res://scenes/oxidizer.tscn" id="11_kmpjb"]
@@ -36,29 +38,27 @@ ambient_light_color = Color(1, 1, 1, 1)
 radius = 0.1
 height = 0.2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqid7"]
-albedo_color = Color(0.54902, 0.164706, 0.176471, 1)
-
 [sub_resource type="QuadMesh" id="QuadMesh_pamd4"]
-material = SubResource("StandardMaterial3D_nqid7")
+material = ExtResource("8_g5q31")
+uv2_padding = 0.88
 size = Vector2(10, 10)
 orientation = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phl1b"]
-albedo_color = Color(0.631373, 0.65098, 0.505882, 1)
-
 [sub_resource type="QuadMesh" id="QuadMesh_h7fqm"]
-material = SubResource("StandardMaterial3D_phl1b")
-size = Vector2(10, 5)
+material = ExtResource("9_3ljx8")
+size = Vector2(5, 5)
 
 [sub_resource type="QuadMesh" id="QuadMesh_1io6o"]
+material = ExtResource("9_3ljx8")
 size = Vector2(4, 5)
 
 [sub_resource type="QuadMesh" id="QuadMesh_efst4"]
+material = ExtResource("8_g5q31")
 size = Vector2(2, 1)
 orientation = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_5ks6k"]
+material = ExtResource("9_3ljx8")
 size = Vector2(1, 5)
 orientation = 0
 
@@ -162,23 +162,34 @@ stream = ExtResource("19_pulcn")
 
 [node name="Floor" type="MeshInstance3D" parent="FrontOfHouse"]
 mesh = SubResource("QuadMesh_pamd4")
-skeleton = NodePath("../..")
 
 [node name="Ceiling" type="MeshInstance3D" parent="FrontOfHouse"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 5, 0)
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 3, 0)
 mesh = SubResource("QuadMesh_pamd4")
 skeleton = NodePath("../..")
 
 [node name="Wall_1" type="MeshInstance3D" parent="FrontOfHouse"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 2.49967, 5)
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 2.5, 2.5, 5)
+mesh = SubResource("QuadMesh_h7fqm")
+
+[node name="Wall_6" type="MeshInstance3D" parent="FrontOfHouse"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -2.5, 2.5, 5)
 mesh = SubResource("QuadMesh_h7fqm")
 
 [node name="Wall_2" type="MeshInstance3D" parent="FrontOfHouse"]
-transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 5, 2.49967, 0)
+transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 5, 2.5, 2.5)
+mesh = SubResource("QuadMesh_h7fqm")
+
+[node name="Wall_7" type="MeshInstance3D" parent="FrontOfHouse"]
+transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 5, 2.5, -2.5)
 mesh = SubResource("QuadMesh_h7fqm")
 
 [node name="Wall_3" type="MeshInstance3D" parent="FrontOfHouse"]
-transform = Transform3D(1.31134e-07, 8.74228e-08, 1, 0, -1, 8.74228e-08, 1, -1.14641e-14, -1.31134e-07, -5, 2.49967, 0)
+transform = Transform3D(1.31134e-07, 8.74228e-08, 1, 0, -1, 8.74228e-08, 1, -1.14641e-14, -1.31134e-07, -5, 2.5, 2.5)
+mesh = SubResource("QuadMesh_h7fqm")
+
+[node name="Wall_8" type="MeshInstance3D" parent="FrontOfHouse"]
+transform = Transform3D(1.31134e-07, 8.74228e-08, 1, 0, -1, 8.74228e-08, 1, -1.14641e-14, -1.31134e-07, -5, 2.5, -2.5)
 mesh = SubResource("QuadMesh_h7fqm")
 
 [node name="Wall_4" type="MeshInstance3D" parent="FrontOfHouse"]
@@ -266,20 +277,32 @@ mesh = SubResource("QuadMesh_pamd4")
 skeleton = NodePath("../..")
 
 [node name="Ceiling" type="MeshInstance3D" parent="BackOfHouse"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 5, 0)
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 3, 0)
 mesh = SubResource("QuadMesh_pamd4")
 skeleton = NodePath("../..")
 
 [node name="Wall_0" type="MeshInstance3D" parent="BackOfHouse"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49967, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -5)
+mesh = SubResource("QuadMesh_h7fqm")
+
+[node name="Wall_1" type="MeshInstance3D" parent="BackOfHouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, -5)
 mesh = SubResource("QuadMesh_h7fqm")
 
 [node name="Wall_2" type="MeshInstance3D" parent="BackOfHouse"]
-transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 5, 2.49967, 0)
+transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 5, 2.5, 2.5)
+mesh = SubResource("QuadMesh_h7fqm")
+
+[node name="Wall_7" type="MeshInstance3D" parent="BackOfHouse"]
+transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 5, 2.5, -2.5)
 mesh = SubResource("QuadMesh_h7fqm")
 
 [node name="Wall_3" type="MeshInstance3D" parent="BackOfHouse"]
-transform = Transform3D(4.37114e-08, -3.82137e-15, 1, -8.74228e-08, -1, 0, 1, -8.74228e-08, -4.37114e-08, -5, 2.49967, 0)
+transform = Transform3D(4.37114e-08, -3.82137e-15, 1, -8.74228e-08, -1, 0, 1, -8.74228e-08, -4.37114e-08, -5, 2.5, 2.5)
+mesh = SubResource("QuadMesh_h7fqm")
+
+[node name="Wall_6" type="MeshInstance3D" parent="BackOfHouse"]
+transform = Transform3D(4.37114e-08, -3.82137e-15, 1, -8.74228e-08, -1, 0, 1, -8.74228e-08, -4.37114e-08, -5, 2.5, -2.5)
 mesh = SubResource("QuadMesh_h7fqm")
 
 [node name="Wall_4" type="MeshInstance3D" parent="BackOfHouse"]
@@ -322,7 +345,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 mesh = SubResource("QuadMesh_efst4")
 
 [node name="Ceiling" type="MeshInstance3D" parent="Hallway"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 5, -0.5)
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 3, -0.5)
 mesh = SubResource("QuadMesh_efst4")
 
 [node name="Wall1" type="MeshInstance3D" parent="Hallway"]
