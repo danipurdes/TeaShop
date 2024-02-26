@@ -22,7 +22,7 @@ material = ExtResource("4_mcjun")
 material = ExtResource("5_thic6")
 
 [node name="ui_flavor_profile" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.198239, 0.304834, 0)
 
 [node name="Grassy_Icon" type="MeshInstance3D" parent="."]
 mesh = SubResource("QuadMesh_rd21g")

@@ -42,4 +42,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21955, 0)
 mesh = SubResource("BoxMesh_cxpk8")
 
 [node name="ui_flavor_profile" parent="." instance=ExtResource("4_l0gjo")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.495441, 0.623717, 0)
