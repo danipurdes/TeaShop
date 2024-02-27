@@ -65,4 +65,4 @@ func updateLabel():
 	$ui_flavor_profile/Smoky_Amount.text = str(flavor_profile.smoky)
 
 func getName():
-	return item_type + "\n" + state + "\n" + flavor_profile._to_string()
+	return item_type + "\n" + state #+ "\n" + flavor_profile._to_string()

@@ -32,7 +32,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("CylinderShape3D_vbe5n")
 
 [node name="Label" parent="." instance=ExtResource("2_p7y53")]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.496248, 0)
 
 [node name="tea_cup" parent="." instance=ExtResource("2_yj16m")]
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0, 0)
@@ -42,3 +42,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21955, 0)
 mesh = SubResource("BoxMesh_cxpk8")
 
 [node name="ui_flavor_profile" parent="." instance=ExtResource("4_l0gjo")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.33638, 0)

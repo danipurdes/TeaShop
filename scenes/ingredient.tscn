@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhvf6gyglptto"]
+[gd_scene load_steps=10 format=3 uid="uid://bhvf6gyglptto"]
 
 [ext_resource type="Script" path="res://scripts/ingredient.gd" id="1_msqga"]
 [ext_resource type="PackedScene" uid="uid://bfv8t0cytyall" path="res://models/jar/jar.gltf" id="2_ysiou"]
 [ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="3_ogbe1"]
+[ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui_flavor_profile.tscn" id="4_bilcr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j6lub"]
 albedo_color = Color(0.227451, 0.443137, 0.168627, 1)
@@ -38,3 +39,6 @@ mesh = SubResource("BoxMesh_ch5y2")
 [node name="jar" parent="." instance=ExtResource("2_ysiou")]
 
 [node name="Label" parent="." instance=ExtResource("3_ogbe1")]
+
+[node name="ui_flavor_profile" parent="." instance=ExtResource("4_bilcr")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.633913, 0)

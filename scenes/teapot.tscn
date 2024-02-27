@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dq2jylpvjtxxd"]
+[gd_scene load_steps=7 format=3 uid="uid://dq2jylpvjtxxd"]
 
 [ext_resource type="Script" path="res://scripts/Teapot.gd" id="1_bs1xp"]
 [ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="2_bt26d"]
+[ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui_flavor_profile.tscn" id="3_usbfy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_na1qy"]
 radius = 0.25
@@ -30,3 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 mesh = SubResource("SphereMesh_sd412")
 
 [node name="Label" parent="." instance=ExtResource("2_bt26d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.845774, 0)
+
+[node name="ui_flavor_profile" parent="." instance=ExtResource("3_usbfy")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.677195, 0)
