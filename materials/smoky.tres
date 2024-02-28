@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cgv2btdiggrb0"]
+
+[ext_resource type="Texture2D" uid="uid://cm6yp4faseg5e" path="res://textures/Icons/fire_icon.png" id="1_4qusc"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_4qusc")
+billboard_keep_scale = true
