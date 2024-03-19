@@ -2,16 +2,14 @@ extends Area3D
 
 @export var item_type = "ingredient"
 @export var ingredient: Constants.ingredients;
-@export var mat_green_tea: Material
-@export var mat_black_tea: Material
 @export var color_ingredient: Color
-var flavor_profile = FlavorProfile.new()
+var flavor_profile = FlavorProfile.new(0,0,0,0,0,0)
 var obj_attached_to = null
 
 func _ready():
 	flavor_profile.addIngredient(ingredient)
 	var ingredientMat = StandardMaterial3D.new()
-	color_ingredient = Constants.
+	color_ingredient = Constants.ingredientColorMap[ingredient]
 	ingredientMat.albedo_color = color_ingredient
 	$Mesh.set_surface_override_material(0, ingredientMat)
 	updateLabel()
@@ -32,11 +30,7 @@ func setIngredient(newIngredient):
 
 func updateLabel():
 	$Label.text = getName()
-	$ui_flavor_profile/Grassy_Amount.text = str(flavor_profile.grassy)
-	$ui_flavor_profile/Floral_Amount.text = str(flavor_profile.floral)
-	$ui_flavor_profile/Fruity_Amount.text = str(flavor_profile.fruity)
-	$ui_flavor_profile/Earthy_Amount.text = str(flavor_profile.earthy)
-	$ui_flavor_profile/Smoky_Amount.text = str(flavor_profile.smoky)
+	$ui_flavor_profile.updateLabel(flavor_profile)
 
 func getName():
 	return Constants.ingredients.keys()[ingredient] #+ "\n" + flavor_profile._to_string()

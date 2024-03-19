@@ -16,20 +16,10 @@ func _init(_grassy, _floral, _fruity, _earthy, _smoky, _caffeine):
 	caffeine = _caffeine
 	
 func addIngredient(ingredient):
-	match Constants.ingredientFlavorMap[ingredient]:
-		Constants.flavors.GRASSY:
-			grassy += 1
-		Constants.flavors.FLORAL:
-			floral += 1
-		Constants.flavors.FRUITY:
-			fruity += 1
-		Constants.flavors.EARTHY:
-			earthy += 1
-		Constants.flavors.SMOKY:
-			smoky += 1
+	addFlavorArray(Constants.ingredientFlavorMap[ingredient])
 
 func addFlavorArray(flavorArray):
-	if flavorArray.size() == 6:
+	if flavorArray != null and flavorArray.size() == 6:
 		grassy += flavorArray[0]
 		floral += flavorArray[1]
 		fruity += flavorArray[2]

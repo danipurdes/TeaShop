@@ -398,21 +398,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 
 [node name="Ingredient" parent="." instance=ExtResource("20_6w77y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.34413, 0.893563, -8.75)
-item_type = null
 ingredient = 3
-color_ingredient = null
 
 [node name="Ingredient2" parent="." instance=ExtResource("20_6w77y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.906678, -7.75)
-item_type = null
 ingredient = 4
-color_ingredient = null
 
 [node name="Ingredient3" parent="." instance=ExtResource("20_6w77y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.890502, -8.25)
-item_type = null
 ingredient = 5
-color_ingredient = null
 
 [connection signal="changeHeldItem" from="Player" to="HUD/Control/Label_HeldItem" method="onLabelUpdate"]
 [connection signal="changePingLabel" from="Player" to="HUD/Control/MousePeek/PingLabel" method="onLabelUpdate"]
