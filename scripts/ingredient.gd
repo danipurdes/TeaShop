@@ -4,11 +4,16 @@ extends Area3D
 @export var ingredient: Constants.ingredients;
 @export var mat_green_tea: Material
 @export var mat_black_tea: Material
+@export var color_ingredient: Color
 var flavor_profile = FlavorProfile.new()
 var obj_attached_to = null
 
 func _ready():
 	flavor_profile.addIngredient(ingredient)
+	var ingredientMat = StandardMaterial3D.new()
+	color_ingredient = Constants.
+	ingredientMat.albedo_color = color_ingredient
+	$Mesh.set_surface_override_material(0, ingredientMat)
 	updateLabel()
 
 func onUseItem(pinger):

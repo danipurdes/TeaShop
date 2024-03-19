@@ -25,8 +25,11 @@ size = Vector3(0.2, 0.15, 0.2)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_msqga")
+item_type = null
+ingredient = null
 mat_green_tea = SubResource("StandardMaterial3D_j6lub")
 mat_black_tea = SubResource("StandardMaterial3D_2e5ub")
+color_ingredient = null
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.205, 0)

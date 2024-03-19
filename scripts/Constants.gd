@@ -19,9 +19,17 @@ enum flavors {
 }
 
 static var ingredientFlavorMap = {
-	ingredients.GREEN_TEA: flavors.GRASSY,
-	ingredients.BLACK_TEA: flavors.SMOKY,
-	ingredients.ORANGE_PEEL: flavors.FRUITY,
-	ingredients.HIBISCUS: flavors.FLORAL,
-	ingredients.PINE_NEEDLE: flavors.EARTHY
+	ingredients.GREEN_TEA: [1,0,0,0,0,1],
+	ingredients.BLACK_TEA: [0,0,0,0,1,1],
+	ingredients.ORANGE_PEEL: [0,0,1,0,0,1],
+	ingredients.HIBISCUS: [0,1,0,0,0,1],
+	ingredients.PINE_NEEDLE: [0,0,0,1,0,1]
+}
+
+static var ingredientColorMap = {
+	ingredients.GREEN_TEA: Color.DARK_GREEN,
+	ingredients.BLACK_TEA: Color.WEB_MAROON,
+	ingredients.ORANGE_PEEL: Color.DARK_ORANGE,
+	ingredients.HIBISCUS: Color.MEDIUM_VIOLET_RED,
+	ingredients.PINE_NEEDLE: Color.ORANGE
 }

@@ -3,7 +3,7 @@ extends Area3D
 @export var item_type = "tea_brick"
 @export var mat_green_tea: Material
 @export var mat_black_tea: Material
-var flavor_profile = FlavorProfile.new()
+var flavor_profile = FlavorProfile.new(0,0,0,0,0,0)
 var tea: Constants.ingredients
 var ingredientList = []
 var obj_attached_to = null
