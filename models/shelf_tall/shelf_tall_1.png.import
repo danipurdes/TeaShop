@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg1s7d8ewaht4"
-path.s3tc="res://.godot/imported/texture_10.png-9b5ea5cc812da4b5941fd9238dee548b.s3tc.ctex"
+uid="uid://14woh7v2hlkl"
+path.s3tc="res://.godot/imported/shelf_tall_1.png-0ae48a155f15cca76bd97c17edc3a780.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://textures/Green/texture_10.png"
-dest_files=["res://.godot/imported/texture_10.png-9b5ea5cc812da4b5941fd9238dee548b.s3tc.ctex"]
+source_file="res://models/shelf_tall/shelf_tall_1.png"
+dest_files=["res://.godot/imported/shelf_tall_1.png-0ae48a155f15cca76bd97c17edc3a780.s3tc.ctex"]
 
 [params]
 

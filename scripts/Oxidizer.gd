@@ -66,6 +66,6 @@ func updateTeaType(new_type):
 func spawnTeaBrick():
 	if tea != Constants.ingredients.NONE:
 		var newTeaBrick = obj_tea_brick.instantiate()
-		newTeaBrick.setTea(tea)
+		newTeaBrick.setup(tea)
 		newTeaBrick.position = $TeaBrickSpawn.global_position
 		get_node("/root/Node3D").add_child(newTeaBrick)

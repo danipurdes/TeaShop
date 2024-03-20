@@ -4,7 +4,7 @@ extends Area3D
 @export var state = "empty"
 @export var green_tea:Material
 @export var black_tea:Material
-var flavor_profile = FlavorProfile.new()
+var flavor_profile = FlavorProfile.new(0,0,0,0,0,0)
 var obj_attached_to = null
 
 # Called when the node enters the scene tree for the first time.
@@ -58,11 +58,7 @@ func updateLiquidMaterial():
 
 func updateLabel():
 	$Label.text = getName()
-	$ui_flavor_profile/Grassy_Amount.text = str(flavor_profile.grassy)
-	$ui_flavor_profile/Floral_Amount.text = str(flavor_profile.floral)
-	$ui_flavor_profile/Fruity_Amount.text = str(flavor_profile.fruity)
-	$ui_flavor_profile/Earthy_Amount.text = str(flavor_profile.earthy)
-	$ui_flavor_profile/Smoky_Amount.text = str(flavor_profile.smoky)
+	$ui_flavor_profile.updateLabel(flavor_profile)
 
 func getName():
 	return item_type + "\n" + state #+ "\n" + flavor_profile._to_string()

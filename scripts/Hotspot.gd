@@ -2,9 +2,16 @@ extends Area3D
 
 class_name Hotspot
 
+@export var SpawnObj: PackedScene
 var machine_type = "hotspot"
 var allowlist = []
 var currentItem = null
+
+func _ready():
+	if SpawnObj != null:
+		var spawn_obj = SpawnObj.instantiate()
+		spawn_obj.position = self.global_position
+		get_node("/root/Node3D").add_child(spawn_obj)
 
 func ping():
 	if currentItem == null:
