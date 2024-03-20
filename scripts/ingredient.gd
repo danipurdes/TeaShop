@@ -29,6 +29,7 @@ func setIngredient(newIngredient):
 
 func updateMaterial():
 	var ingredientMat = StandardMaterial3D.new()
+	ingredientMat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
 	color_ingredient = Constants.ingredientColorMap[ingredient]
 	ingredientMat.albedo_color = color_ingredient
 	$Mesh.set_surface_override_material(0, ingredientMat)

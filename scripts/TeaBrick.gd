@@ -14,10 +14,16 @@ func useItem(heldItem):
 	return heldItem.onUseItem(self)
 
 func onUseItem(pinger):
-	if "item_type" in pinger and pinger.item_type == "teapot":
-		get_node("/root/Node3D/Player").destroyHeldItem()
-		updateLabel()
-		return true
+	if "item_type" in pinger:
+		match pinger.item_type:
+			"tea_brick":
+				pinger.addIngredient(tea)
+				setTea(Constants.ingredients.NONE)
+				return true
+			"teapot":
+				get_node("/root/Node3D/Player").destroyHeldItem()
+				setTea(Constants.ingredients.NONE)
+				return true
 	return false
 
 func setTea(newTeaType):
@@ -34,6 +40,7 @@ func addIngredient(newIngredient):
 
 func updateMaterial(_tea):
 	var ingredientMat = StandardMaterial3D.new()
+	ingredientMat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
 	color_ingredient = Constants.ingredientColorMap[_tea]
 	ingredientMat.albedo_color = color_ingredient
 	$Mesh.set_surface_override_material(0, ingredientMat)

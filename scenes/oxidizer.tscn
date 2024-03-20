@@ -26,7 +26,6 @@ material = SubResource("StandardMaterial3D_pfg0d")
 [sub_resource type="BoxMesh" id="BoxMesh_nhapk"]
 
 [node name="Oxidizer_0" type="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37145, 0, -4)
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("1_iuc1u")
@@ -34,7 +33,7 @@ idle_material = SubResource("StandardMaterial3D_3p2s6")
 started_material = SubResource("StandardMaterial3D_acnst")
 green_material = SubResource("StandardMaterial3D_voy65")
 black_material = SubResource("StandardMaterial3D_23e5m")
-obj_tea_brick = ExtResource("2_55n5q")
+obj_ingredient = ExtResource("2_55n5q")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
