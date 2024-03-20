@@ -12,20 +12,31 @@ signal on_oxidize_exit
 @export var black_material: Material
 @export var obj_tea_brick: PackedScene
 
-func ping():
-	match state:
-		"started":
-			match tea:
-				Constants.ingredients.GREEN_TEA:
-					stopOxidizeLeaves()
-					return true
-				Constants.ingredients.BLACK_TEA:
-					stopOxidizeLeaves()
-					return true
-	return false
+#func ping():
+#	match state:
+#		"started":
+#			match tea:
+#				Constants.ingredients.GREEN_TEA:
+#					stopOxidizeLeaves()
+#					return true
+#				Constants.ingredients.BLACK_TEA:
+#					stopOxidizeLeaves()
+#					return true
+#	return false
 
 func useItem(item):
-	if item.has_method("onUseItem") and item.onUseItem(self):
+	if item == null:
+		match state:
+			"started":
+				match tea:
+					Constants.ingredients.GREEN_TEA:
+						stopOxidizeLeaves()
+						return true
+					Constants.ingredients.BLACK_TEA:
+						stopOxidizeLeaves()
+						return true
+		return false
+	elif item.has_method("onUseItem") and item.onUseItem(self):
 		if "item_type" in item and item.item_type == "leaf_tray":
 			startOxidizeLeaves()
 			return true

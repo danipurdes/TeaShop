@@ -141,20 +141,6 @@ layout_mode = 2
 text = "Left Click: "
 label_settings = SubResource("LabelSettings_vq3ps")
 
-[node name="PingLabel" type="Label" parent="HUD/Control/MousePeek"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-text = "-"
-label_settings = SubResource("LabelSettings_vq3ps")
-horizontal_alignment = 2
-script = ExtResource("2_lgeya")
-
-[node name="UseLabelStatic" type="Label" parent="HUD/Control/MousePeek"]
-layout_mode = 2
-text = "Right Click: "
-label_settings = SubResource("LabelSettings_vq3ps")
-
 [node name="UseLabel" type="Label" parent="HUD/Control/MousePeek"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -422,5 +408,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.890502, -8.25)
 ingredient = 5
 
 [connection signal="changeHeldItem" from="Player" to="HUD/Control/Label_HeldItem" method="onLabelUpdate"]
-[connection signal="changePingLabel" from="Player" to="HUD/Control/MousePeek/PingLabel" method="onLabelUpdate"]
 [connection signal="changeUseLabel" from="Player" to="HUD/Control/MousePeek/UseLabel" method="onLabelUpdate"]

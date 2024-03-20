@@ -20,21 +20,17 @@ var itemUseLabelMap = {
 	"tea_brick_1|teapot_hot_water_0":"add tea to teapot",
 	"tea_brick_2|teapot_hot_water_0":"add tea to teapot",
 	"teacup_1|sink": "empty cup into sink",
-	"teacup_2|sink": "empty cup into sink"
-}
-
-var pingLabelMap = {
+	"teacup_2|sink": "empty cup into sink",
 	"jukebox": "toggle jukebox",
 	"tea_tree": "prune tea tree",
 	"leaf_crusher": "crush tea leaves",
-	"oxidizer": "oxidize tea leaves"
+	"oxidizer": "oxidize tea leaves",
 }
 
 func _physics_process(_delta):
 	var raycastResult = getRaycastResult()
 	if !raycastResult.is_empty():
 		#Object Scanning
-		setPingLabel(raycastResult)
 		setUseLabel(raycastResult)
 		
 		#Object Picking
@@ -42,20 +38,12 @@ func _physics_process(_delta):
 			if "item_type" in raycastResult.collider:
 				if attemptPickup(raycastResult.collider):
 					$PingBoop.play()
-				elif raycastResult.collider.has_method("ping") and raycastResult.collider.ping():
+				elif raycastResult.collider.has_method("useItem") and raycastResult.collider.useItem(heldItem):
 					$PingBoop.play()
 				else:
 					$BadBoop.play()
-			elif raycastResult.collider.has_method("ping") and raycastResult.collider.ping():
+			elif raycastResult.collider.has_method("useItem") and raycastResult.collider.useItem(heldItem):
 				$PingBoop.play()
-			else:
-				$BadBoop.play()
-		elif Input.is_action_just_pressed("mouse2"):
-			if heldItem != null and raycastResult.collider.has_method("useItem"):
-				if raycastResult.collider.useItem(heldItem):
-					$UseBoop.play()
-				else:
-					$BadBoop.play()
 				if (heldItem != null):
 					changeHeldItem.emit(heldItem.getName())
 			else:
@@ -140,24 +128,16 @@ func getRaycastResult():
 	query.collide_with_areas = true
 	return get_world_3d().direct_space_state.intersect_ray(query)
 
-func setPingLabel(raycastResult):
+func setUseLabel(raycastResult):
 	var resultCollider = raycastResult.collider
 	if heldItem == null and "item_type" in resultCollider:
-		changePingLabel.emit("pick up " + resultCollider.item_type)
+		changeUseLabel.emit("pick up " + resultCollider.item_type)
 		return
 	elif heldItem != null and "machine_type" in resultCollider:
 		if resultCollider.machine_type == "hotspot" or resultCollider.machine_type == "hotplate":
-			changePingLabel.emit("set down " + heldItem.item_type)
+			changeUseLabel.emit("set down " + heldItem.item_type)
 			return
-	elif "machine_type" in resultCollider:
-		changePingLabel.emit(pingLabelMap.get(resultCollider.machine_type))
-		return
-	changePingLabel.emit("-")
-	pass
-
-func setUseLabel(raycastResult):
-	var resultCollider = raycastResult.collider
-	if heldItem != null:
+	elif heldItem != null:
 		if heldItem.has_method("onUseItem") and resultCollider.has_method("useItem"):
 			var heldItemKey = ""
 			if heldItem.has_method("getName"):
