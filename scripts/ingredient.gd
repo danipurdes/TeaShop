@@ -8,16 +8,15 @@ var obj_attached_to = null
 
 func _ready():
 	flavor_profile.addIngredient(ingredient)
-	var ingredientMat = StandardMaterial3D.new()
-	color_ingredient = Constants.ingredientColorMap[ingredient]
-	ingredientMat.albedo_color = color_ingredient
-	$Mesh.set_surface_override_material(0, ingredientMat)
+	updateMaterial()
 	updateLabel()
 
 func onUseItem(pinger):
 	if "item_type" in pinger and pinger.item_type == "tea_brick":
 		pinger.addIngredient(ingredient)
-		get_node("/root/Node3D/Player").destroyHeldItem()
+		flavor_profile.clearFlavorProfile()
+		ingredient = Constants.ingredients.NONE
+		updateMaterial()
 		updateLabel()
 		return true
 	return false
@@ -27,6 +26,12 @@ func setIngredient(newIngredient):
 	flavor_profile.clearFlavorProfile()
 	flavor_profile.addIngredient(ingredient)
 	updateLabel()
+
+func updateMaterial():
+	var ingredientMat = StandardMaterial3D.new()
+	color_ingredient = Constants.ingredientColorMap[ingredient]
+	ingredientMat.albedo_color = color_ingredient
+	$Mesh.set_surface_override_material(0, ingredientMat)
 
 func updateLabel():
 	$Label.text = getName()

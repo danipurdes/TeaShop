@@ -3,7 +3,7 @@ extends Area3D
 @export var machine_type = "tea_tree"
 
 func useItem(heldItem):
-	if heldItem.has_method("onUseItem") and heldItem.onUseItem(self):
+	if heldItem != null and heldItem.has_method("onUseItem") and heldItem.onUseItem(self):
 		trimLeaves()
 
 func trimLeaves():
