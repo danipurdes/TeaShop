@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=42 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_2amdu"]
 [ext_resource type="Script" path="res://scripts/FPSCamera.gd" id="2_0mnq6"]
@@ -46,13 +46,49 @@ uv2_padding = 0.88
 size = Vector2(10, 10)
 orientation = 1
 
-[sub_resource type="QuadMesh" id="QuadMesh_h7fqm"]
+[sub_resource type="QuadMesh" id="QuadMesh_60kg6"]
 material = ExtResource("9_3ljx8")
-size = Vector2(5, 5)
+size = Vector2(10, 3)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ixba0"]
+material = ExtResource("9_3ljx8")
+size = Vector2(10, 3)
+
+[sub_resource type="QuadMesh" id="QuadMesh_lygme"]
+material = ExtResource("9_3ljx8")
+size = Vector2(10, 3)
 
 [sub_resource type="QuadMesh" id="QuadMesh_1io6o"]
 material = ExtResource("9_3ljx8")
-size = Vector2(4, 5)
+size = Vector2(4, 3)
+
+[sub_resource type="QuadMesh" id="QuadMesh_7c1du"]
+material = ExtResource("8_g5q31")
+uv2_padding = 0.88
+size = Vector2(8, 7)
+orientation = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_8pdgl"]
+material = ExtResource("8_g5q31")
+uv2_padding = 0.88
+size = Vector2(8, 7)
+orientation = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_bc1op"]
+material = ExtResource("9_3ljx8")
+size = Vector2(8, 3)
+
+[sub_resource type="QuadMesh" id="QuadMesh_nf674"]
+material = ExtResource("9_3ljx8")
+size = Vector2(7, 3)
+
+[sub_resource type="QuadMesh" id="QuadMesh_4pk2y"]
+material = ExtResource("9_3ljx8")
+size = Vector2(7, 3)
+
+[sub_resource type="QuadMesh" id="QuadMesh_nu0pu"]
+material = ExtResource("9_3ljx8")
+size = Vector2(2, 3)
 
 [sub_resource type="QuadMesh" id="QuadMesh_efst4"]
 material = ExtResource("8_g5q31")
@@ -61,7 +97,7 @@ orientation = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_5ks6k"]
 material = ExtResource("9_3ljx8")
-size = Vector2(1, 5)
+size = Vector2(1, 3)
 orientation = 0
 
 [node name="Node3D" type="Node3D"]
@@ -170,36 +206,24 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 3, 
 mesh = SubResource("QuadMesh_pamd4")
 skeleton = NodePath("../..")
 
-[node name="Wall_1" type="MeshInstance3D" parent="FrontOfHouse"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 2.5, 2.5, 5)
-mesh = SubResource("QuadMesh_h7fqm")
-
 [node name="Wall_6" type="MeshInstance3D" parent="FrontOfHouse"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -2.5, 2.5, 5)
-mesh = SubResource("QuadMesh_h7fqm")
-
-[node name="Wall_2" type="MeshInstance3D" parent="FrontOfHouse"]
-transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 5, 2.5, 2.5)
-mesh = SubResource("QuadMesh_h7fqm")
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0.000649452, 1.5, 5)
+mesh = SubResource("QuadMesh_60kg6")
 
 [node name="Wall_7" type="MeshInstance3D" parent="FrontOfHouse"]
-transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 5, 2.5, -2.5)
-mesh = SubResource("QuadMesh_h7fqm")
-
-[node name="Wall_3" type="MeshInstance3D" parent="FrontOfHouse"]
-transform = Transform3D(1.31134e-07, 8.74228e-08, 1, 0, -1, 8.74228e-08, 1, -1.14641e-14, -1.31134e-07, -5, 2.5, 2.5)
-mesh = SubResource("QuadMesh_h7fqm")
+transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 5, 1.5, 0.0307865)
+mesh = SubResource("QuadMesh_ixba0")
 
 [node name="Wall_8" type="MeshInstance3D" parent="FrontOfHouse"]
-transform = Transform3D(1.31134e-07, 8.74228e-08, 1, 0, -1, 8.74228e-08, 1, -1.14641e-14, -1.31134e-07, -5, 2.5, -2.5)
-mesh = SubResource("QuadMesh_h7fqm")
+transform = Transform3D(1.31134e-07, 8.74228e-08, 1, 0, -1, 8.74228e-08, 1, -1.14641e-14, -1.31134e-07, -5, 1.5, -0.0215719)
+mesh = SubResource("QuadMesh_lygme")
 
 [node name="Wall_4" type="MeshInstance3D" parent="FrontOfHouse"]
-transform = Transform3D(-1, 7.64273e-15, 8.74226e-08, 0, -1, 8.74228e-08, 8.74226e-08, 8.74228e-08, 1, -3, 2.49967, -5)
+transform = Transform3D(-1, 7.64273e-15, 8.74226e-08, 0, -1, 8.74228e-08, 8.74226e-08, 8.74228e-08, 1, -3, 1.49967, -5)
 mesh = SubResource("QuadMesh_1io6o")
 
 [node name="Wall_5" type="MeshInstance3D" parent="FrontOfHouse"]
-transform = Transform3D(-1, 7.64273e-15, 8.74226e-08, 0, -1, 8.74228e-08, 8.74226e-08, 8.74228e-08, 1, 3, 2.49967, -5)
+transform = Transform3D(-1, 7.64273e-15, 8.74226e-08, 0, -1, 8.74228e-08, 8.74226e-08, 8.74228e-08, 1, 3, 1.49967, -5)
 mesh = SubResource("QuadMesh_1io6o")
 
 [node name="Counter_0" parent="FrontOfHouse" instance=ExtResource("8_y4nji")]
@@ -275,46 +299,35 @@ alt+f4 - close the game"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
 
 [node name="Floor" type="MeshInstance3D" parent="BackOfHouse"]
-mesh = SubResource("QuadMesh_pamd4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1.48823)
+mesh = SubResource("QuadMesh_7c1du")
 skeleton = NodePath("../..")
 
 [node name="Ceiling" type="MeshInstance3D" parent="BackOfHouse"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 3, 0)
-mesh = SubResource("QuadMesh_pamd4")
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -1, 3, 1.49284)
+mesh = SubResource("QuadMesh_8pdgl")
 skeleton = NodePath("../..")
 
-[node name="Wall_0" type="MeshInstance3D" parent="BackOfHouse"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -2)
-mesh = SubResource("QuadMesh_h7fqm")
-
 [node name="Wall_1" type="MeshInstance3D" parent="BackOfHouse"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, -2)
-mesh = SubResource("QuadMesh_h7fqm")
-
-[node name="Wall_2" type="MeshInstance3D" parent="BackOfHouse"]
-transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 3, 2.5, 2.5)
-mesh = SubResource("QuadMesh_h7fqm")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, -2)
+mesh = SubResource("QuadMesh_bc1op")
 
 [node name="Wall_7" type="MeshInstance3D" parent="BackOfHouse"]
-transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 3, 2.5, -2.5)
-mesh = SubResource("QuadMesh_h7fqm")
+transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 3, 1.5, 1.53789)
+mesh = SubResource("QuadMesh_nf674")
 
 [node name="Wall_3" type="MeshInstance3D" parent="BackOfHouse"]
-transform = Transform3D(4.37114e-08, -3.82137e-15, 1, -8.74228e-08, -1, 0, 1, -8.74228e-08, -4.37114e-08, -5, 2.5, 2.5)
-mesh = SubResource("QuadMesh_h7fqm")
-
-[node name="Wall_6" type="MeshInstance3D" parent="BackOfHouse"]
-transform = Transform3D(4.37114e-08, -3.82137e-15, 1, -8.74228e-08, -1, 0, 1, -8.74228e-08, -4.37114e-08, -5, 2.5, -2.5)
-mesh = SubResource("QuadMesh_h7fqm")
+transform = Transform3D(4.37114e-08, -3.82137e-15, 1, -8.74228e-08, -1, 0, 1, -8.74228e-08, -4.37114e-08, -5, 1.5, 1.5)
+mesh = SubResource("QuadMesh_4pk2y")
 
 [node name="Wall_4" type="MeshInstance3D" parent="BackOfHouse"]
-transform = Transform3D(1, -1.52855e-14, -1.74845e-07, 0, -1, 8.74228e-08, -1.74845e-07, -8.74228e-08, -1, -3, 2.49967, 5.00859)
+transform = Transform3D(1, -1.52855e-14, -1.74845e-07, 0, -1, 8.74228e-08, -1.74845e-07, -8.74228e-08, -1, -3, 1.49967, 5.00859)
 mesh = SubResource("QuadMesh_1io6o")
 skeleton = NodePath("../../FrontOfHouse")
 
 [node name="Wall_5" type="MeshInstance3D" parent="BackOfHouse"]
-transform = Transform3D(1, -1.52855e-14, -1.74845e-07, 0, -1, 8.74228e-08, -1.74845e-07, -8.74228e-08, -1, 3, 2.5, 5)
-mesh = SubResource("QuadMesh_1io6o")
+transform = Transform3D(1, -1.52855e-14, -1.74845e-07, 0, -1, 8.74228e-08, -1.74845e-07, -8.74228e-08, -1, 2, 1.5, 5)
+mesh = SubResource("QuadMesh_nu0pu")
 skeleton = NodePath("../../FrontOfHouse")
 
 [node name="TeaProducingLabel" type="Label3D" parent="BackOfHouse"]
@@ -348,11 +361,11 @@ transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 3, 
 mesh = SubResource("QuadMesh_efst4")
 
 [node name="Wall1" type="MeshInstance3D" parent="Hallway"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, -0.5)
 mesh = SubResource("QuadMesh_5ks6k")
 
 [node name="Wall2" type="MeshInstance3D" parent="Hallway"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 2.5, -0.5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 1.5, -0.5)
 mesh = SubResource("QuadMesh_5ks6k")
 
 [node name="Teapot" parent="." instance=ExtResource("6_rjdbd")]
