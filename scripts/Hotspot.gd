@@ -13,7 +13,7 @@ func _ready():
 		spawn_obj.position = self.global_position
 		get_node("/root/Node3D").add_child(spawn_obj)
 
-func ping():
+func useItem(item):
 	if currentItem == null:
 		var heldItem = get_node("/root/Node3D/Player").getHeldItem()
 		if heldItem != null and isItemAllowed(heldItem.item_type):

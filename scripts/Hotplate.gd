@@ -8,7 +8,7 @@ var allowlist = ["teakettle"]
 var currentItem = null
 var obj_attached_to = null
 
-func ping():
+func useItem(item):
 	if currentItem == null:
 		var heldItem = get_node("/root/Node3D/Player").getHeldItem()
 		if heldItem != null and isItemAllowed(heldItem.item_type):

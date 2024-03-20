@@ -2,8 +2,6 @@ extends Area3D
 
 @export var item_type = "teacup"
 @export var state = "empty"
-@export var green_tea:Material
-@export var black_tea:Material
 var flavor_profile = FlavorProfile.new(0,0,0,0,0,0)
 var obj_attached_to = null
 
@@ -46,15 +44,7 @@ func updateFlavorProfile(newFlavorProfile):
 	updateLabel()
 
 func updateLiquidMaterial():
-#	match newTea:
-#		Constants.tea_type.GREEN_TEA:
-#			$tea_cup/tea_cup_liquid.visible = true
-			$tea_cup/tea_cup_liquid.set_surface_override_material(0, green_tea)
-#		Constants.tea_type.BLACK_TEA:
-#			$tea_cup/tea_cup_liquid.visible = true
-#			$tea_cup/tea_cup_liquid.set_surface_override_material(0, black_tea)
-#		_:
-#			$tea_cup/tea_cup_liquid.visible = false
+	pass
 
 func updateLabel():
 	$Label.text = getName()
