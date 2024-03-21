@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3o86lcksgnit"]
+
+[ext_resource type="Script" path="res://scripts/TeaBrick.gd" id="1_5kp2m"]
+[ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="2_jgook"]
+[ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui_flavor_profile.tscn" id="3_kgkc1"]
+[ext_resource type="PackedScene" uid="uid://bfv8t0cytyall" path="res://models/jar/jar.gltf" id="4_5fha6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tl8i4"]
+size = Vector3(0.2, 0.15, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4fcwf"]
+albedo_color = Color(0.513726, 0.27451, 0.529412, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ch5y2"]
+material = SubResource("StandardMaterial3D_4fcwf")
+size = Vector3(0.2, 0.15, 0.2)
+
+[node name="TeaBrick" type="Area3D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_5kp2m")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, 0)
+shape = SubResource("BoxShape3D_tl8i4")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.135022, 0)
+mesh = SubResource("BoxMesh_ch5y2")
+
+[node name="Label" parent="." instance=ExtResource("2_jgook")]
+
+[node name="ui_flavor_profile" parent="." instance=ExtResource("3_kgkc1")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.56526, 0)
+
+[node name="jar" parent="." instance=ExtResource("4_5fha6")]
