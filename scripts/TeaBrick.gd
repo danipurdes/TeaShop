@@ -2,10 +2,14 @@ extends Area3D
 
 @export var item_type = "tea_brick"
 @export var color_ingredient: Color
+@export var tea: Constants.ingredients
 var flavor_profile = FlavorProfile.new(0,0,0,0,0,0)
-var tea: Constants.ingredients
 var ingredientList = []
 var obj_attached_to = null
+
+func _ready():
+	if tea != null:
+		setup(tea)
 
 func setup(_tea):
 	setTea(_tea)

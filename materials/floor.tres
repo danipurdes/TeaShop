@@ -3,6 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://bar2pggapk80h" path="res://textures/Light/texture_07.png" id="1_qf1n1"]
 
 [resource]
-albedo_color = Color(0.262745, 0.505882, 0.258824, 1)
+albedo_color = Color(0.262023, 0.505261, 0.259209, 1)
 albedo_texture = ExtResource("1_qf1n1")
 uv1_scale = Vector3(10, 10, 10)
