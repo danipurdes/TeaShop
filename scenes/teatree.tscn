@@ -397,15 +397,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 
 [node name="Ingredient" parent="." instance=ExtResource("20_6w77y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.34413, 0.893563, -8.75)
-ingredient = 3
+tea = 3
 
 [node name="Ingredient2" parent="." instance=ExtResource("20_6w77y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.906678, -7.75)
-ingredient = 4
+tea = 4
 
 [node name="Ingredient3" parent="." instance=ExtResource("20_6w77y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.890502, -8.25)
-ingredient = 5
+tea = 5
 
 [connection signal="changeHeldItem" from="Player" to="HUD/Control/Label_HeldItem" method="onLabelUpdate"]
 [connection signal="changeUseLabel" from="Player" to="HUD/Control/MousePeek/UseLabel" method="onLabelUpdate"]

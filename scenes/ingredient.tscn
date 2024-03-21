@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bhvf6gyglptto"]
 
-[ext_resource type="Script" path="res://scripts/ingredient.gd" id="1_msqga"]
+[ext_resource type="Script" path="res://scripts/TeaBrick.gd" id="1_nhujj"]
 [ext_resource type="PackedScene" uid="uid://bfv8t0cytyall" path="res://models/jar/jar.gltf" id="2_ysiou"]
 [ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="3_ogbe1"]
 [ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui_flavor_profile.tscn" id="4_bilcr"]
@@ -18,7 +18,7 @@ size = Vector3(0.2, 0.15, 0.2)
 [node name="Ingredient" type="Area3D"]
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("1_msqga")
+script = ExtResource("1_nhujj")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.205, 0)

@@ -4,7 +4,7 @@ extends Area3D
 @export var obj_leaf_tray: PackedScene
 
 func useItem(heldItem):
-	if heldItem.has_method("onUseItem") and heldItem.onUseItem(self):
+	if heldItem != null and heldItem.has_method("onUseItem") and heldItem.onUseItem(self):
 		if "item_type" in heldItem and heldItem.item_type == "basket":
 			startCrushLeaves()
 			return true
