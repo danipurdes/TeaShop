@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://drw752s764j10"]
 
 [ext_resource type="Material" uid="uid://brgypg5wao8ew" path="res://materials/grassy.tres" id="1_8d3vk"]
+[ext_resource type="Script" path="res://scripts/FlavorProfileUI.gd" id="1_ghk2n"]
 [ext_resource type="Material" uid="uid://t6xmx62hcs13" path="res://materials/fruity.tres" id="1_wbobn"]
-[ext_resource type="Script" path="res://scripts/ui_flavor_profile.gd" id="1_xgnib"]
 [ext_resource type="Material" uid="uid://ciouhykih2ts0" path="res://materials/floral.tres" id="2_3rmpr"]
 [ext_resource type="Material" uid="uid://b7yipytqrjq8r" path="res://materials/earthy.tres" id="4_mcjun"]
 [ext_resource type="Material" uid="uid://cgv2btdiggrb0" path="res://materials/smoky.tres" id="5_thic6"]
@@ -22,9 +22,9 @@ material = ExtResource("4_mcjun")
 [sub_resource type="QuadMesh" id="QuadMesh_w0rih"]
 material = ExtResource("5_thic6")
 
-[node name="ui_flavor_profile" type="Node3D"]
+[node name="FlavorProfileUI" type="Node3D"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-script = ExtResource("1_xgnib")
+script = ExtResource("1_ghk2n")
 
 [node name="Grassy_Icon" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50127, 0, 0)

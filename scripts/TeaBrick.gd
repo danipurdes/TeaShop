@@ -1,13 +1,14 @@
 extends Area3D
 
 @export var item_type = "tea_brick"
-#@export var color_ingredient: Color
 @export var tea: Constants.ingredients
 var flavor_profile = FlavorProfile.new(0,0,0,0,0,0)
 var ingredientList = []
+var ingredientMat = StandardMaterial3D.new()
 var obj_attached_to = null
 
 func _ready():
+	ingredientMat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
 	if tea != null:
 		setup(tea)
 
@@ -39,43 +40,43 @@ func onUseItem(pinger):
 func setTea(newTeaType):
 	flavor_profile.clearFlavorProfile()
 	ingredientList.clear()
-	tea = newTeaType
 	addIngredient(newTeaType)
 
 func addIngredient(newIngredient):
-	flavor_profile.addIngredient(newIngredient)
-	ingredientList.append(newIngredient)
+	if newIngredient in ingredientList:
+		return
+	if ingredientList.size() == 1 and ingredientList[0] == Constants.ingredients.NONE:
+		ingredientList.clear()
+	if newIngredient != Constants.ingredients.NONE:
+		flavor_profile.addIngredient(newIngredient)
+		ingredientList.append(newIngredient)
 	updateMaterial()
 	updateLabel()
 
 func updateMaterial():
 	if ingredientList.size() > 0:
-		var ingredientMat = StandardMaterial3D.new()
-		ingredientMat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
-		var red = 0
-		var green = 0
-		var blue = 0
-		var alpha = 0
+		var color_list = []
 		for ingredient in ingredientList:
-			red += Constants.ingredientColorMap[ingredient].r
-			green += Constants.ingredientColorMap[ingredient].g
-			blue += Constants.ingredientColorMap[ingredient].b
-			alpha += Constants.ingredientColorMap[ingredient].a
-		red *= 1.0 / ingredientList.size()
-		green *= 1.0 / ingredientList.size()
-		blue *= 1.0 / ingredientList.size()
-		red = pow(red, 1.0 / ingredientList.size())
-		green = pow(green, 1.0 / ingredientList.size())
-		blue = pow(blue, 1.0 / ingredientList.size())
-		alpha *= 1.0 / ingredientList.size()
-		var blend_color = Color(red, green, blue, alpha)
-		
-		ingredientMat.albedo_color = blend_color
-		$Mesh.set_surface_override_material(0, ingredientMat)
+			if ingredient != Constants.ingredients.NONE:
+				color_list.append(Constants.ingredientColorMap[ingredient])
+		ingredientMat.albedo_color = ColorUtility.BlendColorList(color_list)
+		$IngredientAnchor/IngredientMesh.set_surface_override_material(0, ingredientMat)
+	else:
+		ingredientMat.albedo_color = Constants.ingredientColorMap[Constants.ingredients.NONE]
+		$IngredientAnchor/IngredientMesh.set_surface_override_material(0, ingredientMat)
 
 func updateLabel():
 	$Label.text = getName()
-	$ui_flavor_profile.updateLabel(flavor_profile)
+	$FlavorProfileUI.updateLabel(flavor_profile)
+	$IngredientColorLabel.text = ColorUtility.ColorToString(ingredientMat.albedo_color)
+
+func ingredientListToString():
+	var output = ""
+	var ingredient_names = Constants.ingredients.keys()
+	for ingredient in ingredientList:
+		output += ingredient_names[ingredient] + " "
+	return output
 
 func getName():
-	return item_type + "\n" + Constants.ingredients.keys()[tea] + (" blend" if ingredientList.size() > 0 else "")
+	# return item_type + "\n" + Constants.ingredients.keys()[tea] + (" blend" if ingredientList.size() > 0 else "")
+	return ingredientListToString() + (" blend" if ingredientList.size() > 1 else "")

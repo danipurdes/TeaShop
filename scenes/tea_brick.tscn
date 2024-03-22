@@ -8,12 +8,12 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_tl8i4"]
 size = Vector3(0.2, 0.15, 0.2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4fcwf"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vo47"]
 albedo_color = Color(0.513726, 0.27451, 0.529412, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_ch5y2"]
-material = SubResource("StandardMaterial3D_4fcwf")
-size = Vector3(0.2, 0.15, 0.2)
+[sub_resource type="BoxMesh" id="BoxMesh_4svy2"]
+material = SubResource("StandardMaterial3D_4vo47")
+size = Vector3(0.1, 0.15, 0.1)
 
 [node name="TeaBrick" type="Area3D"]
 collision_layer = 2
@@ -24,13 +24,21 @@ script = ExtResource("1_5kp2m")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, 0)
 shape = SubResource("BoxShape3D_tl8i4")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.135022, 0)
-mesh = SubResource("BoxMesh_ch5y2")
+[node name="IngredientAnchor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.032529, 0)
+
+[node name="IngredientMesh" type="MeshInstance3D" parent="IngredientAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0754125, 0)
+mesh = SubResource("BoxMesh_4svy2")
+skeleton = NodePath("../..")
+
+[node name="JarMesh" parent="." instance=ExtResource("4_5fha6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Label" parent="." instance=ExtResource("2_jgook")]
 
-[node name="ui_flavor_profile" parent="." instance=ExtResource("3_kgkc1")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.56526, 0)
+[node name="IngredientColorLabel" parent="." instance=ExtResource("2_jgook")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.344446, 0)
 
-[node name="jar" parent="." instance=ExtResource("4_5fha6")]
+[node name="FlavorProfileUI" parent="." instance=ExtResource("3_kgkc1")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.56526, 0)

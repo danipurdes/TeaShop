@@ -1,5 +1,7 @@
 extends Area3D
 
+# TODO: Deprecate in favor of tea_brick
+
 @export var item_type = "ingredient"
 @export var ingredient: Constants.ingredients;
 @export var color_ingredient: Color
