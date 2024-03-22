@@ -9,6 +9,7 @@ var obj_attached_to = null
 func _ready():
 	updateLabel()
 
+# TODO: Update with new flavor and ingredient changes
 func useItem(heldItem):
 	if heldItem.item_type == "teakettle":
 		if heldItem.state == "hot_water" and state == "empty":
