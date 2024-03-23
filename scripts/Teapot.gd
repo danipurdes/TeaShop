@@ -19,8 +19,7 @@ func useItem(heldItem):
 			updateServings(max_servings)
 			return true
 	elif heldItem.item_type == "tea_brick":
-		# TODO: Fix flavor transfer from TeaBricks
-		var held_flavor_profile = heldItem.flavor_profile
+		var held_flavor_profile = heldItem.flavor_profile.toArray()
 		if heldItem.onUseItem(self):
 			updateFlavorProfile(held_flavor_profile)
 			return true
@@ -47,7 +46,7 @@ func updateState(newState):
 	updateLabel()
 
 func updateFlavorProfile(newFlavorProfile):
-	flavor_profile.copyFlavorProfile(newFlavorProfile)
+	flavor_profile.addFlavorArray(newFlavorProfile)
 	updateLabel()
 
 func updateServings(newServings):

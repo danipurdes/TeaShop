@@ -18,10 +18,11 @@ func useItem(heldItem):
 			return true
 	if heldItem.item_type == "teapot":
 		if heldItem.state != "empty" and state == "empty":
+			var held_flavor_profile = heldItem.flavor_profile.toArray()
 			if heldItem.onUseItem(self):
 				updateState("hot_water")
 				updateLiquidMaterial()
-				updateFlavorProfile(heldItem.flavor_profile)
+				updateFlavorProfile(held_flavor_profile)
 				return true
 	return false
 
@@ -41,10 +42,11 @@ func updateState(newState):
 	updateLabel()
 
 func updateFlavorProfile(newFlavorProfile):
-	flavor_profile.copyFlavorProfile(newFlavorProfile)
+	flavor_profile.addFlavorArray(newFlavorProfile)
 	updateLabel()
 
 func updateLiquidMaterial():
+	#TODO: Write method
 	pass
 
 func updateLabel():
