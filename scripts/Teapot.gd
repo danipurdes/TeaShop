@@ -19,8 +19,9 @@ func useItem(heldItem):
 			updateServings(max_servings)
 			return true
 	elif heldItem.item_type == "tea_brick":
+		var held_flavor_profile = heldItem.flavor_profile.toArray()
 		if heldItem.onUseItem(self):
-			updateFlavorProfile(heldItem.flavor_profile)
+			updateFlavorProfile(held_flavor_profile)
 			return true
 	return false
 
@@ -31,6 +32,7 @@ func onUseItem(pinger):
 			return true
 		elif state != "empty":
 			updateState("dirty")
+			flavor_profile.clearFlavorProfile()
 			updateServings(0)
 			return true
 	elif "item_type" in pinger and pinger.item_type == "teacup":
@@ -44,7 +46,7 @@ func updateState(newState):
 	updateLabel()
 
 func updateFlavorProfile(newFlavorProfile):
-	flavor_profile = newFlavorProfile
+	flavor_profile.addFlavorArray(newFlavorProfile)
 	updateLabel()
 
 func updateServings(newServings):

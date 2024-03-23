@@ -12,14 +12,13 @@ func _ready():
 	if tea != null:
 		setup(tea)
 
-func setup(_tea):
-	setTea(_tea)
+func setup(newTea):
+	setTea(newTea)
 
-func useItem(heldItem):
-	if heldItem != null and heldItem.has_method("onUseItem") and heldItem.onUseItem(self):
-		for ingredient in heldItem.ingredientList:
-			if ingredient != Constants.ingredients.NONE:
-				addIngredient(ingredient)
+func useItem(item):
+	if item != null and item.has_method("onUseItem") and item.onUseItem(self):
+		for ingredient in item.ingredientList:
+			addIngredient(ingredient)
 		return true
 	return false
 
@@ -78,5 +77,4 @@ func ingredientListToString():
 	return output
 
 func getName():
-	# return item_type + "\n" + Constants.ingredients.keys()[tea] + (" blend" if ingredientList.size() > 0 else "")
 	return ingredientListToString() + (" blend" if ingredientList.size() > 1 else "")
