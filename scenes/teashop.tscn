@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://csh63b2jdudyg" path="res://scenes/oxidizer.tscn" id="20_j8f8d"]
 [ext_resource type="PackedScene" uid="uid://bd1jkdslg77aa" path="res://scenes/leaf_basket.tscn" id="21_ysytc"]
 [ext_resource type="PackedScene" uid="uid://dwhkm61peqh3x" path="res://scenes/jukebox.tscn" id="22_j0j4u"]
-[ext_resource type="PackedScene" uid="uid://bhvf6gyglptto" path="res://scenes/ingredient.tscn" id="23_7m2fs"]
+[ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="23_eypq5"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jtfon"]
 size = Vector2(10, 10)
@@ -396,18 +396,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -8.25)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -9)
 
 [node name="LeafCrusher" parent="." instance=ExtResource("18_dvgoh")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.5, 0, -12.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75644, 2.38419e-07, -12.1975)
 obj_leaf_tray = ExtResource("19_xhmln")
 
 [node name="LeafCrusher2" parent="." instance=ExtResource("18_dvgoh")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.5, 0, -12.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.59447, 0, -12.188)
 obj_leaf_tray = ExtResource("19_xhmln")
 
 [node name="Oxidizer" parent="." instance=ExtResource("20_j8f8d")]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -0.5, 0, -12.5)
 
 [node name="Oxidizer2" parent="." instance=ExtResource("20_j8f8d")]
-transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.5, 0, -12.5)
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.523026, 0, -12.5)
 
 [node name="LeafBasket" parent="." instance=ExtResource("21_ysytc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4811, 1, -6.49011)
@@ -415,24 +415,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4811, 1, -6.49011)
 [node name="Jukebox" parent="." instance=ExtResource("22_j0j4u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 
-[node name="Ingredient" parent="." instance=ExtResource("23_7m2fs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.35, 0.9, -8.75)
+[node name="TeaBrick" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2.35, 0.9, -8.75)
 tea = 3
 
-[node name="Ingredient4" parent="." instance=ExtResource("23_7m2fs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.35, 1.65, -9.75)
-tea = 3
-
-[node name="Ingredient5" parent="." instance=ExtResource("23_7m2fs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.35, 0.14, -9.25)
-tea = 4
-
-[node name="Ingredient2" parent="." instance=ExtResource("23_7m2fs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.35, 0.9, -7.25)
+[node name="TeaBrick2" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2.35, 0.9, -7.26117)
 tea = 5
 
-[node name="Ingredient3" parent="." instance=ExtResource("23_7m2fs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.35, 0.9, -8.25)
+[node name="TeaBrick3" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2.35, 0.9, -8.2539)
+
+[node name="TeaBrick4" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2.35, 1.64782, -9.74641)
+tea = 3
+
+[node name="TeaBrick5" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2.35, 0.147757, -9.2529)
+tea = 4
 
 [connection signal="changeHeldItem" from="Player" to="HUD/Control/Label_HeldItem" method="onLabelUpdate"]
 [connection signal="changeUseLabel" from="Player" to="HUD/Control/MousePeek/UseLabel" method="onLabelUpdate"]

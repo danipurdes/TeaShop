@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://csh63b2jdudyg"]
+[gd_scene load_steps=9 format=3 uid="uid://csh63b2jdudyg"]
 
 [ext_resource type="Script" path="res://scripts/Oxidizer.gd" id="1_iuc1u"]
 [ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="2_55n5q"]
@@ -8,12 +8,6 @@ albedo_color = Color(0.603922, 0.603922, 0.603922, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_acnst"]
 albedo_color = Color(0.364706, 0.364706, 0.364706, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_voy65"]
-albedo_color = Color(0.2, 0.529412, 0.309804, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23e5m"]
-albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y2a6e"]
 
@@ -31,8 +25,6 @@ collision_mask = 0
 script = ExtResource("1_iuc1u")
 idle_material = SubResource("StandardMaterial3D_3p2s6")
 started_material = SubResource("StandardMaterial3D_acnst")
-green_material = SubResource("StandardMaterial3D_voy65")
-black_material = SubResource("StandardMaterial3D_23e5m")
 obj_ingredient = ExtResource("2_55n5q")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]

@@ -4,13 +4,11 @@ signal on_oxidize_enter
 signal on_oxidize_exit
 
 @export var machine_type = "oxidizer"
-@export var tea = Constants.ingredients.NONE
-@export var state = "idle"
+var tea = Constants.ingredients.NONE
+var state = "idle"
 var indicator_mat = StandardMaterial3D.new()
 @export var idle_material: Material
 @export var started_material: Material
-@export var green_material: Material
-@export var black_material: Material
 @export var obj_ingredient: PackedScene
 
 func _ready():
@@ -75,6 +73,6 @@ func updateMaterial(e_ingredient):
 func spawnTeaBrick():
 	if tea != Constants.ingredients.NONE:
 		var newTeaBrick = obj_ingredient.instantiate()
+		get_node("/root/Node3D").add_child(newTeaBrick)
 		newTeaBrick.setup(tea)
 		newTeaBrick.position = $TeaBrickSpawn.global_position
-		get_node("/root/Node3D").add_child(newTeaBrick)

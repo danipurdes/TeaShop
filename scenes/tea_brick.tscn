@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bfv8t0cytyall" path="res://models/jar/jar.gltf" id="4_5fha6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tl8i4"]
-size = Vector3(0.2, 0.15, 0.2)
+size = Vector3(0.2, 0.219573, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vo47"]
 albedo_color = Color(0.513726, 0.27451, 0.529412, 1)
@@ -21,7 +21,7 @@ collision_mask = 0
 script = ExtResource("1_5kp2m")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.114515, 0)
 shape = SubResource("BoxShape3D_tl8i4")
 
 [node name="IngredientAnchor" type="Marker3D" parent="."]
@@ -36,9 +36,10 @@ skeleton = NodePath("../..")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Label" parent="." instance=ExtResource("2_jgook")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.503845, 0)
 
 [node name="IngredientColorLabel" parent="." instance=ExtResource("2_jgook")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.344446, 0)
 
 [node name="FlavorProfileUI" parent="." instance=ExtResource("3_kgkc1")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.56526, 0)
+transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 0, 0.149788, 0.106277)

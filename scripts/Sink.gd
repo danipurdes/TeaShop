@@ -4,7 +4,7 @@ extends Area3D
 var allowlist = ["teapot","teakettle","teacup"]
 
 func useItem(heldItem):
-	if heldItem.item_type in allowlist:
+	if heldItem != null and heldItem.item_type in allowlist:
 		if heldItem.has_method("onUseItem"):
 			return heldItem.onUseItem(self)
 	return false
