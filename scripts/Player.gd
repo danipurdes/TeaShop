@@ -1,13 +1,12 @@
 extends CharacterBody3D
 
 signal changeHeldItem(itemName)
-signal changePingLabel(label)
 signal changeUseLabel(label)
 
 var raycastEvent
-@export var RAY_LENGTH = 10.0
-@export var walk_speed = 2.5
-@export var rotate_sensitivity_h = 1
+@export var reach_magnitude = 5.0
+@export var walk_speed = 3
+@export var rotate_sensitivity_h = .95
 @export var rotate_invert_h = -1
 var heldItem = null
 
@@ -39,11 +38,11 @@ func _physics_process(_delta):
 				if attemptPickup(raycastResult.collider):
 					$PingBoop.play()
 				elif raycastResult.collider.has_method("useItem") and raycastResult.collider.useItem(heldItem):
-					$PingBoop.play()
+					$UseBoop.play()
 				else:
 					$BadBoop.play()
 			elif raycastResult.collider.has_method("useItem") and raycastResult.collider.useItem(heldItem):
-				$PingBoop.play()
+				$UseBoop.play()
 				if (heldItem != null):
 					changeHeldItem.emit(heldItem.getName())
 			else:
@@ -123,7 +122,7 @@ func getHeldItem():
 func getRaycastResult():
 	var camera3d = $Camera
 	var from = camera3d.project_ray_origin(camera3d.get_viewport().size / 2)
-	var to = from + camera3d.project_ray_normal(camera3d.get_viewport().size / 2) * RAY_LENGTH
+	var to = from + camera3d.project_ray_normal(camera3d.get_viewport().size / 2) * reach_magnitude
 	var query = PhysicsRayQueryParameters3D.create(from, to, collision_mask)
 	query.collide_with_areas = true
 	return get_world_3d().direct_space_state.intersect_ray(query)
