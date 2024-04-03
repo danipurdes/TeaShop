@@ -162,6 +162,7 @@ script = ExtResource("3_w11bf")
 [node name="Camera" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.454487, 0)
 environment = SubResource("Environment_ib77m")
+fov = 90.0
 script = ExtResource("4_a43ch")
 
 [node name="PlayerCollider" type="CollisionShape3D" parent="Player"]
@@ -233,7 +234,7 @@ transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.5, 0,
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4.5, 0, -4.5)
 
 [node name="TeaMakingLabel" type="Label3D" parent="FrontOfHouse"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.97836, 1.46013, -2.10144)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.98583, 1.72596, -3.05261)
 text = "Making a Cup of Tea:
 - Fill Kettle with Water
 - Heat Kettle on the Stove
@@ -263,17 +264,17 @@ mesh = SubResource("QuadMesh_pamd4")
 skeleton = NodePath("../../..")
 
 [node name="Wall_6" type="MeshInstance3D" parent="FrontOfHouse/Walls"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0.000649452, 1.5, 5)
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 1.5, 5)
 mesh = SubResource("QuadMesh_60kg6")
 skeleton = NodePath("../..")
 
 [node name="Wall_7" type="MeshInstance3D" parent="FrontOfHouse/Walls"]
-transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 5, 1.5, 0.0307865)
+transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 5, 1.5, 0)
 mesh = SubResource("QuadMesh_ixba0")
 skeleton = NodePath("../..")
 
 [node name="Wall_8" type="MeshInstance3D" parent="FrontOfHouse/Walls"]
-transform = Transform3D(1.31134e-07, 8.74228e-08, 1, 0, -1, 8.74228e-08, 1, -1.14641e-14, -1.31134e-07, -5, 1.5, -0.0215719)
+transform = Transform3D(1.31134e-07, 8.74228e-08, 1, 0, -1, 8.74228e-08, 1, -1.14641e-14, -1.31134e-07, -5, 1.5, 0)
 mesh = SubResource("QuadMesh_lygme")
 skeleton = NodePath("../..")
 
@@ -291,7 +292,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
 
 [node name="Floor" type="MeshInstance3D" parent="BackOfHouse"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1.48823)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1.5)
 mesh = SubResource("QuadMesh_7c1du")
 skeleton = NodePath("../..")
 
@@ -306,7 +307,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, -2)
 mesh = SubResource("QuadMesh_bc1op")
 
 [node name="Wall_7" type="MeshInstance3D" parent="BackOfHouse"]
-transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 3, 1.5, 1.53789)
+transform = Transform3D(-4.37114e-08, -8.74228e-08, -1, 0, -1, 8.74228e-08, -1, 3.82137e-15, 4.37114e-08, 3, 1.5, 1.5)
 mesh = SubResource("QuadMesh_nf674")
 
 [node name="Wall_3" type="MeshInstance3D" parent="BackOfHouse"]
@@ -314,7 +315,7 @@ transform = Transform3D(4.37114e-08, -3.82137e-15, 1, -8.74228e-08, -1, 0, 1, -8
 mesh = SubResource("QuadMesh_4pk2y")
 
 [node name="Wall_4" type="MeshInstance3D" parent="BackOfHouse"]
-transform = Transform3D(1, -1.52855e-14, -1.74845e-07, 0, -1, 8.74228e-08, -1.74845e-07, -8.74228e-08, -1, -3, 1.49967, 5.00859)
+transform = Transform3D(1, -1.52855e-14, -1.74845e-07, 0, -1, 8.74228e-08, -1.74845e-07, -8.74228e-08, -1, -3, 1.5, 5)
 mesh = SubResource("QuadMesh_1io6o")
 skeleton = NodePath("../../FrontOfHouse")
 
