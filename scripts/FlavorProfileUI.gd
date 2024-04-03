@@ -1,10 +1,11 @@
 extends Node3D
 
 func _process(_delta):
-	var camera3d = get_node("/root/Node3D/Player")
-	look_at(camera3d.position, Vector3.UP, true)
-	var new_rotation = Vector3(0, rotation_degrees.y, 0)
-	set_rotation_degrees(new_rotation)
+	pass
+#	var camera3d = get_node("/root/Node3D/Player")
+#	look_at(camera3d.position, Vector3.UP, true)
+#	var new_rotation = Vector3(0, rotation_degrees.y, 0)
+#	set_rotation_degrees(new_rotation)
 
 func updateLabel(_flavor_profile):
 	$Grassy_Amount.text = str(_flavor_profile.grassy)

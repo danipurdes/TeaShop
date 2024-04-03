@@ -49,28 +49,40 @@ mesh = SubResource("QuadMesh_w0rih")
 [node name="Caffeine_Icon" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.49831, 0, 0)
 text = "Caf"
-font_size = 64
+font_size = 175
 
 [node name="Grassy_Amount" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50169, -1, 0)
 text = "0"
+font_size = 175
+outline_size = 7
 
 [node name="Floral_Amount" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50169, -1, 0)
 text = "0"
+font_size = 175
+outline_size = 7
 
 [node name="Fruity_Amount" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.501687, -1, 0)
 text = "0"
+font_size = 175
+outline_size = 7
 
 [node name="Earthy_Amount" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.498313, -1, 0)
 text = "0"
+font_size = 175
+outline_size = 7
 
 [node name="Smoky_Amount" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49831, -1, 0)
 text = "0"
+font_size = 175
+outline_size = 7
 
 [node name="Caffeine_Amount" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.49831, -1, 0)
 text = "0"
+font_size = 175
+outline_size = 7

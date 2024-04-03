@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dx0xtqq8edqdy"]
+[gd_scene load_steps=6 format=3 uid="uid://dx0xtqq8edqdy"]
 
 [ext_resource type="Script" path="res://scripts/crush_leaf_tray.gd" id="1_2gl8y"]
 [ext_resource type="PackedScene" uid="uid://ii1jj26uarvg" path="res://models/tray/tray.gltf" id="2_0ubst"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_le54r"]
 size = Vector3(0.758584, 0.11896, 0.761966)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yfssq"]
+size = Vector3(0.55, 0.1, 0.55)
 
 [node name="CrushLeafTray" type="Area3D"]
 script = ExtResource("1_2gl8y")
@@ -18,3 +21,7 @@ shape = SubResource("BoxShape3D_le54r")
 
 [node name="Label" parent="." instance=ExtResource("3_a75ut")]
 text = "Crushed Leafs"
+
+[node name="IngredientMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.129569, 0)
+mesh = SubResource("BoxMesh_yfssq")
