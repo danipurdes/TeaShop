@@ -6,15 +6,13 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_v4t41"]
 size = Vector3(1, 0.95, 0.877)
 
-[node name="Counter" type="Area3D"]
-collision_layer = 2
-collision_mask = 0
+[node name="Counter" type="StaticBody3D"]
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46, 0.065)
 shape = SubResource("BoxShape3D_v4t41")
 
-[node name="counter" parent="." instance=ExtResource("2_l7d25")]
+[node name="Mesh" parent="." instance=ExtResource("2_l7d25")]
 
 [node name="CounterHotspot" parent="." instance=ExtResource("3_d7nvt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.985, 0.0585302)
