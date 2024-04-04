@@ -5,3 +5,5 @@
 [resource]
 albedo_color = Color(0.721569, 0.701961, 0.576471, 1)
 albedo_texture = ExtResource("1_k6a5w")
+uv1_triplanar = true
+uv2_world_triplanar = true
