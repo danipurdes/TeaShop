@@ -6,9 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_y2a6e"]
 size = Vector3(1.12516, 1.2583, 0.906602)
 
-[node name="LeafCrusher" type="Area3D"]
-collision_layer = 3
-collision_mask = 0
+[node name="LeafCrusher" type="StaticBody3D"]
 script = ExtResource("1_y65cl")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
@@ -25,7 +23,7 @@ omni_range = 0.055
 [node name="Label" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0314052, 0.889014, 0.417127)
 billboard = 1
-text = "Tea Crusher"
+text = "Leaf Crusher"
 font_size = 18
 
 [node name="CrushTimer" type="Timer" parent="."]
@@ -33,5 +31,3 @@ one_shot = true
 
 [node name="LeafTraySpawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.541535, 0.390594)
-
-[connection signal="timeout" from="CrushTimer" to="." method="stopCrushLeaves"]

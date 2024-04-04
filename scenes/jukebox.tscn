@@ -7,9 +7,7 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_dgeip"]
 
-[node name="Jukebox" type="Area3D"]
-collision_layer = 3
-collision_mask = 0
+[node name="Jukebox" type="StaticBody3D"]
 script = ExtResource("1_iunwr")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
@@ -19,7 +17,7 @@ shape = SubResource("BoxShape3D_idfoq")
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_dgeip")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="ChillHopBeatsToStudyTo" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
