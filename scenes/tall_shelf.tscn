@@ -6,8 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_v4t41"]
 size = Vector3(1, 0.115549, 0.877)
 
-[node name="TallShelf" type="Area3D"]
-collision_mask = 0
+[node name="TallShelf" type="StaticBody3D"]
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0626204, -0.0577638)
@@ -31,4 +30,4 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 1.625, 0)
 [node name="CounterHotspot6" parent="." instance=ExtResource("3_8xkp0")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.25, 1.625, 0)
 
-[node name="TallShelfMesh" parent="." instance=ExtResource("3_kiyke")]
+[node name="Mesh" parent="." instance=ExtResource("3_kiyke")]
