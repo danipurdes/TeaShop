@@ -1,4 +1,4 @@
-extends Area3D
+extends StaticBody3D
 
 @export var machine_type = "sink"
 var allowlist = ["teapot","teakettle","teacup"]
