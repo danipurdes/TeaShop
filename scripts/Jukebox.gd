@@ -1,4 +1,4 @@
-extends Area3D
+extends StaticBody3D
 
 var machine_type = "jukebox"
 var song_index = 0.0

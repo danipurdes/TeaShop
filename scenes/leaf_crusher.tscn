@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsrcc8a30vt1p"]
+[gd_scene load_steps=5 format=3 uid="uid://bsrcc8a30vt1p"]
 
 [ext_resource type="Script" path="res://scripts/LeafCrusher.gd" id="1_y65cl"]
+[ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="2_0gc1h"]
 [ext_resource type="PackedScene" uid="uid://tcdvy54dd8x" path="res://models/crusher/leaf_crusher.gltf" id="2_753r6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y2a6e"]
@@ -8,6 +9,7 @@ size = Vector3(1.12516, 1.2583, 0.906602)
 
 [node name="LeafCrusher" type="StaticBody3D"]
 script = ExtResource("1_y65cl")
+obj_leaf_tray = ExtResource("2_0gc1h")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.624483, -0.130755)
@@ -31,3 +33,5 @@ one_shot = true
 
 [node name="LeafTraySpawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.541535, 0.390594)
+
+[connection signal="timeout" from="CrushTimer" to="." method="stopCrushLeaves"]
