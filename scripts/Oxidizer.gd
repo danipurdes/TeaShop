@@ -1,4 +1,4 @@
-extends Area3D
+extends StaticBody3D
 
 signal on_oxidize_enter
 signal on_oxidize_exit

@@ -1,10 +1,16 @@
 [gd_scene load_steps=9 format=3 uid="uid://c3gcqtsi7lxal"]
 
 [ext_resource type="Script" path="res://scripts/TeaTree.gd" id="1_335jg"]
-[ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="2_d57vr"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_fxqqb"]
-size = Vector3(0.796269, 0.701914, 0.832351)
+[sub_resource type="BoxShape3D" id="BoxShape3D_toxs6"]
+size = Vector3(0.773191, 0.631572, 0.744984)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74yxk"]
+albedo_color = Color(0.109804, 0.47451, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yawuj"]
+material = SubResource("StandardMaterial3D_74yxk")
+size = Vector3(0.7, 0.6, 0.7)
 
 [sub_resource type="BoxMesh" id="BoxMesh_cgxip"]
 size = Vector3(0.3, 0.3, 0.3)
@@ -16,37 +22,44 @@ albedo_color = Color(0.392157, 0.2, 0.0313726, 1)
 material = SubResource("StandardMaterial3D_m4y6f")
 size = Vector3(0.05, 0.6, 0.05)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74yxk"]
-albedo_color = Color(0.109804, 0.47451, 0, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_fxqqb"]
+size = Vector3(0.796269, 0.443539, 0.832351)
 
-[sub_resource type="BoxMesh" id="BoxMesh_yawuj"]
-material = SubResource("StandardMaterial3D_74yxk")
-size = Vector3(0.7, 0.6, 0.7)
+[node name="TeaTree" type="Node3D"]
 
-[node name="TeaTree" type="StaticBody3D"]
+[node name="ClickArea" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_335jg")
 
-[node name="Hitbox" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.783373, 0)
-shape = SubResource("BoxShape3D_fxqqb")
+[node name="Hitbox" type="CollisionShape3D" parent="ClickArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.782872, 0)
+shape = SubResource("BoxShape3D_toxs6")
+
+[node name="LeavesMesh" type="MeshInstance3D" parent="ClickArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.780725, 0)
+mesh = SubResource("BoxMesh_yawuj")
+skeleton = NodePath("../../../..")
+
+[node name="LeafRefreshTimer" type="Timer" parent="ClickArea"]
+wait_time = 3.0
+one_shot = true
 
 [node name="PotMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
 mesh = SubResource("BoxMesh_cgxip")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
 [node name="TrunkMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.511468, 0)
 mesh = SubResource("BoxMesh_pmgqi")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="LeavesMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.780725, 0)
-mesh = SubResource("BoxMesh_yawuj")
-skeleton = NodePath("../..")
+[node name="Hitbody" type="StaticBody3D" parent="."]
+collision_mask = 0
 
-[node name="LeafRefreshTimer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
+[node name="Hitbox" type="CollisionShape3D" parent="Hitbody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.212069, 0)
+shape = SubResource("BoxShape3D_fxqqb")
 
-[node name="Label" parent="." instance=ExtResource("2_d57vr")]
+[connection signal="timeout" from="ClickArea/LeafRefreshTimer" to="ClickArea" method="_on_leaf_refresh_timer_timeout"]

@@ -1,4 +1,4 @@
-extends Area3D
+extends StaticBody3D
 
 @export var machine_type = "leaf_crusher"
 @export var obj_leaf_tray: PackedScene

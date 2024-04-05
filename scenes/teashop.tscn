@@ -34,7 +34,7 @@ font_size = 50
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 3.47
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfdx5"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wmkwk"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_8knmf"]
 radius = 0.1
@@ -129,7 +129,7 @@ fov = 90.0
 script = ExtResource("4_a43ch")
 
 [node name="PlayerCollider" type="CollisionShape3D" parent="Player"]
-shape = SubResource("CapsuleShape3D_lfdx5")
+shape = SubResource("CylinderShape3D_wmkwk")
 
 [node name="Hand" type="MeshInstance3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.417331, -0.169522, -0.591021)
@@ -223,7 +223,6 @@ skeleton = NodePath("../..")
 
 [node name="Ceiling" type="MeshInstance3D" parent="FrontOfHouse/Walls"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -0.5, 3, 0)
-visible = false
 mesh = SubResource("QuadMesh_pamd4")
 skeleton = NodePath("../../..")
 
@@ -532,22 +531,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.94016, 1, -7.43775)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 
 [node name="TeaBrick" parent="." instance=ExtResource("23_eypq5")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2.35, 0.9, -8.75)
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.84367, 0.9, -8.75)
 tea = 3
 
 [node name="TeaBrick2" parent="." instance=ExtResource("23_eypq5")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2.35, 0.9, -7.26117)
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.84815, 0.9, -7.26117)
 tea = 5
 
 [node name="TeaBrick3" parent="." instance=ExtResource("23_eypq5")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2.35, 0.9, -8.2539)
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.80684, 0.9, -8.2539)
 
 [node name="TeaBrick4" parent="." instance=ExtResource("23_eypq5")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2.35, 1.64782, -9.74641)
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.81244, 1.64782, -9.74641)
 tea = 3
 
 [node name="TeaBrick5" parent="." instance=ExtResource("23_eypq5")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 2.35, 0.147757, -9.2529)
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.76891, 0.147757, -9.2529)
 tea = 4
 
 [connection signal="changeHeldItem" from="Player" to="HUD/Control/Label_HeldItem" method="onLabelUpdate"]

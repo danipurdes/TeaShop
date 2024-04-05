@@ -1,6 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://csh63b2jdudyg"]
+[gd_scene load_steps=9 format=3 uid="uid://csh63b2jdudyg"]
 
 [ext_resource type="Script" path="res://scripts/Oxidizer.gd" id="1_iuc1u"]
+[ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="2_55n5q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fvmw3"]
+albedo_color = Color(0.368627, 0.368627, 0.368627, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhp7n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y2a6e"]
 
@@ -14,6 +20,9 @@ material = SubResource("StandardMaterial3D_pfg0d")
 
 [node name="Oxidizer" type="StaticBody3D"]
 script = ExtResource("1_iuc1u")
+idle_material = SubResource("StandardMaterial3D_fvmw3")
+started_material = SubResource("StandardMaterial3D_vhp7n")
+obj_ingredient = ExtResource("2_55n5q")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -43,3 +52,6 @@ one_shot = true
 
 [node name="BlackTeaTimer" type="Timer" parent="."]
 one_shot = true
+
+[connection signal="timeout" from="GreenTeaTimer" to="." method="_on_green_tea_timer_timeout"]
+[connection signal="timeout" from="BlackTeaTimer" to="." method="_on_black_tea_timer_timeout"]

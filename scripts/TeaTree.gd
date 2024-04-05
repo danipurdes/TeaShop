@@ -1,4 +1,4 @@
-extends Area3D
+extends Node3D
 
 @export var machine_type = "tea_tree"
 
