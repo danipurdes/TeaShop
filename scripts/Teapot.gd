@@ -43,6 +43,7 @@ func onUseItem(pinger):
 
 func updateState(newState):
 	state = newState
+	$Steam.emitting = !(newState == "empty" or newState == "dirty")
 	updateLabel()
 
 func updateFlavorProfile(newFlavorProfile):
