@@ -33,6 +33,7 @@ func onUseStove():
 
 func updateState(newState):
 	state = newState
+	$Steam.emitting = newState == "hot_water"
 	updateLabel()
 
 func updateLabel():

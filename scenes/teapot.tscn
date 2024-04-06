@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dq2jylpvjtxxd"]
+[gd_scene load_steps=8 format=3 uid="uid://dq2jylpvjtxxd"]
 
 [ext_resource type="Script" path="res://scripts/Teapot.gd" id="1_bs1xp"]
 [ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="2_bt26d"]
+[ext_resource type="PackedScene" uid="uid://bnb40a5ffpesj" path="res://scenes/steam.tscn" id="2_p1ks0"]
 [ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui_flavor_profile.tscn" id="3_usbfy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_na1qy"]
@@ -29,6 +30,9 @@ shape = SubResource("SphereShape3D_na1qy")
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 mesh = SubResource("SphereMesh_sd412")
+
+[node name="Steam" parent="." instance=ExtResource("2_p1ks0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.190757, 0.267599, 0)
 
 [node name="Label" parent="." instance=ExtResource("2_bt26d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.845774, 0)
