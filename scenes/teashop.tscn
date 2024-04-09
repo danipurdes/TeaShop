@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=39 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
 [ext_resource type="Script" path="res://scripts/Label_HeldItem.gd" id="2_rfsh1"]
@@ -23,7 +23,20 @@
 [ext_resource type="PackedScene" uid="uid://bd1jkdslg77aa" path="res://scenes/leaf_basket.tscn" id="21_ysytc"]
 [ext_resource type="PackedScene" uid="uid://dwhkm61peqh3x" path="res://scenes/jukebox.tscn" id="22_j0j4u"]
 [ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="23_eypq5"]
+[ext_resource type="Script" path="res://scripts/VillagerSpawner.gd" id="24_7lusq"]
 [ext_resource type="PackedScene" uid="uid://chsul67mlkc5v" path="res://scenes/villager.tscn" id="24_45mvu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jvtpx"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_1831d"]
+sky_material = SubResource("ProceduralSkyMaterial_jvtpx")
+
+[sub_resource type="Environment" id="Environment_k0345"]
+background_mode = 2
+sky = SubResource("Sky_1831d")
+tonemap_mode = 2
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jtfon"]
 size = Vector2(10, 10)
@@ -64,8 +77,18 @@ material = ExtResource("8_htvnx")
 size = Vector2(2, 1)
 orientation = 1
 
+[sub_resource type="Curve3D" id="Curve3D_gc616"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1.03781, 0, 5.01236, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_28uhp")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_k0345")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -133,7 +156,7 @@ script = ExtResource("4_a43ch")
 shape = SubResource("CylinderShape3D_wmkwk")
 
 [node name="Hand" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.417331, -0.169522, -0.591021)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.417331, 0.286422, -0.591021)
 mesh = SubResource("SphereMesh_8knmf")
 
 [node name="HeldItem" type="MeshInstance3D" parent="Player/Hand"]
@@ -548,7 +571,20 @@ tea = 3
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.76891, 0.147757, -9.2529)
 tea = 4
 
-[node name="Node3D" parent="." instance=ExtResource("24_45mvu")]
+[node name="VillagerSpawner" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.06734, 0, 4.42135)
+script = ExtResource("24_7lusq")
+villager = ExtResource("24_45mvu")
+
+[node name="CustomerPath" type="Path3D" parent="VillagerSpawner"]
+curve = SubResource("Curve3D_gc616")
+
+[node name="SpawnCooldownTimer" type="Timer" parent="VillagerSpawner"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Villager" parent="." instance=ExtResource("24_45mvu")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.62288, 0, 2.53979)
 
 [connection signal="changeHeldItem" from="Player" to="HUD/Control/Label_HeldItem" method="onLabelUpdate"]
 [connection signal="changeUseLabel" from="Player" to="HUD/Control/MousePeek/UseLabel" method="onLabelUpdate"]
