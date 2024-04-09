@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://chsul67mlkc5v"]
+
+[ext_resource type="Script" path="res://scripts/Villager.gd" id="1_mm4no"]
+[ext_resource type="PackedScene" uid="uid://br125rnfyg7dc" path="res://models/villager/villager.gltf" id="2_r41rf"]
+
+[node name="Villager" type="Node3D"]
+script = ExtResource("1_mm4no")
+
+[node name="villager" parent="." instance=ExtResource("2_r41rf")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)

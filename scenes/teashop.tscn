@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=34 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
 [ext_resource type="Script" path="res://scripts/Label_HeldItem.gd" id="2_rfsh1"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bd1jkdslg77aa" path="res://scenes/leaf_basket.tscn" id="21_ysytc"]
 [ext_resource type="PackedScene" uid="uid://dwhkm61peqh3x" path="res://scenes/jukebox.tscn" id="22_j0j4u"]
 [ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="23_eypq5"]
+[ext_resource type="PackedScene" uid="uid://chsul67mlkc5v" path="res://scenes/villager.tscn" id="24_45mvu"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jtfon"]
 size = Vector2(10, 10)
@@ -546,6 +547,8 @@ tea = 3
 [node name="TeaBrick5" parent="." instance=ExtResource("23_eypq5")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.76891, 0.147757, -9.2529)
 tea = 4
+
+[node name="Node3D" parent="." instance=ExtResource("24_45mvu")]
 
 [connection signal="changeHeldItem" from="Player" to="HUD/Control/Label_HeldItem" method="onLabelUpdate"]
 [connection signal="changeUseLabel" from="Player" to="HUD/Control/MousePeek/UseLabel" method="onLabelUpdate"]
