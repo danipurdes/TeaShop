@@ -1,7 +1,8 @@
 extends Node3D
 
 @export var villager:PackedScene
-var currentVillager
+var currentVillager = null
+var currentPathFollower:PathFollow3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,3 +24,4 @@ func despawnVillager():
 		currentVillager.queue_free()
 		currentVillager = null
 		$SpawnCooldownTimer.start()
+		

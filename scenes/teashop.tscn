@@ -79,10 +79,10 @@ orientation = 1
 
 [sub_resource type="Curve3D" id="Curve3D_gc616"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1.03781, 0, 5.01236, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"tilts": PackedFloat32Array(0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1.03781, 0, 5.01236),
+"tilts": PackedFloat32Array(0, 0)
 }
-point_count = 3
+point_count = 2
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_28uhp")
@@ -579,12 +579,16 @@ villager = ExtResource("24_45mvu")
 [node name="CustomerPath" type="Path3D" parent="VillagerSpawner"]
 curve = SubResource("Curve3D_gc616")
 
+[node name="CustomerPathFollower" type="PathFollow3D" parent="VillagerSpawner/CustomerPath"]
+rotation_mode = 1
+
 [node name="SpawnCooldownTimer" type="Timer" parent="VillagerSpawner"]
 wait_time = 2.0
 one_shot = true
 
 [node name="Villager" parent="." instance=ExtResource("24_45mvu")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.62288, 0, 2.53979)
+wall_min_slide_angle = 0.0174533
 
 [connection signal="changeHeldItem" from="Player" to="HUD/Control/Label_HeldItem" method="onLabelUpdate"]
 [connection signal="changeUseLabel" from="Player" to="HUD/Control/MousePeek/UseLabel" method="onLabelUpdate"]
