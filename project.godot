@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Tea Shop"
+config/name="Tea Time"
 run/main_scene="res://scenes/teashop.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
+run/name="Tea Shop"
 
 [display]
 
@@ -67,6 +68,7 @@ fullscreen={
 3d_physics/layer_1="environment"
 3d_physics/layer_2="pickable"
 3d_physics/layer_3="player"
+3d_physics/layer_4="prop"
 
 [rendering]
 
