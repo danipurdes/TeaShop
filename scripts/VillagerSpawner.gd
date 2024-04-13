@@ -16,12 +16,13 @@ func trySpawnVillager():
 func spawnVillager():
 	var newVillager = villager.instantiate()
 	currentVillager = newVillager
+	currentVillager.tree_exiting.connect(clearCurrentVillager)
 	currentVillager.position = Vector3.ZERO
+	currentVillager.state = "arriving"
+	$CustomerPath/CustomerPathFollow.progress = 0
+	currentVillager.targetPathFollow = $CustomerPath/CustomerPathFollow
 	add_child(currentVillager)
 
-func despawnVillager():
-	if currentVillager != null:
-		currentVillager.queue_free()
-		currentVillager = null
-		$SpawnCooldownTimer.start()
-		
+func clearCurrentVillager():
+	currentVillager = null
+	$SpawnCooldownTimer.start()

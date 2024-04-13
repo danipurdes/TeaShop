@@ -79,10 +79,10 @@ orientation = 1
 
 [sub_resource type="Curve3D" id="Curve3D_gc616"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1.03781, 0, 5.01236),
-"tilts": PackedFloat32Array(0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.967758, 0, -5.00588, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
 }
-point_count = 2
+point_count = 3
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_28uhp")
@@ -572,22 +572,27 @@ transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.76891,
 tea = 4
 
 [node name="VillagerSpawner" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.06734, 0, 4.42135)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.06734, 0, 4.42135)
 script = ExtResource("24_7lusq")
 villager = ExtResource("24_45mvu")
 
 [node name="CustomerPath" type="Path3D" parent="VillagerSpawner"]
 curve = SubResource("Curve3D_gc616")
 
-[node name="CustomerPathFollower" type="PathFollow3D" parent="VillagerSpawner/CustomerPath"]
+[node name="CustomerPathFollow" type="PathFollow3D" parent="VillagerSpawner/CustomerPath"]
+transform = Transform3D(0.98182, 0, -0.18981, 0, 1, 0, 0.18981, 0, 0.98182, 0, 0, 0)
 rotation_mode = 1
+cubic_interp = false
+loop = false
 
 [node name="SpawnCooldownTimer" type="Timer" parent="VillagerSpawner"]
 wait_time = 2.0
 one_shot = true
 
 [node name="Villager" parent="." instance=ExtResource("24_45mvu")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.62288, 0, 2.53979)
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.62288, 0, 2.53979)
+visible = false
 wall_min_slide_angle = 0.0174533
 
 [connection signal="changeHeldItem" from="Player" to="HUD/Control/Label_HeldItem" method="onLabelUpdate"]
