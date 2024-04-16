@@ -10,11 +10,15 @@ config_version=5
 
 [application]
 
-config/name="Tea Time"
+config/name="Tea Time v0.0.1"
+config/description="Manage the ins and outs of a tea shop, from growing the tea leaves to matching customers with their preferred blends"
 run/main_scene="res://scenes/teashop.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 run/name="Tea Shop"
+config/version_major="0"
+config/version_minor="0"
+config/version_revision="1"
 
 [display]
 

@@ -1,4 +1,4 @@
-# Tea Time v0.1
+# Tea Time v0.0.1
 Manage the ins and outs of a tea shop, from growing the tea leaves to matching customers with their preferred blends
 
 | Controls (en-US) ||
@@ -7,8 +7,10 @@ Manage the ins and outs of a tea shop, from growing the tea leaves to matching c
 | Walk Backwards | S |
 | Walk Left | A |
 | Walk Right | D |
-| Rotate View | Mouse |
+| Rotate View | Move Mouse |
 | Interact | Mouse 1 |
+| Toggle Mouse Cursor | Esc |
+| Toggle Fullscreen | F11 |
 
 | Credits ||
 |-|-|
