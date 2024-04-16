@@ -1,0 +1,21 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://bhlbbijborftp"
+path="res://.godot/imported/flavor_font.png-c715e7ca3dc01e22f930d846f62fc9d7.fontdata"
+
+[deps]
+
+source_file="res://textures/Icons/flavor_font.png"
+dest_files=["res://.godot/imported/flavor_font.png-c715e7ca3dc01e22f930d846f62fc9d7.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("48-52")
+columns=5
+rows=1
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+fallbacks=[]
+compress=true

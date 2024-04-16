@@ -13,13 +13,10 @@ func _ready():
 	$villager/AnimationPlayer.play("walk")
 
 func _process(delta):
-	print_debug(state)
 	match state:
 		"arriving":
 			targetPathFollow.progress += delta * moveMagnitude
 			targetPathFollow.progress_ratio = clamp(targetPathFollow.progress_ratio, 0, .5)
-			if (targetPathFollow != null):
-				print_debug(str(targetPathFollow.progress) + ", " + str(targetPathFollow.progress_ratio))
 			if targetPathFollow.progress_ratio == .5:
 				state = "waiting"
 				$villager/AnimationPlayer.play("idle")
