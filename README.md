@@ -19,5 +19,6 @@ Manage the ins and outs of a tea shop, from growing the tea leaves to matching c
 
 | Tools ||
 |-|-|
+| Godot 4 | |
 | Sfxr | DrPetter |
 | AngelCode .fnt Generator | Copyright (c) 2021 Burak Yücel |
