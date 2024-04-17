@@ -1,4 +1,4 @@
-extends Node3D
+extends Label3D
 
 func _process(_delta):
 	pass
@@ -8,9 +8,16 @@ func _process(_delta):
 #	set_rotation_degrees(new_rotation)
 
 func updateLabel(_flavor_profile):
-	$Grassy_Amount.text = str(_flavor_profile.grassy)
-	$Floral_Amount.text = str(_flavor_profile.floral)
-	$Fruity_Amount.text = str(_flavor_profile.fruity)
-	$Earthy_Amount.text = str(_flavor_profile.earthy)
-	$Smoky_Amount.text = str(_flavor_profile.smoky)
-	$Caffeine_Amount.text = str(_flavor_profile.caffeine)
+	var newText = ""
+	for n in _flavor_profile.grassy:
+		newText += "0"
+	for n in _flavor_profile.floral:
+		newText += "1"
+	for n in _flavor_profile.fruity:
+		newText += "2"
+	for n in _flavor_profile.earthy:
+		newText += "3"
+	for n in _flavor_profile.smoky:
+		newText += "4"
+	text = newText
+	#TODO: Add caffeine icon
