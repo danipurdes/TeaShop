@@ -141,7 +141,7 @@ script = ExtResource("2_rfsh1")
 transform = Transform3D(1, 0, 0, 0, 0.742981, 0.669312, 0, -0.669312, 0.742981, 0, 5.34098, 0)
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.868422, 1, 2.05546)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("3_w11bf")
@@ -481,7 +481,7 @@ mesh = SubResource("QuadMesh_7c1du")
 skeleton = NodePath("../../..")
 
 [node name="Ceiling" type="MeshInstance3D" parent="BackOfHouse/Walls"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -1, 3, 1.49284)
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -1.5, 3, 1.5)
 mesh = SubResource("QuadMesh_8pdgl")
 skeleton = NodePath("../../..")
 
@@ -556,19 +556,66 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.94016, 1, -7.43775)
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.84367, 0.9, -8.75)
 tea = 3
 
+[node name="TeaBrick7" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.84367, 0.137136, -8.75)
+tea = 3
+
+[node name="TeaBrick6" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.844, 1.6, -8.75)
+tea = 3
+
 [node name="TeaBrick2" parent="." instance=ExtResource("23_eypq5")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.84815, 0.9, -7.26117)
+tea = 5
+
+[node name="TeaBrick8" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.848, 1.6, -7.261)
+tea = 5
+
+[node name="TeaBrick9" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.848, 0.137, -7.261)
 tea = 5
 
 [node name="TeaBrick3" parent="." instance=ExtResource("23_eypq5")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.80684, 0.9, -8.2539)
 
+[node name="TeaBrick14" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.80684, 1.61147, -8.2539)
+
+[node name="TeaBrick15" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.80684, 0.121346, -8.2539)
+
+[node name="TeaBrick16" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.80684, 0.121346, -7.64972)
+
+[node name="TeaBrick17" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.80684, 0.885099, -7.64972)
+
+[node name="TeaBrick18" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.80684, 1.61723, -7.64972)
+
 [node name="TeaBrick4" parent="." instance=ExtResource("23_eypq5")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.81244, 1.64782, -9.74641)
 tea = 3
 
+[node name="TeaBrick10" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.812, 0.9, -9.746)
+tea = 3
+
+[node name="TeaBrick11" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.812, 0.137, -9.746)
+tea = 3
+
 [node name="TeaBrick5" parent="." instance=ExtResource("23_eypq5")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.76891, 0.147757, -9.2529)
+tea = 4
+
+[node name="TeaBrick12" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.76891, 0.845835, -9.2529)
+tea = 4
+
+[node name="TeaBrick13" parent="." instance=ExtResource("23_eypq5")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 1.769, 1.6, -9.253)
 tea = 4
 
 [node name="VillagerSpawner" type="Node3D" parent="."]
