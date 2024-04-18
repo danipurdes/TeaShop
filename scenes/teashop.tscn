@@ -221,19 +221,19 @@ transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -5, 0, -
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5, 0, -4.5)
 
 [node name="TeaMakingLabel" type="Label3D" parent="FrontOfHouse"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.98583, 1.72596, -3.05261)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.47192, 1.72596, -3.05261)
 text = "Making a Cup of Tea:
+- Use a Jar of Ingredients on the Teapot
 - Fill Kettle with Water
 - Heat Kettle on the Stove
-- Use a Tea Brick on Teapot
 - Pour Hot Water into Teapot
-- Pour Tea into Tea Cup"
+- Pour Tea into Tea Cup
+- Serve :)"
 
 [node name="ControlsLabel" type="Label3D" parent="FrontOfHouse"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.958798, 1.99661, 4.94626)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.958798, 1.82445, 4.94626)
 text = "WASD - walk
-Left Click - interact/pickup item/put down item
-Right Click - use held item
+Left Click - interact
 f11 - toggle fullscreen
 esc - gain control of mouse cursor
 alt+f4 - close the game"
@@ -371,11 +371,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
 
 [node name="TeaProducingLabel" type="Label3D" parent="BackOfHouse"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.44481, 1.76538, 1.46015)
-text = "Making a Tea Brick:
-- Pluck leaves
-- Use Tea Crusher
-- Use Tea Oxidizer to make green or black tea"
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.44481, 2.04867, 1.46015)
+text = "Producing Tea:
+- Pick Up Basket
+- Collect Tea Leaves
+- Deposit Leaves in Leaf Crusher
+- Transfer Crushed Leaves into Oxidizer
+- Collect processed tea from oxidizer
+(Try running the oxidizer for different lengths 
+of time to create different types of tea)"
 
 [node name="Counter" parent="BackOfHouse" instance=ExtResource("13_miqk0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.80777, 0, 3.57072)
