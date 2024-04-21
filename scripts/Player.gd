@@ -44,7 +44,7 @@ func _physics_process(_delta):
 			elif raycastResult.collider.has_method("useItem") and raycastResult.collider.useItem(heldItem):
 				$UseBoop.play()
 				if (heldItem != null):
-					changeHeldItem.emit(heldItem.getName())
+					changeHeldItem.emit("Held Item: " + heldItem.getName())
 			else:
 				$BadBoop.play()
 	
@@ -95,7 +95,7 @@ func updateHeldItem(item):
 		if item.obj_attached_to != null and item.obj_attached_to.has_method("takeItem"):
 			item.obj_attached_to.takeItem()
 	if heldItem.has_method("getName"):
-		changeHeldItem.emit(heldItem.getName())
+		changeHeldItem.emit("Held Item: " + heldItem.getName())
 
 func requestDropHeldItem(dropRequestor):
 	if heldItem != null:
@@ -108,13 +108,13 @@ func dropHeldItem(dropRequestor):
 	heldItem.monitorable = true
 	heldItem.position = dropRequestor.global_position
 	heldItem = null
-	changeHeldItem.emit("-")
+	changeHeldItem.emit("Held Item: none")
 	return oldHeldItem
 
 func destroyHeldItem():
 	heldItem.queue_free()
 	heldItem = null
-	changeHeldItem.emit("-")
+	changeHeldItem.emit("Held Item: none")
 
 func getHeldItem():
 	return heldItem
