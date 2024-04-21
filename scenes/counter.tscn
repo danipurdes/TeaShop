@@ -15,4 +15,4 @@ shape = SubResource("BoxShape3D_v4t41")
 [node name="Mesh" parent="." instance=ExtResource("2_l7d25")]
 
 [node name="CounterHotspot" parent="." instance=ExtResource("3_d7nvt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.985, 0.0585302)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00182, 0.0585302)
