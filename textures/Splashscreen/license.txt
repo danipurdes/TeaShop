@@ -1,0 +1,5 @@
+License
+
+    The original Godot logo is made by Andrea Calabró and is CC-BY-4.0 licensed.
+    Other derivative logos (reimagined logo, cog logo, text logo) featured in this pack are made by Kenney and are CC0 licensed.
+    See additional license information regarding the Godot logo on their website.
