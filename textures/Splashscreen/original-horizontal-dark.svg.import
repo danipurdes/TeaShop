@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0if7oc2n24pe"
-path="res://.godot/imported/texture_05.png-218b7d5c8c22ac6d28e8bc53963f7a9e.ctex"
+uid="uid://b3a81fqdc8dvc"
+path="res://.godot/imported/original-horizontal-dark.svg-e81b59ff0fae02f38eb048a30043a409.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/Prototype Textures/Orange/texture_05.png"
-dest_files=["res://.godot/imported/texture_05.png-218b7d5c8c22ac6d28e8bc53963f7a9e.ctex"]
+source_file="res://textures/Splashscreen/original-horizontal-dark.svg"
+dest_files=["res://.godot/imported/original-horizontal-dark.svg-e81b59ff0fae02f38eb048a30043a409.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

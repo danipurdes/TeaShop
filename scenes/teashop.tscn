@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
 [ext_resource type="Script" path="res://scripts/Label_HeldItem.gd" id="2_rfsh1"]
+[ext_resource type="Texture2D" uid="uid://cewms27xqcspa" path="res://textures/Cursors/cursor_dot.png" id="2_v1t68"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="3_w11bf"]
 [ext_resource type="Script" path="res://scripts/FPSCamera.gd" id="4_a43ch"]
 [ext_resource type="AudioStream" uid="uid://dk1sp0y2gnma6" path="res://audio/use_boop.wav" id="5_6hw74"]
@@ -38,9 +39,6 @@ sky_material = SubResource("ProceduralSkyMaterial_jvtpx")
 background_mode = 2
 sky = SubResource("Sky_1831d")
 tonemap_mode = 2
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jtfon"]
-size = Vector2(10, 10)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vq3ps"]
 font_size = 35
@@ -107,14 +105,6 @@ grow_horizontal = 2
 grow_vertical = 2
 ratio = 1.7
 
-[node name="Crosshair" type="TextureRect" parent="HUD/Control"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-size_flags_stretch_ratio = 8.0
-texture = SubResource("PlaceholderTexture2D_jtfon")
-stretch_mode = 3
-
 [node name="Label_HeldItem" type="Label" parent="HUD/Control"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -128,7 +118,7 @@ script = ExtResource("2_rfsh1")
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "This is a beta build, features are subject to change a lot :)"
+text = "This is a pre-alpha build, features are subject to change :)"
 label_settings = SubResource("LabelSettings_4fpbu")
 vertical_alignment = 1
 
@@ -151,6 +141,34 @@ text = "-"
 label_settings = SubResource("LabelSettings_vq3ps")
 horizontal_alignment = 2
 script = ExtResource("2_rfsh1")
+
+[node name="Container" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Cursor" type="TextureRect" parent="HUD/Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_v1t68")
+stretch_mode = 3
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.868422, 1, 2.05546)
