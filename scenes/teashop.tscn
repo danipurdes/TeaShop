@@ -1,10 +1,12 @@
-[gd_scene load_steps=41 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=43 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
 [ext_resource type="Script" path="res://scripts/Label_HeldItem.gd" id="2_rfsh1"]
 [ext_resource type="Texture2D" uid="uid://cewms27xqcspa" path="res://textures/Cursors/cursor_dot.png" id="2_v1t68"]
+[ext_resource type="Texture2D" uid="uid://c2y0usilm8g4y" path="res://textures/Input/mouse_left.svg" id="3_dck3g"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="3_w11bf"]
 [ext_resource type="Script" path="res://scripts/FPSCamera.gd" id="4_a43ch"]
+[ext_resource type="PackedScene" uid="uid://bwf5qhy3mea04" path="res://scenes/ui/title_screen.tscn" id="4_tc16r"]
 [ext_resource type="AudioStream" uid="uid://dk1sp0y2gnma6" path="res://audio/use_boop.wav" id="5_6hw74"]
 [ext_resource type="AudioStream" uid="uid://ckmidbwkf2ebo" path="res://audio/ping_boop.wav" id="6_0jjvj"]
 [ext_resource type="AudioStream" uid="uid://blnsneoyfocv6" path="res://audio/bad_boop.wav" id="7_yjc0r"]
@@ -42,9 +44,13 @@ tonemap_mode = 2
 
 [sub_resource type="LabelSettings" id="LabelSettings_vq3ps"]
 font_size = 35
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4fpbu"]
 font_size = 21
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Environment" id="Environment_ib77m"]
 ambient_light_color = Color(1, 1, 1, 1)
@@ -97,15 +103,14 @@ transform = Transform3D(1, 0, 0, 0, 0.742981, 0.669312, 0, -0.669312, 0.742981, 
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Control" type="AspectRatioContainer" parent="HUD"]
+[node name="UI" type="MarginContainer" parent="HUD"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-ratio = 1.7
 
-[node name="Label_HeldItem" type="Label" parent="HUD/Control"]
+[node name="Label_HeldItem" type="Label" parent="HUD/UI"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -114,7 +119,7 @@ label_settings = SubResource("LabelSettings_vq3ps")
 horizontal_alignment = 2
 script = ExtResource("2_rfsh1")
 
-[node name="BetaDisclaimer" type="Label" parent="HUD/Control"]
+[node name="BetaDisclaimer" type="Label" parent="HUD/UI"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -122,53 +127,31 @@ text = "This is a pre-alpha build, features are subject to change :)"
 label_settings = SubResource("LabelSettings_4fpbu")
 vertical_alignment = 1
 
-[node name="MousePeek" type="GridContainer" parent="HUD/Control"]
+[node name="MousePeek" type="HBoxContainer" parent="HUD/UI"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-columns = 2
 
-[node name="UseLabelStatic" type="Label" parent="HUD/Control/MousePeek"]
+[node name="UseLabel" type="Label" parent="HUD/UI/MousePeek"]
 layout_mode = 2
-text = "Left Click: "
-label_settings = SubResource("LabelSettings_vq3ps")
-
-[node name="UseLabel" type="Label" parent="HUD/Control/MousePeek"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 1
 text = "-"
 label_settings = SubResource("LabelSettings_vq3ps")
 horizontal_alignment = 2
 script = ExtResource("2_rfsh1")
 
-[node name="Container" type="Control" parent="HUD"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="LeftClickIcon" type="TextureRect" parent="HUD/UI/MousePeek"]
+layout_mode = 2
+texture = ExtResource("3_dck3g")
 
-[node name="Cursor" type="TextureRect" parent="HUD/Container"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_right = 8.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Cursor" type="TextureRect" parent="HUD/UI"]
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_v1t68")
 stretch_mode = 3
+
+[node name="TitleScreen" parent="HUD" instance=ExtResource("4_tc16r")]
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.868422, 1, 2.05546)
@@ -700,7 +683,7 @@ villager = ExtResource("24_45mvu")
 curve = SubResource("Curve3D_gc616")
 
 [node name="CustomerPathFollow" type="PathFollow3D" parent="VillagerSpawner/CustomerPath"]
-transform = Transform3D(0.98182, 0, -0.18981, 0, 1, 0, 0.18981, 0, 0.98182, 0, 0, 0)
+transform = Transform3D(0.981819, 0, -0.18981, 0, 1, 0, 0.18981, 0, 0.981819, 0, 0, 0)
 rotation_mode = 1
 cubic_interp = false
 loop = false
@@ -715,5 +698,5 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.6228
 visible = false
 wall_min_slide_angle = 0.0174533
 
-[connection signal="changeHeldItem" from="Player" to="HUD/Control/Label_HeldItem" method="onLabelUpdate"]
-[connection signal="changeUseLabel" from="Player" to="HUD/Control/MousePeek/UseLabel" method="onLabelUpdate"]
+[connection signal="changeHeldItem" from="Player" to="HUD/UI/Label_HeldItem" method="onLabelUpdate"]
+[connection signal="changeUseLabel" from="Player" to="HUD/UI/MousePeek/UseLabel" method="onLabelUpdate"]
