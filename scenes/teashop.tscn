@@ -1,9 +1,7 @@
-[gd_scene load_steps=43 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=39 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
-[ext_resource type="Script" path="res://scripts/Label_HeldItem.gd" id="2_rfsh1"]
-[ext_resource type="Texture2D" uid="uid://cewms27xqcspa" path="res://textures/Cursors/cursor_dot.png" id="2_v1t68"]
-[ext_resource type="Texture2D" uid="uid://c2y0usilm8g4y" path="res://textures/Input/mouse_left.svg" id="3_dck3g"]
+[ext_resource type="PackedScene" uid="uid://55h3bcxmi06m" path="res://scenes/ui/game_ui.tscn" id="2_ngymm"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="3_w11bf"]
 [ext_resource type="Script" path="res://scripts/FPSCamera.gd" id="4_a43ch"]
 [ext_resource type="PackedScene" uid="uid://bwf5qhy3mea04" path="res://scenes/ui/title_screen.tscn" id="4_tc16r"]
@@ -41,16 +39,6 @@ sky_material = SubResource("ProceduralSkyMaterial_jvtpx")
 background_mode = 2
 sky = SubResource("Sky_1831d")
 tonemap_mode = 2
-
-[sub_resource type="LabelSettings" id="LabelSettings_vq3ps"]
-font_size = 35
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_4fpbu"]
-font_size = 21
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Environment" id="Environment_ib77m"]
 ambient_light_color = Color(1, 1, 1, 1)
@@ -103,53 +91,7 @@ transform = Transform3D(1, 0, 0, 0, 0.742981, 0.669312, 0, -0.669312, 0.742981, 
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="UI" type="MarginContainer" parent="HUD"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label_HeldItem" type="Label" parent="HUD/UI"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-text = "-"
-label_settings = SubResource("LabelSettings_vq3ps")
-horizontal_alignment = 2
-script = ExtResource("2_rfsh1")
-
-[node name="BetaDisclaimer" type="Label" parent="HUD/UI"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "This is a pre-alpha build, features are subject to change :)"
-label_settings = SubResource("LabelSettings_4fpbu")
-vertical_alignment = 1
-
-[node name="MousePeek" type="HBoxContainer" parent="HUD/UI"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="UseLabel" type="Label" parent="HUD/UI/MousePeek"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "-"
-label_settings = SubResource("LabelSettings_vq3ps")
-horizontal_alignment = 2
-script = ExtResource("2_rfsh1")
-
-[node name="LeftClickIcon" type="TextureRect" parent="HUD/UI/MousePeek"]
-layout_mode = 2
-texture = ExtResource("3_dck3g")
-
-[node name="Cursor" type="TextureRect" parent="HUD/UI"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("2_v1t68")
-stretch_mode = 3
+[node name="GameUI" parent="HUD" instance=ExtResource("2_ngymm")]
 
 [node name="TitleScreen" parent="HUD" instance=ExtResource("4_tc16r")]
 
@@ -697,6 +639,3 @@ process_mode = 4
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.62288, 0, 2.53979)
 visible = false
 wall_min_slide_angle = 0.0174533
-
-[connection signal="changeHeldItem" from="Player" to="HUD/UI/Label_HeldItem" method="onLabelUpdate"]
-[connection signal="changeUseLabel" from="Player" to="HUD/UI/MousePeek/UseLabel" method="onLabelUpdate"]
