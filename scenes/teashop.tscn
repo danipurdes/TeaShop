@@ -1,10 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=38 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
 [ext_resource type="PackedScene" uid="uid://55h3bcxmi06m" path="res://scenes/ui/game_ui.tscn" id="2_ngymm"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="3_w11bf"]
 [ext_resource type="Script" path="res://scripts/FPSCamera.gd" id="4_a43ch"]
-[ext_resource type="PackedScene" uid="uid://bwf5qhy3mea04" path="res://scenes/ui/title_screen.tscn" id="4_tc16r"]
 [ext_resource type="AudioStream" uid="uid://dk1sp0y2gnma6" path="res://audio/use_boop.wav" id="5_6hw74"]
 [ext_resource type="AudioStream" uid="uid://ckmidbwkf2ebo" path="res://audio/ping_boop.wav" id="6_0jjvj"]
 [ext_resource type="AudioStream" uid="uid://blnsneoyfocv6" path="res://audio/bad_boop.wav" id="7_yjc0r"]
@@ -92,8 +91,6 @@ transform = Transform3D(1, 0, 0, 0, 0.742981, 0.669312, 0, -0.669312, 0.742981, 
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="GameUI" parent="HUD" instance=ExtResource("2_ngymm")]
-
-[node name="TitleScreen" parent="HUD" instance=ExtResource("4_tc16r")]
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.868422, 1, 2.05546)
@@ -625,7 +622,7 @@ villager = ExtResource("24_45mvu")
 curve = SubResource("Curve3D_gc616")
 
 [node name="CustomerPathFollow" type="PathFollow3D" parent="VillagerSpawner/CustomerPath"]
-transform = Transform3D(0.981819, 0, -0.18981, 0, 1, 0, 0.18981, 0, 0.981819, 0, 0, 0)
+transform = Transform3D(0.981819, 0, -0.189809, 0, 1, 0, 0.189809, 0, 0.981819, 0, 0, 0)
 rotation_mode = 1
 cubic_interp = false
 loop = false
