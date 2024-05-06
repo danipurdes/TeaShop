@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://0c0dweb7hwde"]
+
+[ext_resource type="Script" path="res://scripts/ui/pause_screen.gd" id="1_7y387"]
+[ext_resource type="LabelSettings" uid="uid://cqq8vgjyh2h7m" path="res://materials/title_screen/title_screen.tres" id="2_oip7n"]
+[ext_resource type="Theme" uid="uid://sfwgouipwfat" path="res://materials/title_screen/ui_theme.tres" id="3_c3scx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x3w1h"]
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0.376471, 0.160784, 0, 0.101961)
+shadow_offset = Vector2(2.56, 2.54)
+
+[node name="PauseScreen" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7y387")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.843137, 0.301961, 0.411765, 0.184314)
+
+[node name="VersionText" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Pre-Alpha v0.0.0.1"
+label_settings = SubResource("LabelSettings_x3w1h")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CenterContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="PausedText" type="Label" parent="CenterContainer"]
+layout_mode = 2
+text = "Paused"
+label_settings = ExtResource("2_oip7n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_c3scx")
+text = "Resume Game"
+expand_icon = true
+
+[node name="Separator" type="Panel" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="QuitToMenuButton" type="Button" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_c3scx")
+text = "Quit to Menu"
+expand_icon = true
+
+[connection signal="pressed" from="CenterContainer/HBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/QuitToMenuButton" to="." method="_on_quit_to_menu_button_pressed"]
