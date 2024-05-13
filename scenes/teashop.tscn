@@ -1,12 +1,8 @@
-[gd_scene load_steps=38 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=31 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
 [ext_resource type="PackedScene" uid="uid://55h3bcxmi06m" path="res://scenes/ui/game_ui.tscn" id="2_ngymm"]
-[ext_resource type="Script" path="res://scripts/Player.gd" id="3_w11bf"]
-[ext_resource type="Script" path="res://scripts/FPSCamera.gd" id="4_a43ch"]
-[ext_resource type="AudioStream" uid="uid://dk1sp0y2gnma6" path="res://audio/use_boop.wav" id="5_6hw74"]
-[ext_resource type="AudioStream" uid="uid://ckmidbwkf2ebo" path="res://audio/ping_boop.wav" id="6_0jjvj"]
-[ext_resource type="AudioStream" uid="uid://blnsneoyfocv6" path="res://audio/bad_boop.wav" id="7_yjc0r"]
+[ext_resource type="PackedScene" uid="uid://d1rahx0q1ssql" path="res://scenes/player.tscn" id="3_3vuqx"]
 [ext_resource type="Material" uid="uid://dkupiqwv6rf2g" path="res://materials/floor.tres" id="8_htvnx"]
 [ext_resource type="PackedScene" uid="uid://coekka8bmqu1g" path="res://scenes/counter.tscn" id="10_2dvqi"]
 [ext_resource type="PackedScene" uid="uid://csia40gwyiojh" path="res://scenes/sink.tscn" id="11_45m4w"]
@@ -38,16 +34,6 @@ sky_material = SubResource("ProceduralSkyMaterial_jvtpx")
 background_mode = 2
 sky = SubResource("Sky_1831d")
 tonemap_mode = 2
-
-[sub_resource type="Environment" id="Environment_ib77m"]
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 3.47
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_wmkwk"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_8knmf"]
-radius = 0.1
-height = 0.2
 
 [sub_resource type="QuadMesh" id="QuadMesh_pamd4"]
 material = ExtResource("8_htvnx")
@@ -92,35 +78,7 @@ transform = Transform3D(1, 0, 0, 0, 0.742981, 0.669312, 0, -0.669312, 0.742981, 
 
 [node name="GameUI" parent="HUD" instance=ExtResource("2_ngymm")]
 
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.868422, 1, 2.05546)
-collision_layer = 4
-collision_mask = 3
-script = ExtResource("3_w11bf")
-
-[node name="Camera" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.772831, -0.376024)
-environment = SubResource("Environment_ib77m")
-fov = 90.0
-script = ExtResource("4_a43ch")
-
-[node name="PlayerCollider" type="CollisionShape3D" parent="Player"]
-shape = SubResource("CylinderShape3D_wmkwk")
-
-[node name="Hand" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.417331, 0.286422, -0.591021)
-mesh = SubResource("SphereMesh_8knmf")
-
-[node name="HeldItem" type="MeshInstance3D" parent="Player/Hand"]
-
-[node name="UseBoop" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("5_6hw74")
-
-[node name="PingBoop" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("6_0jjvj")
-
-[node name="BadBoop" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("7_yjc0r")
+[node name="Player" parent="." instance=ExtResource("3_3vuqx")]
 
 [node name="FrontOfHouse" type="Node3D" parent="."]
 

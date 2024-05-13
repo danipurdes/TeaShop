@@ -1,12 +1,23 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://sfwgouipwfat"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://sfwgouipwfat"]
 
-[ext_resource type="StyleBox" uid="uid://dvj3c0htx8xeg" path="res://materials/title_screen/title_button_style_hover.tres" id="1_615fr"]
-[ext_resource type="StyleBox" uid="uid://mda0mtoby7fl" path="res://materials/title_screen/title_button_style.tres" id="2_mwqjf"]
-[ext_resource type="StyleBox" uid="uid://1730c1orclj7" path="res://materials/title_screen/new_style_box_pressed.tres" id="3_4dtjg"]
+[ext_resource type="StyleBox" uid="uid://dvj3c0htx8xeg" path="res://materials/title_screen/title_button_hover.tres" id="1_qs1y8"]
+[ext_resource type="StyleBox" uid="uid://mda0mtoby7fl" path="res://materials/title_screen/title_button_normal.tres" id="2_5v7qk"]
+[ext_resource type="StyleBox" uid="uid://1730c1orclj7" path="res://materials/title_screen/title_button_pressed.tres" id="3_lsy4g"]
+[ext_resource type="StyleBox" uid="uid://ceu31sq7a7qix" path="res://materials/title_screen/cancel_button_hover.tres" id="4_xnm8c"]
+[ext_resource type="StyleBox" uid="uid://dqlb6qln5004d" path="res://materials/title_screen/cancel_button_normal.tres" id="5_mhn6q"]
+[ext_resource type="StyleBox" uid="uid://cktkwwtiim8fi" path="res://materials/title_screen/cancel_button_pressed.tres" id="6_t8kf7"]
 
 [resource]
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
 Button/constants/outline_size = 4
-Button/styles/hover = ExtResource("1_615fr")
-Button/styles/normal = ExtResource("2_mwqjf")
-Button/styles/pressed = ExtResource("3_4dtjg")
+Button/font_sizes/font_size = 32
+Button/styles/hover = ExtResource("1_qs1y8")
+Button/styles/normal = ExtResource("2_5v7qk")
+Button/styles/pressed = ExtResource("3_lsy4g")
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+cancel_button/styles/hover = ExtResource("4_xnm8c")
+cancel_button/styles/normal = ExtResource("5_mhn6q")
+cancel_button/styles/pressed = ExtResource("6_t8kf7")
+ui_header/colors/font_outline_color = Color(0, 0, 0, 1)
+ui_header/constants/outline_size = 16
+ui_header/font_sizes/font_size = 120

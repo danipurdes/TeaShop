@@ -1,15 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwf5qhy3mea04"]
+[gd_scene load_steps=3 format=3 uid="uid://bwf5qhy3mea04"]
 
 [ext_resource type="Script" path="res://scripts/ui/title_screen.gd" id="1_423lg"]
-[ext_resource type="LabelSettings" uid="uid://cqq8vgjyh2h7m" path="res://materials/title_screen/title_screen.tres" id="2_g1asq"]
 [ext_resource type="Theme" uid="uid://sfwgouipwfat" path="res://materials/title_screen/ui_theme.tres" id="3_0u31j"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_x3w1h"]
-outline_size = 3
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 5
-shadow_color = Color(0.376471, 0.160784, 0, 0.101961)
-shadow_offset = Vector2(2.56, 2.54)
 
 [node name="TitleScreen" type="MarginContainer"]
 anchors_preset = 15
@@ -27,8 +19,8 @@ color = Color(0.117647, 0.0117647, 0.0313726, 1)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+theme = ExtResource("3_0u31j")
 text = "Pre-Alpha v0.0.0.1"
-label_settings = SubResource("LabelSettings_x3w1h")
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -38,20 +30,13 @@ size_flags_vertical = 4
 
 [node name="TitleText" type="Label" parent="CenterContainer"]
 layout_mode = 2
+theme = ExtResource("3_0u31j")
+theme_type_variation = &"ui_header"
 text = "Tea Time"
-label_settings = ExtResource("2_g1asq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PressToStartText" type="Label" parent="CenterContainer"]
-visible = false
-layout_mode = 2
-text = "~ Press Space to Begin ~"
-label_settings = SubResource("LabelSettings_x3w1h")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
@@ -72,6 +57,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_0u31j")
+theme_type_variation = &"cancel_button"
 text = "Quit Game"
 expand_icon = true
 

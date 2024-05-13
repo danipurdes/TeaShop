@@ -27,24 +27,25 @@ var itemUseLabelMap = {
 }
 
 func _physics_process(_delta):
-	var raycastResult = getRaycastResult()
-	if !raycastResult.is_empty():
+	if $Camera/RayCast3D.is_colliding():
+		var collider = $Camera/RayCast3D.get_collider()
+		
 		#Object Scanning
-		setUseLabel(raycastResult)
+		setUseLabel(collider)
 		
 		#Object Picking
 		if Input.is_action_just_pressed("mouse1"):
-			if "item_type" in raycastResult.collider:
-				if attemptPickup(raycastResult.collider):
+			if "item_type" in collider:
+				if attemptPickup(collider):
 					$PingBoop.play()
-				elif raycastResult.collider.has_method("useItem") and raycastResult.collider.useItem(heldItem):
+				elif collider.has_method("useItem") and collider.useItem(heldItem):
 					$UseBoop.play()
 				else:
 					$BadBoop.play()
-			elif raycastResult.collider.has_method("useItem") and raycastResult.collider.useItem(heldItem):
+			elif collider.has_method("useItem") and collider.useItem(heldItem):
 				$UseBoop.play()
 				if (heldItem != null):
-					changeHeldItem.emit("Held Item: " + heldItem.getName())
+					changeHeldItem.emit(heldItem.getName())
 			else:
 				$BadBoop.play()
 	
@@ -95,7 +96,7 @@ func updateHeldItem(item):
 		if item.obj_attached_to != null and item.obj_attached_to.has_method("takeItem"):
 			item.obj_attached_to.takeItem()
 	if heldItem.has_method("getName"):
-		changeHeldItem.emit("Held Item: " + heldItem.getName())
+		changeHeldItem.emit(heldItem.getName())
 
 func requestDropHeldItem(dropRequestor):
 	if heldItem != null:
@@ -108,13 +109,13 @@ func dropHeldItem(dropRequestor):
 	heldItem.monitorable = true
 	heldItem.position = dropRequestor.global_position
 	heldItem = null
-	changeHeldItem.emit("Held Item: none")
+	changeHeldItem.emit("none")
 	return oldHeldItem
 
 func destroyHeldItem():
 	heldItem.queue_free()
 	heldItem = null
-	changeHeldItem.emit("Held Item: none")
+	changeHeldItem.emit("none")
 
 func getHeldItem():
 	return heldItem
@@ -125,10 +126,11 @@ func getRaycastResult():
 	var to = from + camera3d.project_ray_normal(camera3d.get_viewport().size / 2) * reach_magnitude
 	var query = PhysicsRayQueryParameters3D.create(from, to, collision_mask)
 	query.collide_with_areas = true
-	return get_world_3d().direct_space_state.intersect_ray(query)
+	#return get_world_3d().direct_space_state.intersect_ray(query)
+	return $Camera/RayCast3D.get_collider()
 
-func setUseLabel(raycastResult):
-	var resultCollider = raycastResult.collider
+func setUseLabel(collider):
+	var resultCollider = collider
 	if heldItem == null and "item_type" in resultCollider:
 		changeUseLabel.emit("pick up " + resultCollider.item_type)
 		return

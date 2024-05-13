@@ -3,15 +3,11 @@
 [ext_resource type="Script" path="res://scripts/ui/game_ui.gd" id="1_06b2o"]
 [ext_resource type="Script" path="res://scripts/Label_HeldItem.gd" id="1_31fp1"]
 [ext_resource type="Texture2D" uid="uid://c2y0usilm8g4y" path="res://textures/Input/mouse_left.svg" id="2_o40rp"]
+[ext_resource type="Theme" uid="uid://sfwgouipwfat" path="res://materials/title_screen/ui_theme.tres" id="2_ua8xs"]
 [ext_resource type="Texture2D" uid="uid://cewms27xqcspa" path="res://textures/Cursors/cursor_dot.png" id="3_8mlbq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vq3ps"]
 font_size = 35
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_4fpbu"]
-font_size = 21
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
@@ -21,14 +17,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_06b2o")
 
-[node name="Label_HeldItem" type="Label" parent="."]
+[node name="HeldItemContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+
+[node name="Label_HeldItem_Static" type="Label" parent="HeldItemContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("2_ua8xs")
+text = "Held Item: "
+horizontal_alignment = 2
+
+[node name="Label_HeldItem" type="Label" parent="HeldItemContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("2_ua8xs")
 text = "-"
-label_settings = SubResource("LabelSettings_vq3ps")
 horizontal_alignment = 2
 script = ExtResource("1_31fp1")
 
@@ -36,8 +46,8 @@ script = ExtResource("1_31fp1")
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme = ExtResource("2_ua8xs")
 text = "This is a pre-alpha build, features are subject to change :)"
-label_settings = SubResource("LabelSettings_4fpbu")
 vertical_alignment = 1
 
 [node name="MousePeek" type="HBoxContainer" parent="."]
@@ -48,6 +58,7 @@ size_flags_vertical = 0
 [node name="UseLabel" type="Label" parent="MousePeek"]
 layout_mode = 2
 size_flags_vertical = 1
+theme = ExtResource("2_ua8xs")
 text = "-"
 label_settings = SubResource("LabelSettings_vq3ps")
 horizontal_alignment = 2
