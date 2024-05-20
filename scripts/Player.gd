@@ -6,9 +6,10 @@ signal changeUseLabel(label)
 var raycastEvent
 @export var reach_magnitude = 5.0
 @export var walk_speed = 3
-@export var rotate_sensitivity_h = .95
+@export var rotate_sensitivity_h = 9.5
 @export var rotate_invert_h = -1
 var heldItem = null
+var mouselook_horizontal:float
 
 var itemUseLabelMap = {
 	"teakettle_empty|sink":"fill with cold water",
@@ -26,7 +27,7 @@ var itemUseLabelMap = {
 	"oxidizer": "oxidize tea leaves",
 }
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if $Camera/RayCast3D.is_colliding():
 		var collider = $Camera/RayCast3D.get_collider()
 		
@@ -48,6 +49,10 @@ func _physics_process(_delta):
 					changeHeldItem.emit(heldItem.getName())
 			else:
 				$BadBoop.play()
+	
+	# Horizontal Rotation
+	set_rotation_degrees(calculateNewRotation(delta))
+	mouselook_horizontal = 0
 	
 	# Move Held Item
 	if heldItem != null:
@@ -71,11 +76,16 @@ func _physics_process(_delta):
 	
 	move_and_slide()
 
+func calculateNewRotation(delta):
+	var rotation_delta = mouselook_horizontal
+	rotation_delta *= rotate_sensitivity_h
+	rotation_delta *= delta
+	rotation_delta *= rotate_invert_h
+	return rotation_degrees + Vector3(0, rotation_delta, 0)
+
 func _input(event):
 	if event is InputEventMouseMotion:
-		var new_rotation = rotation_degrees
-		new_rotation.y += rotate_invert_h * event.relative.x * rotate_sensitivity_h
-		set_rotation_degrees(new_rotation)
+		mouselook_horizontal = event.relative.x
 
 func attemptPickup(item):
 	if heldItem == null:
