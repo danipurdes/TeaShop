@@ -2,8 +2,9 @@ extends Camera3D
 
 @export var vertical_rotation_max = 60
 @export var vertical_rotation_min = -60
-@export var rotate_sensitivity_v = 5
-@export var rotate_invert_v = -1
+@export var mouse_rotate_sensitivity_v = 5
+@export var joystick_rotate_sensitivity_v = 50
+@export var rotate_invert_v = 1
 
 var mouselook_vertical:float
 
@@ -16,12 +17,14 @@ func _process(_delta):
 	pass
 
 func _physics_process(delta):
+	if Input.get_axis("look_down", "look_up"):
+		mouselook_vertical = Input.get_axis("look_down", "look_up")
+		mouselook_vertical *= joystick_rotate_sensitivity_v
 	set_rotation_degrees(calculateNewRotation(delta))
 	mouselook_vertical = 0
 
 func calculateNewRotation(delta):
 	var rotation_delta = mouselook_vertical
-	rotation_delta *= rotate_sensitivity_v
 	rotation_delta *= delta
 	rotation_delta *= rotate_invert_v
 	
@@ -34,4 +37,6 @@ func calculateNewRotation(delta):
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		mouselook_vertical = event.relative.y
+		mouselook_vertical = -event.relative.y
+		mouselook_vertical *= mouse_rotate_sensitivity_v
+		print(mouselook_vertical)

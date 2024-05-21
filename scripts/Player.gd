@@ -6,26 +6,11 @@ signal changeUseLabel(label)
 var raycastEvent
 @export var reach_magnitude = 5.0
 @export var walk_speed = 3
-@export var rotate_sensitivity_h = 9.5
+@export var mouse_rotate_sensitivity_h = 9.5
+@export var joystick_rotate_sensitivity_h = 95
 @export var rotate_invert_h = -1
 var heldItem = null
 var mouselook_horizontal:float
-
-var itemUseLabelMap = {
-	"teakettle_empty|sink":"fill with cold water",
-	"teakettle_cold_water|hotplate":"heat kettle on stove",
-	"teakettle_hot_water|teapot_empty_0":"fill teapot from kettle",
-	"teapot_hot_water_1|teacup_empty":"fill teacup with tea",
-	"teapot_hot_water_2|teacup_empty":"fill teacup with tea",
-	"tea_brick_1|teapot_hot_water_0":"add tea to teapot",
-	"tea_brick_2|teapot_hot_water_0":"add tea to teapot",
-	"teacup_1|sink": "empty cup into sink",
-	"teacup_2|sink": "empty cup into sink",
-	"jukebox": "toggle jukebox",
-	"tea_tree": "prune tea tree",
-	"leaf_crusher": "crush tea leaves",
-	"oxidizer": "oxidize tea leaves",
-}
 
 func _physics_process(delta):
 	if $Camera/RayCast3D.is_colliding():
@@ -51,6 +36,9 @@ func _physics_process(delta):
 				$BadBoop.play()
 	
 	# Horizontal Rotation
+	if Input.get_axis("look_left", "look_right"):
+		mouselook_horizontal = Input.get_axis("look_left", "look_right")
+		mouselook_horizontal *= joystick_rotate_sensitivity_h
 	set_rotation_degrees(calculateNewRotation(delta))
 	mouselook_horizontal = 0
 	
@@ -61,14 +49,10 @@ func _physics_process(delta):
 	
 	# Movement
 	var move_axis = Vector3()
-	if Input.is_action_pressed("walk_forward"):
-		move_axis.z = move_axis.z - 1
-	if Input.is_action_pressed("walk_backward"):
-		move_axis.z = move_axis.z + 1
-	if Input.is_action_pressed("walk_right"):
-		move_axis.x = move_axis.x + 1
-	if Input.is_action_pressed("walk_left"):
-		move_axis.x = move_axis.x - 1
+	if Input.get_axis("walk_forward","walk_backward") != 0:
+		move_axis.z += Input.get_axis("walk_forward","walk_backward")
+	if Input.get_axis("walk_left","walk_right") != 0:
+		move_axis.x += Input.get_axis("walk_left","walk_right")
 	
 	move_axis = move_axis.normalized() * walk_speed
 	var move_dir = move_axis.rotated(Vector3.UP, rotation.y)
@@ -78,7 +62,6 @@ func _physics_process(delta):
 
 func calculateNewRotation(delta):
 	var rotation_delta = mouselook_horizontal
-	rotation_delta *= rotate_sensitivity_h
 	rotation_delta *= delta
 	rotation_delta *= rotate_invert_h
 	return rotation_degrees + Vector3(0, rotation_delta, 0)
@@ -86,6 +69,7 @@ func calculateNewRotation(delta):
 func _input(event):
 	if event is InputEventMouseMotion:
 		mouselook_horizontal = event.relative.x
+		mouselook_horizontal *= mouse_rotate_sensitivity_h
 
 func attemptPickup(item):
 	if heldItem == null:
@@ -157,6 +141,6 @@ func setUseLabel(collider):
 			if resultCollider.has_method("getName"):
 				colliderKey = resultCollider.getName()
 			var useKey = heldItemKey + "|" + colliderKey
-			changeUseLabel.emit(itemUseLabelMap.get(useKey))
+			changeUseLabel.emit(UseLabelUtility.itemUseLabelMap.get(useKey))
 			return
 	changeUseLabel.emit("-")
