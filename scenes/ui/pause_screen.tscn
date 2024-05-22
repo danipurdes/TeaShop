@@ -49,9 +49,6 @@ theme = ExtResource("3_c3scx")
 text = "Resume Game"
 expand_icon = true
 
-[node name="Separator" type="Panel" parent="CenterContainer/HBoxContainer"]
-layout_mode = 2
-
 [node name="QuitToMenuButton" type="Button" parent="CenterContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4

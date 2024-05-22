@@ -2,7 +2,7 @@ extends Control
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	pass
+	$CenterContainer/HBoxContainer/ResumeButton.grab_focus()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("escape"):
