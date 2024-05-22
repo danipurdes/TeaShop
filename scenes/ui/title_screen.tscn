@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwf5qhy3mea04"]
+[gd_scene load_steps=4 format=3 uid="uid://bwf5qhy3mea04"]
 
 [ext_resource type="Script" path="res://scripts/ui/title_screen.gd" id="1_423lg"]
 [ext_resource type="Theme" uid="uid://sfwgouipwfat" path="res://materials/title_screen/ui_theme.tres" id="3_0u31j"]
+[ext_resource type="LabelSettings" uid="uid://bf1tn2pcvvkuk" path="res://materials/ui/game_ui_label.tres" id="3_1jgy5"]
 
 [node name="TitleScreen" type="MarginContainer"]
 anchors_preset = 15
@@ -21,6 +22,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 theme = ExtResource("3_0u31j")
 text = "Pre-Alpha v0.0.0.1"
+label_settings = ExtResource("3_1jgy5")
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -49,13 +51,11 @@ theme = ExtResource("3_0u31j")
 text = "Start Game"
 expand_icon = true
 
-[node name="Separator" type="Panel" parent="CenterContainer/HBoxContainer"]
-layout_mode = 2
-
 [node name="QuitButton" type="Button" parent="CenterContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_previous = NodePath("../StartButton")
 theme = ExtResource("3_0u31j")
 theme_type_variation = &"cancel_button"
 text = "Quit Game"

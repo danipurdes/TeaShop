@@ -2,10 +2,10 @@ extends Control
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	pass
+	$CenterContainer/HBoxContainer/ResumeButton.grab_focus()
 
 func _process(_delta):
-	if Input.is_action_just_pressed("escape"):
+	if Input.is_action_just_pressed("escape") or Input.is_action_just_pressed("ui_cancel"):
 		queue_free()
 
 func _on_resume_button_pressed():
