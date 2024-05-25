@@ -7,6 +7,7 @@ extends Camera3D
 @export var rotate_invert_v = 1
 
 var mouselook_vertical:float
+var mouselook_enabled = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,11 +18,12 @@ func _process(_delta):
 	pass
 
 func _physics_process(delta):
-	if Input.get_axis("look_down", "look_up"):
-		mouselook_vertical = Input.get_axis("look_down", "look_up")
-		mouselook_vertical *= joystick_rotate_sensitivity_v
-	set_rotation_degrees(calculateNewRotation(delta))
-	mouselook_vertical = 0
+	if mouselook_enabled:
+		if Input.get_axis("look_down", "look_up"):
+			mouselook_vertical = Input.get_axis("look_down", "look_up")
+			mouselook_vertical *= joystick_rotate_sensitivity_v
+		set_rotation_degrees(calculateNewRotation(delta))
+		mouselook_vertical = 0
 
 func calculateNewRotation(delta):
 	var rotation_delta = mouselook_vertical
@@ -39,4 +41,3 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		mouselook_vertical = -event.relative.y
 		mouselook_vertical *= mouse_rotate_sensitivity_v
-		print(mouselook_vertical)

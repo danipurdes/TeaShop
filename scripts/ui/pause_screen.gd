@@ -1,15 +1,20 @@
 extends Control
 
+signal resume_requested
+
+@onready var ResumeButton = $MarginContainer/CenterContainer/HBoxContainer/ResumeButton
+@onready var QuitButton = $MarginContainer/CenterContainer/HBoxContainer/QuitToMenuButton
+
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	$CenterContainer/HBoxContainer/ResumeButton.grab_focus()
+	ResumeButton.pressed.connect(requestResume)
+	QuitButton.pressed.connect(returnToTitleMenu)
+	ResumeButton.tree_entered.connect(set_focus)
 
-func _process(_delta):
-	if Input.is_action_just_pressed("escape") or Input.is_action_just_pressed("ui_cancel"):
-		queue_free()
-
-func _on_resume_button_pressed():
-	queue_free()
-
-func _on_quit_to_menu_button_pressed():
+func requestResume():
+	resume_requested.emit()
+	
+func returnToTitleMenu():
 	get_tree().change_scene_to_file("res://scenes/ui/title_screen.tscn")
+
+func set_focus():
+	ResumeButton.grab_focus()

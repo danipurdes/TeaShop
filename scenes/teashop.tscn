@@ -1,8 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=33 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
+[ext_resource type="Script" path="res://scenes/GameHUD.gd" id="2_gjagy"]
 [ext_resource type="PackedScene" uid="uid://55h3bcxmi06m" path="res://scenes/ui/game_ui.tscn" id="2_ngymm"]
 [ext_resource type="PackedScene" uid="uid://d1rahx0q1ssql" path="res://scenes/player.tscn" id="3_3vuqx"]
+[ext_resource type="PackedScene" uid="uid://0c0dweb7hwde" path="res://scenes/ui/pause_screen.tscn" id="3_xmiqi"]
 [ext_resource type="Material" uid="uid://dkupiqwv6rf2g" path="res://materials/floor.tres" id="8_htvnx"]
 [ext_resource type="PackedScene" uid="uid://coekka8bmqu1g" path="res://scenes/counter.tscn" id="10_2dvqi"]
 [ext_resource type="PackedScene" uid="uid://csia40gwyiojh" path="res://scenes/sink.tscn" id="11_45m4w"]
@@ -75,8 +77,11 @@ environment = SubResource("Environment_k0345")
 transform = Transform3D(1, 0, 0, 0, 0.742981, 0.669312, 0, -0.669312, 0.742981, 0, 5.34098, 0)
 
 [node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("2_gjagy")
 
 [node name="GameUI" parent="HUD" instance=ExtResource("2_ngymm")]
+
+[node name="PauseScreen" parent="HUD" instance=ExtResource("3_xmiqi")]
 
 [node name="Player" parent="." instance=ExtResource("3_3vuqx")]
 

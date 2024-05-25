@@ -15,20 +15,19 @@ script = ExtResource("1_7y387")
 layout_mode = 2
 color = Color(0.843137, 0.301961, 0.411765, 0.184314)
 
-[node name="VersionText" type="Label" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme = ExtResource("3_c3scx")
-text = "Pre-Alpha v0.0.0.1"
-horizontal_alignment = 2
-vertical_alignment = 1
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="CenterContainer" type="VBoxContainer" parent="."]
+[node name="CenterContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_constants/separation = 70
 
-[node name="PausedText" type="Label" parent="CenterContainer"]
+[node name="PausedText" type="Label" parent="MarginContainer/CenterContainer"]
 layout_mode = 2
 theme = ExtResource("3_c3scx")
 theme_type_variation = &"ui_header"
@@ -36,20 +35,20 @@ text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 10
 alignment = 1
 
-[node name="ResumeButton" type="Button" parent="CenterContainer/HBoxContainer"]
+[node name="ResumeButton" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("3_c3scx")
 text = "Resume Game"
-expand_icon = true
 
-[node name="QuitToMenuButton" type="Button" parent="CenterContainer/HBoxContainer"]
+[node name="QuitToMenuButton" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -58,5 +57,11 @@ theme_type_variation = &"cancel_button"
 text = "Quit to Menu"
 expand_icon = true
 
-[connection signal="pressed" from="CenterContainer/HBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="CenterContainer/HBoxContainer/QuitToMenuButton" to="." method="_on_quit_to_menu_button_pressed"]
+[node name="VersionText" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("3_c3scx")
+text = "Pre-Alpha v0.0.0.1"
+horizontal_alignment = 2
+vertical_alignment = 1
