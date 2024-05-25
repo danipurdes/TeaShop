@@ -10,11 +10,36 @@ var raycastEvent
 @export var joystick_rotate_sensitivity_h = 95
 @export var rotate_invert_h = -1
 var heldItem = null
+
+var interact_enabled = true
+var movement_enabled = true
+
 var mouselook_horizontal:float
+var mouselook_enabled = true
+@onready var Camera = $Camera
+@onready var Raycast = $Camera/RayCast3D
+
+func _ready():
+	get_parent().pause_state_entered.connect(on_pause_state_entered)
+	get_parent().pause_state_exited.connect(on_pause_state_exited)
+
+func on_pause_state_entered():
+	mouselook_enabled = false
+	Camera.mouselook_enabled = false
+	
+	interact_enabled = false
+	movement_enabled = false
+
+func on_pause_state_exited():
+	mouselook_enabled = true
+	Camera.mouselook_enabled = true
+	
+	interact_enabled = true
+	movement_enabled = true
 
 func _physics_process(delta):
-	if $Camera/RayCast3D.is_colliding():
-		var collider = $Camera/RayCast3D.get_collider()
+	if interact_enabled and Raycast.is_colliding():
+		var collider = Raycast.get_collider()
 		
 		#Object Scanning
 		setUseLabel(collider)
@@ -36,29 +61,31 @@ func _physics_process(delta):
 				$BadBoop.play()
 	
 	# Horizontal Rotation
-	if Input.get_axis("look_left", "look_right"):
-		mouselook_horizontal = Input.get_axis("look_left", "look_right")
-		mouselook_horizontal *= joystick_rotate_sensitivity_h
-	set_rotation_degrees(calculateNewRotation(delta))
-	mouselook_horizontal = 0
+	if mouselook_enabled:
+		if Input.get_axis("look_left", "look_right"):
+			mouselook_horizontal = Input.get_axis("look_left", "look_right")
+			mouselook_horizontal *= joystick_rotate_sensitivity_h
+		set_rotation_degrees(calculateNewRotation(delta))
+		mouselook_horizontal = 0
 	
-	# Move Held Item
-	if heldItem != null:
-		heldItem.position = $Hand/HeldItem.global_position
-		heldItem.rotation = $Hand/HeldItem.global_rotation
-	
-	# Movement
-	var move_axis = Vector3()
-	if Input.get_axis("walk_forward","walk_backward") != 0:
-		move_axis.z += Input.get_axis("walk_forward","walk_backward")
-	if Input.get_axis("walk_left","walk_right") != 0:
-		move_axis.x += Input.get_axis("walk_left","walk_right")
-	
-	move_axis = move_axis.normalized() * walk_speed
-	var move_dir = move_axis.rotated(Vector3.UP, rotation.y)
-	velocity = move_dir
-	
-	move_and_slide()
+	if movement_enabled:
+		# Move Held Item
+		if heldItem != null:
+			heldItem.position = $Hand/HeldItem.global_position
+			heldItem.rotation = $Hand/HeldItem.global_rotation
+		
+		# Movement
+		var move_axis = Vector3()
+		if Input.get_axis("walk_forward","walk_backward") != 0:
+			move_axis.z += Input.get_axis("walk_forward","walk_backward")
+		if Input.get_axis("walk_left","walk_right") != 0:
+			move_axis.x += Input.get_axis("walk_left","walk_right")
+		
+		move_axis = move_axis.normalized() * walk_speed
+		var move_dir = move_axis.rotated(Vector3.UP, rotation.y)
+		velocity = move_dir
+		
+		move_and_slide()
 
 func calculateNewRotation(delta):
 	var rotation_delta = mouselook_horizontal
@@ -113,15 +140,6 @@ func destroyHeldItem():
 
 func getHeldItem():
 	return heldItem
-
-func getRaycastResult():
-	var camera3d = $Camera
-	var from = camera3d.project_ray_origin(camera3d.get_viewport().size / 2)
-	var to = from + camera3d.project_ray_normal(camera3d.get_viewport().size / 2) * reach_magnitude
-	var query = PhysicsRayQueryParameters3D.create(from, to, collision_mask)
-	query.collide_with_areas = true
-	#return get_world_3d().direct_space_state.intersect_ray(query)
-	return $Camera/RayCast3D.get_collider()
 
 func setUseLabel(collider):
 	var resultCollider = collider
