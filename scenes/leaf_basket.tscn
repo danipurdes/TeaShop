@@ -17,3 +17,5 @@ shape = SubResource("BoxShape3D_veadq")
 [node name="basket" parent="." instance=ExtResource("2_ewypf")]
 
 [node name="Label" parent="." instance=ExtResource("3_a4lmk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.294447, 0.291291)
+billboard = 0
