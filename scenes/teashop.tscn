@@ -147,11 +147,49 @@ text = "Making a Cup of Tea:
 
 [node name="ControlsLabel" type="Label3D" parent="FrontOfHouse"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.958798, 1.82445, 4.94626)
+visible = false
 text = "WASD - walk
 Left Click - interact
 f11 - toggle fullscreen
 esc - gain control of mouse cursor
 alt+f4 - close the game"
+
+[node name="PcControlsTitle" type="Label3D" parent="FrontOfHouse"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.5, 1.82445, 4.94626)
+text = "PC Controls"
+font_size = 42
+
+[node name="PcControls" type="Label3D" parent="FrontOfHouse"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.97087, 1.1, 4.946)
+text = "WASD
+Move Mouse
+Left-Click
+Escape
+M"
+horizontal_alignment = 0
+
+[node name="ControlsLegend" type="Label3D" parent="FrontOfHouse"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.3522, 1.1, 4.946)
+text = "Move
+Look
+Interact
+Pause
+Mute"
+horizontal_alignment = 2
+
+[node name="ConsoleControlsTitle" type="Label3D" parent="FrontOfHouse"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.234007, 1.82445, 4.94626)
+text = "Gamepad Controls"
+font_size = 42
+
+[node name="ConsoleControls" type="Label3D" parent="FrontOfHouse"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.502555, 1.1, 4.946)
+text = "Left Stick
+Right Stick
+Bottom Face Button
+Start Button
+n/a"
+horizontal_alignment = 0
 
 [node name="Walls" type="Node3D" parent="FrontOfHouse"]
 
