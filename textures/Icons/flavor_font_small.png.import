@@ -1,0 +1,21 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://rg8ct0dvcjum"
+path="res://.godot/imported/flavor_font_small.png-d74d8285dfe101e0129701f590e4debc.fontdata"
+
+[deps]
+
+source_file="res://textures/Icons/flavor_font_small.png"
+dest_files=["res://.godot/imported/flavor_font_small.png-d74d8285dfe101e0129701f590e4debc.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("48-52")
+columns=5
+rows=1
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+fallbacks=[]
+compress=true

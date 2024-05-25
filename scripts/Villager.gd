@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+signal order_created(order_text)
+signal order_served
+
 @export var state = "waiting"
 var orderFlavor: FlavorProfile
 @export var targetPathFollow: PathFollow3D
@@ -8,6 +11,7 @@ var moveTarget: Vector3
 
 func _ready():
 	orderFlavor = generateOrder()
+	order_created.emit(orderFlavor._to_amount_string())
 	$FlavorProfileUI.updateLabel(orderFlavor)
 	$villager/AnimationPlayer.animation_finished.connect(_on_sip_anim_finished.bind())
 	$villager/AnimationPlayer.play("walk")
@@ -39,6 +43,7 @@ func useItem(item):
 			if item != null and item.item_type == "teacup":
 				get_node("/root/Node3D/Player").destroyHeldItem()
 				orderFlavor.clearFlavorProfile()
+				order_served.emit()
 				$FlavorProfileUI.updateLabel(orderFlavor)
 				$villager/AnimationPlayer.play("sip")
 			elif $villager/AnimationPlayer.get_queue().size() == 0:

@@ -24,7 +24,7 @@ func tryUpdateLeafCount(deltaLeaf):
 	return false
 
 func getName():
-	return item_type + "_" + str(leaf_count)
+	return str(leaf_count)
 
 func updateLabel():
 	$Label.text = getName()
