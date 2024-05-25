@@ -54,5 +54,19 @@ func clearFlavorProfile():
 func _to_string():
 	return "grassy: " + str(grassy) + "\n" + "floral: " + str(floral) + "\n" + "fruity: " + str(fruity) + "\n" + "earthy: " + str(earthy) + "\n" + "smoky: " + str(smoky)
 
+func _to_amount_string():
+	var newText = ""
+	for n in grassy:
+		newText += "0"
+	for n in floral:
+		newText += "1"
+	for n in fruity:
+		newText += "2"
+	for n in earthy:
+		newText += "3"
+	for n in smoky:
+		newText += "4"
+	return newText
+
 func toArray():
 	return [grassy, floral, fruity, earthy, smoky, caffeine]

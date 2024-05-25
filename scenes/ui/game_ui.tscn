@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://55h3bcxmi06m"]
+[gd_scene load_steps=9 format=3 uid="uid://55h3bcxmi06m"]
 
 [ext_resource type="Script" path="res://scripts/ui/game_ui.gd" id="1_06b2o"]
 [ext_resource type="Script" path="res://scripts/Label_HeldItem.gd" id="1_31fp1"]
@@ -6,6 +6,14 @@
 [ext_resource type="Theme" uid="uid://sfwgouipwfat" path="res://materials/title_screen/ui_theme.tres" id="2_ua8xs"]
 [ext_resource type="Texture2D" uid="uid://cewms27xqcspa" path="res://textures/Cursors/cursor_dot.png" id="3_8mlbq"]
 [ext_resource type="LabelSettings" uid="uid://bf1tn2pcvvkuk" path="res://materials/ui/game_ui_label.tres" id="3_ynf5c"]
+[ext_resource type="FontFile" uid="uid://rg8ct0dvcjum" path="res://textures/Icons/flavor_font_small.png" id="6_qjowq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_803om"]
+line_spacing = 0.0
+font = ExtResource("6_qjowq")
+font_size = 1
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="GameUI" type="MarginContainer"]
 anchors_preset = 15
@@ -44,15 +52,6 @@ label_settings = ExtResource("3_ynf5c")
 horizontal_alignment = 2
 script = ExtResource("1_31fp1")
 
-[node name="BetaDisclaimer" type="Label" parent="."]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme = ExtResource("2_ua8xs")
-text = "This is a pre-alpha build, features are subject to change :)"
-label_settings = ExtResource("3_ynf5c")
-vertical_alignment = 1
-
 [node name="MousePeek" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 8
@@ -70,6 +69,37 @@ script = ExtResource("1_31fp1")
 [node name="LeftClickIcon" type="TextureRect" parent="MousePeek"]
 layout_mode = 2
 texture = ExtResource("2_o40rp")
+
+[node name="OrderContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="OrderLabelStatic" type="Label" parent="OrderContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("2_ua8xs")
+text = "Current Order: "
+label_settings = ExtResource("3_ynf5c")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="OrderLabel" type="Label" parent="OrderContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("2_ua8xs")
+label_settings = SubResource("LabelSettings_803om")
+script = ExtResource("1_31fp1")
+
+[node name="BetaDisclaimer" type="Label" parent="."]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("2_ua8xs")
+text = "This is a pre-alpha build, features are subject to change :)"
+label_settings = ExtResource("3_ynf5c")
+vertical_alignment = 1
 
 [node name="Cursor" type="TextureRect" parent="."]
 layout_mode = 2

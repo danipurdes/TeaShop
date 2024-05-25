@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Villager.gd" id="1_mm4no"]
 [ext_resource type="PackedScene" uid="uid://br125rnfyg7dc" path="res://models/villager/villager.gltf" id="2_r41rf"]
-[ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui_flavor_profile.tscn" id="3_523qh"]
+[ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui/ui_flavor_profile.tscn" id="3_523qh"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_droii"]
 height = 1.8
