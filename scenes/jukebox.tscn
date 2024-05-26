@@ -1,11 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwhkm61peqh3x"]
+[gd_scene load_steps=9 format=3 uid="uid://dwhkm61peqh3x"]
 
 [ext_resource type="Script" path="res://scripts/Jukebox.gd" id="1_iunwr"]
 [ext_resource type="AudioStream" uid="uid://dk7p3uur283wf" path="res://audio/dreamy-jazz-slow-background-jazz-music-piano-and-seattle-strings-9998.mp3" id="2_jqkjs"]
+[ext_resource type="Texture2D" uid="uid://dbs778b4q00h5" path="res://textures/Icons/Music/music note.png" id="3_j4a46"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_idfoq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_dgeip"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3t3nr"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.1
+emission_ring_radius = 0.25
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6nljx"]
+transparency = 1
+albedo_texture = ExtResource("3_j4a46")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_qtoft"]
+material = SubResource("StandardMaterial3D_6nljx")
+size = Vector2(0.1, 0.1)
 
 [node name="Jukebox" type="StaticBody3D"]
 collision_layer = 3
@@ -30,7 +54,16 @@ autoplay = true
 panning_strength = 0.16
 
 [node name="Label" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24526, 0)
-billboard = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.807521, 0.561925)
 text = "Jukebox"
 font_size = 18
+
+[node name="ParticleEmitter" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00224614, 0.92471, 0.00580812)
+amount = 6
+lifetime = 4.0
+randomness = 0.05
+visibility_aabb = AABB(-0.5, 0, -0.5, 1, 1, 1)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_3t3nr")
+draw_pass_1 = SubResource("QuadMesh_qtoft")

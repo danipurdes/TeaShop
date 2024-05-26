@@ -1,7 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=34 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
-[ext_resource type="Script" path="res://scenes/GameHUD.gd" id="2_gjagy"]
+[ext_resource type="Script" path="res://scripts/ui/GameHUD.gd" id="2_my5ie"]
 [ext_resource type="PackedScene" uid="uid://55h3bcxmi06m" path="res://scenes/ui/game_ui.tscn" id="2_ngymm"]
 [ext_resource type="PackedScene" uid="uid://d1rahx0q1ssql" path="res://scenes/player.tscn" id="3_3vuqx"]
 [ext_resource type="PackedScene" uid="uid://0c0dweb7hwde" path="res://scenes/ui/pause_screen.tscn" id="3_xmiqi"]
@@ -43,6 +43,9 @@ uv2_padding = 0.88
 size = Vector2(10, 10)
 orientation = 1
 
+[sub_resource type="BoxMesh" id="BoxMesh_lw66p"]
+size = Vector3(1, 2, 0.2)
+
 [sub_resource type="QuadMesh" id="QuadMesh_7c1du"]
 material = ExtResource("8_htvnx")
 uv2_padding = 0.88
@@ -77,7 +80,7 @@ environment = SubResource("Environment_k0345")
 transform = Transform3D(1, 0, 0, 0, 0.742981, 0.669312, 0, -0.669312, 0.742981, 0, 5.34098, 0)
 
 [node name="HUD" type="CanvasLayer" parent="."]
-script = ExtResource("2_gjagy")
+script = ExtResource("2_my5ie")
 
 [node name="GameUI" parent="HUD" instance=ExtResource("2_ngymm")]
 
@@ -154,10 +157,10 @@ f11 - toggle fullscreen
 esc - gain control of mouse cursor
 alt+f4 - close the game"
 
-[node name="Controls" type="Node3D" parent="FrontOfHouse"]
+[node name="ControlsLabels" type="Node3D" parent="FrontOfHouse"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.3522, 1.1, 4.946)
 
-[node name="ControlsLegend" type="Label3D" parent="FrontOfHouse/Controls"]
+[node name="ControlsLegend" type="Label3D" parent="FrontOfHouse/ControlsLabels"]
 text = "Move
 Look
 Interact
@@ -165,12 +168,12 @@ Pause
 Mute"
 horizontal_alignment = 2
 
-[node name="PcControlsTitle" type="Label3D" parent="FrontOfHouse/Controls"]
+[node name="PcControlsTitle" type="Label3D" parent="FrontOfHouse/ControlsLabels"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.852202, 0.72445, -0.000259876)
 text = "PC Controls"
 font_size = 42
 
-[node name="PcControls" type="Label3D" parent="FrontOfHouse/Controls"]
+[node name="PcControls" type="Label3D" parent="FrontOfHouse/ControlsLabels"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.381334, 0, 0)
 text = "WASD
 Move Mouse
@@ -179,12 +182,12 @@ Escape
 M"
 horizontal_alignment = 0
 
-[node name="ConsoleControlsTitle" type="Label3D" parent="FrontOfHouse/Controls"]
+[node name="ConsoleControlsTitle" type="Label3D" parent="FrontOfHouse/ControlsLabels"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.58621, 0.72445, -0.000259876)
 text = "Gamepad Controls"
 font_size = 42
 
-[node name="ConsoleControls" type="Label3D" parent="FrontOfHouse/Controls"]
+[node name="ConsoleControls" type="Label3D" parent="FrontOfHouse/ControlsLabels"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84965, 0, 0)
 text = "Left Stick
 Right Stick
@@ -320,7 +323,11 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.5, 
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.5, 0, -4.5)
 
 [node name="Jukebox" parent="FrontOfHouse" instance=ExtResource("22_j0j4u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 3.52003, -2.38419e-07, 3.91529)
+
+[node name="FrontDoor" type="MeshInstance3D" parent="FrontOfHouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 4.931)
+mesh = SubResource("BoxMesh_lw66p")
 
 [node name="BackOfHouse" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
@@ -622,6 +629,7 @@ script = ExtResource("24_7lusq")
 villager = ExtResource("24_45mvu")
 
 [node name="CustomerPath" type="Path3D" parent="VillagerSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.098598, 0, 0)
 curve = SubResource("Curve3D_gc616")
 
 [node name="CustomerPathFollow" type="PathFollow3D" parent="VillagerSpawner/CustomerPath"]
