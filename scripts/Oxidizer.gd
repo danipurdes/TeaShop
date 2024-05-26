@@ -13,6 +13,7 @@ var indicator_mat = StandardMaterial3D.new()
 
 func _ready():
 	indicator_mat = StandardMaterial3D.new()
+	updateStatusLabel("Inactive")
 
 func useItem(item):
 	if item == null:
@@ -35,11 +36,14 @@ func useItem(item):
 func startOxidizeLeaves():
 	$GreenTeaTimer.start()
 	state = "started"
+	updateStatusLabel("Working")
 
 func stopOxidizeLeaves():
 	spawnTeaBrick()
 	state = "idle"
+	updateStatusLabel("Inactive")
 	updateTeaType(Constants.ingredients.NONE)
+	$ParticleEmitter.emitting = true
 	$GreenTeaTimer.stop()
 	$BlackTeaTimer.stop()
 
@@ -59,8 +63,10 @@ func updateTeaType(new_type):
 			match tea:
 				Constants.ingredients.GREEN_TEA:
 					updateMaterial(Constants.ingredients.GREEN_TEA)
+					updateStatusLabel("Green Tea")
 				Constants.ingredients.BLACK_TEA:
 					updateMaterial(Constants.ingredients.BLACK_TEA)
+					updateStatusLabel("Black Tea")
 				_:
 					updateMaterial(Constants.ingredients.NONE)
 
@@ -76,3 +82,6 @@ func spawnTeaBrick():
 		get_node("/root/Node3D").add_child(newTeaBrick)
 		newTeaBrick.setup(tea)
 		newTeaBrick.position = $TeaBrickSpawn.global_position
+
+func updateStatusLabel(new_status):
+	$TeaLabel.text = new_status
