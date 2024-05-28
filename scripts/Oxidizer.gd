@@ -6,14 +6,14 @@ signal on_oxidize_exit
 @export var machine_type = "oxidizer"
 var tea = Constants.ingredients.NONE
 var state = "idle"
-var indicator_mat = StandardMaterial3D.new()
+@onready var indicator_mat = StandardMaterial3D.new()
 @export var idle_material: Material
 @export var started_material: Material
 @export var obj_ingredient: PackedScene
 
 func _ready():
-	indicator_mat = StandardMaterial3D.new()
 	updateStatusLabel("Inactive")
+	$IndicatorMesh.set_surface_override_material(0, idle_material)
 
 func useItem(item):
 	if item == null:
@@ -36,12 +36,11 @@ func useItem(item):
 func startOxidizeLeaves():
 	$GreenTeaTimer.start()
 	state = "started"
-	updateStatusLabel("Working")
+	updateTeaType(Constants.ingredients.NONE)
 
 func stopOxidizeLeaves():
 	spawnTeaBrick()
 	state = "idle"
-	updateStatusLabel("Inactive")
 	updateTeaType(Constants.ingredients.NONE)
 	$ParticleEmitter.emitting = true
 	$GreenTeaTimer.stop()
@@ -59,6 +58,7 @@ func updateTeaType(new_type):
 	match state:
 		"idle":
 			$IndicatorMesh.set_surface_override_material(0, idle_material)
+			updateStatusLabel("Inactive")
 		"started":
 			match tea:
 				Constants.ingredients.GREEN_TEA:
@@ -68,7 +68,8 @@ func updateTeaType(new_type):
 					updateMaterial(Constants.ingredients.BLACK_TEA)
 					updateStatusLabel("Black Tea")
 				_:
-					updateMaterial(Constants.ingredients.NONE)
+					$IndicatorMesh.set_surface_override_material(0, started_material)
+					updateStatusLabel("Working")
 
 func updateMaterial(e_ingredient):
 	indicator_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
@@ -79,8 +80,9 @@ func updateMaterial(e_ingredient):
 func spawnTeaBrick():
 	if tea != Constants.ingredients.NONE:
 		var newTeaBrick = obj_ingredient.instantiate()
+		if "tea" in newTeaBrick:
+			newTeaBrick.tea = tea
 		get_node("/root/Node3D").add_child(newTeaBrick)
-		newTeaBrick.setup(tea)
 		newTeaBrick.position = $TeaBrickSpawn.global_position
 
 func updateStatusLabel(new_status):

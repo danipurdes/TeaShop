@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://cktksm0diybw6"]
+
+[ext_resource type="Script" path="res://scripts/ingredient_dispenser.gd" id="1_irhkj"]
+[ext_resource type="PackedScene" uid="uid://bfv8t0cytyall" path="res://models/jar/jar.gltf" id="2_01qm6"]
+[ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="3_y5kbt"]
+[ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui/ui_flavor_profile.tscn" id="4_d3v5q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tl8i4"]
+size = Vector3(0.2, 0.219573, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vo47"]
+albedo_color = Color(0.513726, 0.27451, 0.529412, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4svy2"]
+material = SubResource("StandardMaterial3D_4vo47")
+size = Vector3(0.1, 0.15, 0.1)
+
+[node name="Dispenser" type="Area3D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_irhkj")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.114515, 0)
+shape = SubResource("BoxShape3D_tl8i4")
+
+[node name="IngredientAnchor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.032529, 0)
+
+[node name="IngredientMesh" type="MeshInstance3D" parent="IngredientAnchor"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.175589, 0)
+mesh = SubResource("BoxMesh_4svy2")
+skeleton = NodePath("../..")
+
+[node name="JarMesh" parent="." instance=ExtResource("2_01qm6")]
+
+[node name="Label" parent="." instance=ExtResource("3_y5kbt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.334788, 0.24327)
+billboard = 0
+
+[node name="FlavorProfileUI" parent="." instance=ExtResource("4_d3v5q")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.149788, 0.106277)

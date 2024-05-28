@@ -60,6 +60,7 @@ font_size = 18
 
 [node name="ParticleEmitter" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00224614, 0.92471, 0.00580812)
+emitting = false
 amount = 6
 lifetime = 4.0
 randomness = 0.05

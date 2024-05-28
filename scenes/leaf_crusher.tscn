@@ -24,7 +24,6 @@ omni_range = 0.055
 
 [node name="Label" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0314052, 0.889014, 0.417127)
-billboard = 1
 text = "Leaf Crusher"
 font_size = 18
 

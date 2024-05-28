@@ -7,6 +7,7 @@
 albedo_color = Color(0.368627, 0.368627, 0.368627, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhp7n"]
+albedo_color = Color(0.572549, 0.572549, 0.572549, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y2a6e"]
 
@@ -22,7 +23,7 @@ material = SubResource("StandardMaterial3D_pfg0d")
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.1
-emission_ring_radius = 0.5
+emission_ring_radius = 0.25
 emission_ring_inner_radius = 0.0
 particle_flag_align_y = true
 particle_flag_rotate_y = true

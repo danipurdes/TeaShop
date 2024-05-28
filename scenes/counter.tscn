@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://coekka8bmqu1g"]
+[gd_scene load_steps=5 format=3 uid="uid://coekka8bmqu1g"]
 
+[ext_resource type="Script" path="res://scripts/counter.gd" id="1_4m58n"]
 [ext_resource type="PackedScene" uid="uid://xw3r7wdqnlvd" path="res://models/counter/counter.gltf" id="2_l7d25"]
 [ext_resource type="PackedScene" uid="uid://cyp2xxkqqpaim" path="res://scenes/counter_hotspot.tscn" id="3_d7nvt"]
 
@@ -7,12 +8,14 @@
 size = Vector3(1, 0.95, 0.877)
 
 [node name="Counter" type="StaticBody3D"]
+script = ExtResource("1_4m58n")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46, 0.065)
 shape = SubResource("BoxShape3D_v4t41")
 
 [node name="Mesh" parent="." instance=ExtResource("2_l7d25")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="CounterHotspot" parent="." instance=ExtResource("3_d7nvt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00182, 0.0585302)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01, -0.06)

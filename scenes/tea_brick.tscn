@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/TeaBrick.gd" id="1_5kp2m"]
 [ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="2_jgook"]
-[ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui_flavor_profile.tscn" id="3_kgkc1"]
+[ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui/ui_flavor_profile.tscn" id="3_kgkc1"]
 [ext_resource type="PackedScene" uid="uid://bfv8t0cytyall" path="res://models/jar/jar.gltf" id="4_5fha6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tl8i4"]
@@ -37,10 +37,8 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Label" parent="." instance=ExtResource("2_jgook")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.328608, 0)
-
-[node name="IngredientColorLabel" parent="." instance=ExtResource("2_jgook")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.344446, 0)
-visible = false
+billboard = 0
 
 [node name="FlavorProfileUI" parent="." instance=ExtResource("3_kgkc1")]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.149788, 0.106277)
+text = "0"
