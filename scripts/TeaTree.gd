@@ -5,6 +5,8 @@ extends Node3D
 func useItem(heldItem):
 	if heldItem != null and heldItem.has_method("onUseItem") and heldItem.onUseItem(self):
 		trimLeaves()
+		return true
+	return false
 
 func trimLeaves():
 	$LeavesMesh.visible = false

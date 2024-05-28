@@ -1,6 +1,6 @@
 extends Area3D
 
-@export var item_type = "tea_brick"
+@export var item_type = "dispenser"
 @export var tea: Constants.ingredients
 var flavor_profile = FlavorProfile.new(0,0,0,0,0,0)
 var ingredientList = []
@@ -17,9 +17,10 @@ func setup(newTea):
 
 func useItem(item):
 	if item != null and item.has_method("onUseItem") and item.onUseItem(self):
-		for ingredient in item.ingredientList:
-			addIngredient(ingredient)
-		return true
+		if item.item_type == "tea_brick":
+			for ingredient in ingredientList:
+				item.addIngredient(ingredient)
+			return true
 	return false
 
 func onUseItem(pinger):
@@ -29,10 +30,6 @@ func onUseItem(pinger):
 				for ingredient in ingredientList:
 					if ingredient != Constants.ingredients.NONE:
 						pinger.addIngredient(ingredient)
-				setTea(Constants.ingredients.NONE)
-				return true
-			"teapot":
-				setTea(Constants.ingredients.NONE)
 				return true
 	return false
 
@@ -40,7 +37,7 @@ func setTea(newTeaType):
 	flavor_profile.clearFlavorProfile()
 	ingredientList.clear()
 	addIngredient(newTeaType)
-
+	
 func addIngredient(newIngredient):
 	if newIngredient in ingredientList:
 		return
@@ -67,7 +64,6 @@ func updateMaterial():
 func updateLabel():
 	$Label.text = getName()
 	$FlavorProfileUI.updateLabel(flavor_profile)
-	#$IngredientColorLabel.text = ColorUtility.ColorToString(ingredientMat.albedo_color)
 
 func ingredientListToString():
 	var output = ""
