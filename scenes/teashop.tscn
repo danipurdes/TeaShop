@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bsrcc8a30vt1p" path="res://scenes/leaf_crusher.tscn" id="18_dvgoh"]
 [ext_resource type="PackedScene" uid="uid://dx0xtqq8edqdy" path="res://scenes/crush_leaf_tray.tscn" id="19_xhmln"]
 [ext_resource type="PackedScene" uid="uid://csh63b2jdudyg" path="res://scenes/oxidizer.tscn" id="20_j8f8d"]
-[ext_resource type="PackedScene" uid="uid://bd1jkdslg77aa" path="res://scenes/leaf_basket.tscn" id="21_ysytc"]
+[ext_resource type="PackedScene" uid="uid://bgv4ci6b7766y" path="res://scenes/trashcan.tscn" id="20_ktmqg"]
 [ext_resource type="PackedScene" uid="uid://dwhkm61peqh3x" path="res://scenes/jukebox.tscn" id="22_j0j4u"]
 [ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="23_eypq5"]
 [ext_resource type="Script" path="res://scripts/VillagerSpawner.gd" id="24_7lusq"]
@@ -94,7 +94,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.402
 
 [node name="Counter_0" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2, 0, -4.5)
-spawnObj = ExtResource("16_dfbcf")
+spawnObj = ExtResource("14_x78ts")
 
 [node name="Counter_1" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -3, 0, -4.5)
@@ -102,7 +102,7 @@ spawnObj = ExtResource("12_08qgc")
 
 [node name="Counter_2" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4, 0, -4.5)
-spawnObj = ExtResource("14_x78ts")
+spawnObj = ExtResource("16_dfbcf")
 
 [node name="Counter_3" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 4, 0, -4.5)
@@ -405,7 +405,6 @@ spawnObj_2_1 = ExtResource("23_eypq5")
 
 [node name="Counter_0" parent="BackOfHouse" instance=ExtResource("10_2dvqi")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.95906, 0, 3.55236)
-spawnObj = ExtResource("21_ysytc")
 
 [node name="Counter_1" parent="BackOfHouse" instance=ExtResource("10_2dvqi")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 2.5)
@@ -546,6 +545,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.95906, 0, 1.80236)
 
 [node name="TeaTree4" parent="BackOfHouse" instance=ExtResource("17_afmcm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.95906, 0, 1.05236)
+
+[node name="Trashcan" parent="BackOfHouse" instance=ExtResource("20_ktmqg")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.8156, 0, 4.67613)
 
 [node name="Hallway" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
