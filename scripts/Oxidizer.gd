@@ -4,14 +4,17 @@ signal on_oxidize_enter
 signal on_oxidize_exit
 
 @export var machine_type = "oxidizer"
-var tea = Constants.ingredients.NONE
-var state = "idle"
-@onready var indicator_mat = StandardMaterial3D.new()
 @export var idle_material: Material
 @export var started_material: Material
 @export var obj_ingredient: PackedScene
 @export var greenStyle:StyleBoxFlat
 @export var blackStyle:StyleBoxFlat
+
+@onready var indicator_mat = StandardMaterial3D.new()
+
+var tea = Constants.ingredients.NONE
+var state = "idle"
+var currentItem = null
 
 func _ready():
 	updateStatusLabel("Inactive")
@@ -35,7 +38,7 @@ func useItem(item):
 						stopOxidizeLeaves()
 						return true
 		return false
-	elif item.has_method("onUseItem") and item.onUseItem(self):
+	elif currentItem == null and item.has_method("onUseItem") and item.onUseItem(self):
 		if "item_type" in item and item.item_type == "leaf_tray":
 			startOxidizeLeaves()
 			return true
@@ -94,8 +97,15 @@ func spawnTeaBrick():
 		var newTeaBrick = obj_ingredient.instantiate()
 		if "tea" in newTeaBrick:
 			newTeaBrick.tea = tea
-		get_node("/root/Node3D").add_child(newTeaBrick)
 		newTeaBrick.position = $TeaBrickSpawn.global_position
+		currentItem = newTeaBrick
+		newTeaBrick.obj_attached_to = self
+		get_node("/root/Node3D").add_child(newTeaBrick)
+		
+
+func takeItem():
+	currentItem.obj_attached_to = null
+	currentItem = null
 
 func updateStatusLabel(new_status):
 	$TeaLabel.text = new_status
