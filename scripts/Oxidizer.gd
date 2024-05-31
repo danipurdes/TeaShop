@@ -17,7 +17,7 @@ func _ready():
 	updateStatusLabel("Inactive")
 	$IndicatorMesh.set_surface_override_material(0, idle_material)
 
-func _process(delta):
+func _process(_delta):
 	if !$GreenTeaTimer.is_stopped():
 		$SubViewport/CanvasLayer/ProgressBar.value = $SubViewport/CanvasLayer/ProgressBar.max_value * (1 - ($GreenTeaTimer.time_left / $GreenTeaTimer.wait_time))
 	elif !$BlackTeaTimer.is_stopped():
