@@ -10,10 +10,18 @@ var state = "idle"
 @export var idle_material: Material
 @export var started_material: Material
 @export var obj_ingredient: PackedScene
+@export var greenStyle:StyleBoxFlat
+@export var blackStyle:StyleBoxFlat
 
 func _ready():
 	updateStatusLabel("Inactive")
 	$IndicatorMesh.set_surface_override_material(0, idle_material)
+
+func _process(delta):
+	if !$GreenTeaTimer.is_stopped():
+		$SubViewport/CanvasLayer/ProgressBar.value = $SubViewport/CanvasLayer/ProgressBar.max_value * (1 - ($GreenTeaTimer.time_left / $GreenTeaTimer.wait_time))
+	elif !$BlackTeaTimer.is_stopped():
+		$SubViewport/CanvasLayer/ProgressBar.value = $SubViewport/CanvasLayer/ProgressBar.max_value * (1 - ($BlackTeaTimer.time_left / $BlackTeaTimer.wait_time))
 
 func useItem(item):
 	if item == null:
@@ -37,6 +45,7 @@ func startOxidizeLeaves():
 	$GreenTeaTimer.start()
 	state = "started"
 	updateTeaType(Constants.ingredients.NONE)
+	$SubViewport/CanvasLayer/ProgressBar.add_theme_stylebox_override("fill", greenStyle)
 
 func stopOxidizeLeaves():
 	spawnTeaBrick()
@@ -45,13 +54,16 @@ func stopOxidizeLeaves():
 	$ParticleEmitter.emitting = true
 	$GreenTeaTimer.stop()
 	$BlackTeaTimer.stop()
+	$SubViewport/CanvasLayer/ProgressBar.value = $SubViewport/CanvasLayer/ProgressBar.min_value
 
 func _on_green_tea_timer_timeout():
 	updateTeaType(Constants.ingredients.GREEN_TEA)
 	$BlackTeaTimer.start()
+	$SubViewport/CanvasLayer/ProgressBar.add_theme_stylebox_override("fill", blackStyle)
 
 func _on_black_tea_timer_timeout():
 	updateTeaType(Constants.ingredients.BLACK_TEA)
+	$SubViewport/CanvasLayer/ProgressBar.value = $SubViewport/CanvasLayer/ProgressBar.max_value
 
 func updateTeaType(new_type):
 	tea = new_type

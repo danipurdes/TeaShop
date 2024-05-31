@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://csh63b2jdudyg"]
+[gd_scene load_steps=20 format=3 uid="uid://csh63b2jdudyg"]
 
 [ext_resource type="Script" path="res://scripts/Oxidizer.gd" id="1_iuc1u"]
 [ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="2_55n5q"]
@@ -8,6 +8,12 @@ albedo_color = Color(0.368627, 0.368627, 0.368627, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhp7n"]
 albedo_color = Color(0.572549, 0.572549, 0.572549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1w6ya"]
+bg_color = Color(0.0705882, 0.278431, 0.0941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhkah"]
+bg_color = Color(0.333333, 0.0588235, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y2a6e"]
 
@@ -56,11 +62,26 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_pqxyu")
 size = Vector2(0.05, 0.05)
 
+[sub_resource type="QuadMesh" id="QuadMesh_16arv"]
+size = Vector2(0.6, 0.09)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pcvea"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0b6os"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_pcvea")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ljbvb"]
+bg_color = Color(0.972549, 0.972549, 0.972549, 1)
+
 [node name="Oxidizer" type="StaticBody3D"]
 script = ExtResource("1_iuc1u")
 idle_material = SubResource("StandardMaterial3D_fvmw3")
 started_material = SubResource("StandardMaterial3D_vhp7n")
 obj_ingredient = ExtResource("2_55n5q")
+greenStyle = SubResource("StyleBoxFlat_1w6ya")
+blackStyle = SubResource("StyleBoxFlat_rhkah")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -72,7 +93,7 @@ mesh = SubResource("BoxMesh_rqnee")
 skeleton = NodePath("../..")
 
 [node name="IndicatorMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.7, 0, 0, 0, 0.5, 0, 0, 0, 0.319855, 0, 0.5, 0.384797)
+transform = Transform3D(0.7, 0, 0, 0, 0.5, 0, 0, 0, 0.319855, 0, 0.400111, 0.384797)
 mesh = SubResource("BoxMesh_nhapk")
 skeleton = NodePath("../..")
 
@@ -85,7 +106,7 @@ text = "Oxidizer"
 font_size = 18
 
 [node name="TeaLabel" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.517669, 0.587407)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41778, 0.587407)
 text = "Inactive"
 font_size = 14
 outline_size = 7
@@ -103,10 +124,31 @@ process_material = SubResource("ParticleProcessMaterial_pc506")
 draw_pass_1 = SubResource("QuadMesh_m3qi8")
 
 [node name="GreenTeaTimer" type="Timer" parent="."]
+wait_time = 3.0
 one_shot = true
 
 [node name="BlackTeaTimer" type="Timer" parent="."]
+wait_time = 3.0
 one_shot = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0217283, 0.734367, 0.527411)
+mesh = SubResource("QuadMesh_16arv")
+surface_material_override/0 = SubResource("StandardMaterial3D_0b6os")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(250, 27)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewport"]
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport/CanvasLayer"]
+offset_right = 250.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 19
+theme_override_styles/background = SubResource("StyleBoxFlat_ljbvb")
+step = 5.0
+rounded = true
+show_percentage = false
 
 [connection signal="timeout" from="GreenTeaTimer" to="." method="_on_green_tea_timer_timeout"]
 [connection signal="timeout" from="BlackTeaTimer" to="." method="_on_black_tea_timer_timeout"]
