@@ -532,10 +532,6 @@ transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.323598
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.95587, 2.38419e-07, -1.37729)
 obj_leaf_tray = ExtResource("19_xhmln")
 
-[node name="LeafCrusher2" parent="BackOfHouse" instance=ExtResource("18_dvgoh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7939, 0, -1.36779)
-obj_leaf_tray = ExtResource("19_xhmln")
-
 [node name="TeaTree" parent="BackOfHouse" instance=ExtResource("17_afmcm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.95906, 0, 0.3024)
 
