@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgv4ci6b7766y"]
+
+[ext_resource type="Script" path="res://scripts/Trashcan.gd" id="1_dqw1p"]
+[ext_resource type="PackedScene" uid="uid://dhhpkmosbqay4" path="res://models/recycling_bin/recycling_bin.gltf" id="3_n5ue6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v4t41"]
+size = Vector3(0.779379, 0.661954, 0.552434)
+
+[node name="Trashcan" type="StaticBody3D"]
+collision_layer = 5
+collision_mask = 0
+script = ExtResource("1_dqw1p")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.316186, 0.00680953)
+shape = SubResource("BoxShape3D_v4t41")
+
+[node name="Mesh" parent="." instance=ExtResource("3_n5ue6")]
