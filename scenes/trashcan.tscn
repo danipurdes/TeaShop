@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgv4ci6b7766y"]
+[gd_scene load_steps=4 format=3 uid="uid://x4ovft2pp4qq"]
 
 [ext_resource type="Script" path="res://scripts/Trashcan.gd" id="1_dqw1p"]
 [ext_resource type="PackedScene" uid="uid://dhhpkmosbqay4" path="res://models/recycling_bin/recycling_bin.gltf" id="3_n5ue6"]
