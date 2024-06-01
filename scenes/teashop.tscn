@@ -426,6 +426,9 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 2, 0, 4.
 spawnObj = ExtResource("25_skjjp")
 teaType = 5
 
+[node name="Counter" parent="BackOfHouse" instance=ExtResource("10_2dvqi")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.07247, 0, -1.5051)
+
 [node name="Walls" type="Node3D" parent="BackOfHouse"]
 
 [node name="Wall_5" parent="BackOfHouse/Walls" instance=ExtResource("13_t0x17")]
@@ -593,6 +596,3 @@ process_mode = 4
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.62288, 0, 2.53979)
 visible = false
 wall_min_slide_angle = 0.0174533
-
-[node name="Counter" parent="." instance=ExtResource("10_2dvqi")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4.07247, 0, -12.5051)
