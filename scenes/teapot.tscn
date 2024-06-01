@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="2_bt26d"]
 [ext_resource type="PackedScene" uid="uid://bxwivjh2jw6l" path="res://models/teapot/teapot.gltf" id="2_eqqhy"]
 [ext_resource type="PackedScene" uid="uid://bnb40a5ffpesj" path="res://scenes/steam.tscn" id="2_p1ks0"]
-[ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui_flavor_profile.tscn" id="3_usbfy"]
+[ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui/ui_flavor_profile.tscn" id="3_usbfy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_na1qy"]
 radius = 0.25

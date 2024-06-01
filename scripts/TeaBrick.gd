@@ -1,14 +1,18 @@
 extends Area3D
 
+signal state_changed
+
 @export var item_type = "tea_brick"
 @export var tea: Constants.ingredients
 var flavor_profile = FlavorProfile.new(0,0,0,0,0,0)
 var ingredientList = []
 var ingredientMat = StandardMaterial3D.new()
 var obj_attached_to = null
+var albedo = Color.WHITE
 
 func _ready():
 	ingredientMat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
+	state_changed.connect(updateLabel)
 	if tea != null:
 		setup(tea)
 
@@ -31,7 +35,10 @@ func onUseItem(pinger):
 						pinger.addIngredient(ingredient)
 				setTea(Constants.ingredients.NONE)
 				return true
+			"dispenser":
+				return true
 			"teapot":
+				pinger.ingredientList = ingredientList
 				setTea(Constants.ingredients.NONE)
 				return true
 	return false
@@ -40,17 +47,16 @@ func setTea(newTeaType):
 	flavor_profile.clearFlavorProfile()
 	ingredientList.clear()
 	addIngredient(newTeaType)
+	state_changed.emit(getName())
 
 func addIngredient(newIngredient):
-	if newIngredient in ingredientList:
-		return
 	if ingredientList.size() == 1 and ingredientList[0] == Constants.ingredients.NONE:
 		ingredientList.clear()
 	if newIngredient != Constants.ingredients.NONE:
 		flavor_profile.addIngredient(newIngredient)
 		ingredientList.append(newIngredient)
 	updateMaterial()
-	updateLabel()
+	state_changed.emit(getName())
 
 func updateMaterial():
 	if ingredientList.size() > 0:
@@ -59,15 +65,16 @@ func updateMaterial():
 			if ingredient != Constants.ingredients.NONE:
 				color_list.append(Constants.ingredientColorMap[ingredient])
 		ingredientMat.albedo_color = ColorUtility.BlendColorList(color_list)
+		albedo = ingredientMat.albedo_color
 		$IngredientAnchor/IngredientMesh.set_surface_override_material(0, ingredientMat)
 	else:
 		ingredientMat.albedo_color = Constants.ingredientColorMap[Constants.ingredients.NONE]
+		albedo = ingredientMat.albedo_color
 		$IngredientAnchor/IngredientMesh.set_surface_override_material(0, ingredientMat)
 
-func updateLabel():
-	$Label.text = getName()
+func updateLabel(new_label_text):
+	$Label.text = new_label_text
 	$FlavorProfileUI.updateLabel(flavor_profile)
-	#$IngredientColorLabel.text = ColorUtility.ColorToString(ingredientMat.albedo_color)
 
 func ingredientListToString():
 	var output = ""

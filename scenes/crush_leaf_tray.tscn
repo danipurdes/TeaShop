@@ -20,7 +20,8 @@ shape = SubResource("BoxShape3D_le54r")
 [node name="tray" parent="." instance=ExtResource("2_0ubst")]
 
 [node name="Label" parent="." instance=ExtResource("3_a75ut")]
-text = "Crushed Leafs"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.412447, 0)
+text = "Crushed Tea Leaves"
 
 [node name="IngredientMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.129569, 0)

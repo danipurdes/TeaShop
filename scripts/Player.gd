@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-signal changeHeldItem(itemName)
+signal held_item_changed(itemName)
 signal changeUseLabel(label)
 
 var raycastEvent
@@ -56,7 +56,7 @@ func _physics_process(delta):
 			elif collider.has_method("useItem") and collider.useItem(heldItem):
 				$UseBoop.play()
 				if (heldItem != null):
-					changeHeldItem.emit(heldItem.getName())
+					held_item_changed.emit(heldItem.getName())
 			else:
 				$BadBoop.play()
 	
@@ -111,13 +111,14 @@ func attemptPickup(item):
 
 func updateHeldItem(item):
 	heldItem = item
+	heldItem.state_changed.connect(updateHeldItemLabel)
 	heldItem.monitoring = false
 	heldItem.monitorable = false
 	if "obj_attached_to" in item:
 		if item.obj_attached_to != null and item.obj_attached_to.has_method("takeItem"):
 			item.obj_attached_to.takeItem()
 	if heldItem.has_method("getName"):
-		changeHeldItem.emit(heldItem.getName())
+		held_item_changed.emit(heldItem.getName())
 
 func requestDropHeldItem(dropRequestor):
 	if heldItem != null:
@@ -129,17 +130,22 @@ func dropHeldItem(dropRequestor):
 	heldItem.monitoring = true
 	heldItem.monitorable = true
 	heldItem.position = dropRequestor.global_position
+	heldItem.state_changed.disconnect(updateHeldItemLabel)
 	heldItem = null
-	changeHeldItem.emit("none")
+	updateHeldItemLabel("none")
 	return oldHeldItem
 
 func destroyHeldItem():
+	heldItem.state_changed.disconnect(updateHeldItemLabel)
 	heldItem.queue_free()
 	heldItem = null
-	changeHeldItem.emit("none")
+	updateHeldItemLabel("none")
 
 func getHeldItem():
 	return heldItem
+
+func updateHeldItemLabel(held_item_name):
+	held_item_changed.emit(held_item_name)
 
 func setUseLabel(collider):
 	var resultCollider = collider

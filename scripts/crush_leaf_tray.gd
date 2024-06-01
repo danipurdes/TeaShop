@@ -1,5 +1,7 @@
 extends Area3D
 
+signal state_changed
+
 @export var item_type = "leaf_tray"
 var obj_attached_to = null
 var flavor_profile = FlavorProfile.new(0,0,0,0,0,0)
@@ -26,7 +28,7 @@ func addIngredient(newIngredient):
 		flavor_profile.addIngredient(newIngredient)
 		ingredientList.append(newIngredient)
 	updateMaterial()
-	updateLabel()
+	#updateLabel()
 
 func updateMaterial():
 	if ingredientList.size() > 0:
@@ -40,8 +42,8 @@ func updateMaterial():
 		ingredientMat.albedo_color = Constants.ingredientColorMap[Constants.ingredients.NONE]
 		$IngredientMesh.set_surface_override_material(0, ingredientMat)
 
-func updateLabel():
-	$Label.text = getName()
+func updateLabel(new_label_text):
+	$Label.text = new_label_text
 
 func ingredientListToString():
 	var output = ""

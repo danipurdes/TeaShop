@@ -1,12 +1,15 @@
 extends Area3D
 
+signal state_changed
+
 @export var item_type = "basket"
 @export var leaf_count = 0
 @export var leaf_count_max = 5
 var obj_attached_to = null
 
 func _ready():
-	updateLabel()
+	updateLabel(getName())
+	state_changed.connect(updateLabel)
 	
 func onUseItem(itemToUseOn):
 	if "machine_type" in itemToUseOn and itemToUseOn.machine_type == "tea_tree":
@@ -19,12 +22,12 @@ func tryUpdateLeafCount(deltaLeaf):
 	var newLeafCount = leaf_count + deltaLeaf
 	if newLeafCount <= leaf_count_max and newLeafCount >= 0:
 		leaf_count = newLeafCount
-		updateLabel()
+		state_changed.emit(getName())
 		return true
 	return false
 
 func getName():
 	return str(leaf_count)
 
-func updateLabel():
-	$Label.text = getName()
+func updateLabel(new_label_text):
+	$Label.text = new_label_text
