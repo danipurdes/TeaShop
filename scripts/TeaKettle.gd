@@ -1,12 +1,11 @@
 extends Area3D
 
-signal state_changed
+signal state_changed(state_text)
 
 @export var item_type = "teakettle"
 @export var state = "empty"
 var obj_attached_to = null
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	updateLabel(getName())
 	state_changed.connect(updateLabel)
@@ -36,7 +35,6 @@ func onUseStove():
 
 func updateState(newState):
 	state = newState
-	print_debug(state)
 	$Steam.emitting = newState == "hot_water"
 	state_changed.emit(getName())
 

@@ -1,6 +1,6 @@
 extends Area3D
 
-signal state_changed
+signal state_changed(state_text)
 
 @export var item_type = "dispenser"
 @export var tea: Constants.ingredients

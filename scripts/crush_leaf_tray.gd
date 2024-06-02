@@ -1,6 +1,6 @@
 extends Area3D
 
-signal state_changed
+signal state_changed(state_text)
 
 @export var item_type = "leaf_tray"
 var obj_attached_to = null

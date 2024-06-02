@@ -1,6 +1,6 @@
 extends Area3D
 
-signal state_changed
+signal state_changed(state_text)
 
 @export var item_type = "tea_brick"
 @export var tea: Constants.ingredients
@@ -8,7 +8,6 @@ var flavor_profile = FlavorProfile.new(0,0,0,0,0,0)
 var ingredientList = []
 var ingredientMat = StandardMaterial3D.new()
 var obj_attached_to = null
-var albedo = Color.WHITE
 
 func _ready():
 	ingredientMat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
@@ -65,11 +64,9 @@ func updateMaterial():
 			if ingredient != Constants.ingredients.NONE:
 				color_list.append(Constants.ingredientColorMap[ingredient])
 		ingredientMat.albedo_color = ColorUtility.BlendColorList(color_list)
-		albedo = ingredientMat.albedo_color
 		$IngredientAnchor/IngredientMesh.set_surface_override_material(0, ingredientMat)
 	else:
 		ingredientMat.albedo_color = Constants.ingredientColorMap[Constants.ingredients.NONE]
-		albedo = ingredientMat.albedo_color
 		$IngredientAnchor/IngredientMesh.set_surface_override_material(0, ingredientMat)
 
 func updateLabel(new_label_text):

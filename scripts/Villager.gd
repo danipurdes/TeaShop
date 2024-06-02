@@ -41,14 +41,33 @@ func useItem(item):
 	match state:
 		"waiting":
 			if item != null and item.item_type == "teacup":
-				get_node("/root/Node3D/Player").destroyHeldItem()
-				orderFlavor.clearFlavorProfile()
-				order_served.emit()
-				$FlavorProfileUI.updateLabel(orderFlavor)
-				$villager/AnimationPlayer.play("sip")
+				if item.flavor_profile.getFlavorMagnitude() > 0:
+					displayPerformanceRating(orderFlavor.compareFlavorProfiles(item.flavor_profile))
+					item.flavor_profile.clearFlavorProfile()
+					item.ingredientList.clear()
+					item.updateState("dirty")
+					orderFlavor.clearFlavorProfile()
+					order_served.emit()
+					$FlavorProfileUI.updateLabel(orderFlavor)
+					$villager/AnimationPlayer.play("sip")
+					return true
 			elif $villager/AnimationPlayer.get_queue().size() == 0:
 				$villager/AnimationPlayer.play("wave")
 				$villager/AnimationPlayer.queue("idle")
+
+func displayPerformanceRating(rating):
+	$PerformanceLabel.visible = true
+	match rating:
+		0:
+			$PerformanceLabel.text = "Perfect!"
+		1:
+			$PerformanceLabel.text = "Great"
+		2:
+			$PerformanceLabel.text = "Good"
+		3:
+			$PerformanceLabel.text = "Okay"
+		_:
+			$PerformanceLabel.text = ":("
 
 func setState(newState):
 	state = newState
@@ -59,10 +78,26 @@ func generateOrder():
 	var fruity = randi_range(0, 2)
 	var earthy = randi_range(0, 2)
 	var smoky = randi_range(0, 2)
-	var caffeine = randi_range(0, 2)
-	return FlavorProfile.new(grassy, floral, fruity, earthy, smoky, caffeine)
+	var order = FlavorProfile.new(grassy, floral, fruity, earthy, smoky, 0)
+	
+	#Verify that the order isn't all zeroes
+	if order.getFlavorMagnitude() == 0:
+		var flavorIndex = randi_range(0, 4)
+		match flavorIndex:
+			0:
+				order.grassy = 1
+			1:
+				order.floral = 1
+			2:
+				order.fruity = 1
+			3:
+				order.earthy = 1
+			4:
+				order.smoky = 1
+	return order
 
 func _on_sip_anim_finished(anim_name):
 	if anim_name == "sip":
 		state = "leaving"
 		$villager/AnimationPlayer.play("walk")
+		$PerformanceLabel.visible = false
