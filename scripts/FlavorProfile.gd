@@ -51,6 +51,23 @@ func clearFlavorProfile():
 	smoky = 0
 	caffeine = 0
 
+func getFlavorMagnitude():
+	return grassy + floral + fruity + earthy + smoky + caffeine
+
+func compareFlavorProfiles(flavor_profile):
+	var source_flavors = toArray()
+	var input_flavors = flavor_profile.toArray()
+	print_debug(source_flavors)
+	print_debug(input_flavors)
+	var total_delta = 0
+	
+	for index in source_flavors.size():
+		print_debug(str(input_flavors[index] - source_flavors[index]))
+		total_delta += absi(input_flavors[index] - source_flavors[index])
+	
+	print_debug(str(total_delta))
+	return total_delta
+
 func _to_string():
 	return "grassy: " + str(grassy) + "\n" + "floral: " + str(floral) + "\n" + "fruity: " + str(fruity) + "\n" + "earthy: " + str(earthy) + "\n" + "smoky: " + str(smoky)
 

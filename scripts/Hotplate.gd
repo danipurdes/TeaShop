@@ -2,7 +2,7 @@ extends Area3D
 
 class_name Hotplate
 
-signal state_changed
+signal state_changed(state_text)
 
 var item_type = "hotplate"
 var machine_type = "hotplate"
