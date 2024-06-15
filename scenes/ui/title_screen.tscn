@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwf5qhy3mea04"]
+[gd_scene load_steps=6 format=3 uid="uid://bwf5qhy3mea04"]
 
 [ext_resource type="Script" path="res://scripts/ui/title_screen.gd" id="1_423lg"]
 [ext_resource type="Theme" uid="uid://sfwgouipwfat" path="res://materials/title_screen/ui_theme.tres" id="3_0u31j"]
 [ext_resource type="LabelSettings" uid="uid://bf1tn2pcvvkuk" path="res://materials/ui/game_ui_label.tres" id="3_1jgy5"]
+[ext_resource type="FontFile" uid="uid://baxs7rd4oi47n" path="res://fonts/Typodermic/Blue Highway Bd.otf" id="3_n15i3"]
 
 [sub_resource type="Theme" id="Theme_1mc46"]
 
@@ -35,6 +36,7 @@ theme_override_constants/separation = 70
 layout_mode = 2
 theme = ExtResource("3_0u31j")
 theme_type_variation = &"ui_header"
+theme_override_fonts/font = ExtResource("3_n15i3")
 text = "Tea Time"
 horizontal_alignment = 1
 vertical_alignment = 1
