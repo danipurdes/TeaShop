@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwhkm61peqh3x"]
+[gd_scene load_steps=10 format=3 uid="uid://dwhkm61peqh3x"]
 
 [ext_resource type="Script" path="res://scripts/Jukebox.gd" id="1_iunwr"]
 [ext_resource type="AudioStream" uid="uid://dk7p3uur283wf" path="res://audio/dreamy-jazz-slow-background-jazz-music-piano-and-seattle-strings-9998.mp3" id="2_jqkjs"]
 [ext_resource type="Texture2D" uid="uid://dbs778b4q00h5" path="res://textures/Icons/Music/music note.png" id="3_j4a46"]
+[ext_resource type="PackedScene" uid="uid://e5p7vq810f85" path="res://models/kenney_furniture/radio.glb" id="4_8lrsi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_idfoq"]
+size = Vector3(0.797612, 0.567673, 0.370234)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dgeip"]
 
@@ -37,11 +39,12 @@ collision_mask = 0
 script = ExtResource("1_iunwr")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27717, 0)
 shape = SubResource("BoxShape3D_idfoq")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
 mesh = SubResource("BoxMesh_dgeip")
 skeleton = NodePath("../../..")
 
@@ -55,11 +58,12 @@ panning_strength = 0.16
 
 [node name="Label" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.807521, 0.561925)
+visible = false
 text = "Jukebox"
 font_size = 18
 
 [node name="ParticleEmitter" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00224614, 0.92471, 0.00580812)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00224614, 0.54896, 0.00580812)
 emitting = false
 amount = 6
 lifetime = 4.0
@@ -68,3 +72,6 @@ visibility_aabb = AABB(-0.5, 0, -0.5, 1, 1, 1)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_3t3nr")
 draw_pass_1 = SubResource("QuadMesh_qtoft")
+
+[node name="radio" parent="." instance=ExtResource("4_8lrsi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.356037, 0, 0.116076)

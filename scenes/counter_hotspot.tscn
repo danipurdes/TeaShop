@@ -6,7 +6,6 @@
 size = Vector3(1, 0.06, 0.9)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_okcd7"]
-transparency = 1
 albedo_color = Color(0.568627, 0.568627, 0.568627, 0.835294)
 
 [sub_resource type="QuadMesh" id="QuadMesh_8jqmx"]
