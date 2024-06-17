@@ -29,6 +29,7 @@ func startJukebox():
 
 func resumeJukebox(song_id):
 	$ChillHopBeatsToStudyTo.play(song_id)
+	$ParticleEmitter.emitting = true
 
 func stopJukebox():
 	$ChillHopBeatsToStudyTo.stop()

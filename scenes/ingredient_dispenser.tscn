@@ -28,7 +28,7 @@ collision_mask = 0
 script = ExtResource("1_irhkj")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.114515, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.227634, 0)
 shape = SubResource("BoxShape3D_tl8i4")
 
 [node name="IngredientAnchor" type="Marker3D" parent="."]

@@ -13,6 +13,7 @@ data = {
 resource_name = "0"
 image = SubResource("Image_eo8ir")
 
+
 [resource]
 resource_name = "material_0"
 transparency = 1
