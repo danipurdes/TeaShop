@@ -74,4 +74,4 @@ func ingredientListToString():
 	return output
 
 func getName():
-	return ingredientListToString() + " dispenser"
+	return ingredientListToString() # + " dispenser"
