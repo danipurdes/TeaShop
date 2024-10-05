@@ -6,12 +6,11 @@
 [ext_resource type="Theme" uid="uid://sfwgouipwfat" path="res://materials/title_screen/ui_theme.tres" id="2_ua8xs"]
 [ext_resource type="Texture2D" uid="uid://cewms27xqcspa" path="res://textures/Cursors/cursor_dot.png" id="3_8mlbq"]
 [ext_resource type="LabelSettings" uid="uid://bf1tn2pcvvkuk" path="res://materials/ui/game_ui_label.tres" id="3_ynf5c"]
-[ext_resource type="FontFile" uid="uid://rg8ct0dvcjum" path="res://textures/Icons/flavor_font_small.png" id="6_qjowq"]
+[ext_resource type="FontFile" uid="uid://bhlbbijborftp" path="res://textures/Icons/flavor_font.png" id="6_61mo5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_803om"]
-line_spacing = 0.0
-font = ExtResource("6_qjowq")
-font_size = 1
+font = ExtResource("6_61mo5")
+font_size = 71
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 

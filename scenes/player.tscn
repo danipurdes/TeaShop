@@ -1,14 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1rahx0q1ssql"]
+[gd_scene load_steps=8 format=3 uid="uid://d1rahx0q1ssql"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_uuksy"]
 [ext_resource type="Script" path="res://scripts/FPSCamera.gd" id="2_dex55"]
 [ext_resource type="AudioStream" uid="uid://dk1sp0y2gnma6" path="res://audio/use_boop.wav" id="3_1t64u"]
 [ext_resource type="AudioStream" uid="uid://ckmidbwkf2ebo" path="res://audio/ping_boop.wav" id="4_nn7tp"]
 [ext_resource type="AudioStream" uid="uid://blnsneoyfocv6" path="res://audio/bad_boop.wav" id="5_2vhij"]
-
-[sub_resource type="Environment" id="Environment_ib77m"]
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 3.47
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wmkwk"]
 
@@ -23,7 +19,6 @@ script = ExtResource("1_uuksy")
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.772831, -0.376024)
-environment = SubResource("Environment_ib77m")
 fov = 90.0
 script = ExtResource("2_dex55")
 
