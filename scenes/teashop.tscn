@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=45 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
 [ext_resource type="Script" path="res://scripts/ui/GameHUD.gd" id="2_my5ie"]
@@ -28,8 +28,6 @@
 [ext_resource type="PackedScene" uid="uid://chsul67mlkc5v" path="res://scenes/villager.tscn" id="24_45mvu"]
 [ext_resource type="PackedScene" uid="uid://cktksm0diybw6" path="res://scenes/ingredient_dispenser.tscn" id="25_skjjp"]
 [ext_resource type="Texture2D" uid="uid://bar2pggapk80h" path="res://textures/Prototype Textures/Light/texture_07.png" id="26_co10q"]
-[ext_resource type="PackedScene" uid="uid://blhvleevy13gu" path="res://models/kenney_furniture/kitchenSink.glb" id="28_ixlif"]
-[ext_resource type="PackedScene" uid="uid://dtvcduihsut1a" path="res://models/kenney_furniture/kitchenCabinet.glb" id="29_r5c3w"]
 [ext_resource type="PackedScene" uid="uid://gq08pfsykjs6" path="res://models/kenney_furniture/loungeChair.glb" id="30_u2onu"]
 [ext_resource type="PackedScene" uid="uid://doj3ribswgrdf" path="res://models/kenney_furniture/pottedPlant.glb" id="32_xs1eb"]
 [ext_resource type="PackedScene" uid="uid://gdsnl46hqnxp" path="res://models/kenney_furniture/rugDoormat.glb" id="33_ef34f"]
@@ -101,62 +99,6 @@ script = ExtResource("2_my5ie")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.402957, 1, -3.12363)
 
 [node name="FrontOfHouse" type="Node3D" parent="."]
-
-[node name="Counter_0" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2, 0, -4.5)
-spawnObj = ExtResource("14_x78ts")
-
-[node name="Counter_1" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -3, 0, -4.5)
-spawnObj = ExtResource("12_08qgc")
-
-[node name="Counter_2" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4, 0, -4.5)
-spawnObj = ExtResource("16_dfbcf")
-
-[node name="Counter_3" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 4, 0, -4.5)
-spawnObj = ExtResource("15_vslto")
-
-[node name="Counter_4" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 3, 0, -4.5)
-spawnObj = ExtResource("15_vslto")
-
-[node name="Counter_5" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 2, 0, -4.5)
-spawnObj = ExtResource("15_vslto")
-
-[node name="Counter_6" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 1, 0, -4.5)
-spawnObj = ExtResource("15_vslto")
-
-[node name="Counter_7" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, -5, 0, -1.5)
-
-[node name="Counter_8" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, -4, 0, -1.5)
-
-[node name="Counter_9" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, -3, 0, -1.5)
-
-[node name="Counter_10" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, -2, 0, -1.5)
-
-[node name="Counter_11" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, -1, 0, -1.5)
-
-[node name="Counter_12" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, 0, 0, -1.5)
-
-[node name="Counter_13" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, 3, 0, -1.5)
-
-[node name="Counter_14" parent="FrontOfHouse" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, 4, 0, -1.5)
-
-[node name="Sink" parent="FrontOfHouse" instance=ExtResource("11_45m4w")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5, 0, -4.5)
-visible = false
 
 [node name="TeaMakingLabel" type="Label3D" parent="FrontOfHouse"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.47192, 1.72596, -3.05261)
@@ -367,52 +309,99 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.5, 
 [node name="Jukebox" parent="FrontOfHouse" instance=ExtResource("22_j0j4u")]
 transform = Transform3D(-0.610187, 0, -0.792258, 0, 1, 0, 0.792258, 0, -0.610187, 3.63094, 0.856185, 4.03183)
 
-[node name="kitchenSink" parent="FrontOfHouse" instance=ExtResource("28_ixlif")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.50259, 0, -3.93617)
+[node name="Counters" type="Node3D" parent="FrontOfHouse"]
 
-[node name="kitchenCabinet" parent="FrontOfHouse" instance=ExtResource("29_r5c3w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.50172, -1.19209e-07, -3.9365)
+[node name="Counter_0" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2, 0, -4.5)
+spawnObj = ExtResource("14_x78ts")
 
-[node name="kitchenCabinet2" parent="FrontOfHouse" instance=ExtResource("29_r5c3w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.50609, 0, -3.93731)
+[node name="Counter_1" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -3, 0, -4.5)
+spawnObj = ExtResource("12_08qgc")
 
-[node name="kitchenCabinet3" parent="FrontOfHouse" instance=ExtResource("29_r5c3w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49887, 0, -3.93731)
+[node name="Counter_2" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4, 0, -4.5)
+spawnObj = ExtResource("16_dfbcf")
 
-[node name="loungeChair" parent="FrontOfHouse" instance=ExtResource("30_u2onu")]
+[node name="Counter_3" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 4, 0, -4.5)
+spawnObj = ExtResource("15_vslto")
+
+[node name="Counter_4" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 3, 0, -4.5)
+spawnObj = ExtResource("15_vslto")
+
+[node name="Counter_5" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 2, 0, -4.5)
+spawnObj = ExtResource("15_vslto")
+
+[node name="Counter_6" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 1, 0, -4.5)
+spawnObj = ExtResource("15_vslto")
+
+[node name="Counter_7" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
+transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, -5, 0, -1.5)
+
+[node name="Counter_8" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
+transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, -4, 0, -1.5)
+
+[node name="Counter_9" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
+transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, -3, 0, -1.5)
+
+[node name="Counter_10" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
+transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, -2, 0, -1.5)
+
+[node name="Counter_11" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
+transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, -1, 0, -1.5)
+
+[node name="Counter_12" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
+transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, 0, 0, -1.5)
+
+[node name="Counter_13" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
+transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, 3, 0, -1.5)
+
+[node name="Counter_14" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
+transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, 4, 0, -1.5)
+
+[node name="Sink" parent="FrontOfHouse/Counters" instance=ExtResource("11_45m4w")]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -5, 0, -4.5)
+
+[node name="Props" type="Node3D" parent="FrontOfHouse"]
+
+[node name="loungeChair" parent="FrontOfHouse/Props" instance=ExtResource("30_u2onu")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.5554, 0, 3.86432)
 
-[node name="pottedPlant" parent="FrontOfHouse" instance=ExtResource("32_xs1eb")]
+[node name="pottedPlant" parent="FrontOfHouse/Props" instance=ExtResource("32_xs1eb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.03777, -2.38419e-07, 3.15956)
 
-[node name="rugDoormat" parent="FrontOfHouse" instance=ExtResource("33_ef34f")]
+[node name="rugDoormat" parent="FrontOfHouse/Props" instance=ExtResource("33_ef34f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.49613, 0, 4.76555)
 
-[node name="stoolBar" parent="FrontOfHouse" instance=ExtResource("34_wktdc")]
+[node name="stoolBar" parent="FrontOfHouse/Props" instance=ExtResource("34_wktdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.66419, 0, -0.134278)
 
-[node name="stoolBar2" parent="FrontOfHouse" instance=ExtResource("34_wktdc")]
+[node name="stoolBar2" parent="FrontOfHouse/Props" instance=ExtResource("34_wktdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.66419, 0, -0.134278)
 
-[node name="stoolBar3" parent="FrontOfHouse" instance=ExtResource("34_wktdc")]
+[node name="stoolBar3" parent="FrontOfHouse/Props" instance=ExtResource("34_wktdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.309334, 0, -0.134278)
 
-[node name="stoolBar4" parent="FrontOfHouse" instance=ExtResource("34_wktdc")]
+[node name="stoolBar4" parent="FrontOfHouse/Props" instance=ExtResource("34_wktdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30933, 0, -0.134278)
 
-[node name="stoolBar5" parent="FrontOfHouse" instance=ExtResource("34_wktdc")]
+[node name="stoolBar5" parent="FrontOfHouse/Props" instance=ExtResource("34_wktdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.30933, 0, -0.134278)
 
-[node name="laptop" parent="FrontOfHouse" instance=ExtResource("35_7p1ad")]
+[node name="laptop" parent="FrontOfHouse/Props" instance=ExtResource("35_7p1ad")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.69025, 0.991048, -1.35732)
 
-[node name="doorway" parent="FrontOfHouse" instance=ExtResource("36_diw1k")]
+[node name="doorway" parent="FrontOfHouse/Props" instance=ExtResource("36_diw1k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.57967, -2.38419e-07, 5.10344)
 
-[node name="coatRack" parent="FrontOfHouse" instance=ExtResource("37_adrhy")]
+[node name="coatRack" parent="FrontOfHouse/Props" instance=ExtResource("37_adrhy")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.1743, 1.3728, 3.39853)
 
-[node name="tableCoffeeSquare" parent="FrontOfHouse" instance=ExtResource("39_6vchk")]
+[node name="tableCoffeeSquare" parent="FrontOfHouse/Props" instance=ExtResource("39_6vchk")]
 transform = Transform3D(1.34424, 0, 1.92757, 0, 3.56, 0, -1.92757, 0, 1.34424, 4.242, 0, 3.71824)
 
 [node name="BackOfHouse" type="Node3D" parent="."]
