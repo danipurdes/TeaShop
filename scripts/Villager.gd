@@ -19,23 +19,9 @@ func _ready():
 func _process(delta):
 	match state:
 		"arriving":
-			targetPathFollow.progress += delta * moveMagnitude
-			targetPathFollow.progress_ratio = clamp(targetPathFollow.progress_ratio, 0, .5)
-			if targetPathFollow.progress_ratio == .5:
-				state = "waiting"
-				$villager/AnimationPlayer.play("idle")
-			moveTarget = targetPathFollow.global_position
-			look_at(moveTarget)
-			velocity = moveTarget - global_position
-			move_and_slide()
+			behavior_arriving(delta)
 		"leaving":
-			targetPathFollow.progress += delta * moveMagnitude
-			if targetPathFollow.progress_ratio >= 1:
-				queue_free()
-			moveTarget = targetPathFollow.global_position
-			look_at(moveTarget)
-			velocity = moveTarget - global_position
-			move_and_slide()
+			behavior_leaving(delta)
 
 func useItem(item):
 	match state:
@@ -55,6 +41,26 @@ func useItem(item):
 				$villager/AnimationPlayer.play("wave")
 				$villager/AnimationPlayer.queue("idle")
 
+func behavior_arriving(delta):
+	targetPathFollow.progress += delta * moveMagnitude
+	targetPathFollow.progress_ratio = clamp(targetPathFollow.progress_ratio, 0, .5)
+	if targetPathFollow.progress_ratio == .5:
+		state = "waiting"
+		$villager/AnimationPlayer.play("idle")
+	moveTarget = targetPathFollow.global_position
+	look_at(moveTarget)
+	velocity = moveTarget - global_position
+	move_and_slide()
+
+func behavior_leaving(delta):
+	targetPathFollow.progress += delta * moveMagnitude
+	if targetPathFollow.progress_ratio >= 1:
+		queue_free()
+	moveTarget = targetPathFollow.global_position
+	look_at(moveTarget)
+	velocity = moveTarget - global_position
+	move_and_slide()
+
 func displayPerformanceRating(rating):
 	$PerformanceLabel.visible = true
 	match rating:
@@ -73,28 +79,22 @@ func setState(newState):
 	state = newState
 
 func generateOrder():
-	var grassy = randi_range(0, 2)
-	var floral = randi_range(0, 2)
-	var fruity = randi_range(0, 2)
-	var earthy = randi_range(0, 2)
-	var smoky = randi_range(0, 2)
-	var order = FlavorProfile.new(grassy, floral, fruity, earthy, smoky, 0)
+	var difficulty = randi_range(2, 5)
+	var tea_type = randi_range(0, 2)
+	var flavors = [0, 0, 0, 0, 0]
 	
-	#Verify that the order isn't all zeroes
-	if order.getFlavorMagnitude() == 0:
-		var flavorIndex = randi_range(0, 4)
-		match flavorIndex:
-			0:
-				order.grassy = 1
-			1:
-				order.floral = 1
-			2:
-				order.fruity = 1
-			3:
-				order.earthy = 1
-			4:
-				order.smoky = 1
-	return order
+	match tea_type:
+		1: 
+			flavors[0] += 1
+			difficulty -= 1
+		2:
+			flavors[4] += 1
+			difficulty -= 1
+		
+	for i in difficulty:
+		flavors[randi_range(0, 4)] += 1
+	
+	return FlavorProfile.new(flavors[0], flavors[1], flavors[2], flavors[3], flavors[4], 0)
 
 func _on_sip_anim_finished(anim_name):
 	if anim_name == "sip":
