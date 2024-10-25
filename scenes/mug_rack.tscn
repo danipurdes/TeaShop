@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://dssimuyl65ral"]
+
+[ext_resource type="PackedScene" uid="uid://byix6wkws661r" path="res://scenes/tea_cup.tscn" id="1_3fna6"]
+[ext_resource type="PackedScene" uid="uid://cyp2xxkqqpaim" path="res://scenes/counter_hotspot.tscn" id="2_3qeaq"]
+[ext_resource type="PackedScene" uid="uid://cwpvhytcv2dvh" path="res://models/mug_rack/mug_rack.glb" id="3_3fnrc"]
+
+[sub_resource type="GDScript" id="GDScript_gvccr"]
+script/source = "extends Node3D
+
+@export var spawnObj_0:PackedScene
+@export var spawnObj_1:PackedScene
+@export var spawnObj_2:PackedScene
+@export var objAllowList:String
+
+@onready var spawnObjArray = [spawnObj_0, spawnObj_1, spawnObj_2]
+@onready var hotspotArray = [$CounterHotspot, $CounterHotspot2, $CounterHotspot3]
+
+func _ready():
+	if spawnObjArray.size() == 3 and hotspotArray.size() == spawnObjArray.size():
+		for index in spawnObjArray.size():
+			if spawnObjArray[index] != null:
+				var spawn_obj = spawnObjArray[index].instantiate()
+				spawn_obj.position = hotspotArray[index].global_position
+				spawn_obj.rotation = hotspotArray[index].global_rotation
+				spawn_obj.obj_attached_to = hotspotArray[index]
+				hotspotArray[index].currentItem = spawn_obj
+				get_node(\"/root/Node3D\").add_child.call_deferred(spawn_obj)
+	if objAllowList != \"\":
+		for index in hotspotArray:
+			index.allowlist = [objAllowList]
+"
+
+[node name="MugRack" type="Node3D"]
+script = SubResource("GDScript_gvccr")
+spawnObj_0 = ExtResource("1_3fna6")
+objAllowList = "teacup"
+
+[node name="CounterHotspot" parent="." instance=ExtResource("2_3qeaq")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, -0.275987, -0.0378802, 0.0982705)
+
+[node name="CounterHotspot2" parent="." instance=ExtResource("2_3qeaq")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 0.0028699, -0.0365702, 0.101301)
+
+[node name="CounterHotspot3" parent="." instance=ExtResource("2_3qeaq")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 0.295221, -0.0376824, 0.107522)
+
+[node name="Mesh" parent="." instance=ExtResource("3_3fnrc")]

@@ -23,8 +23,8 @@
 [ext_resource type="PackedScene" uid="uid://x4ovft2pp4qq" path="res://scenes/trashcan.tscn" id="20_ktmqg"]
 [ext_resource type="PackedScene" uid="uid://bd1jkdslg77aa" path="res://scenes/leaf_basket.tscn" id="21_ysytc"]
 [ext_resource type="PackedScene" uid="uid://dwhkm61peqh3x" path="res://scenes/jukebox.tscn" id="22_j0j4u"]
-[ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="23_eypq5"]
 [ext_resource type="Script" path="res://scripts/VillagerSpawner.gd" id="24_7lusq"]
+[ext_resource type="PackedScene" uid="uid://dssimuyl65ral" path="res://scenes/mug_rack.tscn" id="24_8gpy3"]
 [ext_resource type="PackedScene" uid="uid://chsul67mlkc5v" path="res://scenes/villager.tscn" id="24_45mvu"]
 [ext_resource type="PackedScene" uid="uid://cktksm0diybw6" path="res://scenes/ingredient_dispenser.tscn" id="25_skjjp"]
 [ext_resource type="Texture2D" uid="uid://bar2pggapk80h" path="res://textures/Prototype Textures/Light/texture_07.png" id="26_co10q"]
@@ -101,14 +101,15 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.402
 [node name="FrontOfHouse" type="Node3D" parent="."]
 
 [node name="TeaMakingLabel" type="Label3D" parent="FrontOfHouse"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.47192, 1.72596, -3.05261)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.47192, 1.86979, -1.61129)
 text = "Making a Cup of Tea:
-- Use a Jar of Ingredients on the Teapot
-- Fill Kettle with Water
-- Heat Kettle on the Stove
-- Pour Hot Water into Teapot
-- Pour Tea into Tea Cup
-- Serve :)"
+1. Use a Jar of Ingredients on the Teapot
+2. Fill Kettle with Water
+3. Heat Kettle on the Stove
+4. Pour Hot Water into Teapot
+5. Pour Tea into Tea Cup
+6. Serve :)"
+horizontal_alignment = 0
 
 [node name="ControlsLabel" type="Label3D" parent="FrontOfHouse"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.958798, 1.82445, 4.94626)
@@ -320,7 +321,7 @@ transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -3, 0, -
 spawnObj = ExtResource("12_08qgc")
 
 [node name="Counter_2" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4, 0, -4.5)
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -5, 0, -4.5)
 spawnObj = ExtResource("16_dfbcf")
 
 [node name="Counter_3" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
@@ -364,7 +365,7 @@ transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, 3, 0, 
 transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, 4, 0, -1.5)
 
 [node name="Sink" parent="FrontOfHouse/Counters" instance=ExtResource("11_45m4w")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -5, 0, -4.5)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -4, 0, -4.5)
 
 [node name="Props" type="Node3D" parent="FrontOfHouse"]
 
@@ -403,6 +404,12 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.174
 
 [node name="tableCoffeeSquare" parent="FrontOfHouse/Props" instance=ExtResource("39_6vchk")]
 transform = Transform3D(1.34424, 0, 1.92757, 0, 3.56, 0, -1.92757, 0, 1.34424, 4.242, 0, 3.71824)
+
+[node name="MugRack" parent="FrontOfHouse" instance=ExtResource("24_8gpy3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48121, 1.88369, -4.99778)
+
+[node name="MugRack2" parent="FrontOfHouse" instance=ExtResource("24_8gpy3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.48024, 1.88369, -4.99778)
 
 [node name="BackOfHouse" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
@@ -463,12 +470,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.9803
 
 [node name="TallShelf_1" parent="BackOfHouse" instance=ExtResource("13_miqk0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.98812, 0, 0.42856)
-spawnObj_0_0 = ExtResource("23_eypq5")
-spawnObj_0_1 = ExtResource("23_eypq5")
-spawnObj_1_0 = ExtResource("23_eypq5")
-spawnObj_1_1 = ExtResource("23_eypq5")
-spawnObj_2_0 = ExtResource("23_eypq5")
-spawnObj_2_1 = ExtResource("23_eypq5")
 
 [node name="Counter_0" parent="BackOfHouse" instance=ExtResource("10_2dvqi")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.95906, 0, 3.55236)
