@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=44 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
 [ext_resource type="Script" path="res://scripts/ui/GameHUD.gd" id="2_my5ie"]
@@ -27,7 +27,6 @@
 [ext_resource type="PackedScene" uid="uid://chsul67mlkc5v" path="res://scenes/villager.tscn" id="24_45mvu"]
 [ext_resource type="PackedScene" uid="uid://cktksm0diybw6" path="res://scenes/ingredient_dispenser.tscn" id="25_skjjp"]
 [ext_resource type="Texture2D" uid="uid://bar2pggapk80h" path="res://textures/Prototype Textures/Light/texture_07.png" id="26_co10q"]
-[ext_resource type="PackedScene" uid="uid://bhvf6gyglptto" path="res://scenes/ingredient.tscn" id="27_gs8p4"]
 [ext_resource type="PackedScene" uid="uid://gq08pfsykjs6" path="res://models/kenney_furniture/loungeChair.glb" id="30_u2onu"]
 [ext_resource type="PackedScene" uid="uid://doj3ribswgrdf" path="res://models/kenney_furniture/pottedPlant.glb" id="32_xs1eb"]
 [ext_resource type="PackedScene" uid="uid://gdsnl46hqnxp" path="res://models/kenney_furniture/rugDoormat.glb" id="33_ef34f"]
@@ -557,12 +556,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.815
 
 [node name="TallShelf_0" parent="BackOfHouse/Counters" instance=ExtResource("13_miqk0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.98035, 0, -0.628)
-spawnObj_0 = ExtResource("27_gs8p4")
-spawnObj_1 = ExtResource("27_gs8p4")
-spawnObj_2 = ExtResource("27_gs8p4")
-spawnObj_3 = ExtResource("27_gs8p4")
-spawnObj_4 = ExtResource("27_gs8p4")
-spawnObj_5 = ExtResource("27_gs8p4")
 
 [node name="TallShelf_1" parent="BackOfHouse/Counters" instance=ExtResource("13_miqk0")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.98812, 0, 0.42856)

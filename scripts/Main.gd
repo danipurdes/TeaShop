@@ -4,6 +4,7 @@ signal pause_state_entered
 signal pause_state_exited
 
 var is_paused = false
+var playerScore = 0
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

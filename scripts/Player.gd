@@ -99,24 +99,26 @@ func _input(event):
 		mouselook_horizontal *= mouse_rotate_sensitivity_h
 
 func attemptPickup(item):
-	if heldItem == null:
-		if "currentItem" in item:
-			if item.currentItem == null:
-				updateHeldItem(item)
-				return true
-		else:
-			updateHeldItem(item)
-			return true
-	return false
+	if heldItem != null:
+		return false
+		
+	if "currentItem" not in item:
+		return false
+	
+	if item.currentItem == null:
+		updateHeldItem(item)
+		return true
+		
+	updateHeldItem(item)
+	return true
 
 func updateHeldItem(item):
 	heldItem = item
 	heldItem.state_changed.connect(updateHeldItemLabel)
 	heldItem.monitoring = false
 	heldItem.monitorable = false
-	if "obj_attached_to" in item:
-		if item.obj_attached_to != null and item.obj_attached_to.has_method("takeItem"):
-			item.obj_attached_to.takeItem()
+	if "obj_attached_to" in item and item.obj_attached_to != null and item.obj_attached_to.has_method("takeItem"):
+		item.obj_attached_to.takeItem()
 	if heldItem.has_method("getName"):
 		held_item_changed.emit(heldItem.getName())
 
@@ -124,7 +126,7 @@ func requestDropHeldItem(dropRequestor):
 	if heldItem != null:
 		return dropHeldItem(dropRequestor)
 	return null
-	
+
 func dropHeldItem(dropRequestor):
 	var oldHeldItem = heldItem
 	heldItem.monitoring = true
@@ -152,19 +154,15 @@ func setUseLabel(collider):
 	if heldItem == null and "item_type" in resultCollider:
 		changeUseLabel.emit("pick up " + resultCollider.item_type)
 		return
-	elif heldItem != null and "machine_type" in resultCollider:
-		if resultCollider.machine_type == "hotspot" or resultCollider.machine_type == "hotplate":
-			changeUseLabel.emit("set down " + heldItem.item_type)
-			return
-	elif heldItem != null:
-		if heldItem.has_method("onUseItem") and resultCollider.has_method("useItem"):
-			var heldItemKey = ""
-			if heldItem.has_method("getName"):
-				heldItemKey = heldItem.getName()
-			var colliderKey = ""
-			if resultCollider.has_method("getName"):
-				colliderKey = resultCollider.getName()
-			var useKey = heldItemKey + "|" + colliderKey
-			changeUseLabel.emit(UseLabelUtility.itemUseLabelMap.get(useKey))
-			return
+	
+	if heldItem != null and "machine_type" in resultCollider and resultCollider.machine_type == "hotspot" or resultCollider.machine_type == "hotplate":
+		changeUseLabel.emit("set down " + heldItem.item_type)
+		return
+	
+	if heldItem != null and heldItem.has_method("onUseItem") and resultCollider.has_method("useItem"):
+		var heldItemKey = heldItem.getName() if heldItem.has_method("getName") else ""
+		var colliderKey = resultCollider.getName() if resultCollider.has_method("getName") else ""
+		var useKey = heldItemKey + "|" + colliderKey
+		changeUseLabel.emit(UseLabelUtility.itemUseLabelMap.get(useKey))
+		return
 	changeUseLabel.emit("-")

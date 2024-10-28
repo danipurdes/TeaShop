@@ -1,10 +1,9 @@
 extends Label
 
-func _ready():
-	pass
+@export var default_value = ""
 
-func onLabelUpdate(heldItemName):
-	if heldItemName != null:
-		text = heldItemName
-	else:
-		text = "none"
+func _ready():
+	text = default_value
+
+func onLabelUpdate(newTextValue):
+	text = newTextValue if newTextValue != null else default_value
