@@ -27,22 +27,33 @@ func useItem(item):
 	if state != "waiting":
 		return false
 	
-	if item == null or "item_type" not in item or $villager/AnimationPlayer.get_queue().size() == 0:
-		$villager/AnimationPlayer.play("wave")
-		$villager/AnimationPlayer.queue("idle")
+	if $villager/AnimationPlayer.get_queue().size() != 0:
 		return false
 	
-	if item.item_type == "teacup" and item.flavor_profile.getFlavorMagnitude() > 0:
-		var order_score = orderFlavor.compareFlavorProfiles(item.flavor_profile)
-		displayPerformanceRating(order_score)
-		item.ingredientList.clear()
-		item.flavor_profile.clearFlavorProfile()
-		item.updateState("dirty")
-		orderFlavor.clearFlavorProfile()
-		order_served.emit(order_score)
-		$FlavorProfileUI.updateLabel(orderFlavor)
-		$villager/AnimationPlayer.play("sip")
-		return true
+	if item == null or "item_type" not in item:
+		smile_and_wave()
+		return false
+	
+	if item.item_type != "teacup" or item.flavor_profile.getFlavorMagnitude() == 0:
+		return false
+	
+	if "flavor_profile" not in item:
+		return false
+	
+	var order_score = orderFlavor.compareFlavorArrays(item.flavor_profile.flavors)
+	displayPerformanceRating(order_score)
+	item.ingredientList.clear()
+	item.flavor_profile.clearFlavorProfile()
+	item.updateState("dirty")
+	orderFlavor.clearFlavorProfile()
+	order_served.emit(order_score)
+	$FlavorProfileUI.updateLabel(orderFlavor)
+	$villager/AnimationPlayer.play("sip")
+	return true
+
+func smile_and_wave():
+	$villager/AnimationPlayer.play("wave")
+	$villager/AnimationPlayer.queue("idle")
 
 func behavior_arriving(delta):
 	targetPathFollow.progress_ratio = clamp(targetPathFollow.progress_ratio, 0, .5)
