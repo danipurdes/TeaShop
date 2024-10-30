@@ -6,6 +6,7 @@ signal state_changed
 @export var state = "empty"
 @export var servings = 0
 @export var max_servings = 3
+
 var flavor_profile = FlavorProfile.new([0,0,0,0,0,0])
 var ingredientList = []
 var obj_attached_to = null
@@ -17,18 +18,29 @@ func _ready():
 	state_changed.connect(updateLabel)
 
 func useItem(heldItem):
-	if heldItem.item_type == "teakettle":
-		if heldItem.state == "hot_water" and state == "empty":
-			updateState("full")
-			heldItem.updateState("dirty")
-			updateServings(max_servings)
-			return true
-	elif heldItem.item_type == "tea_brick":
-		var held_flavor_profile = heldItem.flavor_profile.toArray()
-		if heldItem.onUseItem(self):
-			updateFlavorProfile(held_flavor_profile)
-			return true
-	return false
+	if heldItem == null:
+		return true
+	
+	if "item_type" not in heldItem:
+		return false
+	
+	match (heldItem.item_type):
+		"teakettle":
+			if heldItem.state == "hot_water" and state == "empty":
+				updateState("full")
+				heldItem.updateState("dirty")
+				updateServings(max_servings)
+				return true
+			return false
+		"tea_brick":
+			var heldItemFlavors = heldItem.flavor_profile.flavors.duplicate()
+			if heldItem.onUseItem(self):
+				print_debug()
+				updateFlavorProfile(heldItemFlavors)
+				return true
+			return false
+		_:
+			return false
 
 func onUseItem(pinger):
 	if "machine_type" in pinger and pinger.machine_type == "sink":
@@ -53,8 +65,8 @@ func updateState(newState):
 	$Steam.emitting = !(newState == "empty" or newState == "dirty")
 	state_changed.emit(getName())
 
-func updateFlavorProfile(newFlavorProfile):
-	flavor_profile.addFlavorArray(newFlavorProfile)
+func updateFlavorProfile(newFlavorArray):
+	flavor_profile.addFlavorArray(newFlavorArray)
 	state_changed.emit(getName())
 
 func updateServings(newServings):
@@ -67,7 +79,7 @@ func updateServings(newServings):
 
 func updateLabel(new_label_text):
 	$Label.text = new_label_text
-	$ui_flavor_profile.updateLabel(flavor_profile)
+	$FlavorProfileUI.updateLabel(flavor_profile)
 
 func getName():
 	return state + " " + item_type + ", servings: " + str(servings)

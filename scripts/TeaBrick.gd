@@ -4,7 +4,7 @@ signal state_changed(state_text)
 
 @export var item_type = "tea_brick"
 @export var tea: Constants.ingredients
-var flavor_profile = FlavorProfile.new(0,0,0,0,0,0)
+var flavor_profile = FlavorProfile.new([0,0,0,0,0,0])
 var ingredientList = []
 var ingredientMat = StandardMaterial3D.new()
 var obj_attached_to = null
@@ -13,34 +13,41 @@ func _ready():
 	ingredientMat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
 	state_changed.connect(updateLabel)
 	if tea != null:
-		setup(tea)
-
-func setup(newTea):
-	setTea(newTea)
+		setTea(tea)
 
 func useItem(item):
-	if item != null and item.has_method("onUseItem") and item.onUseItem(self):
-		for ingredient in item.ingredientList:
-			addIngredient(ingredient)
-		return true
-	return false
+	if item == null:
+		return false
+	
+	if !item.has_method("onUseItem"):
+		return false
+		
+	if !item.onUseItem(self):
+		return false
+		
+	for ingredient in item.ingredientList:
+		addIngredient(ingredient)
+	return true
 
 func onUseItem(pinger):
-	if "item_type" in pinger:
-		match pinger.item_type:
-			"tea_brick":
-				for ingredient in ingredientList:
-					if ingredient != Constants.ingredients.NONE:
-						pinger.addIngredient(ingredient)
-				setTea(Constants.ingredients.NONE)
-				return true
-			"dispenser":
-				return true
-			"teapot":
-				pinger.ingredientList = ingredientList
-				setTea(Constants.ingredients.NONE)
-				return true
-	return false
+	if "item_type" not in pinger:
+		return false
+		
+	match pinger.item_type:
+		"tea_brick":
+			for ingredient in ingredientList:
+				if ingredient != Constants.ingredients.NONE:
+					pinger.addIngredient(ingredient)
+			setTea(Constants.ingredients.NONE)
+			return true
+		"dispenser":
+			return true
+		"teapot":
+			pinger.ingredientList = ingredientList.duplicate()
+			setTea(Constants.ingredients.NONE)
+			return true
+		_:
+			return false
 
 func setTea(newTeaType):
 	flavor_profile.clearFlavorProfile()
@@ -48,12 +55,16 @@ func setTea(newTeaType):
 	addIngredient(newTeaType)
 	state_changed.emit(getName())
 
+func isActualIngredient(ingredient):
+	return ingredient != Constants.ingredients.NONE
+	
 func addIngredient(newIngredient):
-	if ingredientList.size() == 1 and ingredientList[0] == Constants.ingredients.NONE:
-		ingredientList.clear()
-	if newIngredient != Constants.ingredients.NONE:
-		flavor_profile.addIngredient(newIngredient)
-		ingredientList.append(newIngredient)
+	if newIngredient == Constants.ingredients.NONE:
+		return
+	
+	ingredientList = ingredientList.filter(isActualIngredient)
+	flavor_profile.addIngredient(newIngredient)
+	ingredientList.append(newIngredient)
 	updateMaterial()
 	state_changed.emit(getName())
 
@@ -78,6 +89,7 @@ func ingredientListToString():
 	var ingredient_names = Constants.ingredients.keys()
 	for ingredient in ingredientList:
 		output += ingredient_names[ingredient] + " "
+	print_debug(output)
 	return output
 
 func getName():

@@ -101,16 +101,16 @@ func _input(event):
 func attemptPickup(item):
 	if heldItem != null:
 		return false
-		
+	
 	if "currentItem" not in item:
-		return false
+		updateHeldItem(item)
+		return true
 	
 	if item.currentItem == null:
 		updateHeldItem(item)
 		return true
-		
-	updateHeldItem(item)
-	return true
+	
+	return false
 
 func updateHeldItem(item):
 	heldItem = item
@@ -123,9 +123,7 @@ func updateHeldItem(item):
 		held_item_changed.emit(heldItem.getName())
 
 func requestDropHeldItem(dropRequestor):
-	if heldItem != null:
-		return dropHeldItem(dropRequestor)
-	return null
+	return dropHeldItem(dropRequestor) if heldItem != null else null
 
 func dropHeldItem(dropRequestor):
 	var oldHeldItem = heldItem
@@ -150,19 +148,25 @@ func updateHeldItemLabel(held_item_name):
 	held_item_changed.emit(held_item_name)
 
 func setUseLabel(collider):
+	if collider == null:
+		return
+	
 	var resultCollider = collider
-	if heldItem == null and "item_type" in resultCollider:
-		changeUseLabel.emit("pick up " + resultCollider.item_type)
+	if heldItem == null:
+		if "item_type" in resultCollider:
+			changeUseLabel.emit("pick up " + resultCollider.item_type)
 		return
 	
-	if heldItem != null and "machine_type" in resultCollider and resultCollider.machine_type == "hotspot" or resultCollider.machine_type == "hotplate":
-		changeUseLabel.emit("set down " + heldItem.item_type)
+	if "machine_type" in resultCollider:
+		if resultCollider.machine_type == "hotspot" or resultCollider.machine_type == "hotplate":
+			changeUseLabel.emit("set down " + heldItem.item_type)
 		return
 	
-	if heldItem != null and heldItem.has_method("onUseItem") and resultCollider.has_method("useItem"):
+	if heldItem.has_method("onUseItem") and resultCollider.has_method("useItem"):
 		var heldItemKey = heldItem.getName() if heldItem.has_method("getName") else ""
 		var colliderKey = resultCollider.getName() if resultCollider.has_method("getName") else ""
 		var useKey = heldItemKey + "|" + colliderKey
 		changeUseLabel.emit(UseLabelUtility.itemUseLabelMap.get(useKey))
 		return
+	
 	changeUseLabel.emit("-")

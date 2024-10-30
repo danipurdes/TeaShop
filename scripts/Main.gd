@@ -2,12 +2,14 @@ extends Node3D
 
 signal pause_state_entered
 signal pause_state_exited
+signal score_changed
 
 var is_paused = false
-var playerScore = 0
+var player_score = 0
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	$VillagerSpawner.score_change_requested.connect(on_score_change)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
@@ -32,3 +34,6 @@ func on_pause():
 func on_unpause():
 	is_paused = false
 	pause_state_exited.emit()
+
+func on_score_change(score_delta):
+	player_score += score_delta

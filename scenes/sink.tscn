@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://blhvleevy13gu" path="res://models/kenney_furniture/kitchenSink.glb" id="2_bcxlc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ibrm1"]
-size = Vector3(1.00964, 1.2, 1.00713)
+size = Vector3(1.00964, 0.986597, 1.00713)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_81phw"]
 radius = 0.424511
@@ -13,7 +13,7 @@ radius = 0.424511
 script = ExtResource("1_sirqu")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00482178, 0.6, 0.0198114)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00482178, 0.493298, 0.0198114)
 shape = SubResource("BoxShape3D_ibrm1")
 
 [node name="Use_Hitbox" type="CollisionShape3D" parent="."]

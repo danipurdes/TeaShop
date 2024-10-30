@@ -1,13 +1,13 @@
 extends CharacterBody3D
 
 signal order_created(order_text)
-signal order_served
+signal order_served(order_value)
 
 @export var state = "waiting"
-var orderFlavor: FlavorProfile
 @export var targetPathFollow: PathFollow3D
-var moveTarget: Vector3
 @export var moveMagnitude = 1.0
+var orderFlavor: FlavorProfile
+var moveTarget: Vector3
 
 func _ready():
 	orderFlavor = generateOrder()
@@ -24,38 +24,42 @@ func _process(delta):
 			behavior_leaving(delta)
 
 func useItem(item):
-	match state:
-		"waiting":
-			if item != null and item.item_type == "teacup":
-				if item.flavor_profile.getFlavorMagnitude() > 0:
-					displayPerformanceRating(orderFlavor.compareFlavorProfiles(item.flavor_profile))
-					item.flavor_profile.clearFlavorProfile()
-					item.ingredientList.clear()
-					item.updateState("dirty")
-					orderFlavor.clearFlavorProfile()
-					order_served.emit()
-					$FlavorProfileUI.updateLabel(orderFlavor)
-					$villager/AnimationPlayer.play("sip")
-					return true
-			elif $villager/AnimationPlayer.get_queue().size() == 0:
-				$villager/AnimationPlayer.play("wave")
-				$villager/AnimationPlayer.queue("idle")
+	if state != "waiting":
+		return false
+	
+	if item == null or "item_type" not in item or $villager/AnimationPlayer.get_queue().size() == 0:
+		$villager/AnimationPlayer.play("wave")
+		$villager/AnimationPlayer.queue("idle")
+		return false
+	
+	if item.item_type == "teacup" and item.flavor_profile.getFlavorMagnitude() > 0:
+		var order_score = orderFlavor.compareFlavorProfiles(item.flavor_profile)
+		displayPerformanceRating(order_score)
+		item.ingredientList.clear()
+		item.flavor_profile.clearFlavorProfile()
+		item.updateState("dirty")
+		orderFlavor.clearFlavorProfile()
+		order_served.emit(order_score)
+		$FlavorProfileUI.updateLabel(orderFlavor)
+		$villager/AnimationPlayer.play("sip")
+		return true
 
 func behavior_arriving(delta):
-	targetPathFollow.progress += delta * moveMagnitude
 	targetPathFollow.progress_ratio = clamp(targetPathFollow.progress_ratio, 0, .5)
 	if targetPathFollow.progress_ratio == .5:
 		state = "waiting"
 		$villager/AnimationPlayer.play("idle")
-	moveTarget = targetPathFollow.global_position
-	look_at(moveTarget)
-	velocity = moveTarget - global_position
-	move_and_slide()
+		return
+	behavior_walking(delta)
 
 func behavior_leaving(delta):
-	targetPathFollow.progress += delta * moveMagnitude
 	if targetPathFollow.progress_ratio >= 1:
 		queue_free()
+		return
+	behavior_walking(delta)
+
+func behavior_walking(delta):
+	targetPathFollow.progress += delta * moveMagnitude
 	moveTarget = targetPathFollow.global_position
 	look_at(moveTarget)
 	velocity = moveTarget - global_position
@@ -63,17 +67,10 @@ func behavior_leaving(delta):
 
 func displayPerformanceRating(rating):
 	$PerformanceLabel.visible = true
-	match rating:
-		0:
-			$PerformanceLabel.text = "Perfect!"
-		1:
-			$PerformanceLabel.text = "Great"
-		2:
-			$PerformanceLabel.text = "Good"
-		3:
-			$PerformanceLabel.text = "Okay"
-		_:
-			$PerformanceLabel.text = ":("
+	var ratingText = ""
+	for n in rating:
+		ratingText += "1"
+	$PerformanceLabel.text = ratingText
 
 func setState(newState):
 	state = newState
@@ -81,7 +78,7 @@ func setState(newState):
 func generateOrder():
 	var difficulty = randi_range(2, 5)
 	var tea_type = randi_range(0, 2)
-	var flavors = [0, 0, 0, 0, 0]
+	var flavors = [0, 0, 0, 0, 0, 0]
 	
 	match tea_type:
 		1: 
@@ -94,7 +91,7 @@ func generateOrder():
 	for i in difficulty:
 		flavors[randi_range(0, 4)] += 1
 	
-	return FlavorProfile.new(flavors[0], flavors[1], flavors[2], flavors[3], flavors[4], 0)
+	return FlavorProfile.new(flavors)
 
 func _on_sip_anim_finished(anim_name):
 	if anim_name == "sip":

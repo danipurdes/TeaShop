@@ -2,45 +2,60 @@ class_name FlavorProfile
 
 var flavors = [0, 0, 0, 0, 0, 0]
 
-func _init(flavorProfile):
-	addFlavorArray(flavorProfile)
+func _init(flavorArray):
+	addFlavorArray(flavorArray)
 
 func addIngredient(ingredient):
-	addFlavorArray(Constants.ingredientFlavorMap[ingredient])
+	var ingredientFlavorArray = Constants.ingredientFlavorMap[ingredient]
+	print_debug(ingredientFlavorArray)
+	addFlavorArray(ingredientFlavorArray)
 
-func addFlavorArray(flavorProfile):
-	if flavorProfile == null or flavorProfile.size() == flavors.size():
-		for flavorIndex in flavorProfile.size():
-			flavors[flavorIndex] += flavorProfile[flavorIndex]
+func addFlavorArray(flavorArray):
+	if flavorArray == null or flavorArray.size() != flavors.size():
+		print_debug("addFlavorArray: flavorArray null or size mismatch")
+		return
+	
+	print_debug("flavors: " + str(flavors))
+	print_debug("flavorArray: " + str(flavorArray))
+	for flavorIndex in flavorArray.size():
+		flavors[flavorIndex] += flavorArray[flavorIndex]
+	print_debug("new flavors: " + str(flavors))
 
-func setFlavorProfile(flavorProfile):
-	for flavorIndex in flavorProfile.size():
-			flavors[flavorIndex] += flavorProfile[flavorIndex]
+func setFlavorProfile(flavorArray):
+	if flavorArray == null or flavorArray.size() != flavors.size():
+		print_debug("setFlavorArray: flavorProfile null or size mismatch")
+		return
+		
+	flavors = flavorArray.duplicate()
+	print_debug("flavors: " + flavors)
+	print_debug("flavorArray: " + flavorArray)
 
 func clearFlavorProfile():
-	flavors = [0, 0, 0, 0, 0, 0]
+	flavors.resize(6)
+	flavors.fill(0)
+	print_debug("flavors: " + str(flavors))
 
 func getFlavorMagnitude():
-	return compareFlavorProfiles([0, 0, 0, 0, 0, 0])
+	return compareFlavorArrays([0, 0, 0, 0, 0, 0])
 
-func compareFlavorProfiles(flavor_profile):
+func compareFlavorArrays(flavorArray):
+	if flavorArray == null or flavorArray.size() != flavors.size():
+		print_debug("compareFlavorProfiles: flavorArray null or size mismatch")
+		return -1
+	
 	var total_delta = 0
 	for index in flavors.size():
-		total_delta += absi(flavor_profile.flavors[index] - flavors[index])
+		var flavorDiff = absi(flavorArray[index] - flavors[index])
+		print_debug("flavor " + str(index) + ": " + str(flavorDiff))
+		total_delta += flavorDiff
+	
 	return total_delta
-
-func _to_string():
-	var newText = ""
-	newText += "grassy: " + str(flavors[0]) + "\n"
-	newText += "floral: " + str(flavors[1]) + "\n"
-	newText += "fruity: " + str(flavors[2]) + "\n"
-	newText += "earthy: " + str(flavors[3]) + "\n"
-	newText += "smoky: " + str(flavors[4]) + "\n"
-	return newText
 
 func _to_amount_string():
 	var newText = ""
 	for flavorIndex in flavors.size():
 		for n in flavors[flavorIndex]:
-			newText += n.to_string()
+			newText += str(flavorIndex)
+	print_debug("flavors: " + str(flavors))
+	print_debug("amount_string: " + newText)
 	return newText

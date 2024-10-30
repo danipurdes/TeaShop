@@ -4,7 +4,7 @@ signal state_changed(state_text)
 
 @export var item_type = "leaf_tray"
 var obj_attached_to = null
-var flavor_profile = FlavorProfile.new(0,0,0,0,0,0)
+var flavor_profile = FlavorProfile.new([0,0,0,0,0,0])
 var ingredientList = []
 var ingredientMat = StandardMaterial3D.new()
 

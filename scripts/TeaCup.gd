@@ -4,33 +4,40 @@ signal state_changed(state_text)
 
 @export var item_type = "teacup"
 @export var state = "empty"
-var flavor_profile = FlavorProfile.new(0,0,0,0,0,0)
+var flavor_profile = FlavorProfile.new([0,0,0,0,0,0])
 var obj_attached_to = null
 var ingredientList = []
 var ingredientMat = StandardMaterial3D.new()
 
 func _ready():
 	ingredientMat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
-	
 	updateLabel(getName())
 	updateMaterial()
-	
 	state_changed.connect(updateLabel)
 
 func useItem(heldItem):
-	if heldItem.item_type == "teakettle":
-		if heldItem.state == "hot_water" and state == "empty":
-			updateState("full")
-			heldItem.updateState("empty")
-			return true
-	if heldItem.item_type == "teapot":
-		if heldItem.state != "empty" and state == "empty":
-			var held_flavor_profile = heldItem.flavor_profile.toArray()
-			if heldItem.onUseItem(self):
+	if heldItem == null:
+		return true
+	
+	if "item_type" not in heldItem:
+		return false
+	
+	match(heldItem.item_type):
+		"teakettle":
+			if heldItem.state == "hot_water" and state == "empty":
 				updateState("full")
-				updateFlavorProfile(held_flavor_profile)
+				heldItem.updateState("empty")
 				return true
-	return false
+			return false
+		"teapot":
+			if heldItem.state != "empty" and state == "empty":
+				if heldItem.onUseItem(self):
+					updateState("full")
+					updateFlavorProfile(heldItem.flavor_profile.flavors)
+					return true
+			return false
+		_:
+			return false
 
 func onUseItem(pinger):
 	if "machine_type" in pinger and pinger.machine_type == "sink":
@@ -50,8 +57,8 @@ func updateState(newState):
 	updateMaterial()
 	state_changed.emit(getName())
 
-func updateFlavorProfile(newFlavorProfile):
-	flavor_profile.addFlavorArray(newFlavorProfile)
+func updateFlavorProfile(newFlavorArray):
+	flavor_profile.addFlavorArray(newFlavorArray)
 	updateMaterial()
 	state_changed.emit(getName())
 
@@ -69,7 +76,7 @@ func updateMaterial():
 
 func updateLabel(new_label_text):
 	$Label.text = new_label_text
-	$ui_flavor_profile.updateLabel(flavor_profile)
+	$FlavorProfileUI.updateLabel(flavor_profile)
 
 func getName():
 	return state + " " + item_type
