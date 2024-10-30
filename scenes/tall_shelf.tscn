@@ -14,22 +14,22 @@ script = ExtResource("1_bvdw3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0626204, -0.0577638)
 shape = SubResource("BoxShape3D_v4t41")
 
-[node name="CounterHotspot" parent="." instance=ExtResource("3_8xkp0")]
+[node name="CounterHotspot0" parent="." instance=ExtResource("3_8xkp0")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.25, 0.13, 0)
 
-[node name="CounterHotspot2" parent="." instance=ExtResource("3_8xkp0")]
+[node name="CounterHotspot1" parent="." instance=ExtResource("3_8xkp0")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 0.13, 0)
 
-[node name="CounterHotspot3" parent="." instance=ExtResource("3_8xkp0")]
+[node name="CounterHotspot2" parent="." instance=ExtResource("3_8xkp0")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.25, 0.88, 0)
 
-[node name="CounterHotspot4" parent="." instance=ExtResource("3_8xkp0")]
+[node name="CounterHotspot3" parent="." instance=ExtResource("3_8xkp0")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 0.88, 0)
 
-[node name="CounterHotspot5" parent="." instance=ExtResource("3_8xkp0")]
+[node name="CounterHotspot4" parent="." instance=ExtResource("3_8xkp0")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.25, 1.63, 0)
 
-[node name="CounterHotspot6" parent="." instance=ExtResource("3_8xkp0")]
+[node name="CounterHotspot5" parent="." instance=ExtResource("3_8xkp0")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 1.63, 0)
 
 [node name="Mesh" parent="." instance=ExtResource("3_kiyke")]

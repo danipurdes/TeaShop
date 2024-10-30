@@ -1,85 +1,46 @@
 class_name FlavorProfile
 
-var grassy = 0
-var floral = 0
-var fruity = 0
-var earthy = 0
-var smoky = 0
-var caffeine = 0
+var flavors = [0, 0, 0, 0, 0, 0]
 
-func _init(_grassy, _floral, _fruity, _earthy, _smoky, _caffeine):
-	grassy = _grassy
-	floral = _floral
-	fruity = _fruity
-	earthy = _earthy
-	smoky = _smoky
-	caffeine = _caffeine
-	
+func _init(flavorProfile):
+	addFlavorArray(flavorProfile)
+
 func addIngredient(ingredient):
 	addFlavorArray(Constants.ingredientFlavorMap[ingredient])
 
-func addFlavorArray(flavorArray):
-	if flavorArray != null and flavorArray.size() == 6:
-		grassy += flavorArray[0]
-		floral += flavorArray[1]
-		fruity += flavorArray[2]
-		earthy += flavorArray[3]
-		smoky += flavorArray[4]
-		caffeine += flavorArray[5]
+func addFlavorArray(flavorProfile):
+	if flavorProfile == null or flavorProfile.size() == flavors.size():
+		for flavorIndex in flavorProfile.size():
+			flavors[flavorIndex] += flavorProfile[flavorIndex]
 
-func addFlavorProfile(flavorProfile):
-	grassy += flavorProfile.grassy
-	floral += flavorProfile.floral
-	fruity += flavorProfile.fruity
-	earthy += flavorProfile.earthy
-	smoky += flavorProfile.smoky
-	caffeine += flavorProfile.caffeine
-
-func copyFlavorProfile(flavorProfile):
-	grassy = flavorProfile.grassy
-	floral = flavorProfile.floral
-	fruity = flavorProfile.fruity
-	earthy = flavorProfile.earthy
-	smoky = flavorProfile.smoky
-	caffeine = flavorProfile.caffeine
+func setFlavorProfile(flavorProfile):
+	for flavorIndex in flavorProfile.size():
+			flavors[flavorIndex] += flavorProfile[flavorIndex]
 
 func clearFlavorProfile():
-	grassy = 0
-	floral = 0
-	fruity = 0
-	earthy = 0
-	smoky = 0
-	caffeine = 0
+	flavors = [0, 0, 0, 0, 0, 0]
 
 func getFlavorMagnitude():
-	return grassy + floral + fruity + earthy + smoky + caffeine
+	return compareFlavorProfiles([0, 0, 0, 0, 0, 0])
 
 func compareFlavorProfiles(flavor_profile):
-	var source_flavors = toArray()
-	var input_flavors = flavor_profile.toArray()
 	var total_delta = 0
-	
-	for index in source_flavors.size():
-		total_delta += absi(input_flavors[index] - source_flavors[index])
-	
+	for index in flavors.size():
+		total_delta += absi(flavor_profile.flavors[index] - flavors[index])
 	return total_delta
 
 func _to_string():
-	return "grassy: " + str(grassy) + "\n" + "floral: " + str(floral) + "\n" + "fruity: " + str(fruity) + "\n" + "earthy: " + str(earthy) + "\n" + "smoky: " + str(smoky)
+	var newText = ""
+	newText += "grassy: " + str(flavors[0]) + "\n"
+	newText += "floral: " + str(flavors[1]) + "\n"
+	newText += "fruity: " + str(flavors[2]) + "\n"
+	newText += "earthy: " + str(flavors[3]) + "\n"
+	newText += "smoky: " + str(flavors[4]) + "\n"
+	return newText
 
 func _to_amount_string():
 	var newText = ""
-	for n in grassy:
-		newText += "0"
-	for n in floral:
-		newText += "1"
-	for n in fruity:
-		newText += "2"
-	for n in earthy:
-		newText += "3"
-	for n in smoky:
-		newText += "4"
+	for flavorIndex in flavors.size():
+		for n in flavors[flavorIndex]:
+			newText += n.to_string()
 	return newText
-
-func toArray():
-	return [grassy, floral, fruity, earthy, smoky, caffeine]

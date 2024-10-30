@@ -6,7 +6,7 @@ signal state_changed
 @export var state = "empty"
 @export var servings = 0
 @export var max_servings = 3
-var flavor_profile = FlavorProfile.new(0,0,0,0,0,0)
+var flavor_profile = FlavorProfile.new([0,0,0,0,0,0])
 var ingredientList = []
 var obj_attached_to = null
 

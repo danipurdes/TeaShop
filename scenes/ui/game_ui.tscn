@@ -54,7 +54,7 @@ script = ExtResource("1_31fp1")
 [node name="MousePeek" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 8
-size_flags_vertical = 0
+size_flags_vertical = 8
 
 [node name="UseLabel" type="Label" parent="MousePeek"]
 layout_mode = 2
@@ -64,10 +64,34 @@ text = "-"
 label_settings = ExtResource("3_ynf5c")
 horizontal_alignment = 2
 script = ExtResource("1_31fp1")
+default_value = "none"
 
 [node name="LeftClickIcon" type="TextureRect" parent="MousePeek"]
 layout_mode = 2
 texture = ExtResource("2_o40rp")
+
+[node name="ScoreCard" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="ScoreLabel" type="Label" parent="ScoreCard"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("2_ua8xs")
+text = "Stars: "
+label_settings = ExtResource("3_ynf5c")
+horizontal_alignment = 2
+
+[node name="ScoreValue" type="Label" parent="ScoreCard"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("2_ua8xs")
+text = "-"
+label_settings = ExtResource("3_ynf5c")
+horizontal_alignment = 2
+script = ExtResource("1_31fp1")
+default_value = "0"
 
 [node name="OrderContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

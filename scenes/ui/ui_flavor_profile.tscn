@@ -4,7 +4,6 @@
 [ext_resource type="FontFile" uid="uid://bhlbbijborftp" path="res://textures/Icons/flavor_font.png" id="7_joh0m"]
 
 [node name="FlavorProfileUI" type="Label3D"]
-text = "01"
 font = ExtResource("7_joh0m")
 font_size = 400
 script = ExtResource("1_ghk2n")
