@@ -1,0 +1,22 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://56gsfbp5k477"
+path="res://.godot/imported/star_font.png-c8c0f19ffc5cbd969edea05401720089.fontdata"
+
+[deps]
+
+source_file="res://textures/Icons/star_font.png"
+dest_files=["res://.godot/imported/star_font.png-c8c0f19ffc5cbd969edea05401720089.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("48-50")
+columns=3
+rows=1
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+fallbacks=[]
+compress=true
+scaling_mode=2

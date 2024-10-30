@@ -4,7 +4,7 @@ signal state_changed(state_text)
 
 @export var item_type = "dispenser"
 @export var tea: Constants.ingredients
-var flavor_profile = FlavorProfile.new(0,0,0,0,0,0)
+var flavor_profile = FlavorProfile.new([0,0,0,0,0,0])
 var ingredientList = []
 var ingredientMat = StandardMaterial3D.new()
 var obj_attached_to = null
@@ -13,10 +13,7 @@ func _ready():
 	ingredientMat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
 	state_changed.connect(updateLabel)
 	if tea != null:
-		setup(tea)
-
-func setup(newTea):
-	setTea(newTea)
+		setTea(tea)
 
 func useItem(item):
 	if item != null and item.has_method("onUseItem") and item.onUseItem(self):
@@ -30,9 +27,6 @@ func onUseItem(pinger):
 	if "item_type" in pinger:
 		match pinger.item_type:
 			"tea_brick":
-				#for ingredient in ingredientList:
-				#	if ingredient != Constants.ingredients.NONE:
-				#		pinger.addIngredient(ingredient)
 				return true
 	return false
 
