@@ -26,22 +26,17 @@ func _process(delta):
 func useItem(item):
 	if state != "waiting":
 		return false
-	
 	if $villager/AnimationPlayer.get_queue().size() != 0:
 		return false
-	
-	if item == null or "item_type" not in item:
+	if item == null or "item_type" not in item or "flavor_profile" not in item:
 		smile_and_wave()
 		return false
-	
 	if item.item_type != "teacup" or item.flavor_profile.getFlavorMagnitude() == 0:
 		return false
 	
-	if "flavor_profile" not in item:
-		return false
-	
-	var order_score = orderFlavor.compareFlavorArrays(item.flavor_profile.flavors)
-	displayPerformanceRating(order_score)
+	var order_comp = orderFlavor.compareFlavorArrays(item.flavor_profile.flavors)
+	var order_score = orderFlavor.getFlavorMagnitude() - order_comp
+	displayPerformanceRating(order_score, orderFlavor.getFlavorMagnitude())
 	item.ingredientList.clear()
 	item.flavor_profile.clearFlavorProfile()
 	item.updateState("dirty")
@@ -76,11 +71,13 @@ func behavior_walking(delta):
 	velocity = moveTarget - global_position
 	move_and_slide()
 
-func displayPerformanceRating(rating):
+func displayPerformanceRating(rating, totalRating):
 	$PerformanceLabel.visible = true
 	var ratingText = ""
 	for n in rating:
 		ratingText += "1"
+	for m in totalRating - rating:
+		ratingText += "0"
 	$PerformanceLabel.text = ratingText
 
 func setState(newState):
