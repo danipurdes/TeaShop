@@ -6,4 +6,4 @@ func _ready():
 	text = default_value
 
 func onLabelUpdate(newTextValue):
-	text = newTextValue if newTextValue != null else default_value
+	text = str(newTextValue) if newTextValue != null else default_value

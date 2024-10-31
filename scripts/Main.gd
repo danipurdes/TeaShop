@@ -2,7 +2,7 @@ extends Node3D
 
 signal pause_state_entered
 signal pause_state_exited
-signal score_changed
+signal score_changed(new_score)
 
 var is_paused = false
 var player_score = 0
@@ -37,3 +37,4 @@ func on_unpause():
 
 func on_score_change(score_delta):
 	player_score += score_delta
+	score_changed.emit(player_score)
