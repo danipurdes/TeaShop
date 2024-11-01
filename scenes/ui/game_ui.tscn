@@ -38,17 +38,16 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme = ExtResource("2_ua8xs")
+theme_type_variation = &"hud_label"
 text = "Held Item: "
-label_settings = ExtResource("3_ynf5c")
-horizontal_alignment = 2
 
 [node name="Label_HeldItem" type="Label" parent="HeldItemContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme = ExtResource("2_ua8xs")
+theme_type_variation = &"hud_label"
 text = "-"
-label_settings = ExtResource("3_ynf5c")
 horizontal_alignment = 2
 script = ExtResource("1_31fp1")
 
@@ -61,9 +60,8 @@ size_flags_vertical = 8
 layout_mode = 2
 size_flags_vertical = 1
 theme = ExtResource("2_ua8xs")
+theme_type_variation = &"hud_label"
 text = "-"
-label_settings = ExtResource("3_ynf5c")
-horizontal_alignment = 2
 script = ExtResource("1_31fp1")
 default_value = "none"
 
@@ -80,8 +78,8 @@ size_flags_vertical = 0
 layout_mode = 2
 size_flags_vertical = 1
 theme = ExtResource("2_ua8xs")
+theme_type_variation = &"hud_label"
 text = "-"
-label_settings = ExtResource("3_ynf5c")
 horizontal_alignment = 2
 script = ExtResource("1_31fp1")
 default_value = "0"
@@ -100,8 +98,8 @@ size_flags_vertical = 0
 layout_mode = 2
 size_flags_vertical = 1
 theme = ExtResource("2_ua8xs")
+theme_type_variation = &"hud_label"
 text = "Current Order: "
-label_settings = ExtResource("3_ynf5c")
 horizontal_alignment = 2
 vertical_alignment = 1
 

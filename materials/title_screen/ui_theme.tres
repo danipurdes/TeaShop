@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://sfwgouipwfat"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://sfwgouipwfat"]
 
 [ext_resource type="StyleBox" uid="uid://dvj3c0htx8xeg" path="res://materials/title_screen/title_button_hover.tres" id="1_qs1y8"]
 [ext_resource type="StyleBox" uid="uid://mda0mtoby7fl" path="res://materials/title_screen/title_button_normal.tres" id="2_5v7qk"]
@@ -6,6 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://ceu31sq7a7qix" path="res://materials/title_screen/cancel_button_hover.tres" id="4_xnm8c"]
 [ext_resource type="StyleBox" uid="uid://dqlb6qln5004d" path="res://materials/title_screen/cancel_button_normal.tres" id="5_mhn6q"]
 [ext_resource type="StyleBox" uid="uid://cktkwwtiim8fi" path="res://materials/title_screen/cancel_button_pressed.tres" id="6_t8kf7"]
+[ext_resource type="FontFile" uid="uid://baxs7rd4oi47n" path="res://fonts/Typodermic/Blue Highway Bd.otf" id="7_t0fso"]
 
 [resource]
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
@@ -14,10 +15,29 @@ Button/font_sizes/font_size = 32
 Button/styles/hover = ExtResource("1_qs1y8")
 Button/styles/normal = ExtResource("2_5v7qk")
 Button/styles/pressed = ExtResource("3_lsy4g")
+Label/colors/font_color = Color(0, 0, 0, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/constants/line_spacing = 0
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 0
+Label/constants/shadow_outline_size = 0
+Label/font_sizes/font_size = 16
+Label/fonts/font = null
+Label/styles/normal = null
 cancel_button/styles/hover = ExtResource("4_xnm8c")
 cancel_button/styles/normal = ExtResource("5_mhn6q")
 cancel_button/styles/pressed = ExtResource("6_t8kf7")
+hud_label/base_type = &"Label"
+hud_label/colors/font_color = Color(1, 1, 1, 1)
+hud_label/constants/line_spacing = 3
+hud_label/constants/outline_size = 5
+hud_label/font_sizes/font_size = 35
+ui_header/base_type = &"Label"
+ui_header/colors/font_color = Color(1, 1, 1, 1)
 ui_header/colors/font_outline_color = Color(0, 0, 0, 1)
+ui_header/colors/font_shadow_color = Color(0.211765, 0.113725, 0, 0.0588235)
 ui_header/constants/outline_size = 16
-ui_header/font_sizes/font_size = 120
+ui_header/font_sizes/font_size = 121
+ui_header/fonts/font = ExtResource("7_t0fso")

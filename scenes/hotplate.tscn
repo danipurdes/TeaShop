@@ -18,9 +18,5 @@ script = ExtResource("1_843e1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0577236, 0)
 shape = SubResource("CylinderShape3D_81lox")
 
-[node name="Label" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.111005, 0.484888)
-text = "Stove"
-
 [node name="ItemAnchor" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
