@@ -1,82 +1,83 @@
 extends Area3D
 
-signal state_changed(state_text)
-
 @export var item_type = "teacup"
 @export var state = "empty"
-var flavor_profile = FlavorProfile.new([0,0,0,0,0,0])
+@onready var ingredients = Ingredients.new()
+
 var obj_attached_to = null
-var ingredientList = []
-var ingredientMat = StandardMaterial3D.new()
+
+signal state_changed(new_state)
 
 func _ready():
-	ingredientMat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
-	updateLabel(getName())
-	updateMaterial()
-	state_changed.connect(updateLabel)
+	ingredients.ingredients_changed.connect(onIngredientsChanged)
+	ingredients.ingredients_changed.connect($Label.onLabelUpdate)
+	state_changed.connect($Label.onLabelUpdate)
+	ingredients.flavors_changed.connect($FlavorProfileUI.onLabelUpdate)
+
+	onIngredientsChanged(ingredients.ingredients)
 
 func useItem(heldItem):
 	if heldItem == null:
 		return true
-	
 	if "item_type" not in heldItem:
 		return false
 	
 	match(heldItem.item_type):
 		"teakettle":
-			if heldItem.state == "hot_water" and state == "empty":
-				updateState("full")
-				heldItem.updateState("empty")
-				return true
-			return false
+			return useKettle(heldItem)
 		"teapot":
-			if heldItem.state != "empty" and state == "empty":
-				if heldItem.onUseItem(self):
-					updateState("full")
-					updateFlavorProfile(heldItem.flavor_profile.flavors)
-					return true
-			return false
+			return useTeapot(heldItem)
 		_:
 			return false
 
-func onUseItem(pinger):
-	if "machine_type" in pinger and pinger.machine_type == "sink":
-		if state != "empty" and state != "dirty":
-			flavor_profile.clearFlavorProfile()
-			ingredientList.clear()
-			updateState("dirty")
-			return true
-		elif state == "dirty":
-			updateState("empty")
+func useKettle(kettle):
+	if kettle.state == "empty" or state != "empty":
+		return false
+
+	updateState(kettle.state)
+	kettle.updateState("empty")
+	return true
+
+func useTeapot(teapot):
+	if teapot.state == "empty" or state != "empty":
+		return false
+	
+	var newIngredientCount = teapot.ingredients.ingredients.size() + ingredients.ingredients.size()
+	if newIngredientCount > ingredients.max_ingredients:
+		return false
+	
+	updateState(teapot.state)
+	for ingredient in teapot.ingredientList:
+		ingredients.addIngredient(ingredient)
+	return true
+
+func onUseItem(itemToUseOn):
+	if "machine_type" not in itemToUseOn:
+		return false
+
+	match itemToUseOn.machine_type:
+		"sink":
+			return useOnSink()
+		_:
 			return false
-	return false
 
-func updateState(newState):
-	state = newState
-	$Steam.emitting = !(newState == "empty" or newState == "dirty")
-	updateMaterial()
+func useOnSink():
+	match state:
+		"empty":
+			updateState("cold_water")
+		_:
+			ingredients.clearIngredients()
+			updateState("empty")
+	return true
+
+func updateState(new_state):
+	state = new_state
+	$Steam.emitting = (state == "hot_water")
 	state_changed.emit(getName())
+	$Label.visible = (state != "empty")
 
-func updateFlavorProfile(newFlavorArray):
-	flavor_profile.addFlavorArray(newFlavorArray)
-	updateMaterial()
-	state_changed.emit(getName())
-
-func updateMaterial():
-	if ingredientList.size() > 0:
-		var color_list = []
-		for ingredient in ingredientList:
-			if ingredient != Constants.ingredients.NONE:
-				color_list.append(Constants.ingredientColorMap[ingredient])
-		ingredientMat.albedo_color = ColorUtility.BlendColorList(color_list)
-		$tea_cup/tea_cup_liquid.set_surface_override_material(0, ingredientMat)
-	else:
-		ingredientMat.albedo_color = Constants.ingredientColorMap[Constants.ingredients.NONE]
-		$tea_cup/tea_cup_liquid.set_surface_override_material(0, ingredientMat)
-
-func updateLabel(new_label_text):
-	$Label.text = new_label_text
-	$FlavorProfileUI.updateLabel(flavor_profile)
+func onIngredientsChanged(_new_ingredients):
+	$tea_cup/tea_cup_liquid.set_surface_override_material(0, ingredients.ingredientsMat)
 
 func getName():
-	return state + " " + item_type
+	return state

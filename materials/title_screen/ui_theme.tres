@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://sfwgouipwfat"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://sfwgouipwfat"]
 
 [ext_resource type="StyleBox" uid="uid://dvj3c0htx8xeg" path="res://materials/title_screen/title_button_hover.tres" id="1_qs1y8"]
 [ext_resource type="StyleBox" uid="uid://mda0mtoby7fl" path="res://materials/title_screen/title_button_normal.tres" id="2_5v7qk"]
@@ -7,6 +7,18 @@
 [ext_resource type="StyleBox" uid="uid://dqlb6qln5004d" path="res://materials/title_screen/cancel_button_normal.tres" id="5_mhn6q"]
 [ext_resource type="StyleBox" uid="uid://cktkwwtiim8fi" path="res://materials/title_screen/cancel_button_pressed.tres" id="6_t8kf7"]
 [ext_resource type="FontFile" uid="uid://baxs7rd4oi47n" path="res://fonts/Typodermic/Blue Highway Bd.otf" id="7_t0fso"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dcida"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101961, 0.101961, 0.101961, 0.172549)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 5
 
 [resource]
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
@@ -26,6 +38,7 @@ Label/constants/shadow_outline_size = 0
 Label/font_sizes/font_size = 16
 Label/fonts/font = null
 Label/styles/normal = null
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_dcida")
 cancel_button/styles/hover = ExtResource("4_xnm8c")
 cancel_button/styles/normal = ExtResource("5_mhn6q")
 cancel_button/styles/pressed = ExtResource("6_t8kf7")

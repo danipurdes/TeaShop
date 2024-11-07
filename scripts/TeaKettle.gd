@@ -1,45 +1,52 @@
 extends Area3D
 
-signal state_changed(state_text)
-
 @export var item_type = "teakettle"
 @export var state = "empty"
+
 var obj_attached_to = null
 
-func _ready():
-	updateLabel(getName())
-	state_changed.connect(updateLabel)
+signal state_changed(newState)
 
-func onUseItem(pinger):
-	if "machine_type" in pinger and pinger.machine_type == "sink":
-		match state:
-			"empty":
-				updateState("cold_water")
-				return true
-			"dirty":
-				updateState("empty")
-				return true
-			"cold_water":
-				updateState("dirty")
-				return true
-			"hot_water":
-				updateState("dirty")
-				return true
-	return false
+func _ready():
+	state_changed.connect($Label.onLabelUpdate)
+
+func onUseItem(itemToUseOn):
+	if "machine_type" not in itemToUseOn:
+		return false
+	
+	match itemToUseOn.machine_type:
+		"sink":
+			useOnSink()
+		_:
+			return false
 
 func onUseStove():
-	if state == "cold_water":
-		updateState("hot_water")
-		return true
-	return false
+	match state:
+		"cold_water":
+			updateState("hot_water")
+			return true
+		_:
+			return false
+
+func useOnSink():
+	match state:
+		"empty":
+			updateState("cold_water")
+			return true
+		"cold_water":
+			updateState("empty")
+			return true
+		"hot_water":
+			updateState("empty")
+			return true
+		_:
+			return false
 
 func updateState(newState):
 	state = newState
-	$Steam.emitting = newState == "hot_water"
+	$Steam.emitting = (newState == "hot_water")
 	state_changed.emit(getName())
-
-func updateLabel(new_label_text):
-	$Label.text = new_label_text
+	$Label.visible = (state != "empty")
 
 func getName():
-	return item_type + "_" + state
+	return state

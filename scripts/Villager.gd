@@ -11,8 +11,8 @@ var moveTarget: Vector3
 
 func _ready():
 	orderFlavor = generateOrder()
+	order_created.connect($FlavorProfileUI.onLabelUpdate)
 	order_created.emit(orderFlavor._to_amount_string())
-	$FlavorProfileUI.updateLabel(orderFlavor)
 	$villager/AnimationPlayer.animation_finished.connect(_on_sip_anim_finished.bind())
 	$villager/AnimationPlayer.play("walk")
 
