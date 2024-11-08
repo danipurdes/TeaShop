@@ -1,6 +1,6 @@
 extends Area3D
 
-@export var item_type = "tea_brick"
+@export var item_type = "dispenser"
 @export var tea: Constants.ingredients
 @onready var ingredients = Ingredients.new()
 
@@ -10,31 +10,22 @@ signal state_changed(new_state)
 
 func _ready():
 	ingredients.ingredients_changed.connect(onIngredientsChanged)
+	ingredients.ingredients_changed.connect($Label.onLabelUpdate)
 	state_changed.connect($Label.onLabelUpdate)
-	ingredients.ingredients_changed.connect(getIngredientNames)
 	ingredients.flavors_changed.connect($FlavorProfileUI.onLabelUpdate)
 	if tea != null:
 		ingredients.clearIngredients()
 		ingredients.addIngredient(tea)
 
 func useItem(heldItem):
-	if heldItem == null:
-		return true
-	if !heldItem.has_method("onUseItem"):
+	if heldItem == null or !heldItem.has_method("onUseItem"):
 		return false
-	return heldItem.onUseItem(self)
-
-func onUseItem(itemToUseOn):
-	if "item_type" not in itemToUseOn:
+	if !heldItem.onUseItem(self):
 		return false
 		
-	match itemToUseOn.item_type:
+	match heldItem.item_type:
 		"tea_brick":
-			return tryGiveContents(itemToUseOn)
-		"teapot":
-			return tryGiveContents(itemToUseOn)
-		"dispenser":
-			return true
+			return tryGiveContents(heldItem)
 		_:
 			return false
 
@@ -47,15 +38,19 @@ func tryGiveContents(vessel):
 func giveContents(vessel):
 	for ingredient in ingredients.ingredients:
 		vessel.ingredients.addIngredient(ingredient)
-	ingredients.clearIngredients()
 
-func onIngredientsChanged(newIngredients):
-	$IngredientMesh.set_surface_override_material(0, ingredients.ingredientsMat)
-	$Label.visible = (newIngredients.size() != 0)
-	state_changed.emit(getName())
+func onUseItem(itemToUseOn):
+	if "item_type" not in itemToUseOn:
+		return false
+	
+	match itemToUseOn.item_type:
+		"tea_brick":
+			return tryGiveContents(itemToUseOn)
+		_:
+			return false
 
-func getIngredientNames():
-	$Label.onLabelUpdate(getName())
+func onIngredientsChanged(new_ingredients):
+	$Label.visible = (new_ingredients.size() == 0)
 
 func getName():
-	return ingredients.ingredientsToString()
+	return ingredients.ingredientsToString() + " dispenser"

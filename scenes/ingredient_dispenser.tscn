@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cktksm0diybw6"]
 
-[ext_resource type="Script" path="res://scripts/ingredient_dispenser.gd" id="1_irhkj"]
+[ext_resource type="Script" path="res://scripts/Dispenser.gd" id="1_irhkj"]
 [ext_resource type="PackedScene" uid="uid://bfv8t0cytyall" path="res://models/jar/jar.gltf" id="2_01qm6"]
 [ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="3_y5kbt"]
 [ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui/ui_flavor_profile.tscn" id="4_d3v5q"]

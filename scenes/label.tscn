@@ -1,8 +1,22 @@
-[gd_scene format=3 uid="uid://b0cj6is5wudmt"]
+[gd_scene load_steps=4 format=3 uid="uid://b0cj6is5wudmt"]
+
+[ext_resource type="Script" path="res://scripts/Label3D_Dynamic.gd" id="1_rgu3f"]
+
+[sub_resource type="Gradient" id="Gradient_68i6h"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g1di6"]
+gradient = SubResource("Gradient_68i6h")
 
 [node name="Label" type="Label3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.758988, 0)
 billboard = 1
-text = "-"
+text = "haha hehe"
 font_size = 12
 outline_size = 6
+script = ExtResource("1_rgu3f")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = SubResource("GradientTexture2D_g1di6")
+region_enabled = true
