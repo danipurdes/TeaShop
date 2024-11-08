@@ -64,5 +64,7 @@ func ingredientsToString():
 	var output = ""
 	var ingredient_names = Constants.ingredients.keys()
 	for ingredient in ingredients:
-		output += ingredient_names[ingredient] + "\n "
+		output += ingredient_names[ingredient] + "\n"
+	if ingredients.size() > 0:
+		output = output.substr(0, output.length() - 1)
 	return output

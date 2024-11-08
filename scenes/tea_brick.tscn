@@ -24,21 +24,19 @@ script = ExtResource("1_5kp2m")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.114515, 0)
 shape = SubResource("BoxShape3D_tl8i4")
 
-[node name="IngredientAnchor" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.032529, 0)
-
-[node name="IngredientMesh" type="MeshInstance3D" parent="IngredientAnchor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0754125, 0)
-mesh = SubResource("BoxMesh_4svy2")
-skeleton = NodePath("../..")
-
 [node name="JarMesh" parent="." instance=ExtResource("4_5fha6")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Label" parent="." instance=ExtResource("2_jgook")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.328608, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.295743, 0)
 billboard = 0
+text = ""
+vertical_alignment = 2
 
 [node name="FlavorProfileUI" parent="." instance=ExtResource("3_kgkc1")]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.149788, 0.106277)
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.127687, 0.106277)
 text = "0"
+
+[node name="IngredientMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.107941, 0)
+mesh = SubResource("BoxMesh_4svy2")

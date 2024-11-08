@@ -10,8 +10,8 @@ signal state_changed(new_state)
 
 func _ready():
 	ingredients.ingredients_changed.connect(onIngredientsChanged)
-	ingredients.ingredients_changed.connect($Label.onLabelUpdate)
 	state_changed.connect($Label.onLabelUpdate)
+	ingredients.ingredients_changed.connect(getIngredientNames)
 	ingredients.flavors_changed.connect($FlavorProfileUI.onLabelUpdate)
 	if tea != null:
 		ingredients.clearIngredients()
@@ -50,9 +50,12 @@ func giveContents(vessel):
 	ingredients.clearIngredients()
 
 func onIngredientsChanged(newIngredients):
-	$IngredientAnchor/IngredientMesh.set_surface_override_material(0, ingredients.ingredientsMat)
+	$IngredientMesh.set_surface_override_material(0, ingredients.ingredientsMat)
 	$Label.visible = (newIngredients.size() != 0)
 	state_changed.emit(getName())
+
+func getIngredientNames():
+	$Label.onLabelUpdate(getName())
 
 func getName():
 	return ingredients.ingredientsToString()

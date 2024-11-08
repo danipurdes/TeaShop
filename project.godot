@@ -33,6 +33,10 @@ window/stretch/aspect="keep_width"
 
 movie_writer/movie_file="D:/TeaShop/export_movies/demo_movie.avi"
 
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+
 [input]
 
 ui_accept={
