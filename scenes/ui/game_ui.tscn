@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://55h3bcxmi06m"]
+[gd_scene load_steps=16 format=3 uid="uid://55h3bcxmi06m"]
 
 [ext_resource type="Script" path="res://scripts/ui/game_ui.gd" id="1_06b2o"]
 [ext_resource type="Script" path="res://scripts/Label2D_Dynamic.gd" id="1_31fp1"]
@@ -6,8 +6,14 @@
 [ext_resource type="Theme" uid="uid://sfwgouipwfat" path="res://materials/title_screen/ui_theme.tres" id="2_ua8xs"]
 [ext_resource type="Texture2D" uid="uid://cewms27xqcspa" path="res://textures/Cursors/cursor_dot.png" id="3_8mlbq"]
 [ext_resource type="LabelSettings" uid="uid://bf1tn2pcvvkuk" path="res://materials/ui/game_ui_label.tres" id="3_ynf5c"]
+[ext_resource type="Script" path="res://scripts/ui/dynamic_cursor.gd" id="5_1fitx"]
 [ext_resource type="FontFile" uid="uid://bhlbbijborftp" path="res://textures/Icons/flavor_font.png" id="6_61mo5"]
 [ext_resource type="Texture2D" uid="uid://b7e7cam1nvuud" path="res://textures/Icons/yellow_star.png" id="6_dih7h"]
+[ext_resource type="Texture2D" uid="uid://yehv53q7ttxj" path="res://textures/Cursors/up_arrow.png" id="6_erl0w"]
+[ext_resource type="Texture2D" uid="uid://b3o2biyn7nrs5" path="res://textures/Cursors/down_arrow.png" id="7_3yyf6"]
+[ext_resource type="Script" path="res://scripts/ui/mouselook_panel.gd" id="8_dhos2"]
+[ext_resource type="Script" path="res://scripts/ui/helditem_panel.gd" id="9_45np8"]
+[ext_resource type="Script" path="res://scripts/ui/inspection_panel.gd" id="9_jcpob"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_803om"]
 font = ExtResource("6_61mo5")
@@ -22,10 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme = ExtResource("2_ua8xs")
 script = ExtResource("1_06b2o")
 
 [node name="BetaDisclaimer" type="Label" parent="."]
@@ -43,95 +46,117 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("3_8mlbq")
+expand_mode = 1
 stretch_mode = 3
+script = ExtResource("5_1fitx")
+normal_cursor = ExtResource("3_8mlbq")
+up_arrow = ExtResource("6_erl0w")
+down_arrow = ExtResource("7_3yyf6")
 
-[node name="OrderContainer" type="PanelContainer" parent="."]
+[node name="OrderPanel" type="PanelContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("2_ua8xs")
 
-[node name="OrderLabels" type="HBoxContainer" parent="OrderContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="OrderPanel"]
+layout_mode = 2
+
+[node name="OrderLabels" type="VBoxContainer" parent="OrderPanel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="OrderLabelStatic" type="Label" parent="OrderContainer/OrderLabels"]
+[node name="OrderLabelStatic" type="Label" parent="OrderPanel/MarginContainer/OrderLabels"]
 layout_mode = 2
 size_flags_vertical = 1
 theme = ExtResource("2_ua8xs")
 theme_type_variation = &"hud_label"
-text = " Current Order: "
-horizontal_alignment = 2
+text = "Current Order: "
 vertical_alignment = 1
 
-[node name="OrderLabel" type="Label" parent="OrderContainer/OrderLabels"]
+[node name="OrderLabel" type="Label" parent="OrderPanel/MarginContainer/OrderLabels"]
 layout_mode = 2
 size_flags_vertical = 1
 theme = ExtResource("2_ua8xs")
 label_settings = SubResource("LabelSettings_803om")
 script = ExtResource("1_31fp1")
 
-[node name="Scorecard" type="PanelContainer" parent="."]
+[node name="ScorePanel" type="PanelContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme = ExtResource("2_ua8xs")
 
-[node name="ScorecardLabels" type="HBoxContainer" parent="Scorecard"]
+[node name="MarginContainer" type="MarginContainer" parent="ScorePanel"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScorePanel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="ScoreValue" type="Label" parent="Scorecard/ScorecardLabels"]
+[node name="ScoreValue" type="Label" parent="ScorePanel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 theme = ExtResource("2_ua8xs")
 theme_type_variation = &"hud_label"
 text = "-"
 horizontal_alignment = 2
+vertical_alignment = 1
 script = ExtResource("1_31fp1")
 default_value = "0"
 
-[node name="StarIcon" type="TextureRect" parent="Scorecard/ScorecardLabels"]
+[node name="StarIcon" type="TextureRect" parent="ScorePanel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("6_dih7h")
 expand_mode = 2
 
-[node name="MousePeeks" type="PanelContainer" parent="."]
+[node name="MousePeekPanel" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("2_ua8xs")
+script = ExtResource("8_dhos2")
+
+[node name="MarginContainer" type="MarginContainer" parent="MousePeekPanel"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MousePeekPanel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="MousePeek" type="HBoxContainer" parent="MousePeeks"]
+[node name="LeftClickIcon" type="TextureRect" parent="MousePeekPanel/MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
+texture = ExtResource("2_o40rp")
 
-[node name="UseLabel" type="Label" parent="MousePeeks/MousePeek"]
+[node name="UseLabel" type="Label" parent="MousePeekPanel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 theme = ExtResource("2_ua8xs")
 theme_type_variation = &"hud_label"
 text = "-"
+vertical_alignment = 1
 script = ExtResource("1_31fp1")
-default_value = "none"
 
-[node name="LeftClickIcon" type="TextureRect" parent="MousePeeks/MousePeek"]
+[node name="HeldItemPanel" type="PanelContainer" parent="."]
 layout_mode = 2
-texture = ExtResource("2_o40rp")
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme = ExtResource("2_ua8xs")
+script = ExtResource("9_45np8")
 
-[node name="HeldItems" type="PanelContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="HeldItemPanel"]
+layout_mode = 2
+theme = ExtResource("2_ua8xs")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HeldItemPanel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="HeldItemContainer" type="HBoxContainer" parent="HeldItems"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-
-[node name="Label_HeldItem_Static" type="Label" parent="HeldItems/HeldItemContainer"]
+[node name="Label_HeldItem_Static" type="Label" parent="HeldItemPanel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -139,7 +164,7 @@ theme = ExtResource("2_ua8xs")
 theme_type_variation = &"hud_label"
 text = "Held Item: "
 
-[node name="Label_HeldItem" type="Label" parent="HeldItems/HeldItemContainer"]
+[node name="Label_HeldItem" type="Label" parent="HeldItemPanel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -147,4 +172,41 @@ theme = ExtResource("2_ua8xs")
 theme_type_variation = &"hud_label"
 text = "-"
 horizontal_alignment = 2
+script = ExtResource("1_31fp1")
+
+[node name="InspectionPanel" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("2_ua8xs")
+script = ExtResource("9_jcpob")
+
+[node name="MarginContainer" type="MarginContainer" parent="InspectionPanel"]
+layout_mode = 2
+theme = ExtResource("2_ua8xs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InspectionPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="InspectionPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ua8xs")
+theme_type_variation = &"hud_label"
+text = "Item"
+horizontal_alignment = 1
+script = ExtResource("1_31fp1")
+
+[node name="StateLabel" type="Label" parent="InspectionPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ua8xs")
+theme_type_variation = &"hud_label"
+text = "State"
+horizontal_alignment = 1
+script = ExtResource("1_31fp1")
+
+[node name="IngredientsLabel" type="Label" parent="InspectionPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ua8xs")
+theme_type_variation = &"hud_label"
+text = "Ingredients"
 script = ExtResource("1_31fp1")

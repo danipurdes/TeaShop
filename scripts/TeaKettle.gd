@@ -16,7 +16,7 @@ func onUseItem(itemToUseOn):
 	
 	match itemToUseOn.machine_type:
 		"sink":
-			useOnSink()
+			return useOnSink()
 		_:
 			return false
 
@@ -46,7 +46,6 @@ func updateState(newState):
 	state = newState
 	$Steam.emitting = (newState == "hot_water")
 	state_changed.emit(getName())
-	$Label.visible = (state != "empty")
 
 func getName():
 	return state

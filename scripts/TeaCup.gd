@@ -74,7 +74,7 @@ func updateState(new_state):
 	state = new_state
 	$Steam.emitting = (state == "hot_water")
 	state_changed.emit(getName())
-	$Label.visible = (state != "empty")
+	#$Label.visible = (state != "empty")
 
 func onIngredientsChanged(_new_ingredients):
 	$tea_cup/tea_cup_liquid.set_surface_override_material(0, ingredients.ingredientsMat)

@@ -29,6 +29,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Label" parent="." instance=ExtResource("2_jgook")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.295743, 0)
+visible = false
 billboard = 0
 text = ""
 vertical_alignment = 2
