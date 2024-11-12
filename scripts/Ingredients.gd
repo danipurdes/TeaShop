@@ -7,8 +7,8 @@ var flavor_profile = FlavorProfile.new([0,0,0,0,0,0])
 var ingredientsColor = Constants.ingredientColorMap[Constants.ingredients.NONE]
 var ingredientsMat = StandardMaterial3D.new()
 
-signal ingredients_changed(newIngredients)
-signal flavors_changed(newFlavors)
+signal ingredients_changed(new_ingredients)
+signal flavors_changed(new_flavors)
 
 func _init():
 	ingredientsMat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
@@ -61,10 +61,19 @@ func calculateMaterial():
 		ingredientsMat.albedo_color = Constants.ingredientColorMap[Constants.ingredients.NONE]
 
 func ingredientsToString():
+	var ingredientMap = {}
+	for ingredient in ingredients:
+		if ingredientMap.has(ingredient):
+			ingredientMap[ingredient] = ingredientMap[ingredient] + 1
+		else:
+			ingredientMap[ingredient] = 1
+	
 	var output = ""
 	var ingredient_names = Constants.ingredients.keys()
-	for ingredient in ingredients:
-		output += ingredient_names[ingredient] + "\n"
+	for ingredient in ingredientMap:
+		output += ingredient_names[ingredient]
+		output += (" x" + str(ingredientMap[ingredient])) if ingredientMap[ingredient] > 1 else ""
+		output += "\n"
 	if ingredients.size() > 0:
 		output = output.substr(0, output.length() - 1)
 	return output

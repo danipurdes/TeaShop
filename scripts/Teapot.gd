@@ -90,7 +90,7 @@ func updateState(newState):
 	state = newState
 	$Steam.emitting = (state == "hot_water")
 	state_changed.emit(getName())
-	$Label.visible = (state != "empty")
+	#$Label.visible = (state != "empty")
 
 func updateServings(newServings):
 	servings = newServings

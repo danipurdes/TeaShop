@@ -49,13 +49,13 @@ func giveContents(vessel):
 		vessel.ingredients.addIngredient(ingredient)
 	ingredients.clearIngredients()
 
-func onIngredientsChanged(newIngredients):
+func onIngredientsChanged(_new_ingredients):
 	$IngredientMesh.set_surface_override_material(0, ingredients.ingredientsMat)
-	$Label.visible = (newIngredients.size() != 0)
+	#$Label.visible = (new_ingredients.size() != 0)
 	state_changed.emit(getName())
 
-func getIngredientNames():
-	$Label.onLabelUpdate(getName())
+func getIngredientNames(_new_ingredients):
+	$Label.onLabelUpdate(ingredients.ingredientsToString())
 
 func getName():
 	return ingredients.ingredientsToString()

@@ -26,6 +26,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.367773, 0.280521, 0)
 
 [node name="Label" parent="." instance=ExtResource("2_bt26d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.629981, 0)
+visible = false
 
 [node name="FlavorProfileUI" parent="." instance=ExtResource("3_usbfy")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.47192, 0)

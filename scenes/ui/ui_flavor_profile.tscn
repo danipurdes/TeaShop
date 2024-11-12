@@ -1,20 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://drw752s764j10"]
+[gd_scene load_steps=3 format=3 uid="uid://drw752s764j10"]
 
 [ext_resource type="Script" path="res://scripts/Label3D_Dynamic.gd" id="2_cayq7"]
 [ext_resource type="FontFile" uid="uid://bhlbbijborftp" path="res://textures/Icons/flavor_font.png" id="7_joh0m"]
-
-[sub_resource type="Gradient" id="Gradient_q13kd"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_uswf7"]
-gradient = SubResource("Gradient_q13kd")
 
 [node name="FlavorProfileUI" type="Label3D"]
 font = ExtResource("7_joh0m")
 font_size = 400
 script = ExtResource("2_cayq7")
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-texture = SubResource("GradientTexture2D_uswf7")
-region_enabled = true

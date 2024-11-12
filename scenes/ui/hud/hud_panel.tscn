@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnhfndntbxfk7"]
+
+[ext_resource type="Theme" uid="uid://sfwgouipwfat" path="res://materials/title_screen/ui_theme.tres" id="1_1o0li"]
+
+[node name="HudPanel" type="PanelContainer"]
+theme = ExtResource("1_1o0li")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme = ExtResource("1_1o0li")
