@@ -3,7 +3,7 @@ class_name HotspotSpawner
 func _init():
 	pass
 
-func SpawnHotspotObjects(spawnObjs, hotspots):
+func SpawnHotspotObjects(spawnObjs, hotspots, spawnTeas):
 	# Validate args
 	if spawnObjs == null:
 		printerr("HotspotSpawner: spawnObjs is null")
@@ -18,4 +18,7 @@ func SpawnHotspotObjects(spawnObjs, hotspots):
 	# Spawn objects on their hotspots
 	for index in spawnObjs.size():
 		if spawnObjs[index] != null and hotspots[index] != null:
-			hotspots[index].spawn_requested.emit(spawnObjs[index].instantiate())
+			hotspots[index].spawn_requested.emit(
+				spawnObjs[index].instantiate(),
+				spawnTeas[index] if spawnTeas != null else Constants.ingredients.NONE
+			)

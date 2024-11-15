@@ -10,7 +10,7 @@ extends Node3D
 
 func _ready():
 	var spawner = HotspotSpawner.new()
-	spawner.SpawnHotspotObjects(spawnObjs, hotspots)
+	spawner.SpawnHotspotObjects(spawnObjs, hotspots, null)
 	
 	if objAllowList != "":
 		for hotspot in hotspots:

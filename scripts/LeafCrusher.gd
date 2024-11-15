@@ -25,7 +25,6 @@ func stopCrushLeaves():
 	$Hitbox.set_disabled(false)
 	var newLeafTray = obj_leaf_tray.instantiate()
 	newLeafTray.position = $LeafTraySpawn.global_position
-	newLeafTray.setTea(Constants.ingredients.GREEN_TEA)
 	currentItem = newLeafTray
 	newLeafTray.obj_attached_to = self
 	get_node("/root/Node3D").add_child(newLeafTray)

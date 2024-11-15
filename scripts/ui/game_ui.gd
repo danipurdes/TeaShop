@@ -9,17 +9,21 @@ extends MarginContainer
 @onready var cursor = $Cursor
 
 func _ready():
-	# Simple Labels
+	# Current Order
 	villager_spawner.current_order_changed.connect(order_label.onLabelUpdate)
+	
+	# Score
 	world.score_changed.connect(score_label.onLabelUpdate)
 
-	# Simple Panels
-	player.held_item_changed.connect($HeldItemPanel.on_held_item_changed)
-	player.lookat_changed.connect($InspectionPanel.on_lookat_changed)
+	# Held Item
+	player.held_item_changed.connect($HeldItemPanel.on_target_changed)
+	
+	# Inspection Panel
+	player.lookat_changed.connect($InspectionPanel.on_target_changed)
 
-	# Connect Mouse Peek Panel
+	# Mouse Peek Panel
 	player.held_item_changed.connect(mouse_peek_panel.on_held_item_changed)
 	player.lookat_changed.connect(mouse_peek_panel.on_target_item_changed)
 
-	# Connect Cursor
+	# Cursor
 	mouse_peek_panel.use_label_changed.connect(cursor.change_cursor)

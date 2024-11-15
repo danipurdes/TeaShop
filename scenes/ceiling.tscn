@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://db0xu55woj8wb"]
+
+[ext_resource type="Texture2D" uid="uid://ccd0by8sbued5" path="res://textures/Prototype Textures/Light/texture_04.png" id="1_apldo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u4u8t"]
+albedo_color = Color(1, 0.85098, 0.815686, 1)
+albedo_texture = ExtResource("1_apldo")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_2357a"]
+lightmap_size_hint = Vector2i(104, 57)
+material = SubResource("StandardMaterial3D_u4u8t")
+size = Vector3(1, 0.1, 1)
+
+[node name="Ceiling" type="MeshInstance3D"]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_2357a")

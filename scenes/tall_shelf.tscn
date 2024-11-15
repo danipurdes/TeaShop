@@ -1,35 +1,45 @@
 [gd_scene load_steps=5 format=3 uid="uid://clunbhfm3m663"]
 
 [ext_resource type="Script" path="res://scripts/tall_shelf.gd" id="1_bvdw3"]
+[ext_resource type="PackedScene" uid="uid://b3gph0cad7v20" path="res://models/kenney_furniture/bookcaseClosedWide.glb" id="3_0ncq7"]
 [ext_resource type="PackedScene" uid="uid://cyp2xxkqqpaim" path="res://scenes/counter_hotspot.tscn" id="3_8xkp0"]
-[ext_resource type="PackedScene" uid="uid://434koty0c5vb" path="res://models/shelf_tall/shelf_tall.gltf" id="3_kiyke"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v4t41"]
-size = Vector3(1, 0.115549, 0.877)
+size = Vector3(1.59543, 0.115549, 0.600109)
 
 [node name="TallShelf" type="StaticBody3D"]
 script = ExtResource("1_bvdw3")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0626204, -0.0577638)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807338, 0.0626204, -0.259127)
 shape = SubResource("BoxShape3D_v4t41")
 
 [node name="CounterHotspot0" parent="." instance=ExtResource("3_8xkp0")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.25, 0.13, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.307703, 1.11078, -0.259767)
 
 [node name="CounterHotspot1" parent="." instance=ExtResource("3_8xkp0")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 0.13, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.783039, 1.11078, -0.259767)
 
 [node name="CounterHotspot2" parent="." instance=ExtResource("3_8xkp0")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.25, 0.88, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.27129, 1.11078, -0.259767)
 
 [node name="CounterHotspot3" parent="." instance=ExtResource("3_8xkp0")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 0.88, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.311603, 0.62193, -0.243367)
 
 [node name="CounterHotspot4" parent="." instance=ExtResource("3_8xkp0")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.25, 1.63, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.79829, 0.62193, -0.243367)
 
 [node name="CounterHotspot5" parent="." instance=ExtResource("3_8xkp0")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.25, 1.63, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.28384, 0.62193, -0.243367)
 
-[node name="Mesh" parent="." instance=ExtResource("3_kiyke")]
+[node name="CounterHotspot6" parent="." instance=ExtResource("3_8xkp0")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.307587, 0.14105, -0.257245)
+
+[node name="CounterHotspot7" parent="." instance=ExtResource("3_8xkp0")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.793149, 0.14105, -0.257245)
+
+[node name="CounterHotspot8" parent="." instance=ExtResource("3_8xkp0")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.2915, 0.14105, -0.257245)
+
+[node name="bookcaseClosedWide" parent="." instance=ExtResource("3_0ncq7")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
