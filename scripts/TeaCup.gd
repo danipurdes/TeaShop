@@ -47,7 +47,7 @@ func useTeapot(teapot):
 		return false
 	
 	updateState(teapot.state)
-	for ingredient in teapot.ingredientList:
+	for ingredient in teapot.ingredients.ingredients:
 		ingredients.addIngredient(ingredient)
 	return true
 

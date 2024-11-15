@@ -13,7 +13,11 @@ func _ready():
 	state_changed.connect(state_label.onLabelUpdate)
 	ingredients_changed.connect(ingredients_label.onLabelUpdate)
 
-func on_lookat_changed(target):
+func on_target_changed(target):
+	if target == null:
+		visible = false
+		return
+	
 	visible = "item_type" in target
 
 	name_changed.emit(target.item_type if "item_type" in target else "")

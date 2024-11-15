@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://qxwimm0thrmn"]
+
+[ext_resource type="Material" uid="uid://dkupiqwv6rf2g" path="res://materials/floor.tres" id="1_8dy22"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_7d0cn"]
+material = ExtResource("1_8dy22")
+orientation = 1
+
+[node name="Floor" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+mesh = SubResource("QuadMesh_7d0cn")
+skeleton = NodePath("../..")

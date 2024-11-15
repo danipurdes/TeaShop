@@ -37,8 +37,7 @@ func useItem(item):
 	var order_comp = orderFlavor.compareFlavorArrays(item.flavor_profile.flavors)
 	var order_score = orderFlavor.getFlavorMagnitude() - order_comp
 	displayPerformanceRating(order_score, orderFlavor.getFlavorMagnitude())
-	item.ingredientList.clear()
-	item.flavor_profile.clearFlavorProfile()
+	item.ingredients.clearIngredients()
 	item.updateState("dirty")
 	orderFlavor.clearFlavorProfile()
 	order_served.emit(order_score)

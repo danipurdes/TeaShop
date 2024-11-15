@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://blnsneoyfocv6" path="res://audio/bad_boop.wav" id="5_2vhij"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wmkwk"]
+radius = 0.45
 
 [sub_resource type="SphereMesh" id="SphereMesh_8knmf"]
 radius = 0.1
