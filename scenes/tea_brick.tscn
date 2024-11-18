@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3o86lcksgnit"]
+[gd_scene load_steps=7 format=3 uid="uid://d3o86lcksgnit"]
 
 [ext_resource type="Script" path="res://scripts/TeaBrick.gd" id="1_5kp2m"]
-[ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="2_jgook"]
 [ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui/ui_flavor_profile.tscn" id="3_kgkc1"]
 [ext_resource type="PackedScene" uid="uid://bfv8t0cytyall" path="res://models/jar/jar.gltf" id="4_5fha6"]
 
@@ -26,13 +25,6 @@ shape = SubResource("BoxShape3D_tl8i4")
 
 [node name="JarMesh" parent="." instance=ExtResource("4_5fha6")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-
-[node name="Label" parent="." instance=ExtResource("2_jgook")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.295743, 0)
-visible = false
-billboard = 0
-text = ""
-vertical_alignment = 2
 
 [node name="FlavorProfileUI" parent="." instance=ExtResource("3_kgkc1")]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.127687, 0.106277)
