@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsrcc8a30vt1p"]
+[gd_scene load_steps=9 format=3 uid="uid://bsrcc8a30vt1p"]
 
 [ext_resource type="Script" path="res://scripts/LeafCrusher.gd" id="1_y65cl"]
-[ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="2_0gc1h"]
 [ext_resource type="PackedScene" uid="uid://tcdvy54dd8x" path="res://models/crusher/leaf_crusher.gltf" id="2_753r6"]
+[ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="4_hwbak"]
+[ext_resource type="PackedScene" uid="uid://cyp2xxkqqpaim" path="res://scenes/counter_hotspot.tscn" id="5_6ihsq"]
+[ext_resource type="PackedScene" uid="uid://dx0xtqq8edqdy" path="res://scenes/crush_leaf_tray.tscn" id="6_n74i5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_etkkx"]
 size = Vector3(0.972, 1.25, 0.907)
@@ -15,7 +17,7 @@ size = Vector3(1, 0.06, 0.735)
 
 [node name="LeafCrusher" type="StaticBody3D"]
 script = ExtResource("1_y65cl")
-obj_leaf_tray = ExtResource("2_0gc1h")
+obj_leaf_tray = ExtResource("6_n74i5")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625, -0.131)
@@ -25,26 +27,31 @@ shape = SubResource("BoxShape3D_etkkx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.996484, 0.35, -0.131)
 shape = SubResource("BoxShape3D_y2a6e")
 
-[node name="CrusherMesh" parent="." instance=ExtResource("2_753r6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+[node name="CounterHotspot" parent="." instance=ExtResource("5_6ihsq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.992613, 0.791093, -0.122447)
+allowlist = Array[String](["leaf_tray"])
 
 [node name="StatusLight" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.278723, 1.16929, 0.333707)
 omni_range = 0.055
 
-[node name="Label" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0314052, 0.889014, 0.417127)
-text = "Leaf Crusher"
-font_size = 18
+[node name="CapacityLabel" parent="." instance=ExtResource("4_hwbak")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.132995, 1.12822, 0.331511)
+billboard = 0
+default_value = "0/20"
 
 [node name="CrushTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="LeafTraySpawn" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.946936, 0.789022, -0.161933)
+[node name="CrusherMesh" parent="." instance=ExtResource("2_753r6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Label" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00304102, 0.871745, 0.251501)
+text = "Leaf Crusher 3000
+"
+font_size = 18
+
+[node name="LeafTrayHolder" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.991683, 0.754393, -0.123276)
 mesh = SubResource("BoxMesh_ktq1k")
-
-[connection signal="timeout" from="CrushTimer" to="." method="stopCrushLeaves"]

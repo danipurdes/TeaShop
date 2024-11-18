@@ -14,11 +14,14 @@ objAllowList = "teacup"
 
 [node name="CounterHotspot0" parent="." instance=ExtResource("2_3qeaq")]
 transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, -0.275987, -0.0378802, 0.0982705)
+allowlist = Array[String](["teacup"])
 
 [node name="CounterHotspot1" parent="." instance=ExtResource("2_3qeaq")]
 transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 0.0028699, -0.0365702, 0.101301)
+allowlist = Array[String](["teacup"])
 
 [node name="CounterHotspot2" parent="." instance=ExtResource("2_3qeaq")]
 transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 0.295221, -0.0376824, 0.107522)
+allowlist = Array[String](["teacup"])
 
 [node name="Mesh" parent="." instance=ExtResource("3_3fnrc")]

@@ -141,7 +141,7 @@ script = ExtResource("1_31fp1")
 
 [node name="HeldItemPanel" type="PanelContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 8
 size_flags_vertical = 8
 theme = ExtResource("2_ua8xs")
 script = ExtResource("9_jcpob")
@@ -179,7 +179,7 @@ script = ExtResource("1_31fp1")
 [node name="InspectionPanel" type="PanelContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 8
-size_flags_vertical = 8
+size_flags_vertical = 4
 theme = ExtResource("2_ua8xs")
 script = ExtResource("9_jcpob")
 

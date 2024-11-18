@@ -5,7 +5,7 @@
 [node name="Label" type="Label3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.758988, 0)
 billboard = 1
-text = "haha hehe"
+text = "-"
 font_size = 12
 outline_size = 6
 script = ExtResource("1_rgu3f")

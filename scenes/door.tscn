@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqq7ckuqt4enp"]
+
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_6vdyx"]
+[ext_resource type="PackedScene" uid="uid://cneh5neo1q4lr" path="res://models/kenney_furniture/doorway.glb" id="1_rdht2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uyj66"]
+radius = 1.22525
+height = 2.95308
+
+[node name="Door" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0894027)
+script = ExtResource("1_6vdyx")
+open_angle_degrees = -135
+
+[node name="Model" parent="." instance=ExtResource("1_rdht2")]
+transform = Transform3D(0.86, 0, 1.66893e-07, 0, 1.01, 0, -2.0504e-07, 0, 0.7, 0, 0, 0.075)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.195, 0)
+shape = SubResource("CapsuleShape3D_uyj66")

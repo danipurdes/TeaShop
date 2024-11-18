@@ -1,32 +1,31 @@
 extends Area3D
 
-@export var item_type = "teacup"
-@export var state = "empty"
-@onready var ingredients = Ingredients.new()
+@export var item_type:String = "teacup"
 
+@onready var ingredients:Ingredients = Ingredients.new()
+
+var state:String = "empty"
 var obj_attached_to = null
 
 signal state_changed(new_state)
 
 func _ready():
 	ingredients.ingredients_changed.connect(onIngredientsChanged)
-	ingredients.ingredients_changed.connect($Label.onLabelUpdate)
-	state_changed.connect($Label.onLabelUpdate)
 	ingredients.flavors_changed.connect($FlavorProfileUI.onLabelUpdate)
 
 	onIngredientsChanged(ingredients.ingredients)
 
-func useItem(heldItem):
-	if heldItem == null:
+func useItem(held_item):
+	if held_item == null:
 		return true
-	if "item_type" not in heldItem:
+	if "item_type" not in held_item:
 		return false
 	
-	match(heldItem.item_type):
-		"teakettle":
-			return useKettle(heldItem)
+	match(held_item.item_type):
+		"kettle":
+			return useKettle(held_item)
 		"teapot":
-			return useTeapot(heldItem)
+			return useTeapot(held_item)
 		_:
 			return false
 
@@ -65,18 +64,22 @@ func useOnSink():
 	match state:
 		"empty":
 			updateState("cold_water")
+			return true
 		_:
 			ingredients.clearIngredients()
 			updateState("empty")
-	return true
+			return true
 
 func updateState(new_state):
+	if new_state == state:
+		return
+	
 	state = new_state
 	$Steam.emitting = (state == "hot_water")
 	state_changed.emit(getName())
-	#$Label.visible = (state != "empty")
 
 func onIngredientsChanged(_new_ingredients):
+	$tea_cup/tea_cup_liquid.visible = _new_ingredients.size() > 0
 	$tea_cup/tea_cup_liquid.set_surface_override_material(0, ingredients.ingredientsMat)
 
 func getName():

@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var mouse_rotate_sensitivity_h = 9.5
 @export var joystick_rotate_sensitivity_h = 95
 @export var rotate_invert_h = -1
+
 @onready var Camera = $Camera
 @onready var Raycast = $Camera/RayCast3D
 
@@ -96,7 +97,6 @@ func attemptPickup(item):
 
 func updateHeldItem(item):
 	heldItem = item
-	#heldItem.state_changed.connect(updateHeldItemLabel)
 	heldItem.monitoring = false
 	heldItem.monitorable = false
 	if "obj_attached_to" in item and item.obj_attached_to != null and item.obj_attached_to.has_method("takeItem"):
@@ -111,13 +111,11 @@ func dropHeldItem(dropRequestor):
 	heldItem.monitoring = true
 	heldItem.monitorable = true
 	heldItem.position = dropRequestor.global_position
-	#heldItem.state_changed.disconnect(updateHeldItemLabel)
 	heldItem = null
 	held_item_changed.emit(null)
 	return oldHeldItem
 
 func destroyHeldItem():
-	#heldItem.state_changed.disconnect(updateHeldItemLabel)
 	heldItem.queue_free()
 	heldItem = null
 	held_item_changed.emit(null)
@@ -130,19 +128,23 @@ func updateLookAtTarget(new_target):
 		lookat_changed.emit(new_target)
 
 func pick_object(target):
+	if target == null:
+		return
+
 	if "item_type" in target:
 		if attemptPickup(target):
 			$PingBoop.play()
 			return
-		
 		if target.has_method("useItem") and target.useItem(heldItem):
 			$UseBoop.play()
 			return
-		
 		$BadBoop.play()
-	elif target.has_method("useItem") and target.useItem(heldItem):
+		return
+	
+	if target.has_method("useItem") and target.useItem(heldItem):
 		$UseBoop.play()
 		if (heldItem != null):
 			held_item_changed.emit(heldItem)
-	else:
-		$BadBoop.play()
+		return
+
+	$BadBoop.play()

@@ -1,7 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://csh63b2jdudyg"]
+[gd_scene load_steps=22 format=3 uid="uid://csh63b2jdudyg"]
 
 [ext_resource type="Script" path="res://scripts/Oxidizer.gd" id="1_iuc1u"]
 [ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="2_55n5q"]
+[ext_resource type="PackedScene" uid="uid://cyp2xxkqqpaim" path="res://scenes/counter_hotspot.tscn" id="3_24mvj"]
+[ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="4_4pkve"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fvmw3"]
 albedo_color = Color(0.368627, 0.368627, 0.368627, 1)
@@ -16,6 +18,7 @@ bg_color = Color(0.0705882, 0.278431, 0.0941176, 1)
 bg_color = Color(0.333333, 0.0588235, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y2a6e"]
+size = Vector3(0.9, 0.9, 0.9)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfg0d"]
 albedo_color = Color(0.737255, 0.47451, 0.364706, 1)
@@ -26,21 +29,21 @@ material = SubResource("StandardMaterial3D_pfg0d")
 [sub_resource type="BoxMesh" id="BoxMesh_nhapk"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pc506"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.1
 emission_ring_radius = 0.25
 emission_ring_inner_radius = 0.0
-particle_flag_align_y = true
-particle_flag_rotate_y = true
+angle_max = 90.0
 direction = Vector3(0, 1, 0)
 spread = 10.0
 flatness = 0.42
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 1.0
 initial_velocity_max = 2.5
 angular_velocity_max = 16.18
-angle_max = 90.0
+gravity = Vector3(0, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_o3p6p"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1)
@@ -83,33 +86,32 @@ obj_ingredient = ExtResource("2_55n5q")
 greenStyle = SubResource("StyleBoxFlat_1w6ya")
 blackStyle = SubResource("StyleBoxFlat_rhkah")
 
+[node name="CounterHotspot" parent="." instance=ExtResource("3_24mvj")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.91, -0.16949)
+
 [node name="Hitbox" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
 shape = SubResource("BoxShape3D_y2a6e")
 
 [node name="MachineMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0.45, 0)
 mesh = SubResource("BoxMesh_rqnee")
 skeleton = NodePath("../..")
 
 [node name="IndicatorMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.7, 0, 0, 0, 0.5, 0, 0, 0, 0.319855, 0, 0.400111, 0.384797)
+transform = Transform3D(0.634, 0, 0, 0, 0.453, 0, 0, 0, 0.05, 0, 0.317546, 0.448404)
 mesh = SubResource("BoxMesh_nhapk")
 skeleton = NodePath("../..")
 
-[node name="TeaBrickSpawn" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="Label" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.878109, 0.534451)
+[node name="NameLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.784567, 0.456516)
 text = "Oxidizer"
 font_size = 18
 
-[node name="TeaLabel" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41778, 0.587407)
-text = "Inactive"
-font_size = 14
-outline_size = 7
+[node name="IngredientLabel" parent="." instance=ExtResource("4_4pkve")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.328343, 0.481322)
+billboard = 0
+default_value = "Inactive"
 
 [node name="ParticleEmitter" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00224614, 0.92471, 0.00580812)
@@ -132,7 +134,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0217283, 0.734367, 0.527411)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00721357, 0.642465, 0.455958)
 mesh = SubResource("QuadMesh_16arv")
 surface_material_override/0 = SubResource("StandardMaterial3D_0b6os")
 

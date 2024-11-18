@@ -1,13 +1,15 @@
 extends StaticBody3D
 
 @export var machine_type = "sink"
-var allowlist = ["teapot","teakettle","teacup"]
 
-func useItem(heldItem):
-	if heldItem != null and heldItem.item_type in allowlist:
-		if heldItem.has_method("onUseItem"):
-			return heldItem.onUseItem(self)
-	return false
+func useItem(held_item):
+	if held_item == null:
+		return false
+	if "item_type" not in held_item:
+		return false
+	if !held_item.has_method("onUseItem"):
+		return false
+	return held_item.onUseItem(self)
 
 func getName():
 	return machine_type
