@@ -1,7 +1,8 @@
 extends Area3D
 
-@export var item_type = "dispenser"
-@export var tea: Constants.ingredients
+@export var item_type:String = "dispenser"
+@export var ingredient_on_spawn: Constants.ingredients = Constants.ingredients.NONE
+
 @onready var ingredients = Ingredients.new()
 
 var obj_attached_to = null
@@ -11,11 +12,13 @@ signal state_changed(new_state)
 func _ready():
 	ingredients.ingredients_changed.connect(onIngredientsChanged)
 	ingredients.ingredients_changed.connect($Label.onLabelUpdate)
-	state_changed.connect($Label.onLabelUpdate)
 	ingredients.flavors_changed.connect($FlavorProfileUI.onLabelUpdate)
-	if tea != null:
-		ingredients.clearIngredients()
-		ingredients.addIngredient(tea)
+
+	match ingredient_on_spawn:
+		Constants.ingredients.NONE:
+			return
+		_:
+			ingredients.addIngredient(ingredient_on_spawn)
 
 func useItem(heldItem):
 	if heldItem == null or !heldItem.has_method("onUseItem"):
@@ -50,7 +53,7 @@ func onUseItem(itemToUseOn):
 			return false
 
 func onIngredientsChanged(new_ingredients):
-	$Label.visible = (new_ingredients.size() == 0)
+	$Label.visible = (new_ingredients.size() != 0)
 
 func getName():
-	return ingredients.ingredientsToString() + " dispenser"
+	return ingredients.ingredientsToString()
