@@ -1,34 +1,81 @@
 extends StaticBody3D
 
-@export var machine_type = "leaf_crusher"
-@export var obj_leaf_tray: PackedScene
+@export var machine_type:String = "leaf_crusher"
+@export var allow_list:Array[String] = ["leaf_tray"]
+@export var leaf_tray:PackedScene
+@export_range(0,100) var leaf_count_max = 20
 
-@onready var currentItem = null
+var state = "idle"
+var leaf_count_current = 0
+
+signal state_changed(new_state_text)
 
 func _ready():
+	if leaf_tray != null:
+		$CounterHotspot.spawnObject(
+			leaf_tray.instantiate(),
+			Constants.ingredients.GREEN_TEA,
+			allow_list
+		)
+
+	$CounterHotspot.object_taken.connect(request_start_crushing)
+	state_changed.connect($CapacityLabel.onLabelUpdate)
+	$CrushTimer.timeout.connect(stop_crushing)
+
 	$StatusLight.light_color = Color.GREEN
 
-func useItem(heldItem):
-	if heldItem != null and heldItem.has_method("onUseItem") and heldItem.onUseItem(self):
-		if "item_type" in heldItem and heldItem.item_type == "basket" and currentItem == null:
-			startCrushLeaves()
-			return true
-	return false
 
-func startCrushLeaves():
+func useItem(heldItem):
+	if heldItem == null:
+		return false
+	if !heldItem.has_method("onUseItem"):
+		return false
+	if $CounterHotspot.currentItem != null:
+		return false
+	if "item_type" not in heldItem:
+		return heldItem.onUseItem(self)
+	
+	match heldItem.item_type:
+		"basket":
+			var leaves_withdrawn = heldItem.withdraw_leaves(leaf_count_max - leaf_count_current)
+			if leaves_withdrawn <= 0:
+				return false
+			deposit_leaves(leaves_withdrawn)
+			request_start_crushing()
+			return true
+		_:
+			return false
+
+func deposit_leaves(requested_amount):
+	if requested_amount <= 0:
+		return 0
+	
+	var leaves_deposited = min(leaf_count_max - leaf_count_current, requested_amount)
+	leaf_count_current += leaves_deposited
+	state_changed.emit(getName())
+	return leaves_deposited
+
+func request_start_crushing():
+	if leaf_count_current > 0 and $CounterHotspot.currentItem == null:
+		start_crushing()
+
+func start_crushing():
+	state = "active"
 	$StatusLight.light_color = Color.RED
 	$Hitbox.set_disabled(true)
 	$CrushTimer.start()
 
-func stopCrushLeaves():
+func stop_crushing():
+	state = "idle"
 	$StatusLight.light_color = Color.GREEN
 	$Hitbox.set_disabled(false)
-	var newLeafTray = obj_leaf_tray.instantiate()
-	newLeafTray.position = $LeafTraySpawn.global_position
-	currentItem = newLeafTray
-	newLeafTray.obj_attached_to = self
-	get_node("/root/Node3D").add_child(newLeafTray)
+	$CounterHotspot.spawnObject(
+		leaf_tray.instantiate(),
+		Constants.ingredients.GREEN_TEA,
+		allow_list
+	)
+	leaf_count_current = max(0, leaf_count_current - 1)
+	state_changed.emit(getName())
 
-func takeItem():
-	currentItem.obj_attached_to = null
-	currentItem = null
+func getName():
+	return str(leaf_count_current) + "/" + str(leaf_count_max)
