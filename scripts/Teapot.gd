@@ -1,103 +1,99 @@
 extends Area3D
 
-@export var item_type = "teapot"
-@export var state = "empty"
-@export var max_servings = 3
+@export var item_type:String = "teapot"
+@export_range(1,10) var servings_max = 3
+
 @onready var ingredients = Ingredients.new()
 
+var state:String = "empty"
+var servings_current:int = 0
 var obj_attached_to = null
-var servings = 0
 
-signal state_changed(newState)
+signal state_changed(new_state)
 
 func _ready():
-	ingredients.ingredients_changed.connect($Label.onLabelUpdate)
-	state_changed.connect($Label.onLabelUpdate)
 	ingredients.flavors_changed.connect($FlavorProfileUI.onLabelUpdate)
 
-func useItem(heldItem):
-	if heldItem == null:
-		return true
-	if "item_type" not in heldItem:
+func useItem(held_item):
+	if held_item == null:
+		return false
+	if "item_type" not in held_item:
 		return false
 	
-	match (heldItem.item_type):
-		"teakettle":
-			return useKettle(heldItem)
+	match held_item.item_type:
+		"kettle":
+			return useKettle(held_item)
 		"tea_brick":
-			return useTeaJar(heldItem)
+			return held_item.onUseItem(self)
 		_:
 			return false
 
-func onUseItem(pinger):
-	if "machine_type" in pinger and pinger.machine_type == "sink":
-		return useOnSink()
-	if "item_type" in pinger and pinger.item_type == "teacup":
-		return useOnTeacup(pinger)
+func onUseItem(item_to_use_on):
+	if "machine_type" in item_to_use_on:
+		match item_to_use_on.machine_type:
+			"sink":
+				return useOnSink()
+			_:
+				return false
+	
+	if "item_type" in item_to_use_on:
+		match item_to_use_on.item_type:
+			"teacup":
+				return useOnTeacup(item_to_use_on)
+			_:
+				return false
+	
 	return false
 
 func useKettle(kettle):
 	match kettle.state:
-		"hot_water":
+		"empty":
+			return false
+		_:
 			match state:
 				"empty":
-					updateState("hot_water")
-					kettle.updateState("empty")
-					updateServings(max_servings)
+					update_state(kettle.state)
+					update_servings(kettle.servings_current)
+					kettle.update_servings(0)
 					return true
 				_:
 					return false
-		_:
-			return false
-
-func useTeaJar(teajar):
-	var newIngredientCount = teajar.ingredients.ingredients.length + ingredients.ingredients.length
-	if newIngredientCount > ingredients.max_ingredients:
-		return false
-
-	# store tea jar ingredients because they get cleared
-	var teajar_ingredients = teajar.ingredients.ingredients.duplicate()
-	if !teajar.onUseItem(self):
-		return false
-
-	for ingredient in teajar_ingredients:
-		ingredients.addIngredient(ingredient)
-	return true
 
 func useOnSink():
 	match state:
 		"empty":
-			updateState("cold_water")
+			update_state("cold_water")
+			update_servings(servings_max)
 		_:
-			updateState("empty")
-			ingredients.clearIngredients()
-			updateServings(0)
+			update_servings(0)
 	return true
 
 func useOnTeacup(teacup):
-	if servings <= 0:
+	if servings_current <= 0:
 		return false
-	
-	if teacup.ingredients.ingredients.length + ingredients.ingredients.length > teacup.ingredients.max_ingredients:
+	if teacup.ingredients.ingredients.size() + ingredients.ingredients.size() > teacup.ingredients.max_ingredients:
 		return false
 
-	updateServings(servings - 1)
-	for ingredient in ingredients:
+	for ingredient in ingredients.ingredients:
 		teacup.ingredients.addIngredient(ingredient)
+	update_servings(servings_current - 1)
+	
 	return true
 
-func updateState(newState):
-	state = newState
+func update_state(new_state):
+	if new_state == state:
+		return
+	state = new_state
 	$Steam.emitting = (state == "hot_water")
 	state_changed.emit(getName())
-	#$Label.visible = (state != "empty")
 
-func updateServings(newServings):
-	servings = newServings
-	if servings <= 0:
+func update_servings(new_servings):
+	if servings_current == new_servings:
+		return
+	servings_current = new_servings
+	if servings_current <= 0:
 		ingredients.clearIngredients()
-		updateState("empty")
-	state_changed.emit(getName())	
+		update_state("empty")
 
 func getName():
-	return state + " servings: " + str(servings)
+	return str(servings_current) + "/" + str(servings_max)
