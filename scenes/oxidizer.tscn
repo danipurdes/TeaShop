@@ -87,7 +87,7 @@ greenStyle = SubResource("StyleBoxFlat_1w6ya")
 blackStyle = SubResource("StyleBoxFlat_rhkah")
 
 [node name="CounterHotspot" parent="." instance=ExtResource("3_24mvj")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.91, -0.062)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.91, -0.16949)
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
@@ -108,7 +108,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.784567, 0.456516)
 text = "Oxidizer"
 font_size = 18
 
-[node name="TeaLabel" parent="." instance=ExtResource("4_4pkve")]
+[node name="IngredientLabel" parent="." instance=ExtResource("4_4pkve")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.328343, 0.481322)
 billboard = 0
 default_value = "Inactive"
