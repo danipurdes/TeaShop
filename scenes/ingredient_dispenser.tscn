@@ -44,11 +44,11 @@ skeleton = NodePath("../..")
 visible = false
 
 [node name="Label" parent="." instance=ExtResource("3_y5kbt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.174355, 0.163196)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.314399, 0.163196)
 billboard = 0
 
 [node name="FlavorProfileUI" parent="." instance=ExtResource("4_d3v5q")]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.283473, 0.164571)
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.176298, 0.164571)
 text = "1"
 
 [node name="IngredientMesh2" type="MeshInstance3D" parent="."]
