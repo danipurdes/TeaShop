@@ -2,16 +2,19 @@ extends StaticBody3D
 
 class_name Trashcan
 
-var machine_type = "trashcan"
-var allowlist = ["tea_brick"]
+@export var machine_type:String = "trashcan"
+@export var allow_list:Array[String] = ["tea_brick"]
 
 func useItem(item):
-	if item != null and isItemAllowed(item.item_type):
-		get_node("/root/Node3D/Player").requestDropHeldItem(self)
-		return true
-	return false
+	if item == null:
+		return false
+	if "item_type" not in item:
+		return false
+	if !is_item_allowed(item.item_type):
+		return false
 	
-func isItemAllowed(itemType):
-	if allowlist.size() > 0:
-		return itemType in allowlist
+	get_node("/root/Node3D/Player").requestDropHeldItem(self)
 	return true
+	
+func is_item_allowed(item_type):
+	return allow_list.size() > 0 and item_type in allow_list
