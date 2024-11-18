@@ -1,7 +1,7 @@
 extends Area3D
 
 @export var item_type = "tea_brick"
-@export var tea: Constants.ingredients
+@export var ingredient_on_spawn: Constants.ingredients = Constants.ingredients.NONE
 @onready var ingredients = Ingredients.new()
 
 var obj_attached_to = null
@@ -10,19 +10,20 @@ signal state_changed(new_state)
 
 func _ready():
 	ingredients.ingredients_changed.connect(onIngredientsChanged)
-	state_changed.connect($Label.onLabelUpdate)
-	ingredients.ingredients_changed.connect(getIngredientNames)
 	ingredients.flavors_changed.connect($FlavorProfileUI.onLabelUpdate)
-	if tea != null:
-		ingredients.clearIngredients()
-		ingredients.addIngredient(tea)
+	
+	match ingredient_on_spawn:
+		Constants.ingredients.NONE:
+			return
+		_:
+			ingredients.addIngredient(ingredient_on_spawn)
 
-func useItem(heldItem):
-	if heldItem == null:
+func useItem(held_item):
+	if held_item == null:
 		return true
-	if !heldItem.has_method("onUseItem"):
+	if !held_item.has_method("onUseItem"):
 		return false
-	return heldItem.onUseItem(self)
+	return held_item.onUseItem(self)
 
 func onUseItem(itemToUseOn):
 	if "item_type" not in itemToUseOn:
@@ -51,11 +52,7 @@ func giveContents(vessel):
 
 func onIngredientsChanged(_new_ingredients):
 	$IngredientMesh.set_surface_override_material(0, ingredients.ingredientsMat)
-	#$Label.visible = (new_ingredients.size() != 0)
 	state_changed.emit(getName())
-
-func getIngredientNames(_new_ingredients):
-	$Label.onLabelUpdate(ingredients.ingredientsToString())
 
 func getName():
 	return ingredients.ingredientsToString()
