@@ -1,18 +1,20 @@
 extends CharacterBody3D
 
-signal order_created(order_text)
-signal order_served(order_value)
-
 @export var state = "waiting"
 @export var targetPathFollow: PathFollow3D
 @export var moveMagnitude = 1.0
-var orderFlavor: FlavorProfile
+
+@onready var orderFlavor:FlavorProfile = generateOrder()
+
 var moveTarget: Vector3
 
+signal order_created(order_text)
+signal order_served(order_value)
+
 func _ready():
-	orderFlavor = generateOrder()
 	order_created.connect($FlavorProfileUI.onLabelUpdate)
 	order_created.emit(orderFlavor._to_amount_string())
+	order_served.connect($FlavorProfileUI.onLabelUpdate)
 	$villager/AnimationPlayer.animation_finished.connect(_on_sip_anim_finished.bind())
 	$villager/AnimationPlayer.play("walk")
 
@@ -22,26 +24,44 @@ func _process(delta):
 			behavior_arriving(delta)
 		"leaving":
 			behavior_leaving(delta)
+		_:
+			return
 
-func useItem(item):
-	if state != "waiting":
-		return false
+func useItem(held_item):
+	match state:
+		"waiting":
+			return on_use_waiting(held_item)
+		_:
+			return false
+
+func on_use_waiting(held_item):
 	if $villager/AnimationPlayer.get_queue().size() != 0:
 		return false
-	if item == null or "item_type" not in item or "flavor_profile" not in item:
+	if held_item == null:
 		smile_and_wave()
-		return false
-	if item.item_type != "teacup" or item.flavor_profile.getFlavorMagnitude() == 0:
+		return true
+	if "item_type" not in held_item:
 		return false
 	
-	var order_comp = orderFlavor.compareFlavorArrays(item.flavor_profile.flavors)
+	match held_item.item_type:
+		"teacup":
+			return on_use_teacup_waiting(held_item)
+		_:
+			return false
+
+func on_use_teacup_waiting(held_item):
+	if held_item.state != "hot_water":
+		return false
+
+	var order_comp = orderFlavor.compareFlavorArrays(held_item.ingredients.flavor_profile.flavors)
 	var order_score = orderFlavor.getFlavorMagnitude() - order_comp
 	displayPerformanceRating(order_score, orderFlavor.getFlavorMagnitude())
-	item.ingredients.clearIngredients()
-	item.updateState("dirty")
+
+	held_item.ingredients.clearIngredients()
+	held_item.updateState("empty")
 	orderFlavor.clearFlavorProfile()
 	order_served.emit(order_score)
-	$FlavorProfileUI.updateLabel(orderFlavor)
+	$FlavorProfileUI.onLabelUpdate("")
 	$villager/AnimationPlayer.play("sip")
 	return true
 
