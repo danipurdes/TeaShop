@@ -11,7 +11,6 @@ signal state_changed(new_state)
 
 func _ready():
 	ingredients.ingredients_changed.connect(onIngredientsChanged)
-	ingredients.ingredients_changed.connect($Label.onLabelUpdate)
 	ingredients.flavors_changed.connect($FlavorProfileUI.onLabelUpdate)
 
 	match ingredient_on_spawn:
@@ -53,7 +52,9 @@ func onUseItem(itemToUseOn):
 			return false
 
 func onIngredientsChanged(new_ingredients):
-	$Label.visible = (new_ingredients.size() != 0)
+	$IngredientLabel.visible = new_ingredients.size() > 0
+	$IngredientLabel.onLabelUpdate(ingredients.ingredientsToString())
+	$IngredientMesh.set_surface_override_material(0, ingredients.ingredientsMat)
 
 func getName():
 	return ingredients.ingredientsToString()
