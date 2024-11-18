@@ -28,7 +28,7 @@ func spawnObject(obj_to_spawn, spawn_data, new_allow_list):
 		obj_to_spawn.ingredient_on_spawn = spawn_data
 
 	if new_allow_list.size() > 0:
-		allow_list = new_allow_list.duplicate
+		allow_list = new_allow_list.duplicate()
 
 	get_node("/root/Node3D").add_child.call_deferred(obj_to_spawn)
 
