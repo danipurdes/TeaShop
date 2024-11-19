@@ -1,8 +1,9 @@
 extends Area3D
 
-@export var item_type = "tea_brick"
-@export var ingredient_on_spawn: Constants.ingredients = Constants.ingredients.NONE
-@onready var ingredients = Ingredients.new()
+@export var item_type:String = "tea_brick"
+@export var ingredient_on_spawn:Constants.ingredients = Constants.ingredients.NONE
+
+@onready var ingredients:Ingredients = Ingredients.new()
 
 var obj_attached_to = null
 
@@ -50,7 +51,8 @@ func giveContents(vessel):
 		vessel.ingredients.addIngredient(ingredient)
 	ingredients.clearIngredients()
 
-func onIngredientsChanged(_new_ingredients):
+func onIngredientsChanged(new_ingredients):
+	$IngredientMesh.visible = new_ingredients.size() > 0
 	$IngredientMesh.set_surface_override_material(0, ingredients.ingredientsMat)
 	state_changed.emit(getName())
 

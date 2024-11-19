@@ -1,6 +1,7 @@
 extends Area3D
 
 @export var item_type:String = "teacup"
+@export var ingredient_on_spawn:Constants.ingredients = Constants.ingredients.NONE
 
 @onready var ingredients:Ingredients = Ingredients.new()
 
@@ -78,9 +79,10 @@ func updateState(new_state):
 	$Steam.emitting = (state == "hot_water")
 	state_changed.emit(getName())
 
-func onIngredientsChanged(_new_ingredients):
-	$tea_cup/tea_cup_liquid.visible = _new_ingredients.size() > 0
-	$tea_cup/tea_cup_liquid.set_surface_override_material(0, ingredients.ingredientsMat)
+func onIngredientsChanged(new_ingredients):
+	$IngredientMesh.visible = new_ingredients.size() > 0
+	$IngredientMesh.set_surface_override_material(0, ingredients.ingredientsMat)
+	state_changed.emit(getName())
 
 func getName():
 	return state

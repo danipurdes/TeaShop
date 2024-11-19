@@ -1,7 +1,7 @@
 extends Area3D
 
 @export var item_type:String = "dispenser"
-@export var ingredient_on_spawn: Constants.ingredients = Constants.ingredients.NONE
+@export var ingredient_on_spawn:Constants.ingredients = Constants.ingredients.NONE
 
 @onready var ingredients = Ingredients.new()
 
