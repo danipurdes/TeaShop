@@ -4,8 +4,6 @@ extends StaticBody3D
 @export var idle_color:Color = Color(0.303, 0.303, 0.303)
 @export var working_color:Color = Color(0.708, 0.708, 0.708)
 @export var obj_ingredient:PackedScene
-@export var greenStyle:StyleBoxFlat
-@export var blackStyle:StyleBoxFlat
 
 @onready var ingredients:Ingredients = $Blend.ingredients
 @onready var progress_bar = $SubViewport/CanvasLayer/ProgressBar
@@ -54,7 +52,7 @@ func start_oxidizing():
 	$GreenTeaTimer.start()
 	state = "started"
 	ingredients.clear_ingredients()
-	progress_bar.add_theme_stylebox_override("fill", greenStyle)
+	progress_bar.add_theme_stylebox_override("fill", create_stylebox(Constants.ingredientColorMap[Constants.ingredients.GREEN_TEA]))
 
 func stop_oxidizing():
 	spawn_tea_brick()
@@ -68,7 +66,7 @@ func stop_oxidizing():
 func _on_green_tea_timer_timeout():
 	ingredients.set_ingredient(Constants.ingredients.GREEN_TEA)
 	$BlackTeaTimer.start()
-	progress_bar.add_theme_stylebox_override("fill", blackStyle)
+	progress_bar.add_theme_stylebox_override("fill", create_stylebox(Constants.ingredientColorMap[Constants.ingredients.BLACK_TEA]))
 
 func _on_black_tea_timer_timeout():
 	ingredients.set_ingredient(Constants.ingredients.BLACK_TEA)
@@ -98,3 +96,8 @@ func create_material(new_color:Color):
 	var new_material = StandardMaterial3D.new()
 	new_material.albedo_color = new_color
 	return new_material
+
+func create_stylebox(new_color:Color):
+	var new_stylebox = StyleBoxFlat.new()
+	new_stylebox.bg_color = new_color
+	return new_stylebox
