@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr54jxori4sw"]
+
+[ext_resource type="Script" path="res://scripts/Blend.gd" id="1_upomh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cxpk8"]
+
+[node name="Blend" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_cxpk8")
+script = ExtResource("1_upomh")
