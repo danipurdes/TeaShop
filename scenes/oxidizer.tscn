@@ -1,21 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://csh63b2jdudyg"]
+[gd_scene load_steps=17 format=3 uid="uid://csh63b2jdudyg"]
 
 [ext_resource type="Script" path="res://scripts/Oxidizer.gd" id="1_iuc1u"]
-[ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="2_55n5q"]
 [ext_resource type="PackedScene" uid="uid://cyp2xxkqqpaim" path="res://scenes/counter_hotspot.tscn" id="3_24mvj"]
 [ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="4_4pkve"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fvmw3"]
-albedo_color = Color(0.368627, 0.368627, 0.368627, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhp7n"]
-albedo_color = Color(0.572549, 0.572549, 0.572549, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1w6ya"]
-bg_color = Color(0.0705882, 0.278431, 0.0941176, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhkah"]
-bg_color = Color(0.333333, 0.0588235, 0, 1)
+[ext_resource type="PackedScene" uid="uid://dr54jxori4sw" path="res://scenes/Blend.tscn" id="4_hyeoq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y2a6e"]
 size = Vector3(0.9, 0.9, 0.9)
@@ -25,8 +13,6 @@ albedo_color = Color(0.737255, 0.47451, 0.364706, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rqnee"]
 material = SubResource("StandardMaterial3D_pfg0d")
-
-[sub_resource type="BoxMesh" id="BoxMesh_nhapk"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pc506"]
 particle_flag_align_y = true
@@ -80,11 +66,6 @@ bg_color = Color(0.972549, 0.972549, 0.972549, 1)
 
 [node name="Oxidizer" type="StaticBody3D"]
 script = ExtResource("1_iuc1u")
-idle_material = SubResource("StandardMaterial3D_fvmw3")
-started_material = SubResource("StandardMaterial3D_vhp7n")
-obj_ingredient = ExtResource("2_55n5q")
-greenStyle = SubResource("StyleBoxFlat_1w6ya")
-blackStyle = SubResource("StyleBoxFlat_rhkah")
 
 [node name="CounterHotspot" parent="." instance=ExtResource("3_24mvj")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.91, -0.16949)
@@ -98,10 +79,9 @@ transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0.45, 0)
 mesh = SubResource("BoxMesh_rqnee")
 skeleton = NodePath("../..")
 
-[node name="IndicatorMesh" type="MeshInstance3D" parent="."]
+[node name="Blend" parent="." instance=ExtResource("4_hyeoq")]
 transform = Transform3D(0.634, 0, 0, 0, 0.453, 0, 0, 0, 0.05, 0, 0.317546, 0.448404)
-mesh = SubResource("BoxMesh_nhapk")
-skeleton = NodePath("../..")
+ingredient_count_max = 1
 
 [node name="NameLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.784567, 0.456516)
@@ -133,7 +113,7 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="ProgressBarPanel" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00721357, 0.642465, 0.455958)
 mesh = SubResource("QuadMesh_16arv")
 surface_material_override/0 = SubResource("StandardMaterial3D_0b6os")

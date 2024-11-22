@@ -3,12 +3,10 @@
 [ext_resource type="Script" path="res://scripts/crush_leaf_tray.gd" id="1_2gl8y"]
 [ext_resource type="PackedScene" uid="uid://ii1jj26uarvg" path="res://models/tray/tray.gltf" id="2_0ubst"]
 [ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="3_a75ut"]
+[ext_resource type="PackedScene" uid="uid://dr54jxori4sw" path="res://scenes/Blend.tscn" id="4_lb08y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_le54r"]
 size = Vector3(0.758584, 0.11896, 0.761966)
-
-[sub_resource type="BoxMesh" id="BoxMesh_yfssq"]
-size = Vector3(0.55, 0.1, 0.55)
 
 [node name="CrushLeafTray" type="Area3D"]
 script = ExtResource("1_2gl8y")
@@ -17,12 +15,13 @@ script = ExtResource("1_2gl8y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0733291, 0)
 shape = SubResource("BoxShape3D_le54r")
 
-[node name="tray" parent="." instance=ExtResource("2_0ubst")]
+[node name="Tray" parent="." instance=ExtResource("2_0ubst")]
 
 [node name="Label" parent="." instance=ExtResource("3_a75ut")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.412447, 0)
 text = "Crushed Tea Leaves"
+default_value = "Crushed Tea Leaves"
 
-[node name="IngredientMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.129569, 0)
-mesh = SubResource("BoxMesh_yfssq")
+[node name="Blend" parent="." instance=ExtResource("4_lb08y")]
+transform = Transform3D(0.55, 0, 0, 0, 0.1, 0, 0, 0, 0.55, 0, 0.106866, 0)
+ingredient_count_max = 1

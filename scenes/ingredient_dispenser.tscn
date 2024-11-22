@@ -1,17 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cktksm0diybw6"]
+[gd_scene load_steps=6 format=3 uid="uid://cktksm0diybw6"]
 
 [ext_resource type="Script" path="res://scripts/Dispenser.gd" id="1_irhkj"]
+[ext_resource type="PackedScene" uid="uid://dr54jxori4sw" path="res://scenes/Blend.tscn" id="2_0x1wy"]
 [ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="3_y5kbt"]
 [ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui/ui_flavor_profile.tscn" id="4_d3v5q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tl8i4"]
-size = Vector3(0.25, 0.3, 0.25)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vo47"]
-albedo_color = Color(0.513726, 0.27451, 0.529412, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_4svy2"]
-material = SubResource("StandardMaterial3D_4vo47")
 size = Vector3(0.25, 0.3, 0.25)
 
 [node name="Dispenser" type="Area3D"]
@@ -23,15 +17,15 @@ script = ExtResource("1_irhkj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
 shape = SubResource("BoxShape3D_tl8i4")
 
-[node name="IngredientMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
-mesh = SubResource("BoxMesh_4svy2")
+[node name="Blend" parent="." instance=ExtResource("2_0x1wy")]
+transform = Transform3D(0.25, 0, 0, 0, 0.3, 0, 0, 0, 0.25, 0, 0.15, 0)
+ingredient_count_max = 1
 
 [node name="IngredientLabel" parent="." instance=ExtResource("3_y5kbt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.223239, 0.163196)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.223239, 0.129021)
 billboard = 0
 font_size = 8
 
 [node name="FlavorProfileUI" parent="." instance=ExtResource("4_d3v5q")]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.122484, 0.164571)
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.122484, 0.130396)
 text = "1"

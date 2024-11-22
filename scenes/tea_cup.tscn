@@ -1,16 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://byix6wkws661r"]
 
 [ext_resource type="Script" path="res://scripts/TeaCup.gd" id="1_vurb0"]
+[ext_resource type="PackedScene" uid="uid://dr54jxori4sw" path="res://scenes/Blend.tscn" id="2_orbwi"]
 [ext_resource type="PackedScene" uid="uid://oa8ng568v3hi" path="res://models/teacup/teacup.gltf" id="2_yj16m"]
 [ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui/ui_flavor_profile.tscn" id="4_l0gjo"]
 [ext_resource type="PackedScene" uid="uid://bnb40a5ffpesj" path="res://scenes/steam.tscn" id="5_nu4ih"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vbe5n"]
 height = 0.2
-radius = 0.15
-
-[sub_resource type="BoxMesh" id="BoxMesh_cxpk8"]
-size = Vector3(0.25, 0.125, 0.25)
+radius = 0.125
 
 [node name="TeaCup" type="Area3D"]
 collision_layer = 2
@@ -21,12 +19,11 @@ script = ExtResource("1_vurb0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("CylinderShape3D_vbe5n")
 
-[node name="IngredientMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0.109775, 0)
-mesh = SubResource("BoxMesh_cxpk8")
-skeleton = NodePath("../tea_cup")
+[node name="Blend" parent="." instance=ExtResource("2_orbwi")]
+transform = Transform3D(0.12, 0, 0, 0, 0.1, 0, 0, 0, 0.12, 0, 0.0902656, 0)
+skeleton = NodePath("../Cup")
 
-[node name="tea_cup" parent="." instance=ExtResource("2_yj16m")]
+[node name="Cup" parent="." instance=ExtResource("2_yj16m")]
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0, 0)
 
 [node name="FlavorProfileUI" parent="." instance=ExtResource("4_l0gjo")]
