@@ -10,16 +10,15 @@ extends StaticBody3D
 
 var state:String = "idle"
 var oxidizing_stages:Array[Constants.ingredients] = [Constants.ingredients.GREEN_TEA, Constants.ingredients.BLACK_TEA]
+var oxidizing_index:int = 0
+var tween:Tween
+
+signal state_changed(new_state:String)
 
 func _ready():
 	ingredients.ingredients_changed.connect(on_ingredients_changed)
+	state_changed.connect($IngredientLabel.on_label_update)
 	$Blend.set_surface_override_material(0, create_material(idle_color))
-
-func _process(_delta):
-	if !$GreenTeaTimer.is_stopped():
-		progress_bar.value = progress_bar.max_value * (1 - ($GreenTeaTimer.time_left / $GreenTeaTimer.wait_time))
-	elif !$BlackTeaTimer.is_stopped():
-		progress_bar.value = progress_bar.max_value * (1 - ($BlackTeaTimer.time_left / $BlackTeaTimer.wait_time))
 
 func useItem(held_item):
 	match state:
@@ -49,28 +48,35 @@ func useItem(held_item):
 			return false
 
 func start_oxidizing():
-	$GreenTeaTimer.start()
-	state = "started"
+	$OxidizingTimer.start()
+	set_state("started")
 	ingredients.clear_ingredients()
-	progress_bar.add_theme_stylebox_override("fill", create_stylebox(Constants.ingredientColorMap[Constants.ingredients.GREEN_TEA]))
+	oxidizing_index = 0
+	progress_bar.add_theme_stylebox_override("fill", create_stylebox(Constants.ingredientColorMap[oxidizing_stages.front()]))
+	if tween:
+		tween.kill()
+	tween = create_tween()
+	tween.tween_property(progress_bar, "value", progress_bar.max_value, $OxidizingTimer.wait_time)
 
 func stop_oxidizing():
 	spawn_tea_brick()
-	state = "idle"
+	set_state("idle")
 	ingredients.clear_ingredients()
 	$ParticleEmitter.emitting = true
-	$GreenTeaTimer.stop()
-	$BlackTeaTimer.stop()
+	$OxidizingTimer.stop()
 	progress_bar.value = progress_bar.min_value
 
-func _on_green_tea_timer_timeout():
-	ingredients.set_ingredient(Constants.ingredients.GREEN_TEA)
-	$BlackTeaTimer.start()
-	progress_bar.add_theme_stylebox_override("fill", create_stylebox(Constants.ingredientColorMap[Constants.ingredients.BLACK_TEA]))
-
-func _on_black_tea_timer_timeout():
-	ingredients.set_ingredient(Constants.ingredients.BLACK_TEA)
-	progress_bar.value = progress_bar.max_value
+func on_oxidizing_timer_timeout():
+	ingredients.set_ingredient(oxidizing_stages[oxidizing_index])
+	if tween:
+		tween.kill()
+	
+	if oxidizing_index < oxidizing_stages.size():
+		oxidizing_index += 1
+		$OxidizingTimer.start()
+		progress_bar.value = progress_bar.min_value
+		tween = create_tween()
+		tween.tween_property(progress_bar, "value", progress_bar.max_value, $OxidizingTimer.wait_time)
 
 func spawn_tea_brick():
 	if !ingredients.ingredient_list.is_empty():
@@ -80,17 +86,19 @@ func on_ingredients_changed(new_ingredients):
 	match state:
 		"idle":
 			$Blend.set_surface_override_material(0, create_material(idle_color))
-			$IngredientLabel.on_label_update("Inactive")
 			return
 		"started":
-			if new_ingredients.size() == 0:
+			if new_ingredients.is_empty():
 				$Blend.set_surface_override_material(0, create_material(working_color))
-				$IngredientLabel.on_label_update("Working")
 				return
-			$IngredientLabel.on_label_update(new_ingredients.ingredients_to_string())
 			return
 		_:
 			return
+
+func set_state(new_state):
+	if new_state == state:
+		return
+	state_changed.emit(new_state)
 
 func create_material(new_color:Color):
 	var new_material = StandardMaterial3D.new()
