@@ -5,5 +5,5 @@ extends Label3D
 func _ready():
 	text = default_value
 
-func onLabelUpdate(newTextValue):
-	text = str(newTextValue) if newTextValue != null else default_value
+func on_label_update(new_text_value):
+	text = str(new_text_value) if new_text_value != null else default_value
