@@ -18,6 +18,7 @@ signal state_changed(new_state:String)
 func _ready():
 	ingredients.ingredients_changed.connect(on_ingredients_changed)
 	state_changed.connect($IngredientLabel.on_label_update)
+	$OxidizingTimer.timeout.connect(on_oxidizing_timer_timeout)
 	$Blend.set_surface_override_material(0, create_material(idle_color))
 
 func useItem(held_item):
@@ -64,6 +65,8 @@ func stop_oxidizing():
 	ingredients.clear_ingredients()
 	$ParticleEmitter.emitting = true
 	$OxidizingTimer.stop()
+	if tween:
+		tween.kill()
 	progress_bar.value = progress_bar.min_value
 
 func on_oxidizing_timer_timeout():
@@ -71,10 +74,11 @@ func on_oxidizing_timer_timeout():
 	if tween:
 		tween.kill()
 	
-	if oxidizing_index < oxidizing_stages.size():
+	if oxidizing_index < oxidizing_stages.size() - 1:
 		oxidizing_index += 1
 		$OxidizingTimer.start()
 		progress_bar.value = progress_bar.min_value
+		progress_bar.add_theme_stylebox_override("fill", create_stylebox(Constants.ingredientColorMap[oxidizing_stages[oxidizing_index]]))
 		tween = create_tween()
 		tween.tween_property(progress_bar, "value", progress_bar.max_value, $OxidizingTimer.wait_time)
 
@@ -98,6 +102,7 @@ func on_ingredients_changed(new_ingredients):
 func set_state(new_state):
 	if new_state == state:
 		return
+	state = new_state
 	state_changed.emit(new_state)
 
 func create_material(new_color:Color):
