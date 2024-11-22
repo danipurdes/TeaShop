@@ -3,7 +3,7 @@ extends Area3D
 @export var item_type:String = "teacup"
 @export var ingredient_on_spawn:Constants.ingredients = Constants.ingredients.NONE
 
-@onready var ingredients:Ingredients = Ingredients.new()
+@onready var ingredients:Ingredients = $Blend.ingredients
 
 var state:String = "empty"
 var obj_attached_to = null
@@ -11,10 +11,10 @@ var obj_attached_to = null
 signal state_changed(new_state)
 
 func _ready():
-	ingredients.ingredients_changed.connect(onIngredientsChanged)
-	ingredients.flavors_changed.connect($FlavorProfileUI.onLabelUpdate)
+	ingredients.flavors_changed.connect($FlavorProfileUI.on_flavors_changed)
 
-	onIngredientsChanged(ingredients.ingredients)
+	if ingredient_on_spawn != null and !ingredients.add_ingredient(ingredient_on_spawn):
+		print_debug("Failed to add spawn ingredient to " + item_type)
 
 func useItem(held_item):
 	if held_item == null:
@@ -24,64 +24,64 @@ func useItem(held_item):
 	
 	match(held_item.item_type):
 		"kettle":
-			return useKettle(held_item)
+			return use_kettle(held_item)
 		"teapot":
-			return useTeapot(held_item)
+			return use_teapot(held_item)
 		_:
 			return false
 
-func useKettle(kettle):
-	if kettle.state == "empty" or state != "empty":
-		return false
+func use_kettle(kettle):
+	match kettle.state:
+		"empty":
+			return false
+		_:
+			match state:
+				"empty":
+					update_state(kettle.state)
+					return true
+				_:
+					return false
 
-	updateState(kettle.state)
-	kettle.updateState("empty")
-	return true
-
-func useTeapot(teapot):
+func use_teapot(teapot):
 	if teapot.state == "empty" or state != "empty":
 		return false
-	
-	var newIngredientCount = teapot.ingredients.ingredients.size() + ingredients.ingredients.size()
-	if newIngredientCount > ingredients.max_ingredients:
+	if !teapot.has_method("onUseItem"):
 		return false
 	
-	updateState(teapot.state)
-	for ingredient in teapot.ingredients.ingredients:
-		ingredients.addIngredient(ingredient)
+	var new_state = teapot.state
+	if !teapot.onUseItem(self):
+		return false
+	update_state(new_state)
 	return true
 
-func onUseItem(itemToUseOn):
-	if "machine_type" not in itemToUseOn:
+func onUseItem(target_item):
+	if "machine_type" not in target_item:
 		return false
 
-	match itemToUseOn.machine_type:
+	match target_item.machine_type:
 		"sink":
-			return useOnSink()
+			return use_on_sink()
 		_:
 			return false
 
-func useOnSink():
+func use_on_sink():
 	match state:
 		"empty":
-			updateState("cold_water")
+			update_state("cold_water")
 			return true
 		_:
-			ingredients.clearIngredients()
-			updateState("empty")
+			ingredients.clear_ingredients()
+			update_state("empty")
 			return true
 
-func updateState(new_state):
+func update_state(new_state):
 	if new_state == state:
 		return
-	
 	state = new_state
 	$Steam.emitting = (state == "hot_water")
 	state_changed.emit(getName())
 
-func onIngredientsChanged(new_ingredients):
-	$IngredientMesh.visible = new_ingredients.size() > 0
-	$IngredientMesh.set_surface_override_material(0, ingredients.ingredientsMat)
+func on_ingredients_changed(_new_ingredient_list):
 	state_changed.emit(getName())
 
 func getName():
