@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://csh63b2jdudyg"]
+[gd_scene load_steps=18 format=3 uid="uid://csh63b2jdudyg"]
 
 [ext_resource type="Script" path="res://scripts/Oxidizer.gd" id="1_iuc1u"]
+[ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="2_55n5q"]
 [ext_resource type="PackedScene" uid="uid://cyp2xxkqqpaim" path="res://scenes/counter_hotspot.tscn" id="3_24mvj"]
 [ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="4_4pkve"]
 [ext_resource type="PackedScene" uid="uid://dr54jxori4sw" path="res://scenes/Blend.tscn" id="4_hyeoq"]
@@ -66,6 +67,7 @@ bg_color = Color(0.972549, 0.972549, 0.972549, 1)
 
 [node name="Oxidizer" type="StaticBody3D"]
 script = ExtResource("1_iuc1u")
+obj_ingredient = ExtResource("2_55n5q")
 
 [node name="CounterHotspot" parent="." instance=ExtResource("3_24mvj")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.91, -0.16949)
@@ -105,11 +107,7 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_pc506")
 draw_pass_1 = SubResource("QuadMesh_m3qi8")
 
-[node name="GreenTeaTimer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-
-[node name="BlackTeaTimer" type="Timer" parent="."]
+[node name="OxidizingTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 
@@ -131,6 +129,3 @@ theme_override_styles/background = SubResource("StyleBoxFlat_ljbvb")
 step = 5.0
 rounded = true
 show_percentage = false
-
-[connection signal="timeout" from="GreenTeaTimer" to="." method="_on_green_tea_timer_timeout"]
-[connection signal="timeout" from="BlackTeaTimer" to="." method="_on_black_tea_timer_timeout"]
