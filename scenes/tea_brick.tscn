@@ -1,35 +1,48 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3o86lcksgnit"]
+[gd_scene load_steps=9 format=3 uid="uid://d3o86lcksgnit"]
 
 [ext_resource type="Script" path="res://scripts/TeaBrick.gd" id="1_5kp2m"]
 [ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui/ui_flavor_profile.tscn" id="3_kgkc1"]
-[ext_resource type="PackedScene" uid="uid://bfv8t0cytyall" path="res://models/jar/jar.gltf" id="4_5fha6"]
+[ext_resource type="PackedScene" uid="uid://dr54jxori4sw" path="res://scenes/Blend.tscn" id="4_eblm6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tl8i4"]
-size = Vector3(0.2, 0.219573, 0.2)
+size = Vector3(0.15, 0.25, 0.15)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vo47"]
-albedo_color = Color(0.513726, 0.27451, 0.529412, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1kvh"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.054902)
+metallic = 0.58
+metallic_specular = 0.75
 
-[sub_resource type="BoxMesh" id="BoxMesh_4svy2"]
-material = SubResource("StandardMaterial3D_4vo47")
-size = Vector3(0.1, 0.15, 0.1)
+[sub_resource type="BoxMesh" id="BoxMesh_p7ijx"]
+material = SubResource("StandardMaterial3D_p1kvh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4v3cb"]
+albedo_color = Color(0.305032, 0.159738, 0.027138, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b302r"]
+material = SubResource("StandardMaterial3D_4v3cb")
 
 [node name="TeaBrick" type="Area3D"]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_5kp2m")
+item_type = null
+ingredient_on_spawn = null
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.114515, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
 shape = SubResource("BoxShape3D_tl8i4")
 
-[node name="JarMesh" parent="." instance=ExtResource("4_5fha6")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-
 [node name="FlavorProfileUI" parent="." instance=ExtResource("3_kgkc1")]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.127687, 0.106277)
-text = "0"
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.120397, 0.0770952)
 
-[node name="IngredientMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.107941, 0)
-mesh = SubResource("BoxMesh_4svy2")
+[node name="Blend" parent="." instance=ExtResource("4_eblm6")]
+transform = Transform3D(0.12, 0, 0, 0, 0.18, 0, 0, 0, 0.12, 0, 0.10399, 0)
+
+[node name="Glass" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.15, 0, 0, 0, 0.21, 0, 0, 0, 0.15, 0, 0.105, 0)
+mesh = SubResource("BoxMesh_p7ijx")
+
+[node name="Lid" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.12, 0, 0, 0, 0.04, 0, 0, 0, 0.12, 0, 0.229405, 0)
+mesh = SubResource("BoxMesh_b302r")
