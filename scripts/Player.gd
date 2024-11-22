@@ -6,10 +6,10 @@ extends CharacterBody3D
 @export var joystick_rotate_sensitivity_h = 95
 @export var rotate_invert_h = -1
 
-@onready var Camera = $Camera
-@onready var Raycast = $Camera/RayCast3D
+@onready var camera = $Camera
+@onready var raycast = $Camera/RayCast3D
 
-var raycastEvent
+var raycast_event
 var heldItem = null
 var interact_enabled = true
 var movement_enabled = true
@@ -26,24 +26,24 @@ func _ready():
 
 func on_pause_state_entered():
 	mouselook_enabled = false
-	Camera.mouselook_enabled = false
+	camera.mouselook_enabled = false
 	
 	interact_enabled = false
 	movement_enabled = false
 
 func on_pause_state_exited():
 	mouselook_enabled = true
-	Camera.mouselook_enabled = true
+	camera.mouselook_enabled = true
 	
 	interact_enabled = true
 	movement_enabled = true
 
 func _physics_process(delta):
 	if interact_enabled:
-		var collider = Raycast.get_collider()
+		var collider = raycast.get_collider()
 		
 		#Object Scanning
-		updateLookAtTarget(collider)
+		update_lookat_target(collider)
 		
 		#Object Picking
 		if Input.is_action_just_pressed("mouse1"):
@@ -54,7 +54,7 @@ func _physics_process(delta):
 		if Input.get_axis("look_left", "look_right"):
 			mouselook_horizontal = Input.get_axis("look_left", "look_right")
 			mouselook_horizontal *= joystick_rotate_sensitivity_h
-		set_rotation_degrees(calculateNewRotation(delta))
+		set_rotation_degrees(calculate_new_rotation(delta))
 		mouselook_horizontal = 0
 	
 	# Movement
@@ -74,7 +74,7 @@ func _physics_process(delta):
 		
 		move_and_slide()
 
-func calculateNewRotation(delta):
+func calculate_new_rotation(delta):
 	var rotation_delta = mouselook_horizontal
 	rotation_delta *= delta
 	rotation_delta *= rotate_invert_h
@@ -85,17 +85,15 @@ func _input(event):
 		mouselook_horizontal = event.relative.x
 		mouselook_horizontal *= mouse_rotate_sensitivity_h
 
-func attemptPickup(item):
+func attempt_pickup(item):
 	if item == null or heldItem != null:
 		return false
-	
-	if "currentItem" in item and item.currentItem != null:
+	if "current_item" in item and item.current_item != null:
 		return false
-	
-	updateHeldItem(item)
+	update_held_item(item)
 	return true
 
-func updateHeldItem(item):
+func update_held_item(item):
 	heldItem = item
 	heldItem.monitoring = false
 	heldItem.monitorable = false
@@ -103,27 +101,24 @@ func updateHeldItem(item):
 		item.obj_attached_to.takeItem()
 	held_item_changed.emit(heldItem)
 
-func requestDropHeldItem(dropRequestor):
-	return dropHeldItem(dropRequestor) if heldItem != null else null
+func request_drop_held_item(drop_requestor):
+	return drop_held_item(drop_requestor) if heldItem != null else null
 
-func dropHeldItem(dropRequestor):
-	var oldHeldItem = heldItem
+func drop_held_item(drop_requestor):
+	var old_held_item = heldItem
 	heldItem.monitoring = true
 	heldItem.monitorable = true
-	heldItem.position = dropRequestor.global_position
+	heldItem.position = drop_requestor.global_position
 	heldItem = null
 	held_item_changed.emit(null)
-	return oldHeldItem
+	return old_held_item
 
-func destroyHeldItem():
+func destroy_held_item():
 	heldItem.queue_free()
 	heldItem = null
 	held_item_changed.emit(null)
 
-func getHeldItem():
-	return heldItem
-
-func updateLookAtTarget(new_target):
+func update_lookat_target(new_target):
 	if past_lookat_target != new_target:
 		lookat_changed.emit(new_target)
 
@@ -132,7 +127,7 @@ func pick_object(target):
 		return
 
 	if "item_type" in target:
-		if attemptPickup(target):
+		if attempt_pickup(target):
 			$PingBoop.play()
 			return
 		if target.has_method("useItem") and target.useItem(heldItem):
