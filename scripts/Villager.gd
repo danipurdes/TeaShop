@@ -1,21 +1,21 @@
 extends CharacterBody3D
 
-@export var state = "waiting"
-@export var targetPathFollow: PathFollow3D
-@export var moveMagnitude = 1.0
+@export var target_path_follow:PathFollow3D
+@export_range(0.1,5,0.1) var move_magnitude:float = 1.0
 
-@onready var orderFlavor:FlavorProfile = generateOrder()
+@onready var order_flavor:FlavorProfile = FlavorProfile.new([0,0,0,0,0,0])
 
-var moveTarget: Vector3
+var state:String = "waiting"
+var move_target:Vector3
 
+signal state_changed(new_state)
 signal order_created(order_text)
 signal order_served(order_value)
 
 func _ready():
-	order_created.connect($FlavorProfileUI.onLabelUpdate)
-	order_created.emit(orderFlavor._to_amount_string())
-	order_served.connect($FlavorProfileUI.onLabelUpdate)
-	$villager/AnimationPlayer.animation_finished.connect(_on_sip_anim_finished.bind())
+	order_created.connect($FlavorProfileUI.on_flavors_changed)
+	order_served.connect($FlavorProfileUI.on_flavors_changed)
+	$villager/AnimationPlayer.animation_finished.connect(on_sip_anim_finished.bind())
 	$villager/AnimationPlayer.play("walk")
 
 func _process(delta):
@@ -53,15 +53,15 @@ func on_use_teacup_waiting(held_item):
 	if held_item.state != "hot_water":
 		return false
 
-	var order_comp = orderFlavor.compareFlavorArrays(held_item.ingredients.flavor_profile.flavors)
-	var order_score = orderFlavor.getFlavorMagnitude() - order_comp
-	displayPerformanceRating(order_score, orderFlavor.getFlavorMagnitude())
+	var order_magnitude = order_flavor.get_flavor_magnitude()
+	var order_comp = order_flavor.compare_flavor_lists(held_item.ingredients.flavor_profile.flavors)
+	var order_score = order_magnitude - order_comp
+	display_performance_rating(order_score, order_flavor.get_flavor_magnitude())
 
 	held_item.ingredients.clearIngredients()
-	held_item.updateState("empty")
-	orderFlavor.clearFlavorProfile()
+	held_item.update_state("empty")
+	order_flavor.clear_flavor_profile()
 	order_served.emit(order_score)
-	$FlavorProfileUI.onLabelUpdate("")
 	$villager/AnimationPlayer.play("sip")
 	return true
 
@@ -70,42 +70,47 @@ func smile_and_wave():
 	$villager/AnimationPlayer.queue("idle")
 
 func behavior_arriving(delta):
-	targetPathFollow.progress_ratio = clamp(targetPathFollow.progress_ratio, 0, .5)
-	if targetPathFollow.progress_ratio == .5:
-		state = "waiting"
+	target_path_follow.progress_ratio = clamp(target_path_follow.progress_ratio, 0, .5)
+	if target_path_follow.progress_ratio == .5:
+		set_state("waiting")
 		$villager/AnimationPlayer.play("idle")
+		order_flavor = generate_order()
+		order_created.emit(order_flavor)
 		return
 	behavior_walking(delta)
 
 func behavior_leaving(delta):
-	if targetPathFollow.progress_ratio >= 1:
+	if target_path_follow.progress_ratio >= 1:
 		queue_free()
 		return
 	behavior_walking(delta)
 
 func behavior_walking(delta):
-	targetPathFollow.progress += delta * moveMagnitude
-	moveTarget = targetPathFollow.global_position
-	look_at(moveTarget)
-	velocity = moveTarget - global_position
+	target_path_follow.progress += delta * move_magnitude
+	move_target = target_path_follow.global_position
+	look_at(move_target)
+	velocity = move_target - global_position
 	move_and_slide()
 
-func displayPerformanceRating(rating, totalRating):
+func display_performance_rating(rating, total_rating):
 	$PerformanceLabel.visible = true
-	var ratingText = ""
+	var output = ""
 	for n in rating:
-		ratingText += "1"
-	for m in totalRating - rating:
-		ratingText += "0"
-	$PerformanceLabel.text = ratingText
+		output += "1"
+	for m in total_rating - rating:
+		output += "0"
+	$PerformanceLabel.text = output
 
-func setState(newState):
-	state = newState
+func set_state(new_state):
+	if new_state == state:
+		return
+	state = new_state
+	state_changed.emit(new_state)
 
-func generateOrder():
+func generate_order():
 	var difficulty = randi_range(2, 5)
 	var tea_type = randi_range(0, 2)
-	var flavors = [0, 0, 0, 0, 0, 0]
+	var flavors:Array[int] = [0, 0, 0, 0, 0, 0]
 	
 	match tea_type:
 		1: 
@@ -120,8 +125,8 @@ func generateOrder():
 	
 	return FlavorProfile.new(flavors)
 
-func _on_sip_anim_finished(anim_name):
+func on_sip_anim_finished(anim_name):
 	if anim_name == "sip":
-		state = "leaving"
+		set_state("leaving")
 		$villager/AnimationPlayer.play("walk")
 		$PerformanceLabel.visible = false

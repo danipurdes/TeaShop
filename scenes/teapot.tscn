@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dq2jylpvjtxxd"]
+[gd_scene load_steps=7 format=3 uid="uid://dq2jylpvjtxxd"]
 
 [ext_resource type="Script" path="res://scripts/Teapot.gd" id="1_bs1xp"]
 [ext_resource type="PackedScene" uid="uid://bxwivjh2jw6l" path="res://models/teapot/teapot.gltf" id="2_eqqhy"]
 [ext_resource type="PackedScene" uid="uid://bnb40a5ffpesj" path="res://scenes/steam.tscn" id="2_p1ks0"]
 [ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui/ui_flavor_profile.tscn" id="3_usbfy"]
+[ext_resource type="PackedScene" uid="uid://dr54jxori4sw" path="res://scenes/Blend.tscn" id="5_uqbl5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_na1qy"]
 radius = 0.25
@@ -17,7 +18,7 @@ script = ExtResource("1_bs1xp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("SphereShape3D_na1qy")
 
-[node name="teapot" parent="." instance=ExtResource("2_eqqhy")]
+[node name="Teapot" parent="." instance=ExtResource("2_eqqhy")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Steam" parent="." instance=ExtResource("2_p1ks0")]
@@ -25,3 +26,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.367773, 0.280521, 0)
 
 [node name="FlavorProfileUI" parent="." instance=ExtResource("3_usbfy")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.47192, 0)
+
+[node name="Blend" parent="." instance=ExtResource("5_uqbl5")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.159212, 0)
+visible = false

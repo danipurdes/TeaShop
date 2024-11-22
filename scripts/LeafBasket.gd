@@ -9,7 +9,7 @@ var leaf_count_current = 0
 var obj_attached_to = null
 
 func _ready():
-	state_changed.connect($Label.onLabelUpdate)
+	state_changed.connect($Label.on_label_update)
 	state_changed.emit(getName())
 	
 func onUseItem(_itemToUseOn):

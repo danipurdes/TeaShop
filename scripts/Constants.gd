@@ -35,7 +35,7 @@ static var ingredientFlavorMap = {
 	ingredients.BLACK_TEA: [0,0,0,0,1,0],
 	ingredients.ORANGE_PEEL: [0,0,1,0,0,0],
 	ingredients.HIBISCUS: [0,1,0,0,0,0],
-	ingredients.PINE_NEEDLE: [0,0,0,1,0,0],
+	ingredients.PINE_NEEDLE: [0,0,0,1,0,0]
 }
 
 static var ingredientColorMap = {
@@ -44,7 +44,7 @@ static var ingredientColorMap = {
 	ingredients.BLACK_TEA: Color.WEB_MAROON,
 	ingredients.ORANGE_PEEL: Color.DARK_ORANGE,
 	ingredients.HIBISCUS: Color.MEDIUM_VIOLET_RED,
-	ingredients.PINE_NEEDLE: Color.ORANGE,
+	ingredients.PINE_NEEDLE: Color.ORANGE
 }
 
 static var ingredientMap = {

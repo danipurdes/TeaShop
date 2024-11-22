@@ -1,21 +1,21 @@
 extends StaticBody3D
 
 @export var machine_type:String = "oxidizer"
-@export var idle_material:StandardMaterial3D
-@export var started_material:StandardMaterial3D
+@export var idle_color:Color = Color(0.303, 0.303, 0.303)
+@export var working_color:Color = Color(0.708, 0.708, 0.708)
 @export var obj_ingredient:PackedScene
 @export var greenStyle:StyleBoxFlat
 @export var blackStyle:StyleBoxFlat
 
-@onready var ingredients = Ingredients.new()
-@onready var indicator_mat:StandardMaterial3D = StandardMaterial3D.new()
+@onready var ingredients:Ingredients = $Blend.ingredients
 @onready var progress_bar = $SubViewport/CanvasLayer/ProgressBar
 
 var state:String = "idle"
+var oxidizing_stages:Array[Constants.ingredients] = [Constants.ingredients.GREEN_TEA, Constants.ingredients.BLACK_TEA]
 
 func _ready():
 	ingredients.ingredients_changed.connect(on_ingredients_changed)
-	$IndicatorMesh.set_surface_override_material(0, idle_material)
+	$Blend.set_surface_override_material(0, create_material(idle_color))
 
 func _process(_delta):
 	if !$GreenTeaTimer.is_stopped():
@@ -34,75 +34,67 @@ func useItem(held_item):
 				return false
 			match held_item.item_type:
 				"leaf_tray":
-					startOxidizeLeaves()
+					start_oxidizing()
 					return true
 				_:
 					return false
 		"started":
-			if held_item != null or ingredients.ingredients.size() == 0:
+			if held_item != null:
 				return false
-			match ingredients.ingredients[0]:
-				Constants.ingredients.GREEN_TEA:
-					stopOxidizeLeaves()
-					return true
-				Constants.ingredients.BLACK_TEA:
-					stopOxidizeLeaves()
-					return true
-				_:
-					return false
+			if ingredients.ingredient_list.is_empty():
+				return false
+			if ingredients.ingredient_list.front() not in oxidizing_stages:
+				return false
+			stop_oxidizing()
+			return true
 		_:
 			return false
 
-func startOxidizeLeaves():
+func start_oxidizing():
 	$GreenTeaTimer.start()
 	state = "started"
-	ingredients.clearIngredients()
+	ingredients.clear_ingredients()
 	progress_bar.add_theme_stylebox_override("fill", greenStyle)
 
-func stopOxidizeLeaves():
-	spawnTeaBrick()
+func stop_oxidizing():
+	spawn_tea_brick()
 	state = "idle"
-	ingredients.clearIngredients()
+	ingredients.clear_ingredients()
 	$ParticleEmitter.emitting = true
 	$GreenTeaTimer.stop()
 	$BlackTeaTimer.stop()
 	progress_bar.value = progress_bar.min_value
 
 func _on_green_tea_timer_timeout():
-	ingredients.clearIngredients()
-	ingredients.addIngredient(Constants.ingredients.GREEN_TEA)
+	ingredients.set_ingredient(Constants.ingredients.GREEN_TEA)
 	$BlackTeaTimer.start()
 	progress_bar.add_theme_stylebox_override("fill", blackStyle)
 
 func _on_black_tea_timer_timeout():
-	ingredients.clearIngredients()
-	ingredients.addIngredient(Constants.ingredients.BLACK_TEA)
+	ingredients.set_ingredient(Constants.ingredients.BLACK_TEA)
 	progress_bar.value = progress_bar.max_value
 
-func spawnTeaBrick():
-	if ingredients.ingredients.size() > 0:
-		$CounterHotspot.spawnObject(obj_ingredient.instantiate(), ingredients.ingredients[0], [])
+func spawn_tea_brick():
+	if !ingredients.ingredient_list.is_empty():
+		$CounterHotspot.spawnObject(obj_ingredient.instantiate(), ingredients.ingredient_list.front(), [])
 
-func update_ingredients_label(new_ingredients):
-	var output = ""
-	var nameKeys = Constants.ingredients.keys()
-	for ingredient in new_ingredients:
-		output += nameKeys[ingredient]
-	$IngredientLabel.onLabelUpdate(output)
-
-func on_ingredients_changed(_new_ingredients):
+func on_ingredients_changed(new_ingredients):
 	match state:
 		"idle":
-			$IndicatorMesh.set_surface_override_material(0, idle_material)
-			$IngredientLabel.onLabelUpdate("Inactive")
+			$Blend.set_surface_override_material(0, create_material(idle_color))
+			$IngredientLabel.on_label_update("Inactive")
 			return
 		"started":
-			if _new_ingredients.size() == 0:
-				$IndicatorMesh.set_surface_override_material(0, started_material)
-				$IngredientLabel.onLabelUpdate("Working")
+			if new_ingredients.size() == 0:
+				$Blend.set_surface_override_material(0, create_material(working_color))
+				$IngredientLabel.on_label_update("Working")
 				return
-			$IndicatorMesh.set_surface_override_material(0, ingredients.ingredientsMat)
-			$IngredientLabel.onLabelUpdate(ingredients.ingredientsToString())
+			$IngredientLabel.on_label_update(new_ingredients.ingredients_to_string())
 			return
 		_:
 			return
+
+func create_material(new_color:Color):
+	var new_material = StandardMaterial3D.new()
+	new_material.albedo_color = new_color
+	return new_material

@@ -4,43 +4,40 @@ signal current_order_changed(order_text)
 signal score_change_requested(score_delta)
 
 @export var villager:PackedScene
-var currentVillager = null
-var currentPathFollower:PathFollow3D
 
-# Called when the node enters the scene tree for the first time.
+var current_villager = null
+var current_path_follow:PathFollow3D
+
 func _ready():
-	$SpawnCooldownTimer.timeout.connect(trySpawnVillager)
+	$SpawnCooldownTimer.timeout.connect(try_spawn_villager)
 	$SpawnCooldownTimer.start()
 
-func trySpawnVillager():
+func try_spawn_villager():
 	if villager == null:
-		print_debug("trySpawnVillager: villager is null")
 		return
-	if currentVillager != null:
-		print_debug("trySpawnVillager: currentVillager is not null")
+	if current_villager != null:
 		return
 	if not $SpawnCooldownTimer.is_stopped():
-		print_debug("trySpawnVillager: spawnCooldownTimer is still active")
 		return
-	spawnVillager()
+	spawn_villager()
 
-func spawnVillager():
-	currentVillager = villager.instantiate()
-	currentVillager.tree_exiting.connect(clearCurrentVillager)
-	currentVillager.order_created.connect(on_order_created)
-	currentVillager.order_served.connect(on_order_served)
-	currentVillager.position = Vector3.ZERO
-	currentVillager.state = "arriving"
+func spawn_villager():
+	current_villager = villager.instantiate()
+	current_villager.tree_exiting.connect(clear_current_villager)
+	current_villager.order_created.connect(on_order_created)
+	current_villager.order_served.connect(on_order_served)
+	current_villager.position = Vector3.ZERO
+	current_villager.set_state("arriving")
 	$CustomerPath/CustomerPathFollow.progress = 0
-	currentVillager.targetPathFollow = $CustomerPath/CustomerPathFollow
-	add_child(currentVillager)
+	current_villager.target_path_follow = $CustomerPath/CustomerPathFollow
+	add_child.call_deferred(current_villager)
 
-func clearCurrentVillager():
-	currentVillager = null
+func clear_current_villager():
+	current_villager = null
 	$SpawnCooldownTimer.start()
 
-func on_order_created(order_text):
-	current_order_changed.emit(order_text)
+func on_order_created(order_flavors):
+	current_order_changed.emit(order_flavors.to_amount_string())
 
 func on_order_served(score):
 	current_order_changed.emit("")

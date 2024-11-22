@@ -21,7 +21,7 @@ func useItem(item):
 	if !is_item_allowed(item.item_type):
 		return false
 
-	currentItem = get_node("/root/Node3D/Player").requestDropHeldItem(self)
+	currentItem = get_node("/root/Node3D/Player").request_drop_held_item(self)
 	currentItem.obj_attached_to = self
 	currentItem.position = $ItemAnchor.global_position
 	return currentItem.onUseStove()

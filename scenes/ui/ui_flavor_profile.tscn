@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://drw752s764j10"]
+[gd_scene load_steps=4 format=3 uid="uid://drw752s764j10"]
 
+[ext_resource type="Script" path="res://scripts/flavor_profile_label.gd" id="1_onwrh"]
 [ext_resource type="Script" path="res://scripts/Label3D_Dynamic.gd" id="2_cayq7"]
 [ext_resource type="FontFile" uid="uid://bhlbbijborftp" path="res://textures/Icons/flavor_font.png" id="7_joh0m"]
 
-[node name="FlavorProfileUI" type="Label3D"]
+[node name="FlavorProfileUI" type="Node3D"]
+script = ExtResource("1_onwrh")
+
+[node name="Label" type="Label3D" parent="."]
 font = ExtResource("7_joh0m")
 font_size = 400
 script = ExtResource("2_cayq7")

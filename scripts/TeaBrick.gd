@@ -3,21 +3,18 @@ extends Area3D
 @export var item_type:String = "tea_brick"
 @export var ingredient_on_spawn:Constants.ingredients = Constants.ingredients.NONE
 
-@onready var ingredients:Ingredients = Ingredients.new()
+@onready var ingredients:Ingredients = $Blend.ingredients
 
 var obj_attached_to = null
 
 signal state_changed(new_state)
 
 func _ready():
-	ingredients.ingredients_changed.connect(onIngredientsChanged)
-	ingredients.flavors_changed.connect($FlavorProfileUI.onLabelUpdate)
+	ingredients.ingredients_changed.connect(on_ingredients_changed)
+	ingredients.flavors_changed.connect($FlavorProfileUI.on_flavors_changed)
 	
-	match ingredient_on_spawn:
-		Constants.ingredients.NONE:
-			return
-		_:
-			ingredients.addIngredient(ingredient_on_spawn)
+	if ingredient_on_spawn != null and !ingredients.add_ingredient(ingredient_on_spawn):
+		print_debug("Failed to add spawn ingredient to " + item_type)
 
 func useItem(held_item):
 	if held_item == null:
@@ -26,35 +23,24 @@ func useItem(held_item):
 		return false
 	return held_item.onUseItem(self)
 
-func onUseItem(itemToUseOn):
-	if "item_type" not in itemToUseOn:
+func onUseItem(target_item):
+	if "item_type" not in target_item:
 		return false
 		
-	match itemToUseOn.item_type:
+	match target_item.item_type:
 		"tea_brick":
-			return tryGiveContents(itemToUseOn)
+			if "ingredients" not in target_item:
+				return false
+			return ingredients.transfer_ingredients(target_item.ingredients)
 		"teapot":
-			return tryGiveContents(itemToUseOn)
+			return ingredients.transfer_ingredients(target_item.ingredients)
 		"dispenser":
 			return true
 		_:
 			return false
 
-func tryGiveContents(vessel):
-	if vessel.ingredients.ingredients.size() + ingredients.ingredients.size() > vessel.ingredients.max_ingredients:
-		return false
-	giveContents(vessel)
-	return true
-
-func giveContents(vessel):
-	for ingredient in ingredients.ingredients:
-		vessel.ingredients.addIngredient(ingredient)
-	ingredients.clearIngredients()
-
-func onIngredientsChanged(new_ingredients):
-	$IngredientMesh.visible = new_ingredients.size() > 0
-	$IngredientMesh.set_surface_override_material(0, ingredients.ingredientsMat)
+func on_ingredients_changed(_new_ingredient_list):
 	state_changed.emit(getName())
 
 func getName():
-	return ingredients.ingredientsToString()
+	return ingredients.ingredients_to_string()

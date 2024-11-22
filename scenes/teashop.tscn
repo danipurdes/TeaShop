@@ -433,11 +433,11 @@ transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -5, 0,
 
 [node name="Machines" type="Node3D" parent="BackOfHouse"]
 
-[node name="Oxidizer" parent="BackOfHouse/Machines" instance=ExtResource("20_j8f8d")]
+[node name="Oxidizer_0" parent="BackOfHouse/Machines" instance=ExtResource("20_j8f8d")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.97987, 0, 1.48177)
 
-[node name="Oxidizer2" parent="BackOfHouse/Machines" instance=ExtResource("20_j8f8d")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.97987, 0, 2.57404)
+[node name="Oxidizer_1" parent="BackOfHouse/Machines" instance=ExtResource("20_j8f8d")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.97987, 0, 2.48177)
 
 [node name="LeafCrusher" parent="BackOfHouse/Machines" instance=ExtResource("18_dvgoh")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.85716, 2.38419e-07, -0.774673)
@@ -612,7 +612,7 @@ villager = ExtResource("24_45mvu")
 curve = SubResource("Curve3D_gc616")
 
 [node name="CustomerPathFollow" type="PathFollow3D" parent="VillagerSpawner/CustomerPath"]
-transform = Transform3D(0.996157, 0, -0.0875568, 0, 1, 0, 0.0875568, 0, 0.996157, 0, 0, 0)
+transform = Transform3D(0.996157, 0, -0.0875567, 0, 1, 0, 0.0875567, 0, 0.996157, 0, 0, 0)
 rotation_mode = 1
 cubic_interp = false
 loop = false

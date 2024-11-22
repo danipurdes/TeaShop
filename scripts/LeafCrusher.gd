@@ -19,7 +19,7 @@ func _ready():
 		)
 
 	$CounterHotspot.object_taken.connect(request_start_crushing)
-	state_changed.connect($CapacityLabel.onLabelUpdate)
+	state_changed.connect($CapacityLabel.on_label_update)
 	$CrushTimer.timeout.connect(stop_crushing)
 
 	$StatusLight.light_color = Color.GREEN

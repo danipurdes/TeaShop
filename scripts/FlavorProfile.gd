@@ -1,61 +1,69 @@
 class_name FlavorProfile
 
-var flavors = [0, 0, 0, 0, 0, 0]
+var flavors:Array[int] = [0, 0, 0, 0, 0, 0]
 
-func _init(flavorArray):
-	addFlavorArray(flavorArray)
+func _init(flavor_array:Array[int]):
+	add_flavor_list(flavor_array)
 
-func addIngredient(ingredient):
-	var ingredientFlavorArray = Constants.ingredientFlavorMap[ingredient]
-	print_debug(ingredientFlavorArray)
-	addFlavorArray(ingredientFlavorArray)
+# Modify flavors
+func add_ingredient(ingredient:Constants.ingredients):
+	return add_flavor_list(Constants.ingredientFlavorMap[ingredient])
 
-func addFlavorArray(flavorArray):
-	if flavorArray == null or flavorArray.size() != flavors.size():
+func add_ingredient_list(new_ingredient_list:Array[Constants.ingredients]):
+	for ingredient in new_ingredient_list:
+		if !add_ingredient(ingredient):
+			return false
+	return true
+
+func add_flavor_list(new_flavor_list:Array):
+	if new_flavor_list == null or new_flavor_list.size() != flavors.size():
 		print_debug("addFlavorArray: flavorArray null or size mismatch")
-		return
-	
-	print_debug("flavors: " + str(flavors))
-	print_debug("flavorArray: " + str(flavorArray))
-	for flavorIndex in flavorArray.size():
-		flavors[flavorIndex] += flavorArray[flavorIndex]
-	print_debug("new flavors: " + str(flavors))
+		return false
+	for flavor_index in new_flavor_list.size():
+		flavors[flavor_index] += new_flavor_list[flavor_index]
+	return true
 
-func setFlavorProfile(flavorArray):
-	if flavorArray == null or flavorArray.size() != flavors.size():
-		print_debug("setFlavorArray: flavorProfile null or size mismatch")
-		return
-		
-	flavors = flavorArray.duplicate()
-	print_debug("flavors: " + flavors)
-	print_debug("flavorArray: " + flavorArray)
+func add_flavor_profile(new_flavor_profile:FlavorProfile):
+	if new_flavor_profile == null:
+		return false
+	return add_flavor_list(new_flavor_profile.flavors)
 
-func clearFlavorProfile():
+func set_flavor(new_flavor:Constants.ingredients):
+	set_flavor_list([new_flavor])
+
+func set_flavor_list(new_flavor_list:Array[int]):
+	if new_flavor_list == null or new_flavor_list.size() != flavors.size():
+		return false
+	flavors.assign(new_flavor_list)
+	return true
+
+func set_flavor_profile(new_flavor_profile:FlavorProfile):
+	if new_flavor_profile == null:
+		return false
+	return set_flavor_list(new_flavor_profile.flavors)
+
+func clear_flavor_profile():
 	flavors.resize(6)
 	flavors.fill(0)
-	print_debug("flavors: " + str(flavors))
 
-func getFlavorMagnitude():
-	return compareFlavorArrays([0, 0, 0, 0, 0, 0])
+# Utility functions
+func get_flavor_magnitude():
+	return compare_flavor_lists([0, 0, 0, 0, 0, 0])
 
-func compareFlavorArrays(flavorArray):
-	if flavorArray == null or flavorArray.size() != flavors.size():
+func compare_flavor_lists(flavor_list):
+	if flavor_list == null or flavor_list.size() != flavors.size():
 		print_debug("compareFlavorProfiles: flavorArray null or size mismatch")
 		return -1
 	
 	var total_delta = 0
 	for index in flavors.size():
-		var flavorDiff = absi(flavorArray[index] - flavors[index])
-		print_debug("flavor " + str(index) + ": " + str(flavorDiff))
-		total_delta += flavorDiff
-	
+		var flavor_diff = absi(flavor_list[index] - flavors[index])
+		total_delta += flavor_diff
 	return total_delta
 
-func _to_amount_string():
-	var newText = ""
-	for flavorIndex in flavors.size():
-		for n in flavors[flavorIndex]:
-			newText += str(flavorIndex)
-	print_debug("flavors: " + str(flavors))
-	print_debug("amount_string: " + newText)
-	return newText
+func to_amount_string():
+	var output = ""
+	for flavor_index in flavors.size():
+		for n in flavors[flavor_index]:
+			output += str(flavor_index)
+	return output

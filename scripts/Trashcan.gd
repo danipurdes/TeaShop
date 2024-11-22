@@ -13,7 +13,7 @@ func useItem(item):
 	if !is_item_allowed(item.item_type):
 		return false
 	
-	get_node("/root/Node3D/Player").requestDropHeldItem(self)
+	get_node("/root/Node3D/Player").request_drop_held_item(self)
 	return true
 	
 func is_item_allowed(item_type):
