@@ -10,7 +10,7 @@ var obj_attached_to = null
 signal state_changed(newState)
 
 func _ready():
-	state_changed.connect($Label.onLabelUpdate)
+	state_changed.connect($Label.on_label_update)
 
 func onUseItem(item_to_use_on):
 	if "machine_type" not in item_to_use_on:
