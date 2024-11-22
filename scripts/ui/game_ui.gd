@@ -10,10 +10,10 @@ extends MarginContainer
 
 func _ready():
 	# Current Order
-	villager_spawner.current_order_changed.connect(order_label.onLabelUpdate)
+	villager_spawner.current_order_changed.connect(order_label.on_label_update)
 	
 	# Score
-	world.score_changed.connect(score_label.onLabelUpdate)
+	world.score_changed.connect(score_label.on_label_update)
 
 	# Held Item
 	player.held_item_changed.connect($HeldItemPanel.on_target_changed)
@@ -26,4 +26,4 @@ func _ready():
 	player.lookat_changed.connect(mouse_peek_panel.on_target_item_changed)
 
 	# Cursor
-	mouse_peek_panel.use_label_changed.connect(cursor.change_cursor)
+	mouse_peek_panel.action_changed.connect(cursor.change_cursor)
