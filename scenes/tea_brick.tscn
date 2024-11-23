@@ -1,26 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3o86lcksgnit"]
+[gd_scene load_steps=10 format=3 uid="uid://d3o86lcksgnit"]
 
 [ext_resource type="Script" path="res://scripts/TeaBrick.gd" id="1_5kp2m"]
 [ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui/ui_flavor_profile.tscn" id="3_kgkc1"]
 [ext_resource type="PackedScene" uid="uid://dr54jxori4sw" path="res://scenes/Blend.tscn" id="4_eblm6"]
+[ext_resource type="Material" uid="uid://c4cxqic46t7bi" path="res://materials/glass.tres" id="4_v3kd5"]
+[ext_resource type="Material" uid="uid://t4ab3si8kiqp" path="res://materials/jar_lid.tres" id="5_q366b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tl8i4"]
 size = Vector3(0.15, 0.25, 0.15)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1kvh"]
-transparency = 1
-albedo_color = Color(1, 1, 1, 0.054902)
-metallic = 0.58
-metallic_specular = 0.75
+[sub_resource type="CylinderMesh" id="CylinderMesh_erx7x"]
+height = 1.0
+radial_segments = 8
 
-[sub_resource type="BoxMesh" id="BoxMesh_p7ijx"]
-material = SubResource("StandardMaterial3D_p1kvh")
+[sub_resource type="CylinderMesh" id="CylinderMesh_78ru3"]
+material = ExtResource("4_v3kd5")
+height = 1.0
+radial_segments = 8
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4v3cb"]
-albedo_color = Color(0.305032, 0.159738, 0.027138, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_b302r"]
-material = SubResource("StandardMaterial3D_4v3cb")
+[sub_resource type="CylinderMesh" id="CylinderMesh_4cvqf"]
+material = ExtResource("5_q366b")
+height = 1.0
 
 [node name="TeaBrick" type="Area3D"]
 collision_layer = 2
@@ -38,11 +38,12 @@ transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.120397, 0.07709
 
 [node name="Blend" parent="." instance=ExtResource("4_eblm6")]
 transform = Transform3D(0.12, 0, 0, 0, 0.18, 0, 0, 0, 0.12, 0, 0.10399, 0)
+mesh = SubResource("CylinderMesh_erx7x")
 
 [node name="Glass" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.15, 0, 0, 0, 0.21, 0, 0, 0, 0.15, 0, 0.105, 0)
-mesh = SubResource("BoxMesh_p7ijx")
+mesh = SubResource("CylinderMesh_78ru3")
 
 [node name="Lid" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.12, 0, 0, 0, 0.04, 0, 0, 0, 0.12, 0, 0.229405, 0)
-mesh = SubResource("BoxMesh_b302r")
+transform = Transform3D(0.1, 0, 0, 0, 0.02, 0, 0, 0, 0.1, 0, 0.219512, 0)
+mesh = SubResource("CylinderMesh_4cvqf")
