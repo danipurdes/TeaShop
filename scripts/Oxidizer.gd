@@ -9,7 +9,7 @@ extends StaticBody3D
 @onready var progress_bar = $SubViewport/CanvasLayer/ProgressBar
 
 var state:String = "idle"
-var oxidizing_stages:Array[Constants.ingredients] = [Constants.ingredients.GREEN_TEA, Constants.ingredients.BLACK_TEA]
+var oxidizing_stages:Array[Constants.ingredients] = [Constants.ingredients.WHITE_TEA, Constants.ingredients.GREEN_TEA, Constants.ingredients.BLACK_TEA]
 var oxidizing_index:int = 0
 var tween:Tween
 
@@ -19,7 +19,7 @@ func _ready():
 	ingredients.ingredients_changed.connect(on_ingredients_changed)
 	state_changed.connect($IngredientLabel.on_label_update)
 	$OxidizingTimer.timeout.connect(on_oxidizing_timer_timeout)
-	$Blend.set_surface_override_material(0, create_material(idle_color))
+	$IngredientMesh.set_surface_override_material(0, create_material(idle_color))
 
 func useItem(held_item):
 	match state:
@@ -63,7 +63,7 @@ func stop_oxidizing():
 	spawn_tea_brick()
 	set_state("idle")
 	ingredients.clear_ingredients()
-	$ParticleEmitter.emitting = true
+	$ParticleEmitter.restart()
 	$OxidizingTimer.stop()
 	if tween:
 		tween.kill()
@@ -89,12 +89,14 @@ func spawn_tea_brick():
 func on_ingredients_changed(new_ingredients):
 	match state:
 		"idle":
-			$Blend.set_surface_override_material(0, create_material(idle_color))
+			$IngredientMesh.set_surface_override_material(0, create_material(idle_color))
 			return
 		"started":
 			if new_ingredients.is_empty():
-				$Blend.set_surface_override_material(0, create_material(working_color))
+				$IngredientMesh.set_surface_override_material(0, create_material(working_color))
 				return
+			$IngredientLabel.on_label_update(Constants.ingredients.keys()[new_ingredients.front()])
+			$IngredientMesh.set_surface_override_material(0, create_material(Constants.ingredientColorMap[new_ingredients.front()]))
 			return
 		_:
 			return

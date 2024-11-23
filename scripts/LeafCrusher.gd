@@ -2,6 +2,8 @@ extends StaticBody3D
 
 @export var machine_type:String = "leaf_crusher"
 @export var allow_list:Array[String] = ["leaf_tray"]
+@export var spawnObj:PackedScene
+@export var spawnTea:Constants.ingredients = Constants.ingredients.NONE
 @export var leaf_tray:PackedScene
 @export_range(0,100) var leaf_count_max = 20
 
@@ -11,18 +13,18 @@ var leaf_count_current = 0
 signal state_changed(new_state_text)
 
 func _ready():
-	if leaf_tray != null:
-		$CounterHotspot.spawnObject(
-			leaf_tray.instantiate(),
-			Constants.ingredients.GREEN_TEA,
-			allow_list
-		)
-
 	$CounterHotspot.object_taken.connect(request_start_crushing)
 	state_changed.connect($CapacityLabel.on_label_update)
 	$CrushTimer.timeout.connect(stop_crushing)
 
 	$StatusLight.light_color = Color.GREEN
+
+	if spawnObj != null:
+		$CounterHotspot.spawnObject(
+			spawnObj.instantiate(),
+			spawnTea,
+			allow_list
+		)
 
 
 func useItem(heldItem):
@@ -71,7 +73,7 @@ func stop_crushing():
 	$Hitbox.set_disabled(false)
 	$CounterHotspot.spawnObject(
 		leaf_tray.instantiate(),
-		Constants.ingredients.GREEN_TEA,
+		Constants.ingredients.WHITE_TEA,
 		allow_list
 	)
 	leaf_count_current = max(0, leaf_count_current - 1)
