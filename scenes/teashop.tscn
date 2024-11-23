@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=67 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
 [ext_resource type="Script" path="res://scripts/ui/GameHUD.gd" id="2_my5ie"]
@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://37lf2egblnd6" path="res://scenes/tea_kettle.tscn" id="16_dfbcf"]
 [ext_resource type="PackedScene" uid="uid://c3gcqtsi7lxal" path="res://scenes/tea_tree.tscn" id="17_afmcm"]
 [ext_resource type="PackedScene" uid="uid://bsrcc8a30vt1p" path="res://scenes/leaf_crusher.tscn" id="18_dvgoh"]
-[ext_resource type="PackedScene" uid="uid://dx0xtqq8edqdy" path="res://scenes/crush_leaf_tray.tscn" id="19_xhmln"]
 [ext_resource type="PackedScene" uid="uid://csh63b2jdudyg" path="res://scenes/oxidizer.tscn" id="20_j8f8d"]
 [ext_resource type="PackedScene" uid="uid://x4ovft2pp4qq" path="res://scenes/trashcan.tscn" id="20_ktmqg"]
 [ext_resource type="PackedScene" uid="uid://bd1jkdslg77aa" path="res://scenes/leaf_basket.tscn" id="21_ysytc"]
@@ -441,7 +440,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.9798
 
 [node name="LeafCrusher" parent="BackOfHouse/Machines" instance=ExtResource("18_dvgoh")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.85716, 2.38419e-07, -0.774673)
-leaf_tray = ExtResource("19_xhmln")
 
 [node name="Jukebox" parent="BackOfHouse" instance=ExtResource("22_j0j4u")]
 transform = Transform3D(-0.840397, 0, 0.322077, 0, 0.9, 0, -0.322077, 0, -0.840397, -3.21469, 1.59853, 4.56789)
