@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://csh63b2jdudyg"]
+[gd_scene load_steps=19 format=3 uid="uid://csh63b2jdudyg"]
 
 [ext_resource type="Script" path="res://scripts/Oxidizer.gd" id="1_iuc1u"]
 [ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="2_55n5q"]
@@ -14,6 +14,8 @@ albedo_color = Color(0.737255, 0.47451, 0.364706, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rqnee"]
 material = SubResource("StandardMaterial3D_pfg0d")
+
+[sub_resource type="QuadMesh" id="QuadMesh_pt3k1"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pc506"]
 particle_flag_align_y = true
@@ -71,6 +73,7 @@ obj_ingredient = ExtResource("2_55n5q")
 
 [node name="CounterHotspot" parent="." instance=ExtResource("3_24mvj")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.91, -0.16949)
+allow_list = Array[String](["tea_brick"])
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
@@ -83,6 +86,7 @@ skeleton = NodePath("../..")
 
 [node name="Blend" parent="." instance=ExtResource("4_hyeoq")]
 transform = Transform3D(0.634, 0, 0, 0, 0.453, 0, 0, 0, 0.05, 0, 0.317546, 0.448404)
+visible = false
 ingredient_count_max = 1
 
 [node name="NameLabel" type="Label3D" parent="."]
@@ -93,7 +97,11 @@ font_size = 18
 [node name="IngredientLabel" parent="." instance=ExtResource("4_4pkve")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.328343, 0.481322)
 billboard = 0
-default_value = "Inactive"
+default_value = "idle"
+
+[node name="IngredientMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.634, 0, 0, 0, 0.453, 0, 0, 0, 0.05, 0, 0.329269, 0.45893)
+mesh = SubResource("QuadMesh_pt3k1")
 
 [node name="ParticleEmitter" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00224614, 0.92471, 0.00580812)
@@ -112,7 +120,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="ProgressBarPanel" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00721357, 0.642465, 0.455958)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0030782, 0.642465, 0.455958)
 mesh = SubResource("QuadMesh_16arv")
 surface_material_override/0 = SubResource("StandardMaterial3D_0b6os")
 
