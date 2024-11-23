@@ -17,7 +17,9 @@ size = Vector3(1, 0.06, 0.735)
 
 [node name="LeafCrusher" type="StaticBody3D"]
 script = ExtResource("1_y65cl")
-obj_leaf_tray = ExtResource("6_n74i5")
+spawnObj = ExtResource("6_n74i5")
+spawnTea = 1
+leaf_tray = ExtResource("6_n74i5")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625, -0.131)
@@ -29,7 +31,6 @@ shape = SubResource("BoxShape3D_y2a6e")
 
 [node name="CounterHotspot" parent="." instance=ExtResource("5_6ihsq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.992613, 0.791093, -0.122447)
-allowlist = Array[String](["leaf_tray"])
 
 [node name="StatusLight" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.278723, 1.16929, 0.333707)
