@@ -1,17 +1,33 @@
 class_name UseLabelUtility
 
 static var itemUseLabelMap = {
-	"teakettle_empty|sink":"fill with cold water",
-	"teakettle_cold_water|hotplate":"heat kettle on stove",
-	"teakettle_hot_water|teapot_empty_0":"fill teapot from kettle",
-	"teapot_hot_water_1|teacup_empty":"fill teacup with tea",
-	"teapot_hot_water_2|teacup_empty":"fill teacup with tea",
-	"tea_brick_1|teapot_hot_water_0":"add tea to teapot",
-	"tea_brick_2|teapot_hot_water_0":"add tea to teapot",
-	"teacup_1|sink": "empty cup into sink",
-	"teacup_2|sink": "empty cup into sink",
-	"jukebox": "toggle jukebox",
-	"tea_tree": "prune tea tree",
-	"leaf_crusher": "crush tea leaves",
-	"oxidizer": "oxidize tea leaves",
+	"none|none": "",
+
+	"kettle:empty|sink": "fill kettle with cold water",
+	"kettle:cold_water|sink": "empty kettle",
+	"kettle:hot_water|sink": "empty kettle",
+	"teacup:empty|sink": "fill tea cup with cold water",
+	"teacup:cold_water|sink": "empty tea cup",
+	"teacup:hot_water|sink": "empty tea cup",
+	"teapot:empty|sink": "fill tea pot with cold water",
+	"teapot:cold_water|sink": "empty tea pot",
+	"teapot:hot_water|sink": "empty tea pot",
+	
+	"tea_brick:full|tea_brick:empty": "transfer blend to empty jar",
+	"tea_brick:partial|tea_brick:empty": "transfer blend to empty jar",
+	"tea_brick:partial|tea_brick:partial": "transfer blend to jar",
+
+	"dispenser|tea_brick:empty": "add ingredient to empty jar",
+	"dispenser|tea_brick:partial": "add ingredient to jar",
+
+	"kettle:cold_water|hotplate:empty": "heat kettle on stove",
+
+	"none|jukebox:off": "turn on radio",
+	"none|jukebox:on": "turn off radio",
+	
+	"basket:empty|tea_tree": "harvest tea leaves",
+	"basket:partial|leaf_crusher": "deposit leaves",
+	"basket:full|leaf_crusher": "deposit leaves",
+
+	"leaf_tray|oxidizer:idle": "oxidize tea leaves",
 }
