@@ -58,7 +58,7 @@ func on_use_teacup_waiting(held_item):
 	var order_score = order_magnitude - order_comp
 	display_performance_rating(order_score, order_flavor.get_flavor_magnitude())
 
-	held_item.ingredients.clearIngredients()
+	held_item.ingredients.clear_ingredients()
 	held_item.update_state("empty")
 	order_flavor.clear_flavor_profile()
 	order_served.emit(order_score)
