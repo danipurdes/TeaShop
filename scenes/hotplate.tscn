@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dl715wjeelbk7"]
+[gd_scene load_steps=5 format=3 uid="uid://dl715wjeelbk7"]
 
 [ext_resource type="Script" path="res://scripts/Hotplate.gd" id="1_843e1"]
 [ext_resource type="PackedScene" uid="uid://cak3pmckf88l" path="res://models/hotplate/hotplate.gltf" id="2_pw7eu"]
+[ext_resource type="PackedScene" uid="uid://cyp2xxkqqpaim" path="res://scenes/counter_hotspot.tscn" id="3_rahag"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_81lox"]
-height = 0.1
-radius = 0.4
+[sub_resource type="BoxShape3D" id="BoxShape3D_olg3b"]
+size = Vector3(0.627686, 0.125397, 0.626465)
 
 [node name="Hotplate" type="Area3D"]
 collision_layer = 2
@@ -15,8 +15,9 @@ script = ExtResource("1_843e1")
 [node name="hotplate" parent="." instance=ExtResource("2_pw7eu")]
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0577236, 0)
-shape = SubResource("CylinderShape3D_81lox")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00109863, 0.0624691, 0.000732422)
+shape = SubResource("BoxShape3D_olg3b")
 
-[node name="ItemAnchor" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+[node name="CounterHotspot" parent="." instance=ExtResource("3_rahag")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.136875, -0.0613629)
+allow_list = Array[String](["kettle"])
