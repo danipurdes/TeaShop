@@ -12,7 +12,7 @@ func _init(new_ingredient_count_max):
 	ingredient_count_max = new_ingredient_count_max
 
 func is_valid_ingredient(ingredient:Constants.ingredients):
-	return ingredient != Constants.ingredients.NONE
+	return ingredient != null and ingredient != Constants.ingredients.NONE
 
 # Modify ingredients
 func add_ingredient(new_ingredient:Constants.ingredients):
@@ -30,7 +30,7 @@ func add_ingredient_list(new_ingredient_list:Array[Constants.ingredients]):
 func add_ingredients(new_ingredients:Ingredients):
 	if new_ingredients == null:
 		return false
-	add_ingredient_list(new_ingredients.ingredient_list)
+	return add_ingredient_list(new_ingredients.ingredient_list)
 
 func set_ingredient(new_ingredient:Constants.ingredients):
 	return set_ingredient_list([new_ingredient])
