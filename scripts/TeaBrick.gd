@@ -3,8 +3,9 @@ extends Area3D
 @export var item_type:String = "tea_brick"
 @export var ingredient_on_spawn:Constants.ingredients = Constants.ingredients.NONE
 
-@onready var ingredients:Ingredients = $Blend.ingredients
+@onready var ingredients:Ingredients = $BlendAnchor/Blend.ingredients
 
+var state:String = "empty"
 var obj_attached_to = null
 
 signal state_changed(new_state)
@@ -33,13 +34,28 @@ func onUseItem(target_item):
 				return false
 			return ingredients.transfer_ingredients(target_item.ingredients)
 		"teapot":
+			if "ingredients" not in target_item:
+				return false
 			return ingredients.transfer_ingredients(target_item.ingredients)
 		"dispenser":
 			return true
 		_:
 			return false
 
-func on_ingredients_changed(_new_ingredient_list):
+func on_ingredients_changed(new_ingredient_list):
+	$BlendAnchor.scale.y = new_ingredient_list.size()
+	if new_ingredient_list.is_empty():
+		update_state("empty")
+		return
+	if new_ingredient_list.size() == ingredients.ingredient_count_max:
+		update_state("full")
+		return
+	update_state("partial")
+
+func update_state(new_state):
+	if new_state == state:
+		return
+	state = new_state
 	state_changed.emit(getName())
 
 func getName():
