@@ -19,20 +19,42 @@ func on_target_changed(target):
 		return
 
 	# Name
-	name_changed.emit(target.item_type if "item_type" in target else "")
-	name_label.visible = "item_type" in target
+	var new_name_label = get_name_label(target)
+	name_changed.emit(new_name_label)
+	name_label.visible = new_name_label != ""
 	
 	# State
-	state_changed.emit(target.state if "state" in target else "")
-	state_label.visible = "state" in target
+	var new_state_label = target.state if "state" in target else ""
+	state_changed.emit(new_state_label)
+	state_label.visible = new_state_label != ""
 
 	# Ingredients
-	if "ingredients" in target:
-		ingredients_changed.emit(target.ingredients.ingredients_to_string())
-		ingredients_label.visible = target.ingredients.ingredient_list.size() > 0
-	else:
-		ingredients_changed.emit("")
-		ingredients_label.visible = false
+	var new_ingredients_label = get_ingredients_label(target)
+	ingredients_changed.emit(new_ingredients_label)
+	ingredients_label.visible = new_ingredients_label != ""
 	
 	# Panel visibility
-	visible = "item_type" in target and (name_label.visible or state_label.visible or ingredients_label.visible)
+	var any_labels_visible = name_label.visible or state_label.visible or ingredients_label.visible
+	visible = any_labels_visible
+
+func get_name_label(target):
+	if "item_type" not in target and "machine_type" not in target:
+		return ""
+	
+	var output = ""
+	if "item_type" in target:
+		output += target.item_type
+	elif "machine_type" in target:
+		output += target.machine_type
+	
+	if target.has_method("servings_to_string"):
+		output += " ("
+		output += target.servings_to_string()
+		output += ")"
+	return output
+
+func get_ingredients_label(target):
+	if "ingredients" not in target:
+		return ""
+	
+	return target.ingredients.ingredients_to_string()
