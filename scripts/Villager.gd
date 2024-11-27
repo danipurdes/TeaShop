@@ -4,19 +4,19 @@ extends CharacterBody3D
 @export_range(0.1,5,0.1) var move_magnitude:float = 1.0
 
 @onready var order_flavor:FlavorProfile = FlavorProfile.new([0,0,0,0,0,0])
+@onready var animation_player:AnimationPlayer = $villager_cat/AnimationPlayer
 
 var state:String = "waiting"
 var move_target:Vector3
 
 signal state_changed(new_state)
-signal order_created(order_text)
+signal order_changed(order_text)
 signal order_served(order_value)
 
 func _ready():
-	order_created.connect($FlavorProfileUI.on_flavors_changed)
-	order_served.connect($FlavorProfileUI.on_flavors_changed)
-	$villager/AnimationPlayer.animation_finished.connect(on_sip_anim_finished.bind())
-	$villager/AnimationPlayer.play("walk")
+	order_changed.connect($FlavorProfileUI.on_flavors_changed)
+	animation_player.animation_finished.connect(on_sip_anim_finished.bind())
+	animation_player.play("walkAction")
 
 func _process(delta):
 	match state:
@@ -35,7 +35,7 @@ func useItem(held_item):
 			return false
 
 func on_use_waiting(held_item):
-	if $villager/AnimationPlayer.get_queue().size() != 0:
+	if animation_player.get_queue().size() != 0:
 		return false
 	if held_item == null:
 		smile_and_wave()
@@ -61,21 +61,22 @@ func on_use_teacup_waiting(held_item):
 	held_item.ingredients.clear_ingredients()
 	held_item.update_state("empty")
 	order_flavor.clear_flavor_profile()
+	order_changed.emit(order_flavor)
 	order_served.emit(order_score)
-	$villager/AnimationPlayer.play("sip")
+	animation_player.play("sipAction")
 	return true
 
 func smile_and_wave():
-	$villager/AnimationPlayer.play("wave")
-	$villager/AnimationPlayer.queue("idle")
+	animation_player.play("waveAction")
+	animation_player.queue("idleAction")
 
 func behavior_arriving(delta):
 	target_path_follow.progress_ratio = clamp(target_path_follow.progress_ratio, 0, .5)
 	if target_path_follow.progress_ratio == .5:
 		set_state("waiting")
-		$villager/AnimationPlayer.play("idle")
+		animation_player.play("idleAction")
 		order_flavor = generate_order()
-		order_created.emit(order_flavor)
+		order_changed.emit(order_flavor)
 		return
 	behavior_walking(delta)
 
@@ -126,7 +127,7 @@ func generate_order():
 	return FlavorProfile.new(flavors)
 
 func on_sip_anim_finished(anim_name):
-	if anim_name == "sip":
+	if anim_name == "sipAction":
 		set_state("leaving")
-		$villager/AnimationPlayer.play("walk")
+		animation_player.play("walkAction")
 		$PerformanceLabel.visible = false
