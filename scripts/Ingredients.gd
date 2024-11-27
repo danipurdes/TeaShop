@@ -12,7 +12,7 @@ func _init(new_ingredient_count_max):
 	ingredient_count_max = new_ingredient_count_max
 
 func is_valid_ingredient(ingredient:Constants.ingredients):
-	return ingredient != Constants.ingredients.NONE
+	return ingredient != null and ingredient != Constants.ingredients.NONE
 
 # Modify ingredients
 func add_ingredient(new_ingredient:Constants.ingredients):
@@ -23,13 +23,14 @@ func add_ingredient_list(new_ingredient_list:Array[Constants.ingredients]):
 	if ingredient_list.size() + filtered_list.size() > ingredient_count_max:
 		return false
 	ingredient_list.append_array(filtered_list)
+	ingredients_changed.emit(ingredient_list)
 	update_flavors_and_color(ingredient_list)
 	return true
 
 func add_ingredients(new_ingredients:Ingredients):
 	if new_ingredients == null:
 		return false
-	add_ingredient_list(new_ingredients.ingredient_list)
+	return add_ingredient_list(new_ingredients.ingredient_list)
 
 func set_ingredient(new_ingredient:Constants.ingredients):
 	return set_ingredient_list([new_ingredient])
@@ -39,6 +40,7 @@ func set_ingredient_list(new_ingredient_list:Array[Constants.ingredients]):
 	if filtered_list.size() > ingredient_count_max:
 		return false
 	ingredient_list.assign(filtered_list)
+	ingredients_changed.emit(ingredient_list)
 	update_flavors_and_color(ingredient_list)
 	return true
 
@@ -49,6 +51,7 @@ func set_ingredients(new_ingredients:Ingredients):
 
 func clear_ingredients():
 	ingredient_list.clear()
+	ingredients_changed.emit(ingredient_list)
 	update_flavors_and_color(ingredient_list)
 
 func transfer_ingredients(target:Ingredients):

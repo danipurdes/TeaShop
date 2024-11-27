@@ -194,6 +194,7 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("2_ua8xs")
 theme_type_variation = &"hud_label"
+theme_override_font_sizes/font_size = 42
 text = "Item"
 horizontal_alignment = 1
 script = ExtResource("1_31fp1")
@@ -203,7 +204,6 @@ layout_mode = 2
 theme = ExtResource("2_ua8xs")
 theme_type_variation = &"hud_label"
 text = "State"
-horizontal_alignment = 1
 script = ExtResource("1_31fp1")
 
 [node name="IngredientsLabel" type="Label" parent="InspectionPanel/MarginContainer/VBoxContainer"]

@@ -24,7 +24,7 @@ func try_spawn_villager():
 func spawn_villager():
 	current_villager = villager.instantiate()
 	current_villager.tree_exiting.connect(clear_current_villager)
-	current_villager.order_created.connect(on_order_created)
+	current_villager.order_changed.connect(on_order_changed)
 	current_villager.order_served.connect(on_order_served)
 	current_villager.position = Vector3.ZERO
 	current_villager.set_state("arriving")
@@ -36,9 +36,8 @@ func clear_current_villager():
 	current_villager = null
 	$SpawnCooldownTimer.start()
 
-func on_order_created(order_flavors):
+func on_order_changed(order_flavors):
 	current_order_changed.emit(order_flavors.to_amount_string())
 
 func on_order_served(score):
-	current_order_changed.emit("")
 	score_change_requested.emit(score)

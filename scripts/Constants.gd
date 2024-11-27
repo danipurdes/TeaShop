@@ -2,11 +2,15 @@ class_name Constants
 
 enum ingredients {
 	NONE,
+	WHITE_TEA,
 	GREEN_TEA,
 	BLACK_TEA,
 	ORANGE_PEEL,
 	HIBISCUS,
-	PINE_NEEDLE
+	PINE_NEEDLE,
+	LAVENDER,
+	JASMINE,
+	PEACH
 }
 
 enum flavors {
@@ -31,26 +35,38 @@ enum vessel_state {
 
 static var ingredientFlavorMap = {
 	ingredients.NONE: [0,0,0,0,0,0],
+	ingredients.WHITE_TEA: [0,0,1,0,0,0],
 	ingredients.GREEN_TEA: [1,0,0,0,0,0],
 	ingredients.BLACK_TEA: [0,0,0,0,1,0],
 	ingredients.ORANGE_PEEL: [0,0,1,0,0,0],
-	ingredients.HIBISCUS: [0,1,0,0,0,0],
-	ingredients.PINE_NEEDLE: [0,0,0,1,0,0]
+	ingredients.HIBISCUS: [0,0,1,0,0,0],
+	ingredients.PINE_NEEDLE: [0,0,0,1,0,0],
+	ingredients.LAVENDER: [0,1,0,0,0,0],
+	ingredients.JASMINE: [0,1,0,0,0,0],
+	ingredients.PEACH: [0,0,1,0,0,0]
 }
 
 static var ingredientColorMap = {
 	ingredients.NONE: Color(0.1,0.1,0.1,0.1),
+	ingredients.WHITE_TEA: Color.SILVER,
 	ingredients.GREEN_TEA: Color.DARK_GREEN,
 	ingredients.BLACK_TEA: Color.WEB_MAROON,
 	ingredients.ORANGE_PEEL: Color.DARK_ORANGE,
 	ingredients.HIBISCUS: Color.MEDIUM_VIOLET_RED,
-	ingredients.PINE_NEEDLE: Color.ORANGE
+	ingredients.PINE_NEEDLE: Color.ORANGE,
+	ingredients.LAVENDER: Color.LAVENDER,
+	ingredients.JASMINE: Color.PALE_GOLDENROD,
+	ingredients.PEACH: Color.PEACH_PUFF
 }
 
 static var ingredientMap = {
 	ingredients.NONE: {
-		"color": Color(0.1,0.1,0.1,0.1),
+		"color": Color.TRANSPARENT,
 		"flavor": [0,0,0,0,0,0]
+	},
+	ingredients.WHITE_TEA: {
+		"color": Color.SILVER,
+		"flavor": [0,0,1,0,0,0]
 	},
 	ingredients.GREEN_TEA: {
 		"color": Color.DARK_GREEN,

@@ -1,7 +1,7 @@
 extends Area3D
 
 @export var item_type = "leaf_tray"
-@export var ingredient_on_spawn:Constants.ingredients = Constants.ingredients.GREEN_TEA
+@export var ingredient_on_spawn:Constants.ingredients = Constants.ingredients.WHITE_TEA
 
 @onready var ingredients:Ingredients = $Blend.ingredients
 

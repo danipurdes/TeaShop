@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx0xtqq8edqdy"]
+[gd_scene load_steps=8 format=3 uid="uid://dx0xtqq8edqdy"]
 
 [ext_resource type="Script" path="res://scripts/crush_leaf_tray.gd" id="1_2gl8y"]
 [ext_resource type="PackedScene" uid="uid://ii1jj26uarvg" path="res://models/tray/tray.gltf" id="2_0ubst"]
@@ -7,6 +7,12 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_le54r"]
 size = Vector3(0.758584, 0.11896, 0.761966)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_28slu"]
+albedo_color = Color(0.0616109, 0.264369, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y6bdg"]
+material = SubResource("StandardMaterial3D_28slu")
 
 [node name="CrushLeafTray" type="Area3D"]
 script = ExtResource("1_2gl8y")
@@ -24,4 +30,9 @@ default_value = "Crushed Tea Leaves"
 
 [node name="Blend" parent="." instance=ExtResource("4_lb08y")]
 transform = Transform3D(0.55, 0, 0, 0, 0.1, 0, 0, 0, 0.55, 0, 0.106866, 0)
+visible = false
 ingredient_count_max = 1
+
+[node name="Leaves" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.55, 0, 0, 0, 0.1, 0, 0, 0, 0.55, 0, 0.105851, 0)
+mesh = SubResource("BoxMesh_y6bdg")

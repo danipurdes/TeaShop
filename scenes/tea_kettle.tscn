@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://37lf2egblnd6"]
+[gd_scene load_steps=6 format=3 uid="uid://37lf2egblnd6"]
 
 [ext_resource type="Script" path="res://scripts/TeaKettle.gd" id="1_imtm0"]
 [ext_resource type="PackedScene" uid="uid://byy5badbl0x4x" path="res://models/kettle/kettle.gltf" id="2_87i7h"]
@@ -9,11 +9,6 @@
 height = 0.5
 radius = 0.3
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_0tlfe"]
-top_radius = 0.3
-bottom_radius = 0.3
-height = 0.5
-
 [node name="TeaKettle" type="Area3D"]
 collision_layer = 2
 collision_mask = 0
@@ -23,12 +18,7 @@ script = ExtResource("1_imtm0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("CylinderShape3D_vjw4y")
 
-[node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-visible = false
-mesh = SubResource("CylinderMesh_0tlfe")
-
-[node name="kettle" parent="." instance=ExtResource("2_87i7h")]
+[node name="Mesh" parent="." instance=ExtResource("2_87i7h")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Steam" parent="." instance=ExtResource("2_nbyjd")]

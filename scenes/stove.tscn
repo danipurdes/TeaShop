@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn8k6xmlccs0i"]
+
+[ext_resource type="Script" path="res://scripts/stove.gd" id="1_0iykb"]
+[ext_resource type="PackedScene" uid="uid://wmjyomo8qrxu" path="res://models/kenney_furniture/kitchenStoveElectric.glb" id="2_n2q5t"]
+[ext_resource type="PackedScene" uid="uid://cyp2xxkqqpaim" path="res://scenes/counter_hotspot.tscn" id="3_rdfay"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ibrm1"]
+size = Vector3(1.00964, 0.968884, 1.04423)
+
+[node name="Stove" type="StaticBody3D"]
+script = ExtResource("1_0iykb")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00482178, 0.484442, 0.0311822)
+shape = SubResource("BoxShape3D_ibrm1")
+
+[node name="Model" parent="." instance=ExtResource("2_n2q5t")]
+transform = Transform3D(2.35, 0, 0, 0, 2.35, 0, 0, 0, 2.35, -0.5, 0, 0.562402)
+
+[node name="CounterHotspot" parent="." instance=ExtResource("3_rdfay")]
+transform = Transform3D(0.885, 0, 0, 0, 0.885, 0, 0, 0, 0.885, 0.00350666, 1.01565, -0.038574)

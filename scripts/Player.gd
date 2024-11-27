@@ -97,8 +97,8 @@ func update_held_item(item):
 	heldItem = item
 	heldItem.monitoring = false
 	heldItem.monitorable = false
-	if "obj_attached_to" in item and item.obj_attached_to != null and item.obj_attached_to.has_method("takeItem"):
-		item.obj_attached_to.takeItem()
+	if "obj_attached_to" in item and item.obj_attached_to != null and item.obj_attached_to.has_method("take_item"):
+		item.obj_attached_to.take_item()
 	held_item_changed.emit(heldItem)
 
 func request_drop_held_item(drop_requestor):

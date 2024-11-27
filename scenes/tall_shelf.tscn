@@ -9,6 +9,7 @@ size = Vector3(1.59543, 0.115549, 0.600109)
 
 [node name="TallShelf" type="StaticBody3D"]
 script = ExtResource("1_bvdw3")
+allow_list = Array[String](["teacup", "tea_brick", "dispenser"])
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807338, 0.0626204, -0.259127)

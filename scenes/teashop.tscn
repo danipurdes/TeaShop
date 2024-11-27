@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=67 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
 [ext_resource type="Script" path="res://scripts/ui/GameHUD.gd" id="2_my5ie"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://db0xu55woj8wb" path="res://scenes/ceiling.tscn" id="8_x5mcj"]
 [ext_resource type="PackedScene" uid="uid://coekka8bmqu1g" path="res://scenes/counter.tscn" id="10_2dvqi"]
 [ext_resource type="PackedScene" uid="uid://csia40gwyiojh" path="res://scenes/sink.tscn" id="11_45m4w"]
-[ext_resource type="PackedScene" uid="uid://dl715wjeelbk7" path="res://scenes/hotplate.tscn" id="12_08qgc"]
 [ext_resource type="FontFile" uid="uid://bhlbbijborftp" path="res://textures/Icons/flavor_font.png" id="13_dbs02"]
 [ext_resource type="PackedScene" uid="uid://clunbhfm3m663" path="res://scenes/tall_shelf.tscn" id="13_miqk0"]
 [ext_resource type="PackedScene" uid="uid://d0my1uk3l6y46" path="res://scenes/wall.tscn" id="13_t0x17"]
@@ -18,10 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://37lf2egblnd6" path="res://scenes/tea_kettle.tscn" id="16_dfbcf"]
 [ext_resource type="PackedScene" uid="uid://c3gcqtsi7lxal" path="res://scenes/tea_tree.tscn" id="17_afmcm"]
 [ext_resource type="PackedScene" uid="uid://bsrcc8a30vt1p" path="res://scenes/leaf_crusher.tscn" id="18_dvgoh"]
-[ext_resource type="PackedScene" uid="uid://dx0xtqq8edqdy" path="res://scenes/crush_leaf_tray.tscn" id="19_xhmln"]
 [ext_resource type="PackedScene" uid="uid://csh63b2jdudyg" path="res://scenes/oxidizer.tscn" id="20_j8f8d"]
 [ext_resource type="PackedScene" uid="uid://x4ovft2pp4qq" path="res://scenes/trashcan.tscn" id="20_ktmqg"]
 [ext_resource type="PackedScene" uid="uid://bd1jkdslg77aa" path="res://scenes/leaf_basket.tscn" id="21_ysytc"]
+[ext_resource type="PackedScene" uid="uid://cn8k6xmlccs0i" path="res://scenes/stove.tscn" id="22_ife4k"]
 [ext_resource type="PackedScene" uid="uid://dwhkm61peqh3x" path="res://scenes/jukebox.tscn" id="22_j0j4u"]
 [ext_resource type="Script" path="res://scripts/VillagerSpawner.gd" id="24_7lusq"]
 [ext_resource type="PackedScene" uid="uid://dssimuyl65ral" path="res://scenes/mug_rack.tscn" id="24_8gpy3"]
@@ -264,10 +263,6 @@ spawnObj = ExtResource("14_x78ts")
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -3, 0, -4.5)
 spawnObj = ExtResource("14_x78ts")
 
-[node name="Counter_2" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, -4.5)
-spawnObj = ExtResource("12_08qgc")
-
 [node name="Counter_5" parent="FrontOfHouse/Counters" instance=ExtResource("10_2dvqi")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -4, 0, -4.5)
 
@@ -298,6 +293,9 @@ transform = Transform3D(-1, 0, -2.62269e-07, 0, 1, 0, 2.62269e-07, 0, -1, 0, 0, 
 
 [node name="Sink" parent="FrontOfHouse/Counters" instance=ExtResource("11_45m4w")]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 2, 0, -4.5)
+
+[node name="Stove" parent="FrontOfHouse/Counters" instance=ExtResource("22_ife4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.5)
 
 [node name="MugRack0" parent="FrontOfHouse/Counters" instance=ExtResource("24_8gpy3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.61243, 1.88369, -4.99778)
@@ -413,11 +411,17 @@ spawnObj_5 = ExtResource("27_2dl1l")
 [node name="TallShelf_1" parent="BackOfHouse/Counters" instance=ExtResource("13_miqk0")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.81258, 0, 4.33715)
 spawnObj_0 = ExtResource("25_skjjp")
-spawnTea_0 = 3
+spawnTea_0 = 6
 spawnObj_1 = ExtResource("25_skjjp")
 spawnTea_1 = 4
 spawnObj_2 = ExtResource("25_skjjp")
 spawnTea_2 = 5
+spawnObj_3 = ExtResource("25_skjjp")
+spawnTea_3 = 7
+spawnObj_4 = ExtResource("25_skjjp")
+spawnTea_4 = 8
+spawnObj_5 = ExtResource("25_skjjp")
+spawnTea_5 = 9
 
 [node name="TallShelf_2" parent="BackOfHouse/Counters" instance=ExtResource("13_miqk0")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.35372, 0, 4.33715)
@@ -441,7 +445,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.9798
 
 [node name="LeafCrusher" parent="BackOfHouse/Machines" instance=ExtResource("18_dvgoh")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.85716, 2.38419e-07, -0.774673)
-leaf_tray = ExtResource("19_xhmln")
 
 [node name="Jukebox" parent="BackOfHouse" instance=ExtResource("22_j0j4u")]
 transform = Transform3D(-0.840397, 0, 0.322077, 0, 0.9, 0, -0.322077, 0, -0.840397, -3.21469, 1.59853, 4.56789)
@@ -612,7 +615,7 @@ villager = ExtResource("24_45mvu")
 curve = SubResource("Curve3D_gc616")
 
 [node name="CustomerPathFollow" type="PathFollow3D" parent="VillagerSpawner/CustomerPath"]
-transform = Transform3D(0.996157, 0, -0.0875567, 0, 1, 0, 0.0875567, 0, 0.996157, 0, 0, 0)
+transform = Transform3D(0.996157, 0, -0.0875568, 0, 1, 0, 0.0875568, 0, 0.996157, 0, 0, 0)
 rotation_mode = 1
 cubic_interp = false
 loop = false

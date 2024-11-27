@@ -58,6 +58,7 @@ func use_kettle(kettle):
 				"empty":
 					update_state(kettle.state)
 					update_servings(kettle.servings_current)
+					kettle.update_servings(kettle.servings_current - 1)
 					return true
 				_:
 					return false
@@ -74,7 +75,6 @@ func use_on_sink():
 func use_on_teacup(teacup):
 	if servings_current <= 0:
 		return false
-	
 	if teacup.ingredients.add_ingredients(ingredients):
 		update_servings(servings_current - 1)
 		return true
@@ -92,7 +92,7 @@ func update_servings(new_servings):
 		return
 	servings_current = new_servings
 	if servings_current <= 0:
-		ingredients.clearIngredients()
+		ingredients.clear_ingredients()
 		update_state("empty")
 
 func getName():
