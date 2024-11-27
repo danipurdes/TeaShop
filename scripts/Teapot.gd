@@ -92,7 +92,7 @@ func update_servings(new_servings):
 		return
 	servings_current = new_servings
 	if servings_current <= 0:
-		ingredients.clearIngredients()
+		ingredients.clear_ingredients()
 		update_state("empty")
 
 func getName():
