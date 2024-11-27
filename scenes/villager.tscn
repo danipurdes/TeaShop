@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://chsul67mlkc5v"]
+[gd_scene load_steps=8 format=3 uid="uid://chsul67mlkc5v"]
 
 [ext_resource type="Script" path="res://scripts/Villager.gd" id="1_mm4no"]
 [ext_resource type="PackedScene" uid="uid://br125rnfyg7dc" path="res://models/villager/villager.gltf" id="2_r41rf"]
 [ext_resource type="PackedScene" uid="uid://drw752s764j10" path="res://scenes/ui/ui_flavor_profile.tscn" id="3_523qh"]
 [ext_resource type="PackedScene" uid="uid://b0cj6is5wudmt" path="res://scenes/label.tscn" id="4_a5883"]
 [ext_resource type="FontFile" uid="uid://56gsfbp5k477" path="res://textures/Icons/star_font.png" id="5_he44m"]
+[ext_resource type="PackedScene" uid="uid://btsyt4rs6ahhu" path="res://models/villager/cat/villager_cat.glb" id="6_a3qik"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_droii"]
 height = 1.8
@@ -14,12 +15,16 @@ collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_mm4no")
 
+[node name="villager_cat" parent="." instance=ExtResource("6_a3qik")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CylinderShape3D_droii")
 
 [node name="villager" parent="." instance=ExtResource("2_r41rf")]
 transform = Transform3D(-1.2, 0, -1.04907e-07, 0, 1.2, 0, 1.04907e-07, 0, -1.2, 0, 0, 0)
+visible = false
 
 [node name="FlavorProfileUI" parent="." instance=ExtResource("3_523qh")]
 transform = Transform3D(-0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 0, 2.06512, 0)

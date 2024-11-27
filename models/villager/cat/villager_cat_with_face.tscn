@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dofs4fgu16hem"]
+
+[ext_resource type="PackedScene" uid="uid://btsyt4rs6ahhu" path="res://models/villager/cat/villager_cat.glb" id="1_v2q2h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_op7kl"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ile6i"]
+material = SubResource("StandardMaterial3D_op7kl")
+radial_segments = 8
+rings = 8
+
+[node name="villager_cat" instance=ExtResource("1_v2q2h")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="rig/Skeleton3D" index="1"]
+transform = Transform3D(0.217981, 0, 0, 0, 0.217981, 0, 0, 0, 0.217981, 0.305174, 2.56128, 0.676251)
+mesh = SubResource("SphereMesh_ile6i")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="rig/Skeleton3D" index="2"]
+transform = Transform3D(0.217981, 0, 0, 0, 0.217981, 0, 0, 0, 0.217981, -0.305174, 2.56128, 0.676251)
+mesh = SubResource("SphereMesh_ile6i")
+skeleton = NodePath("../../..")
