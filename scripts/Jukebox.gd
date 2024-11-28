@@ -1,6 +1,6 @@
 extends StaticBody3D
 
-var machine_type = "jukebox"
+var machine_type = "radio"
 var song_index = 0.0
 var state:String = "on"
 
