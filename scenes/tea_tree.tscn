@@ -20,7 +20,7 @@ albedo_color = Color(0.392157, 0.2, 0.0313726, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pmgqi"]
 material = SubResource("StandardMaterial3D_m4y6f")
-size = Vector3(0.05, 0.6, 0.05)
+size = Vector3(0.1, 0.8, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fxqqb"]
 size = Vector3(0.796269, 0.443539, 0.832351)
@@ -47,11 +47,12 @@ one_shot = true
 
 [node name="PotMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+visible = false
 mesh = SubResource("BoxMesh_cgxip")
 skeleton = NodePath("../../..")
 
 [node name="TrunkMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.511468, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 mesh = SubResource("BoxMesh_pmgqi")
 skeleton = NodePath("../../..")
 

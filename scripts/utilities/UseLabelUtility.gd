@@ -22,8 +22,8 @@ static var itemUseLabelMap = {
 
 	"kettle:cold_water|hotplate:empty": "heat kettle on stove",
 
-	"none|jukebox:off": "turn on radio",
-	"none|jukebox:on": "turn off radio",
+	"none|radio:off": "turn on radio",
+	"none|radio:on": "turn off radio",
 	
 	"basket:empty|tea_tree": "harvest tea leaves",
 	"basket:partial|leaf_crusher": "deposit leaves",
