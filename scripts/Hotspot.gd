@@ -39,11 +39,10 @@ func useItem(item):
 		return false
 	if !is_item_allowed(item):
 		return false
-	return attach_item(get_node("/root/Node3D/Player").request_drop_held_item(self))
+	attach_item(get_node("/root/Node3D/Player").request_drop_held_item(self))
+	return true
 
 func attach_item(item):
-	if !is_item_allowed(item):
-		return false
 	currentItem = item
 	item.obj_attached_to = self
 	object_placed.emit()
