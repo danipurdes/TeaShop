@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=76 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
 [ext_resource type="Script" path="res://scripts/ui/GameHUD.gd" id="2_my5ie"]
@@ -28,9 +28,9 @@
 [ext_resource type="PackedScene" uid="uid://cktksm0diybw6" path="res://scenes/ingredient_dispenser.tscn" id="25_skjjp"]
 [ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="27_2dl1l"]
 [ext_resource type="PackedScene" uid="uid://gq08pfsykjs6" path="res://models/kenney_furniture/loungeChair.glb" id="30_u2onu"]
-[ext_resource type="PackedScene" uid="uid://cqq7ckuqt4enp" path="res://scenes/door.tscn" id="32_okx5b"]
 [ext_resource type="PackedScene" uid="uid://doj3ribswgrdf" path="res://models/kenney_furniture/pottedPlant.glb" id="32_xs1eb"]
 [ext_resource type="PackedScene" uid="uid://gdsnl46hqnxp" path="res://models/kenney_furniture/rugDoormat.glb" id="33_ef34f"]
+[ext_resource type="PackedScene" uid="uid://djkuej2nkx12g" path="res://scenes/wall_glass.tscn" id="34_jcf7b"]
 [ext_resource type="PackedScene" uid="uid://csx217by3c085" path="res://models/kenney_furniture/stoolBar.glb" id="34_wktdc"]
 [ext_resource type="PackedScene" uid="uid://cjrhrkxhelgxk" path="res://models/kenney_furniture/laptop.glb" id="35_7p1ad"]
 [ext_resource type="PackedScene" uid="uid://cneh5neo1q4lr" path="res://models/kenney_furniture/doorway.glb" id="36_diw1k"]
@@ -58,13 +58,42 @@
 [ext_resource type="PackedScene" uid="uid://bjjlsxmbx7nx5" path="res://models/kenney_nature/plant_bushDetailed.glb" id="56_agt32"]
 [ext_resource type="PackedScene" uid="uid://mc3h2ayw8rrs" path="res://models/kenney_town/fence.glb" id="57_i36fg"]
 [ext_resource type="PackedScene" uid="uid://bs6jxb6eu48wx" path="res://models/kenney_nature/plant_bushLarge.glb" id="57_xbtx0"]
-[ext_resource type="PackedScene" uid="uid://dno0iwsxfgrfg" path="res://scenes/Fence.tscn" id="59_vhpf1"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sw1mu"]
-albedo_color = Color(0.308694, 0.223319, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwss8"]
+albedo_color = Color(0.34, 0.204, 0, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_weyga"]
-material = SubResource("StandardMaterial3D_sw1mu")
+[sub_resource type="QuadMesh" id="QuadMesh_yvd5c"]
+material = SubResource("StandardMaterial3D_qwss8")
+size = Vector2(1.245, 1.595)
+
+[sub_resource type="QuadMesh" id="QuadMesh_fupyo"]
+material = SubResource("StandardMaterial3D_qwss8")
+size = Vector2(3.715, 1.855)
+
+[sub_resource type="QuadMesh" id="QuadMesh_2e6od"]
+material = SubResource("StandardMaterial3D_qwss8")
+size = Vector2(4.795, 1.79)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nnwqk"]
+albedo_color = Color(0.34, 0.204, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_a2y0b"]
+material = SubResource("StandardMaterial3D_nnwqk")
+size = Vector2(4.09, 1.575)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oh0j1"]
+albedo_color = Color(0.34, 0.204, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_gj44l"]
+material = SubResource("StandardMaterial3D_oh0j1")
+size = Vector2(1.99, 1.075)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbhbd"]
+albedo_color = Color(0.34, 0.204, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_tns8o"]
+material = SubResource("StandardMaterial3D_gbhbd")
+size = Vector2(1.27, 1.065)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t867c"]
 albedo_color = Color(0.34, 0.204, 0, 1)
@@ -72,6 +101,13 @@ albedo_color = Color(0.34, 0.204, 0, 1)
 [sub_resource type="QuadMesh" id="QuadMesh_7d2v8"]
 material = SubResource("StandardMaterial3D_t867c")
 size = Vector2(3, 1.255)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sw1mu"]
+albedo_color = Color(0.308694, 0.223319, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_weyga"]
+material = SubResource("StandardMaterial3D_sw1mu")
+size = Vector2(1, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_gc616"]
 _data = {
@@ -112,57 +148,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.402
 [node name="FrontOfHouse" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0416498, 0)
 
-[node name="ControlsLabels" type="Node3D" parent="FrontOfHouse"]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 4.39277, 1.71838, -0.370757)
-
-[node name="ControlsLegend" type="Label3D" parent="FrontOfHouse/ControlsLabels"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08616e-07, 0, 2)
-text = "Move
-Look
-Interact
-Pause
-Mute"
-horizontal_alignment = 2
-
-[node name="PcControlsTitle" type="Label3D" parent="FrontOfHouse/ControlsLabels"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.852202, 0.72445, 1.99974)
-text = "PC Controls"
-font_size = 42
-
-[node name="PcControls" type="Label3D" parent="FrontOfHouse/ControlsLabels"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.381334, 0, 2)
-text = "WASD
-Move Mouse
-Left-Click
-Escape
-M"
-horizontal_alignment = 0
-
-[node name="ConsoleControlsTitle" type="Label3D" parent="FrontOfHouse/ControlsLabels"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.58621, 0.72445, 1.99974)
-text = "Gamepad Controls"
-font_size = 42
-
-[node name="ConsoleControls" type="Label3D" parent="FrontOfHouse/ControlsLabels"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84965, 0, 2)
-text = "Left Stick
-Right Stick
-Bottom Face Button
-Start Button
-n/a"
-horizontal_alignment = 0
-
-[node name="TeaMakingLabel" type="Label3D" parent="FrontOfHouse/ControlsLabels"]
-transform = Transform3D(1, 0, 1.84741e-13, 0, 1, 0, -1.84741e-13, 0, 1, -4.07975, 0.23755, 1.89701)
-text = "Making a Cup of Tea:
-1. Use a Jar of Ingredients on the Teapot
-2. Fill Kettle with Water
-3. Heat Kettle on the Stove
-4. Pour Hot Water into Teapot
-5. Pour Tea into Tea Cup
-6. Serve :)"
-horizontal_alignment = 0
-
 [node name="Shell" type="Node3D" parent="FrontOfHouse"]
 
 [node name="Floor" parent="FrontOfHouse/Shell" instance=ExtResource("7_6dcrf")]
@@ -185,35 +170,20 @@ transform = Transform3D(7.54979e-07, 0, -1, 0, 1, 0, 10, 0, 7.54979e-08, 2.5, 0,
 [node name="Wall_22" parent="FrontOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 5)
 
-[node name="Wall_42" parent="FrontOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 0.25, 0, 1.50996e-07, 0, -1, -1, 0, 5)
-
-[node name="Wall_43" parent="FrontOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 0.25, 0, 1.50996e-07, 0, -1, 0, 0, 5)
-
 [node name="Wall_48" parent="FrontOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 0.25, 0, 1.50996e-07, 0, -1, 1, 0, 5)
-
-[node name="Wall_44" parent="FrontOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 0.25, 0, 1.50996e-07, 0, -1, -2, 0, 5)
-
-[node name="Wall_45" parent="FrontOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 0.25, 0, 1.50996e-07, 0, -1, -2, 2.25, 5)
-
-[node name="Wall_46" parent="FrontOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 0.25, 0, 1.50996e-07, 0, -1, 0, 2.25, 5)
+transform = Transform3D(-4, 0, -1.50996e-07, 0, 0.25, 0, 6.03983e-07, 0, -1, -0.5, 0, 5)
 
 [node name="Wall_49" parent="FrontOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 0.25, 0, 1.50996e-07, 0, -1, 1, 2.25, 5)
-
-[node name="Wall_47" parent="FrontOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 0.25, 0, 1.50996e-07, 0, -1, -1, 2.25, 5)
+transform = Transform3D(-4, 0, -1.50996e-07, 0, 0.25, 0, 6.03983e-07, 0, -1, -0.5, 2.25, 5)
 
 [node name="Wall_29" parent="FrontOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
 transform = Transform3D(-3, 0, -1.50996e-07, 0, 1, 0, 4.52987e-07, 0, -1, -4, 0, 5)
 
 [node name="Wall_32" parent="FrontOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
 transform = Transform3D(-4.37114e-07, 0, 1, 0, 1, 0, -10, 0, -4.37114e-08, -5.5, 0, 0)
+
+[node name="Window" parent="FrontOfHouse/Shell/Walls" instance=ExtResource("34_jcf7b")]
+transform = Transform3D(-4, 0, 1.50996e-07, 0, 0.5, 0, -6.03983e-07, 0, -1, 1.5, 0.75, 5.00015)
 
 [node name="Props" type="Node3D" parent="FrontOfHouse"]
 
@@ -306,6 +276,89 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.34086, 1.88369, -4.99778)
 [node name="Trashcan" parent="FrontOfHouse" instance=ExtResource("20_ktmqg")]
 transform = Transform3D(0.00834279, 0, -0.999965, 0, 1, 0, 0.999965, 0, 0.00834279, 2.22481, 0, -1.51812)
 
+[node name="Signs" type="Node3D" parent="FrontOfHouse"]
+
+[node name="FlavorSign" type="MeshInstance3D" parent="FrontOfHouse/Signs"]
+transform = Transform3D(-3.93403e-08, 0, 0.9, 0, 0.9, 0, -0.9, 0, -3.93403e-08, -5.46183, 1.74694, -2.99989)
+mesh = SubResource("QuadMesh_yvd5c")
+
+[node name="Label0" type="Label3D" parent="FrontOfHouse/Signs/FlavorSign"]
+transform = Transform3D(1.11111, 0, 0, 0, 1.11111, 0, 0, 0, 1.11111, -0.57161, 0.0159023, 0.0130005)
+text = "Flavor Guide:
+     Grassy
+     Floral
+     Fruity
+     Earthy
+     Smoky"
+horizontal_alignment = 0
+
+[node name="Label1" type="Label3D" parent="FrontOfHouse/Signs/FlavorSign"]
+transform = Transform3D(0.188889, 0, 0, 0, 0.188889, 0, 0, 0, 0.188889, -0.57161, -0.108198, 0.0130005)
+text = "0
+1
+2
+3
+4"
+font = ExtResource("13_dbs02")
+font_size = 252
+horizontal_alignment = 0
+
+[node name="TeaMakingSign" type="MeshInstance3D" parent="FrontOfHouse/Signs"]
+transform = Transform3D(-3.93403e-08, 0, -0.9, 0, 0.9, 0, 0.9, 0, -3.93403e-08, 2.47105, 1.95859, -3.07257)
+mesh = SubResource("QuadMesh_fupyo")
+
+[node name="Label" type="Label3D" parent="FrontOfHouse/Signs/TeaMakingSign"]
+transform = Transform3D(1.11111, 0, 0, 0, 1.11111, 0, 0, 0, 1.11111, -1.71378, 0, 0.0274639)
+text = "Making a Cup of Tea:
+1. Use a Jar of Ingredients on the Teapot
+2. Fill Kettle with Water
+3. Heat Kettle on the Stove
+4. Pour Hot Water into Teapot
+5. Pour Tea into Tea Cup
+6. Serve :)"
+horizontal_alignment = 0
+
+[node name="ControlsSign" type="MeshInstance3D" parent="FrontOfHouse/Signs"]
+transform = Transform3D(-3.93403e-08, 0, -0.9, 0, 0.9, 0, 0.9, 0, -3.93403e-08, 2.47105, 1.95859, 1.54006)
+mesh = SubResource("QuadMesh_2e6od")
+
+[node name="ControlsLegend" type="Label3D" parent="FrontOfHouse/Signs/ControlsSign"]
+transform = Transform3D(1.11111, 0, 1.94273e-07, 0, 1.11111, 0, -1.94273e-07, 0, 1.11111, -1.55334, -0.151661, 0.0869825)
+text = "Move
+Look
+Interact
+Pause
+Mute"
+horizontal_alignment = 2
+
+[node name="PcControlsTitle" type="Label3D" parent="FrontOfHouse/Signs/ControlsSign"]
+transform = Transform3D(1.11111, 0, 1.94273e-07, 0, 1.11111, 0, -1.94273e-07, 0, 1.11111, -0.606444, 0.653284, 0.0866938)
+text = "Keyboard"
+font_size = 42
+
+[node name="PcControls" type="Label3D" parent="FrontOfHouse/Signs/ControlsSign"]
+transform = Transform3D(1.11111, 0, 1.94273e-07, 0, 1.11111, 0, -1.94273e-07, 0, 1.11111, -1.12963, -0.151661, 0.0869825)
+text = "WASD
+Move Mouse
+Left-Click
+Escape
+M"
+horizontal_alignment = 0
+
+[node name="ConsoleControlsTitle" type="Label3D" parent="FrontOfHouse/Signs/ControlsSign"]
+transform = Transform3D(1.11111, 0, 1.94273e-07, 0, 1.11111, 0, -1.94273e-07, 0, 1.11111, 1.18361, 0.653284, 0.0866909)
+text = "Gamepad"
+font_size = 42
+
+[node name="ConsoleControls" type="Label3D" parent="FrontOfHouse/Signs/ControlsSign"]
+transform = Transform3D(1.11111, 0, 1.94273e-07, 0, 1.11111, 0, -1.94273e-07, 0, 1.11111, 0.501831, -0.151661, 0.0869825)
+text = "Left Stick
+Right Stick
+Bottom Face Button
+Start Button
+n/a"
+horizontal_alignment = 0
+
 [node name="BackOfHouse" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0416498, -11)
 
@@ -329,41 +382,31 @@ transform = Transform3D(-3, 0, -1.50996e-07, 0, 1, 0, 4.52987e-07, 0, -1, -4, 0,
 [node name="Wall_12" parent="BackOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
 transform = Transform3D(-3.0598e-07, 0, 1, 0, 1, 0, -7, 0, -4.37114e-08, -5.5, 0, 1.5)
 
-[node name="Wall_19" parent="BackOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -2)
-
-[node name="Wall_21" parent="BackOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
-
-[node name="Wall_26" parent="BackOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -2)
-
-[node name="Wall_34" parent="BackOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
-transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 2.39741, -2)
-
-[node name="Wall_36" parent="BackOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
-transform = Transform3D(3, 0, 0, 0, 0.3, 0, 0, 0, 1, -3, 2.1, -2)
-
-[node name="Wall_37" parent="BackOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
-transform = Transform3D(3, 0, 0, 0, 0.3, 0, 0, 0, 1, -3, 0, -2)
-
 [node name="Wall_27" parent="BackOfHouse/Shell/Walls" instance=ExtResource("13_t0x17")]
 transform = Transform3D(-3.0598e-07, 0, -1, 0, 1, 0, 7, 0, -4.37114e-08, 2.5, 0, 1.5)
 
 [node name="Instructions" type="Node3D" parent="BackOfHouse"]
 
-[node name="TeaProducingLabel1" type="Label3D" parent="BackOfHouse/Instructions"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.4859, 2.07328, -0.435307)
+[node name="TeaProcessingSign" type="MeshInstance3D" parent="BackOfHouse/Instructions"]
+transform = Transform3D(-3.93403e-08, 0, -0.9, 0, 0.9, 0, 0.9, 0, -3.93403e-08, 2.4859, 2.10701, 0.046628)
+mesh = SubResource("QuadMesh_a2y0b")
+
+[node name="Label" type="Label3D" parent="BackOfHouse/Instructions/TeaProcessingSign"]
+transform = Transform3D(1.11111, 0, -2.13163e-14, 0, 1.11111, 0, 2.13163e-14, 0, 1.11111, -1.92087, 0.0177994, 0.0159838)
 text = "Processing Tea:
 1. Deposit Leaves in Leaf Crusher
 2. Transfer Crushed Leaves into Oxidizer
 3. Collect processed tea from oxidizer
 (For different types of tea, 
-run the oxidizer for different lengths of time)"
+run the oxidizer longer)"
 horizontal_alignment = 0
 
-[node name="TeaProducingLabel2" type="Label3D" parent="BackOfHouse/Instructions"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.4521, 1.99585, 0.82009)
+[node name="TeaBlendingSign" type="MeshInstance3D" parent="BackOfHouse/Instructions"]
+transform = Transform3D(-3.93403e-08, 0, 0.9, 0, 0.9, 0, -0.9, 0, -3.93403e-08, -5.46183, 2.01778, 0.0583134)
+mesh = SubResource("QuadMesh_gj44l")
+
+[node name="Label" type="Label3D" parent="BackOfHouse/Instructions/TeaBlendingSign"]
+transform = Transform3D(1.11111, 0, 0, 0, 1.11111, 0, 0, 0, 1.11111, -0.811806, -0.00564575, 0.0130002)
 text = "Making Blends:
 - Use Ingredient Jars on
 each other to blend them
@@ -373,8 +416,12 @@ their desired blend
 font_size = 25
 horizontal_alignment = 0
 
-[node name="TeaProducingLabel3" type="Label3D" parent="BackOfHouse/Instructions"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.42922, 2.03209, 2.09044)
+[node name="FlavorSign" type="MeshInstance3D" parent="BackOfHouse/Instructions"]
+transform = Transform3D(-3.93403e-08, 0, 0.9, 0, 0.9, 0, -0.9, 0, -3.93403e-08, -5.46183, 2.01778, 1.67354)
+mesh = SubResource("QuadMesh_yvd5c")
+
+[node name="Label0" type="Label3D" parent="BackOfHouse/Instructions/FlavorSign"]
+transform = Transform3D(1.11111, 0, 0, 0, 1.11111, 0, 0, 0, 1.11111, -0.57161, 0.0159023, 0.0130005)
 text = "Flavor Guide:
      Grassy
      Floral
@@ -383,8 +430,8 @@ text = "Flavor Guide:
      Smoky"
 horizontal_alignment = 0
 
-[node name="TeaProducingLabel4" type="Label3D" parent="BackOfHouse/Instructions"]
-transform = Transform3D(-7.43093e-09, 0, 0.17, 0, 0.17, 0, -0.17, 0, -7.43093e-09, -5.42922, 1.9204, 2.11491)
+[node name="Label1" type="Label3D" parent="BackOfHouse/Instructions/FlavorSign"]
+transform = Transform3D(0.188889, 0, 0, 0, 0.188889, 0, 0, 0, 0.188889, -0.57161, -0.108198, 0.0130005)
 text = "0
 1
 2
@@ -394,8 +441,29 @@ font = ExtResource("13_dbs02")
 font_size = 252
 horizontal_alignment = 0
 
+[node name="FlavorSign2" type="MeshInstance3D" parent="BackOfHouse/Instructions"]
+transform = Transform3D(1.18021e-07, 0, -0.9, 0, 0.9, 0, 0.9, 0, 1.18021e-07, 2.49352, 1.89315, 2.86962)
+mesh = SubResource("QuadMesh_tns8o")
+
+[node name="Label0" type="Label3D" parent="BackOfHouse/Instructions/FlavorSign2"]
+transform = Transform3D(1.11111, 0, 8.52651e-14, 0, 1.11111, 0, -8.52651e-14, 0, 1.11111, -0.549383, 0.0159023, 0.0130005)
+text = "Tea Flavors:
+     White Tea
+     Green Tea
+     Black Tea"
+horizontal_alignment = 0
+
+[node name="Label1" type="Label3D" parent="BackOfHouse/Instructions/FlavorSign2"]
+transform = Transform3D(0.188889, 0, 8.88178e-15, 0, 0.188889, 0, -8.88178e-15, 0, 0.188889, -0.589543, -0.108198, 0.0130005)
+text = "2
+0
+4"
+font = ExtResource("13_dbs02")
+font_size = 252
+horizontal_alignment = 0
+
 [node name="Trashcan" parent="BackOfHouse" instance=ExtResource("20_ktmqg")]
-transform = Transform3D(0.451594, 0, 0.892224, 0, 1, 0, -0.892224, 0, 0.451594, -4.6632, 0, -1.5121)
+transform = Transform3D(-0.623811, 0, -0.781575, 0, 1, 0, 0.781575, 0, -0.623811, 1.81622, 0, 4.07468)
 
 [node name="Counters" type="Node3D" parent="BackOfHouse"]
 
@@ -425,6 +493,18 @@ spawnTea_5 = 9
 
 [node name="TallShelf_2" parent="BackOfHouse/Counters" instance=ExtResource("13_miqk0")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.35372, 0, 4.33715)
+spawnObj_0 = ExtResource("27_2dl1l")
+spawnTea_0 = 1
+spawnObj_1 = ExtResource("27_2dl1l")
+spawnTea_1 = 2
+spawnObj_2 = ExtResource("27_2dl1l")
+spawnTea_2 = 3
+spawnObj_3 = ExtResource("27_2dl1l")
+spawnTea_3 = 1
+spawnObj_4 = ExtResource("27_2dl1l")
+spawnTea_4 = 2
+spawnObj_5 = ExtResource("27_2dl1l")
+spawnTea_5 = 3
 
 [node name="Counter_1" parent="BackOfHouse/Counters" instance=ExtResource("10_2dvqi")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0, -0.250488)
@@ -449,9 +529,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.8571
 [node name="Jukebox" parent="BackOfHouse" instance=ExtResource("22_j0j4u")]
 transform = Transform3D(-0.840397, 0, 0.322077, 0, 0.9, 0, -0.322077, 0, -0.840397, -3.21469, 1.59853, 4.56789)
 
-[node name="BackDoor" parent="BackOfHouse" instance=ExtResource("32_okx5b")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.482635, 0, -2.02872)
-
 [node name="Hallway" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0416498, -5)
 
@@ -472,49 +549,12 @@ skeleton = NodePath("../../FrontOfHouse")
 [node name="BackGarden" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0416498, -15.9796)
 
-[node name="Ground4" type="MeshInstance3D" parent="BackGarden"]
-transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 3, -1.46225, 0, -0.134978)
-mesh = SubResource("PlaneMesh_weyga")
-skeleton = NodePath("../../Scenery")
-
 [node name="Counter_0" parent="BackGarden" instance=ExtResource("10_2dvqi")]
-transform = Transform3D(-0.8, 0, -1.20797e-07, 0, 0.8, 0, 1.20797e-07, 0, -0.8, -1.51008, 0, 2.37509)
+transform = Transform3D(1.55766e-07, 0, -0.8, 0, 0.8, 0, 0.8, 0, 1.55766e-07, 2.09832, 0, 2.08469)
 spawnObj = ExtResource("21_ysytc")
 
-[node name="Fences" type="Node3D" parent="BackGarden"]
-
-[node name="Fence" parent="BackGarden/Fences" instance=ExtResource("59_vhpf1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.455, 0, 0.934003)
-
-[node name="Fence2" parent="BackGarden/Fences" instance=ExtResource("59_vhpf1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.455, 0, -1.066)
-
-[node name="Fence3" parent="BackGarden/Fences" instance=ExtResource("59_vhpf1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.455, 0, -3.066)
-
-[node name="Fence4" parent="BackGarden/Fences" instance=ExtResource("59_vhpf1")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.455, 0, -3.066)
-
-[node name="Fence5" parent="BackGarden/Fences" instance=ExtResource("59_vhpf1")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.455001, 0, -3.066)
-
-[node name="Fence6" parent="BackGarden/Fences" instance=ExtResource("59_vhpf1")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.545, 0, -3.066)
-
-[node name="Fence7" parent="BackGarden/Fences" instance=ExtResource("59_vhpf1")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.545, 0, -3.066)
-
-[node name="Fence8" parent="BackGarden/Fences" instance=ExtResource("59_vhpf1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.545, 0, -3.066)
-
-[node name="Fence9" parent="BackGarden/Fences" instance=ExtResource("59_vhpf1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.545, 0, -1.066)
-
-[node name="Fence10" parent="BackGarden/Fences" instance=ExtResource("59_vhpf1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.545, 0, 0.934002)
-
 [node name="TeaCollectingSign" type="MeshInstance3D" parent="BackGarden"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.87131, 1.93426, -2.49992)
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -1.39562, 2.01778, 0.160757)
 mesh = SubResource("QuadMesh_7d2v8")
 
 [node name="TeaCollectingLabel" type="Label3D" parent="BackGarden/TeaCollectingSign"]
@@ -532,64 +572,95 @@ width = 580.0
 [node name="TeaTrees" type="Node3D" parent="BackGarden"]
 
 [node name="TeaTree2" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.73028, -0.0347729, -2.40503)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.73028, -0.0347729, 0.59497)
 
 [node name="TeaTree3" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.98028, -0.0347729, -2.40503)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.98028, -0.0347729, 0.59497)
 
 [node name="TeaTree4" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.48503, -0.0347729, -2.40503)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.48503, -0.0347729, 0.59497)
 
 [node name="TeaTree12" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.2424, -0.0347729, -2.40503)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.2424, -0.0347729, 0.59497)
 
 [node name="TeaTree8" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.43075, -0.0347729, -2.40503)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.43075, -0.0347729, 0.59497)
 
 [node name="TeaTree9" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.319251, -0.0347729, -2.40503)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.319251, -0.0347729, 0.59497)
 
 [node name="TeaTree11" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.05976, -0.0347729, -2.40503)
-
-[node name="TeaTree14" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -4.98191, -0.0347729, -0.0679598)
-
-[node name="TeaTree15" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -4.98191, -0.0347729, 0.68679)
-
-[node name="TeaTree21" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -4.98191, -0.0347729, -1.58739)
-
-[node name="TeaTree22" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -4.98191, -0.0347729, -0.832643)
-
-[node name="TeaTree16" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -4.98191, -0.0347729, 1.44416)
-
-[node name="TeaTree17" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.8925, -0.0347729, -1.61938)
-
-[node name="TeaTree18" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.8925, -0.0347729, -0.869374)
-
-[node name="TeaTree19" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.8925, -0.0347729, -0.128865)
-
-[node name="TeaTree20" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.8925, -0.0347729, 0.617872)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.05976, -0.0347729, 0.59497)
 
 [node name="TeaTree10" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.1855, -0.0347729, -2.40503)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.1855, -0.0347729, 0.59497)
 
-[node name="TeaTree5" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.01804, -0.0347729, 2.2826)
+[node name="Shell" type="Node3D" parent="BackGarden"]
 
-[node name="TeaTree6" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.26804, -0.0347729, 2.2826)
+[node name="Walls" type="Node3D" parent="BackGarden/Shell"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 3)
 
-[node name="TeaTree13" parent="BackGarden/TeaTrees" instance=ExtResource("17_afmcm")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.51517, -0.0347729, 2.2826)
+[node name="Wall_Segment" parent="BackGarden/Shell/Walls" instance=ExtResource("34_jcf7b")]
+transform = Transform3D(-1.31134e-07, 0, -1, 0, 1, 0, 3, 0, -4.37114e-08, 2, 0, -3)
+
+[node name="Wall_Segment4" parent="BackGarden/Shell/Walls" instance=ExtResource("34_jcf7b")]
+transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -3)
+
+[node name="Wall_Segment5" parent="BackGarden/Shell/Walls" instance=ExtResource("34_jcf7b")]
+transform = Transform3D(8, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -6, 3, -3)
+
+[node name="Wall_Segment3" parent="BackGarden/Shell/Walls" instance=ExtResource("34_jcf7b")]
+transform = Transform3D(-1.31134e-07, 0, 1, 0, 1, 0, -3, 0, -4.37114e-08, -6, 0, 0)
+
+[node name="Wall_Segment2" parent="BackGarden/Shell/Walls" instance=ExtResource("13_t0x17")]
+transform = Transform3D(-8.74228e-09, 0, -2, 0, 1, 0, 0.2, 0, -8.74228e-08, 1.9, 0, -3)
+
+[node name="Wall_Segment12" parent="BackGarden/Shell/Walls" instance=ExtResource("13_t0x17")]
+transform = Transform3D(-8.74228e-09, -2.665, 8.74228e-08, 0, -1.16491e-07, -2, 0.2, -1.16491e-07, 3.82137e-15, 2, 2.95, -3.01)
+
+[node name="Wall_Segment15" parent="BackGarden/Shell/Walls" instance=ExtResource("13_t0x17")]
+transform = Transform3D(-8.74228e-09, -2.665, 8.74228e-08, 0, -1.16491e-07, -2, 0.2, -1.16491e-07, 3.82137e-15, 2, 2.94992, -0.102)
+
+[node name="Wall_Segment16" parent="BackGarden/Shell/Walls" instance=ExtResource("13_t0x17")]
+transform = Transform3D(-8.74228e-09, -2.665, 8.74228e-08, 0, -1.16491e-07, -2, 0.2, -1.16491e-07, 3.82137e-15, 2, 2.95, -1.5)
+
+[node name="Wall_Segment13" parent="BackGarden/Shell/Walls" instance=ExtResource("13_t0x17")]
+transform = Transform3D(0.2, 0, 0, 0, -4.37114e-08, -2, 0, 1, -8.74228e-08, 1.9, 2.95, -3)
+
+[node name="Wall_Segment17" parent="BackGarden/Shell/Walls" instance=ExtResource("13_t0x17")]
+transform = Transform3D(0.2, 0, 0, 0, -4.37114e-08, -2, 0, 1, -8.74228e-08, 0.0961241, 2.95, -3)
+
+[node name="Wall_Segment18" parent="BackGarden/Shell/Walls" instance=ExtResource("13_t0x17")]
+transform = Transform3D(0.2, 0, 0, 0, -4.37114e-08, -2, 0, 1, -8.74228e-08, -1.90388, 2.95, -3)
+
+[node name="Wall_Segment19" parent="BackGarden/Shell/Walls" instance=ExtResource("13_t0x17")]
+transform = Transform3D(0.2, 0, 0, 0, -4.37114e-08, -2, 0, 1, -8.74228e-08, -3.90388, 2.95, -3)
+
+[node name="Wall_Segment14" parent="BackGarden/Shell/Walls" instance=ExtResource("13_t0x17")]
+transform = Transform3D(0.2, -2.11758e-22, 1.85125e-29, -8.88178e-16, -4.37114e-08, -2, 4.23516e-23, 1, -8.74228e-08, -6, 2.95, -3)
+
+[node name="Wall_Segment11" parent="BackGarden/Shell/Walls" instance=ExtResource("13_t0x17")]
+transform = Transform3D(-8.74228e-09, 0, -2, 0, 1, 0, 0.2, 0, -8.74228e-08, 1.9, 0, -1.602)
+
+[node name="Wall_Segment6" parent="BackGarden/Shell/Walls" instance=ExtResource("13_t0x17")]
+transform = Transform3D(-8.74228e-09, 0, -2, 0, 1, 0, 0.2, 0, -8.74228e-08, 0, 0, -3)
+
+[node name="Wall_Segment7" parent="BackGarden/Shell/Walls" instance=ExtResource("13_t0x17")]
+transform = Transform3D(-8.74228e-09, 0, -2, 0, 1, 0, 0.2, 0, -8.74228e-08, -2, 0, -3)
+
+[node name="Wall_Segment8" parent="BackGarden/Shell/Walls" instance=ExtResource("13_t0x17")]
+transform = Transform3D(-8.74228e-09, 0, -2, 0, 1, 0, 0.2, 0, -8.74228e-08, -4, 0, -3)
+
+[node name="Wall_Segment9" parent="BackGarden/Shell/Walls" instance=ExtResource("13_t0x17")]
+transform = Transform3D(-8.74228e-09, 0, 2, 0, 1, 0, -0.2, 0, -8.74228e-08, -5.9, 0, -3)
+
+[node name="Wall_Segment10" parent="BackGarden/Shell/Walls" instance=ExtResource("13_t0x17")]
+transform = Transform3D(-8.74228e-09, 0, 2, 0, 1, 0, -0.2, 0, -8.74228e-08, -5.9, 0, -1.5)
+
+[node name="Ground4" type="MeshInstance3D" parent="BackGarden/Shell"]
+transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 3, -1.5, 0, 1.47464)
+mesh = SubResource("PlaneMesh_weyga")
+skeleton = NodePath("../../../Scenery")
 
 [node name="FrontGarden" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0416498, 0)
@@ -615,7 +686,7 @@ villager = ExtResource("24_45mvu")
 curve = SubResource("Curve3D_gc616")
 
 [node name="CustomerPathFollow" type="PathFollow3D" parent="VillagerSpawner/CustomerPath"]
-transform = Transform3D(0.996157, 0, -0.0875568, 0, 1, 0, 0.0875568, 0, 0.996157, 0, 0, 0)
+transform = Transform3D(0.996156, 0, -0.0875567, 0, 1, 0, 0.0875567, 0, 0.996156, 0, 0, 0)
 rotation_mode = 1
 cubic_interp = false
 loop = false
