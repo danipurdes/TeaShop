@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmxuhr11uyn3q"
-path.s3tc="res://.godot/imported/strawberry_icon.png-08191581d4394ff9232a12edeea02417.s3tc.ctex"
+uid="uid://cm6yp4faseg5e"
+path.s3tc="res://.godot/imported/fire_icon.png-69f177bfb0b82466d46687ef3fd9d83a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/Icons/strawberry_icon.png"
-dest_files=["res://.godot/imported/strawberry_icon.png-08191581d4394ff9232a12edeea02417.s3tc.ctex"]
+source_file="res://textures/Icons/flavors/fire_icon.png"
+dest_files=["res://.godot/imported/fire_icon.png-69f177bfb0b82466d46687ef3fd9d83a.s3tc.ctex"]
 
 [params]
 

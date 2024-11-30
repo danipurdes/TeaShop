@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqekx6c6ijp7h"
-path.s3tc="res://.godot/imported/herb_icon.png-61324b32e4e4d86e226abceb3b60f78e.s3tc.ctex"
+uid="uid://kv0fnpqj37el"
+path.s3tc="res://.godot/imported/rock_icon.png-7b36a8b5cb12132215cfea0a9ce64f62.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/Icons/herb_icon.png"
-dest_files=["res://.godot/imported/herb_icon.png-61324b32e4e4d86e226abceb3b60f78e.s3tc.ctex"]
+source_file="res://textures/Icons/flavors/rock_icon.png"
+dest_files=["res://.godot/imported/rock_icon.png-7b36a8b5cb12132215cfea0a9ce64f62.s3tc.ctex"]
 
 [params]
 
