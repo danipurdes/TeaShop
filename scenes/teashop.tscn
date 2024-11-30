@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=77 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
 [ext_resource type="Script" path="res://scripts/ui/GameHUD.gd" id="2_my5ie"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://db0xu55woj8wb" path="res://scenes/ceiling.tscn" id="8_x5mcj"]
 [ext_resource type="PackedScene" uid="uid://coekka8bmqu1g" path="res://scenes/counter.tscn" id="10_2dvqi"]
 [ext_resource type="PackedScene" uid="uid://csia40gwyiojh" path="res://scenes/sink.tscn" id="11_45m4w"]
-[ext_resource type="FontFile" uid="uid://bhlbbijborftp" path="res://textures/Icons/flavor_font.png" id="13_dbs02"]
+[ext_resource type="FontFile" path="res://textures/Icons/flavor_font.png" id="13_dbs02"]
 [ext_resource type="PackedScene" uid="uid://clunbhfm3m663" path="res://scenes/tall_shelf.tscn" id="13_miqk0"]
 [ext_resource type="PackedScene" uid="uid://d0my1uk3l6y46" path="res://scenes/wall.tscn" id="13_t0x17"]
 [ext_resource type="PackedScene" uid="uid://dq2jylpvjtxxd" path="res://scenes/teapot.tscn" id="14_x78ts"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://dssimuyl65ral" path="res://scenes/mug_rack.tscn" id="24_8gpy3"]
 [ext_resource type="PackedScene" uid="uid://chsul67mlkc5v" path="res://scenes/villager.tscn" id="24_45mvu"]
 [ext_resource type="PackedScene" uid="uid://cktksm0diybw6" path="res://scenes/ingredient_dispenser.tscn" id="25_skjjp"]
+[ext_resource type="FontFile" uid="uid://rg8ct0dvcjum" path="res://textures/Icons/flavors/fonts/flavor_font_small.png" id="26_m7ffq"]
 [ext_resource type="PackedScene" uid="uid://d3o86lcksgnit" path="res://scenes/tea_brick.tscn" id="27_2dl1l"]
 [ext_resource type="PackedScene" uid="uid://gq08pfsykjs6" path="res://models/kenney_furniture/loungeChair.glb" id="30_u2onu"]
 [ext_resource type="PackedScene" uid="uid://doj3ribswgrdf" path="res://models/kenney_furniture/pottedPlant.glb" id="32_xs1eb"]
@@ -64,7 +65,7 @@ albedo_color = Color(0.34, 0.204, 0, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_yvd5c"]
 material = SubResource("StandardMaterial3D_qwss8")
-size = Vector2(1.245, 1.595)
+size = Vector2(1.29, 1.855)
 
 [sub_resource type="QuadMesh" id="QuadMesh_fupyo"]
 material = SubResource("StandardMaterial3D_qwss8")
@@ -289,7 +290,8 @@ text = "Flavor Guide:
      Floral
      Fruity
      Earthy
-     Smoky"
+     Smoky
+     Caffeine"
 horizontal_alignment = 0
 
 [node name="Label1" type="Label3D" parent="FrontOfHouse/Signs/FlavorSign"]
@@ -298,8 +300,9 @@ text = "0
 1
 2
 3
-4"
-font = ExtResource("13_dbs02")
+4
+5"
+font = ExtResource("26_m7ffq")
 font_size = 252
 horizontal_alignment = 0
 
@@ -421,13 +424,14 @@ transform = Transform3D(-3.93403e-08, 0, 0.9, 0, 0.9, 0, -0.9, 0, -3.93403e-08, 
 mesh = SubResource("QuadMesh_yvd5c")
 
 [node name="Label0" type="Label3D" parent="BackOfHouse/Instructions/FlavorSign"]
-transform = Transform3D(1.11111, 0, 0, 0, 1.11111, 0, 0, 0, 1.11111, -0.57161, 0.0159023, 0.0130005)
+transform = Transform3D(1.11111, 0, 0, 0, 1.11111, 0, 0, 0, 1.11111, -0.558601, 0.0159023, 0.0130005)
 text = "Flavor Guide:
      Grassy
      Floral
      Fruity
      Earthy
-     Smoky"
+     Smoky
+     Caffeine"
 horizontal_alignment = 0
 
 [node name="Label1" type="Label3D" parent="BackOfHouse/Instructions/FlavorSign"]
@@ -436,8 +440,9 @@ text = "0
 1
 2
 3
-4"
-font = ExtResource("13_dbs02")
+4
+5"
+font = ExtResource("26_m7ffq")
 font_size = 252
 horizontal_alignment = 0
 
