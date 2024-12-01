@@ -60,7 +60,7 @@ func start_oxidizing():
 	tween.tween_property(progress_bar, "value", progress_bar.max_value, $OxidizingTimer.wait_time)
 
 func stop_oxidizing():
-	spawn_tea_brick()
+	spawn_jar()
 	set_state("idle")
 	ingredients.clear_ingredients()
 	$ParticleEmitter.restart()
@@ -82,7 +82,7 @@ func on_oxidizing_timer_timeout():
 		tween = create_tween()
 		tween.tween_property(progress_bar, "value", progress_bar.max_value, $OxidizingTimer.wait_time)
 
-func spawn_tea_brick():
+func spawn_jar():
 	if !ingredients.ingredient_list.is_empty():
 		$CounterHotspot.spawnObject(obj_ingredient.instantiate(), ingredients.ingredient_list.front(), [])
 

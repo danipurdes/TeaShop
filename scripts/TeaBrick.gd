@@ -1,6 +1,6 @@
 extends Area3D
 
-@export var item_type:String = "tea_brick"
+@export var item_type:String = "jar"
 @export var ingredient_on_spawn:Constants.ingredients = Constants.ingredients.NONE
 
 @onready var ingredients:Ingredients = $BlendAnchor/Blend.ingredients
@@ -29,7 +29,7 @@ func onUseItem(target_item):
 		return false
 		
 	match target_item.item_type:
-		"tea_brick":
+		"jar":
 			if "ingredients" not in target_item:
 				return false
 			return ingredients.transfer_ingredients(target_item.ingredients)

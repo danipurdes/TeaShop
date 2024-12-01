@@ -3,7 +3,7 @@ extends StaticBody3D
 class_name Trashcan
 
 @export var machine_type:String = "trashcan"
-@export var allow_list:Array[String] = ["tea_brick"]
+@export var allow_list:Array[String] = ["jar"]
 
 func useItem(item):
 	if !is_item_allowed(item):
