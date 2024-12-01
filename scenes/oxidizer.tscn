@@ -73,7 +73,7 @@ obj_ingredient = ExtResource("2_55n5q")
 
 [node name="CounterHotspot" parent="." instance=ExtResource("3_24mvj")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.91, -0.16949)
-allow_list = Array[String](["tea_brick"])
+allow_list = Array[String](["jar"])
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)

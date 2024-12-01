@@ -13,12 +13,12 @@ static var itemUseLabelMap = {
 	"teapot:cold_water|sink": "empty tea pot",
 	"teapot:hot_water|sink": "empty tea pot",
 	
-	"tea_brick:full|tea_brick:empty": "transfer blend to empty jar",
-	"tea_brick:partial|tea_brick:empty": "transfer blend to empty jar",
-	"tea_brick:partial|tea_brick:partial": "transfer blend to jar",
+	"jar:full|jar:empty": "transfer blend to empty jar",
+	"jar:partial|jar:empty": "transfer blend to empty jar",
+	"jar:partial|jar:partial": "transfer blend to jar",
 
-	"dispenser|tea_brick:empty": "add ingredient to empty jar",
-	"dispenser|tea_brick:partial": "add ingredient to jar",
+	"dispenser|jar:empty": "add ingredient to empty jar",
+	"dispenser|jar:partial": "add ingredient to jar",
 
 	"kettle:cold_water|hotplate:empty": "heat kettle on stove",
 

@@ -109,22 +109,18 @@ func set_state(new_state):
 	state_changed.emit(new_state)
 
 func generate_order():
-	var difficulty = randi_range(2, 5)
-	var tea_type = randi_range(0, 2)
-	var flavors:Array[int] = [0, 0, 0, 0, 0, 0]
+	var difficulty = randi_range(2, 4)
+	var tea_index = randi_range(0, 3)
+	var teas = [Constants.ingredients.NONE, Constants.ingredients.WHITE_TEA, Constants.ingredients.GREEN_TEA, Constants.ingredients.BLACK_TEA]
+	var flavors:FlavorProfile = FlavorProfile.new([0, 0, 0, 0, 0, 0])
 	
-	match tea_type:
-		1: 
-			flavors[0] += 1
-			difficulty -= 1
-		2:
-			flavors[4] += 1
-			difficulty -= 1
-		
+	if tea_index > 0:
+		flavors.add_ingredient(Constants.ingredients[teas[tea_index]])
+		difficulty -= 1
+
 	for i in difficulty:
-		flavors[randi_range(0, 4)] += 1
-	
-	return FlavorProfile.new(flavors)
+		flavors.flavors[randi_range(0, 5)] += 1
+	return flavors
 
 func on_sip_anim_finished(anim_name):
 	if anim_name == "sipAction":

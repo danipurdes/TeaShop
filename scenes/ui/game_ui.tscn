@@ -7,15 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://cewms27xqcspa" path="res://textures/Cursors/cursor_dot.png" id="3_8mlbq"]
 [ext_resource type="LabelSettings" uid="uid://bf1tn2pcvvkuk" path="res://materials/ui/game_ui_label.tres" id="3_ynf5c"]
 [ext_resource type="Script" path="res://scripts/ui/dynamic_cursor.gd" id="5_1fitx"]
-[ext_resource type="FontFile" uid="uid://bhlbbijborftp" path="res://textures/Icons/flavor_font.png" id="6_61mo5"]
-[ext_resource type="Texture2D" uid="uid://b7e7cam1nvuud" path="res://textures/Icons/yellow_star.png" id="6_dih7h"]
+[ext_resource type="Texture2D" uid="uid://b7e7cam1nvuud" path="res://textures/Icons/ratings/yellow_star.png" id="6_dih7h"]
 [ext_resource type="Texture2D" uid="uid://yehv53q7ttxj" path="res://textures/Cursors/up_arrow.png" id="6_erl0w"]
 [ext_resource type="Texture2D" uid="uid://b3o2biyn7nrs5" path="res://textures/Cursors/down_arrow.png" id="7_3yyf6"]
+[ext_resource type="FontFile" uid="uid://rg8ct0dvcjum" path="res://textures/Icons/flavors/fonts/flavor_font_small.png" id="8_187r4"]
 [ext_resource type="Script" path="res://scripts/ui/mouselook_panel.gd" id="8_dhos2"]
 [ext_resource type="Script" path="res://scripts/ui/inspection_panel.gd" id="9_jcpob"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_803om"]
-font = ExtResource("6_61mo5")
+font = ExtResource("8_187r4")
 font_size = 71
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)

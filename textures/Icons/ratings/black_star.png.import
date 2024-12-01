@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dr0qvned3ada3"
-path="res://.godot/imported/glowing_star.png-a0c2158dbf0eb2d90ed0db3b27453884.ctex"
+uid="uid://bywc8fht0neqn"
+path="res://.godot/imported/black_star.png-49b5c0c548bad1ed3dc46b783a4b4767.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/Icons/glowing_star.png"
-dest_files=["res://.godot/imported/glowing_star.png-a0c2158dbf0eb2d90ed0db3b27453884.ctex"]
+source_file="res://textures/Icons/ratings/black_star.png"
+dest_files=["res://.godot/imported/black_star.png-49b5c0c548bad1ed3dc46b783a4b4767.ctex"]
 
 [params]
 

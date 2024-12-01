@@ -4,9 +4,9 @@
 
 [resource]
 background_mode = 2
-background_color = Color(1, 1, 1, 1)
 sky = ExtResource("1_cd77s")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.53
+reflected_light_source = 2
 ssao_enabled = true

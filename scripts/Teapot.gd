@@ -27,7 +27,7 @@ func useItem(held_item):
 	match held_item.item_type:
 		"kettle":
 			return use_kettle(held_item)
-		"tea_brick":
+		"jar":
 			return held_item.onUseItem(self)
 		_:
 			return false

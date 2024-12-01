@@ -23,7 +23,7 @@ func useItem(held_item):
 		return false
 		
 	match held_item.item_type:
-		"tea_brick":
+		"jar":
 			if "ingredients" not in held_item:
 				return false
 			return held_item.ingredients.add_ingredients(ingredients)
@@ -35,7 +35,7 @@ func onUseItem(target_item):
 		return false
 	
 	match target_item.item_type:
-		"tea_brick":
+		"jar":
 			if "ingredients" not in target_item:
 				return false
 			return target_item.ingredients.add_ingredients(ingredients)

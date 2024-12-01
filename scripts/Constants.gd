@@ -10,7 +10,10 @@ enum ingredients {
 	PINE_NEEDLE,
 	LAVENDER,
 	JASMINE,
-	PEACH
+	WHEATGRASS,
+	BLACK_CARDAMOM,	
+	COFFEE_BEAN,
+	DARK_CHOCOLATE
 }
 
 enum flavors {
@@ -19,7 +22,8 @@ enum flavors {
 	FLORAL,
 	FRUITY,
 	EARTHY,
-	SMOKY
+	SMOKY,
+	CAFFEINE
 }
 
 enum fluid_state {
@@ -35,15 +39,18 @@ enum vessel_state {
 
 static var ingredientFlavorMap = {
 	ingredients.NONE: [0,0,0,0,0,0],
-	ingredients.WHITE_TEA: [0,0,1,0,0,0],
-	ingredients.GREEN_TEA: [1,0,0,0,0,0],
-	ingredients.BLACK_TEA: [0,0,0,0,1,0],
+	ingredients.WHITE_TEA: [0,0,1,0,0,1],
+	ingredients.GREEN_TEA: [1,0,0,0,0,1],
+	ingredients.BLACK_TEA: [0,0,0,0,1,1],
 	ingredients.ORANGE_PEEL: [0,0,1,0,0,0],
 	ingredients.HIBISCUS: [0,0,1,0,0,0],
 	ingredients.PINE_NEEDLE: [0,0,0,1,0,0],
 	ingredients.LAVENDER: [0,1,0,0,0,0],
 	ingredients.JASMINE: [0,1,0,0,0,0],
-	ingredients.PEACH: [0,0,1,0,0,0]
+	ingredients.WHEATGRASS: [1,0,0,0,0,0],
+	ingredients.BLACK_CARDAMOM: [0,0,0,0,1,0],
+	ingredients.COFFEE_BEAN: [0,0,0,1,0,1],
+	ingredients.DARK_CHOCOLATE: [0,0,1,0,0,1]
 }
 
 static var ingredientColorMap = {
@@ -56,7 +63,10 @@ static var ingredientColorMap = {
 	ingredients.PINE_NEEDLE: Color.ORANGE,
 	ingredients.LAVENDER: Color.LAVENDER,
 	ingredients.JASMINE: Color.PALE_GOLDENROD,
-	ingredients.PEACH: Color.PEACH_PUFF
+	ingredients.WHEATGRASS: Color.LAWN_GREEN,
+	ingredients.BLACK_CARDAMOM: Color.DARK_SLATE_GRAY,
+	ingredients.COFFEE_BEAN: Color.SADDLE_BROWN,
+	ingredients.DARK_CHOCOLATE: Color.CHOCOLATE
 }
 
 static var ingredientMap = {

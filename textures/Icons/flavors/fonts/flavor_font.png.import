@@ -3,12 +3,12 @@
 importer="font_data_image"
 type="FontFile"
 uid="uid://bhlbbijborftp"
-path="res://.godot/imported/flavor_font.png-c715e7ca3dc01e22f930d846f62fc9d7.fontdata"
+path="res://.godot/imported/flavor_font.png-7b90511c8a895687a6d434464f7b20dc.fontdata"
 
 [deps]
 
-source_file="res://textures/Icons/flavor_font.png"
-dest_files=["res://.godot/imported/flavor_font.png-c715e7ca3dc01e22f930d846f62fc9d7.fontdata"]
+source_file="res://textures/Icons/flavors/fonts/flavor_font.png"
+dest_files=["res://.godot/imported/flavor_font.png-7b90511c8a895687a6d434464f7b20dc.fontdata"]
 
 [params]
 

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dptf5ky73g1nl"
-path.s3tc="res://.godot/imported/blossom_icon.png-786f9ad59a86790a5331511ce1b81c64.s3tc.ctex"
+uid="uid://dmxuhr11uyn3q"
+path.s3tc="res://.godot/imported/strawberry_icon.png-2e3d11bd512c5f6acf2d11adeb5603b7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/Icons/blossom_icon.png"
-dest_files=["res://.godot/imported/blossom_icon.png-786f9ad59a86790a5331511ce1b81c64.s3tc.ctex"]
+source_file="res://textures/Icons/flavors/strawberry_icon.png"
+dest_files=["res://.godot/imported/strawberry_icon.png-2e3d11bd512c5f6acf2d11adeb5603b7.s3tc.ctex"]
 
 [params]
 

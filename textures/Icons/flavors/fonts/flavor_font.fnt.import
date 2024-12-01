@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://cgjl2p16gdgu5"
+path="res://.godot/imported/flavor_font.fnt-efccf464c53f9ac828b840de4707ccc9.fontdata"
+
+[deps]
+
+source_file="res://textures/Icons/flavors/fonts/flavor_font.fnt"
+dest_files=["res://.godot/imported/flavor_font.fnt-efccf464c53f9ac828b840de4707ccc9.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

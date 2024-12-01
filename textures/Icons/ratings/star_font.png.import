@@ -3,12 +3,12 @@
 importer="font_data_image"
 type="FontFile"
 uid="uid://56gsfbp5k477"
-path="res://.godot/imported/star_font.png-c8c0f19ffc5cbd969edea05401720089.fontdata"
+path="res://.godot/imported/star_font.png-5a55de8fc8513bbe9b484e9410111289.fontdata"
 
 [deps]
 
-source_file="res://textures/Icons/star_font.png"
-dest_files=["res://.godot/imported/star_font.png-c8c0f19ffc5cbd969edea05401720089.fontdata"]
+source_file="res://textures/Icons/ratings/star_font.png"
+dest_files=["res://.godot/imported/star_font.png-5a55de8fc8513bbe9b484e9410111289.fontdata"]
 
 [params]
 
