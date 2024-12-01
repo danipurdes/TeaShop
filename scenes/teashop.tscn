@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=76 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
 [ext_resource type="Script" path="res://scripts/ui/GameHUD.gd" id="2_my5ie"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://db0xu55woj8wb" path="res://scenes/ceiling.tscn" id="8_x5mcj"]
 [ext_resource type="PackedScene" uid="uid://coekka8bmqu1g" path="res://scenes/counter.tscn" id="10_2dvqi"]
 [ext_resource type="PackedScene" uid="uid://csia40gwyiojh" path="res://scenes/sink.tscn" id="11_45m4w"]
-[ext_resource type="FontFile" path="res://textures/Icons/flavor_font.png" id="13_dbs02"]
 [ext_resource type="PackedScene" uid="uid://clunbhfm3m663" path="res://scenes/tall_shelf.tscn" id="13_miqk0"]
 [ext_resource type="PackedScene" uid="uid://d0my1uk3l6y46" path="res://scenes/wall.tscn" id="13_t0x17"]
 [ext_resource type="PackedScene" uid="uid://dq2jylpvjtxxd" path="res://scenes/teapot.tscn" id="14_x78ts"]
@@ -94,7 +93,7 @@ albedo_color = Color(0.34, 0.204, 0, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_tns8o"]
 material = SubResource("StandardMaterial3D_gbhbd")
-size = Vector2(1.27, 1.065)
+size = Vector2(1.565, 1.065)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t867c"]
 albedo_color = Color(0.34, 0.204, 0, 1)
@@ -451,19 +450,19 @@ transform = Transform3D(1.18021e-07, 0, -0.9, 0, 0.9, 0, 0.9, 0, 1.18021e-07, 2.
 mesh = SubResource("QuadMesh_tns8o")
 
 [node name="Label0" type="Label3D" parent="BackOfHouse/Instructions/FlavorSign2"]
-transform = Transform3D(1.11111, 0, 8.52651e-14, 0, 1.11111, 0, -8.52651e-14, 0, 1.11111, -0.549383, 0.0159023, 0.0130005)
+transform = Transform3D(1.11111, 0, 8.52651e-14, 0, 1.11111, 0, -8.52651e-14, 0, 1.11111, -0.664219, 0.0159023, 0.0130007)
 text = "Tea Flavors:
-     White Tea
-     Green Tea
-     Black Tea"
+          White Tea
+          Green Tea
+          Black Tea"
 horizontal_alignment = 0
 
 [node name="Label1" type="Label3D" parent="BackOfHouse/Instructions/FlavorSign2"]
-transform = Transform3D(0.188889, 0, 8.88178e-15, 0, 0.188889, 0, -8.88178e-15, 0, 0.188889, -0.589543, -0.108198, 0.0130005)
-text = "2
-0
-4"
-font = ExtResource("13_dbs02")
+transform = Transform3D(0.188889, 0, 8.88178e-15, 0, 0.188889, 0, -8.88178e-15, 0, 0.188889, -0.70438, -0.108198, 0.0130007)
+text = "25
+05
+45"
+font = ExtResource("26_m7ffq")
 font_size = 252
 horizontal_alignment = 0
 
@@ -495,6 +494,12 @@ spawnObj_4 = ExtResource("25_skjjp")
 spawnTea_4 = 8
 spawnObj_5 = ExtResource("25_skjjp")
 spawnTea_5 = 9
+spawnObj_6 = ExtResource("25_skjjp")
+spawnTea_6 = 10
+spawnObj_7 = ExtResource("25_skjjp")
+spawnTea_7 = 11
+spawnObj_8 = ExtResource("25_skjjp")
+spawnTea_8 = 12
 
 [node name="TallShelf_2" parent="BackOfHouse/Counters" instance=ExtResource("13_miqk0")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.35372, 0, 4.33715)
