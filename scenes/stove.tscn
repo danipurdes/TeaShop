@@ -23,3 +23,4 @@ transform = Transform3D(0.885, 0, 0, 0, 0.885, 0, 0, 0, 0.885, 0.00350666, 1.015
 
 [node name="Boiling" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_7adei")
+bus = &"Environment"
