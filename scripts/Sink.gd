@@ -9,7 +9,11 @@ func useItem(held_item):
 		return false
 	if !held_item.has_method("onUseItem"):
 		return false
-	return held_item.onUseItem(self)
+	
+	if held_item.onUseItem(self):
+		$Bubbles.play()
+		return true
+	return false
 
 func getName():
 	return machine_type

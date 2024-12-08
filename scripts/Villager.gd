@@ -115,7 +115,7 @@ func generate_order():
 	var flavors:FlavorProfile = FlavorProfile.new([0, 0, 0, 0, 0, 0])
 	
 	if tea_index > 0:
-		flavors.add_ingredient(Constants.ingredients[teas[tea_index]])
+		flavors.add_ingredient(teas[tea_index])
 		difficulty -= 1
 
 	for i in difficulty:

@@ -67,3 +67,13 @@ func to_amount_string():
 		for n in flavors[flavor_index]:
 			output += str(flavor_index)
 	return output
+
+func to_stacked_string():
+	var output = ""
+	for flavor_index in flavors.size():
+		for n in flavors[flavor_index]:
+			output += str(flavor_index)
+		if flavors[flavor_index] > 0:
+			output += "\n"
+	output = output.trim_suffix("\n")
+	return output

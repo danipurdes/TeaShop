@@ -12,7 +12,6 @@ func _ready():
 			spawnTea,
 			allow_list
 		)
-	
 	$CounterHotspot.object_placed.connect(heat_item)
 
 func heat_item():
@@ -21,3 +20,4 @@ func heat_item():
 		match item_to_heat.state:
 			"cold_water":
 				item_to_heat.update_state("hot_water")
+				$Boiling.play()
