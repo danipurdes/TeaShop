@@ -48,6 +48,7 @@ max_db = -4.411
 pitch_scale = 0.95
 autoplay = true
 panning_strength = 0.16
+bus = &"Music"
 
 [node name="ParticleEmitter" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00224614, 0.54896, 0.00580812)
