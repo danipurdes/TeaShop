@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://csia40gwyiojh"]
+[gd_scene load_steps=6 format=3 uid="uid://csia40gwyiojh"]
 
 [ext_resource type="Script" path="res://scripts/Sink.gd" id="1_sirqu"]
 [ext_resource type="PackedScene" uid="uid://blhvleevy13gu" path="res://models/kenney_furniture/kitchenSink.glb" id="2_bcxlc"]
+[ext_resource type="AudioStream" uid="uid://dqunf7k1fy8r" path="res://audio/water_drip.wav" id="3_ne8yq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ibrm1"]
 size = Vector3(1.00964, 0.986597, 1.00713)
@@ -23,3 +24,6 @@ shape = SubResource("SphereShape3D_81phw")
 
 [node name="Model" parent="." instance=ExtResource("2_bcxlc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.558)
+
+[node name="Bubbles" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ne8yq")
