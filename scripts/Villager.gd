@@ -127,3 +127,4 @@ func on_sip_anim_finished(anim_name):
 		set_state("leaving")
 		animation_player.play("walkAction")
 		$PerformanceLabel.visible = false
+		$Mew.play()
