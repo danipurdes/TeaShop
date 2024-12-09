@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3gcqtsi7lxal"]
+[gd_scene load_steps=10 format=3 uid="uid://c3gcqtsi7lxal"]
 
 [ext_resource type="Script" path="res://scripts/TeaTree.gd" id="1_335jg"]
+[ext_resource type="AudioStream" uid="uid://bvee2uelrahkx" path="res://audio/environment/snip.wav" id="2_xr8ex"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_toxs6"]
 size = Vector3(0.773191, 0.631572, 0.744984)
@@ -44,6 +45,9 @@ skeleton = NodePath("../../../..")
 [node name="LeafRefreshTimer" type="Timer" parent="ClickArea"]
 wait_time = 3.0
 one_shot = true
+
+[node name="Snip" type="AudioStreamPlayer" parent="ClickArea"]
+stream = ExtResource("2_xr8ex")
 
 [node name="PotMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)

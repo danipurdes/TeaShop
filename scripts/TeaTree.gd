@@ -27,6 +27,7 @@ func trim_leaves():
 	$LeavesMesh.visible = false
 	$Hitbox.set_disabled(true)
 	$LeafRefreshTimer.start()
+	$Snip.play()
 
 func refresh_leaves():
 	$LeavesMesh.visible = true
