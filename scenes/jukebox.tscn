@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dwhkm61peqh3x"]
 
 [ext_resource type="Script" path="res://scripts/Jukebox.gd" id="1_iunwr"]
-[ext_resource type="AudioStream" uid="uid://dk7p3uur283wf" path="res://audio/dreamy-jazz-slow-background-jazz-music-piano-and-seattle-strings-9998.mp3" id="2_jqkjs"]
+[ext_resource type="AudioStream" uid="uid://dvu2aec3mqh2x" path="res://audio/music/670039__seth_makes_sounds__chill-background-music.wav" id="2_pk47s"]
 [ext_resource type="Texture2D" uid="uid://dbs778b4q00h5" path="res://textures/Icons/Music/music note.png" id="3_j4a46"]
 [ext_resource type="PackedScene" uid="uid://e5p7vq810f85" path="res://models/kenney_furniture/radio.glb" id="4_8lrsi"]
 
@@ -42,13 +42,12 @@ shape = SubResource("BoxShape3D_idfoq")
 
 [node name="ChillHopBeatsToStudyTo" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-stream = ExtResource("2_jqkjs")
+stream = ExtResource("2_pk47s")
 unit_size = 3.0
 max_db = -4.411
 pitch_scale = 0.95
 autoplay = true
 panning_strength = 0.16
-bus = &"Music"
 
 [node name="ParticleEmitter" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00224614, 0.54896, 0.00580812)
