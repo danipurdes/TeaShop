@@ -24,9 +24,9 @@ func useItem(held_item):
 		
 	match held_item.item_type:
 		"jar":
-			if "ingredients" not in held_item:
-				return false
-			return held_item.ingredients.add_ingredients(ingredients)
+			return use_on_dry_container(held_item)
+		"teapot":
+			return use_on_dry_container(held_item)
 		_:
 			return false
 
@@ -36,11 +36,16 @@ func onUseItem(target_item):
 	
 	match target_item.item_type:
 		"jar":
-			if "ingredients" not in target_item:
-				return false
-			return target_item.ingredients.add_ingredients(ingredients)
+			return use_on_dry_container(target_item)
+		"teapot":
+			return use_on_dry_container(target_item)
 		_:
 			return false
+
+func use_on_dry_container(container):
+	if "ingredients" not in container:
+		return false
+	return container.ingredients.add_ingredients(ingredients)
 
 func on_ingredients_changed(_new_ingredients):
 	$IngredientLabel.on_label_update(ingredients.ingredients_to_string())

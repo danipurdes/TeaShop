@@ -29,6 +29,8 @@ func useItem(held_item):
 			return use_kettle(held_item)
 		"jar":
 			return held_item.onUseItem(self)
+		"dispenser":
+			return held_item.onUseItem(self)
 		_:
 			return false
 
@@ -44,6 +46,8 @@ func onUseItem(target_item):
 		match target_item.item_type:
 			"teacup":
 				return use_on_teacup(target_item)
+			"dispenser":
+				return true
 			_:
 				return false
 	
