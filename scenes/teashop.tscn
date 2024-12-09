@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://bmkacr6ktnxpn"]
+[gd_scene load_steps=77 format=3 uid="uid://bmkacr6ktnxpn"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_28uhp"]
 [ext_resource type="Script" path="res://scripts/ui/GameHUD.gd" id="2_my5ie"]
@@ -40,6 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://c4mbfrgr4qkhe" path="res://models/kenney_furniture/tableCoffeeSquare.glb" id="39_6vchk"]
 [ext_resource type="PackedScene" uid="uid://br3kmsb7iwyr1" path="res://models/kenney_town/rockSmall.glb" id="39_6w6dw"]
 [ext_resource type="PackedScene" uid="uid://j1mde52ueowc" path="res://models/kenney_town/rockWide.glb" id="40_ed5qf"]
+[ext_resource type="AudioStream" uid="uid://fgcpakkv3vgw" path="res://audio/environment/bell_jingle.wav" id="40_yatrx"]
 [ext_resource type="PackedScene" uid="uid://bfvboji621fbo" path="res://models/kenney_town/hedge.glb" id="42_fqfei"]
 [ext_resource type="PackedScene" uid="uid://bhourd68dwsfm" path="res://models/kenney_town/road.glb" id="43_4hprh"]
 [ext_resource type="PackedScene" uid="uid://bd2s5iy8pahn2" path="res://models/kenney_town/hedgeCurved.glb" id="43_fa4xt"]
@@ -704,6 +705,10 @@ loop = false
 [node name="SpawnCooldownTimer" type="Timer" parent="VillagerSpawner"]
 wait_time = 2.0
 one_shot = true
+
+[node name="Bell" type="AudioStreamPlayer3D" parent="VillagerSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.613211, 2.31267, 0.362925)
+stream = ExtResource("40_yatrx")
 
 [node name="Scenery" type="Node3D" parent="."]
 

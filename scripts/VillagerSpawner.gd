@@ -31,10 +31,12 @@ func spawn_villager():
 	$CustomerPath/CustomerPathFollow.progress = 0
 	current_villager.target_path_follow = $CustomerPath/CustomerPathFollow
 	add_child.call_deferred(current_villager)
+	$Bell.play()
 
 func clear_current_villager():
 	current_villager = null
 	$SpawnCooldownTimer.start()
+	$Bell.play()
 
 func on_order_changed(order_flavors):
 	current_order_changed.emit(order_flavors.to_amount_string())
